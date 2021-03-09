@@ -1,13 +1,16 @@
+import { Box } from "@material-ui/core";
 import { CSSProperties } from "react";
 import { useState } from "react";
 import heroPic1 from "../../assets/hero1.png";
 import heroPic2 from "../../assets/hero2.png";
+import Carousel from "./Carousel";
 
 function Hero() {
   const [leftIsShown1, setLeftIsShown] = useState(false);
   const [rightIsShown, setRightIsShown] = useState(false);
 
   return (
+    <>
     <div style={heroContainer}>
       <div
         style={heroPicLeft}
@@ -24,6 +27,13 @@ function Hero() {
         {rightIsShown && <h2 style={heroTitle}>THE SOFTY</h2>}
       </div>
     </div>
+      <Box>
+        <p>More than 135 years of timeless Italian craftmanship.</p>
+      </Box>
+      <Box>
+        <Carousel />
+      </Box>
+      </>
   );
 }
 
@@ -57,6 +67,4 @@ const heroTitle: CSSProperties = {
   marginLeft: "3rem",
 };
 
-
 export default Hero;
-
