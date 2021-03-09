@@ -7,7 +7,6 @@ import alternativeCursor from "../../assets/alternativeCursor.png";
 import { useMouse } from "../MousePos";
 import Carousel from "./Carousel";
 
-
 function Hero() {
   const [leftIsShown, setLeftIsShown] = useState(false);
   const [rightIsShown, setRightIsShown] = useState(false);
@@ -36,29 +35,29 @@ function Hero() {
 
   return (
     <>
-    <div style={heroContainer}>
-      <div
-        style={heroPicLeft}
-        onMouseEnter={() => setLeftIsShown(true)}
-        onMouseLeave={() => setLeftIsShown(false)}
-      >
-        {leftIsShown && <h2 style={heroTitleLeft}>NEW COLLECTION</h2>}
+      <div style={heroContainer}>
+        <div
+          style={heroPicLeft}
+          onMouseEnter={() => setLeftIsShown(true)}
+          onMouseLeave={() => setLeftIsShown(false)}
+        >
+          {leftIsShown && <h2 style={heroTitleLeft}>NEW COLLECTION</h2>}
+        </div>
+        <div
+          style={heroPicRight}
+          onMouseEnter={() => setRightIsShown(true)}
+          onMouseLeave={() => setRightIsShown(false)}
+        >
+          {rightIsShown && <h2 style={heroTitleRight}>THE SOFTY</h2>}
+        </div>
       </div>
-      <div
-        style={heroPicRight}
-        onMouseEnter={() => setRightIsShown(true)}
-        onMouseLeave={() => setRightIsShown(false)}
-      >
-        {rightIsShown && <h2 style={heroTitleRight}>THE SOFTY</h2>}
-      </div>
-    </div>
       <Box>
         <p>More than 135 years of timeless Italian craftmanship.</p>
       </Box>
       <Box>
         <Carousel />
       </Box>
-      </>
+    </>
   );
 }
 
