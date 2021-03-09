@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import heroPic1 from "../../assets/hero1.png";
 import heroPic2 from "../../assets/hero2.png";
 
-function Footer() {
+function Header() {
   return (
     <div style={heroContainer}>
       <div style={heroPicLeft}>
@@ -45,4 +45,4 @@ const heroTitle: CSSProperties = {
   marginLeft: "3rem",
 };
 
-export default Footer;
+export default Header;

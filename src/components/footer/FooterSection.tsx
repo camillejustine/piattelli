@@ -1,16 +1,30 @@
+import { Box, Link, Typography } from "@material-ui/core";
+import { CSSProperties } from "react";
+
+
 function FooterSection() {
 
     return(
-        <div>
-            <h2>Collection</h2>
-            <h4>The Softy Basic</h4>
-            <h4>Le Scandinive</h4>
-            <h4>Mona-Lisa Piattelli</h4>
-            <h4>Rinacimento</h4>
-        </div>
+        <Typography>
+            <Box style={rootStyle}>
+                <h2 style={linkStyling}>Collection</h2>
+                <Link style={linkStyling}>The Softy Basic</Link>
+                <Link style={linkStyling}>Le Scandinive</Link>
+                <Link style={linkStyling}>Mona-Lisa Piattelli</Link>
+                <Link style={linkStyling}>Rinacimento</Link>
+            </Box>
+        </Typography>
     )
 }
 
-
+const rootStyle: CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column'
+}
+ 
+const linkStyling: CSSProperties = {
+    padding: '0.5rem',
+    color: '#E5E5E5'
+}
 
 export default FooterSection;
