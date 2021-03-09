@@ -1,28 +1,57 @@
-import { Box, Link, Typography } from "@material-ui/core";
+import { Box, Link, TextField, Typography } from "@material-ui/core";
 import { Component, CSSProperties } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { ShoppingCart } from "@material-ui/icons";
-class Header extends Component {
+import "animate.css/animate.css";
+interface IState {
+  searchClicked: boolean;
+}
+
+class Header extends Component<{}, IState> {
+  constructor(props: any) {
+    super(props);
+
+    this.state = {
+      searchClicked: false,
+    };
+
+    this.onSearchClick = this.onSearchClick.bind(this);
+    this.onLeavingSeachField = this.onLeavingSeachField.bind(this);
+  }
+
+  onSearchClick() {
+      this.setState({ searchClicked: true })
+  }
+
+  onLeavingSeachField(){
+    this.setState({ searchClicked: false })
+
+  }
+  
   render() {
+    console.log(this.state.searchClicked);
+
     return (
       <Typography>
         <Box style={rootStyle}>
           <Link>New Collection</Link>
           <Link>All Bags</Link>
           <Link>
-            <h1>Piatelli</h1>
+            <h1>PIATELLI</h1>
           </Link>
           <Link>Timless Favorites</Link>
           <Box display="flex" m="1rem">
-            <Box m="1rem">
-              <Link>
+            <Box onClick={this.onSearchClick} m="1rem">
+              {!this.state.searchClicked ? (
                 <SearchIcon />
-              </Link>
+              ) : (
+                <form className='animate__animated animate__backInRight'>
+                  <TextField autoFocus onBlur={this.onLeavingSeachField} id="standard-basic" label="Standard" />
+                </form>
+              )}
             </Box>
             <Box m="1rem">
-              <Link>
-                <ShoppingCart />
-              </Link>
+              <ShoppingCart />
             </Box>
           </Box>
         </Box>
@@ -36,7 +65,7 @@ const rootStyle: CSSProperties = {
   margin: "0",
   padding: "0",
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "space-evenly",
   alignItems: "center",
   position: "fixed",
   zIndex: 5,
