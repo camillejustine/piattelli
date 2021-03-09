@@ -3,11 +3,36 @@ import { CSSProperties } from "react";
 import { useState } from "react";
 import heroPic1 from "../../assets/hero1.png";
 import heroPic2 from "../../assets/hero2.png";
+import alternativeCursor from "../../assets/alternativeCursor.png";
+import { useMouse } from "../MousePos";
 import Carousel from "./Carousel";
 
+
 function Hero() {
-  const [leftIsShown1, setLeftIsShown] = useState(false);
+  const [leftIsShown, setLeftIsShown] = useState(false);
   const [rightIsShown, setRightIsShown] = useState(false);
+  const { x, y } = useMouse();
+
+  const heroTitleLeft: CSSProperties = {
+    color: "white",
+    position: "absolute",
+    left: x,
+    top: y,
+    marginLeft: "-8rem",
+    marginTop: "-3rem",
+    whiteSpace: "nowrap",
+  };
+
+  const heroTitleRight: CSSProperties = {
+    color: "white",
+    position: "absolute",
+    left: x,
+    top: y,
+    marginLeft: "-8rem",
+    marginTop: "-3rem",
+    whiteSpace: "nowrap",
+    // marginLeft: "3rem",
+  };
 
   return (
     <>
@@ -17,14 +42,14 @@ function Hero() {
         onMouseEnter={() => setLeftIsShown(true)}
         onMouseLeave={() => setLeftIsShown(false)}
       >
-        {leftIsShown1 && <h2 style={heroTitle}>NEW COLLECTION</h2>}
+        {leftIsShown && <h2 style={heroTitleLeft}>NEW COLLECTION</h2>}
       </div>
       <div
         style={heroPicRight}
         onMouseEnter={() => setRightIsShown(true)}
         onMouseLeave={() => setRightIsShown(false)}
       >
-        {rightIsShown && <h2 style={heroTitle}>THE SOFTY</h2>}
+        {rightIsShown && <h2 style={heroTitleRight}>THE SOFTY</h2>}
       </div>
     </div>
       <Box>
@@ -44,6 +69,7 @@ const heroPicLeft: CSSProperties = {
   backgroundPosition: "center",
   objectFit: "cover",
   marginRight: ".5rem",
+  cursor: `url(${alternativeCursor}), auto`,
 };
 
 const heroPicRight: CSSProperties = {
@@ -53,6 +79,7 @@ const heroPicRight: CSSProperties = {
   backgroundPosition: "center",
   objectFit: "cover",
   marginLeft: ".5rem",
+  cursor: `url(${alternativeCursor}), auto`,
 };
 
 const heroContainer: CSSProperties = {
@@ -60,11 +87,11 @@ const heroContainer: CSSProperties = {
   justifyContent: "center",
 };
 
-const heroTitle: CSSProperties = {
-  color: "white",
-  position: "absolute",
-  top: "40rem",
-  marginLeft: "3rem",
-};
+// const heroTitleLeft: CSSProperties = {
+//   color: "white",
+//   position: "absolute",
+//   top: "40rem",
+//   marginLeft: "3rem",
+// };
 
 export default Hero;
