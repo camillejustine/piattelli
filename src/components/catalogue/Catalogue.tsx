@@ -1,16 +1,14 @@
 import { Grid } from "@material-ui/core";
 import Pic from '../../assets/bag.jpg';
 
-const image = "../assets/bag.jpg";
-
 const products: {
     name: string;
     price: number;
     preview: string;
 }[] = [
     {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: image},
-    {name: "mickeyBag", price: 100, preview: image}
+    {name: "mickeyBag", price: 100, preview: Pic},
+    {name: "mickeyBag", price: 100, preview: Pic}
 ]
    
 function Catalogue() { 
@@ -19,7 +17,7 @@ function Catalogue() {
         <Grid>
             {products.map((product) => (
                 <div>
-                    {product.name}
+                    {product.name}   {product.price}
                     <img src={product.preview} alt=' '/>
                 </div>
             ))}
