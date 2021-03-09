@@ -7,7 +7,6 @@ function Hero() {
   const [leftIsShown1, setLeftIsShown] = useState(false);
   const [rightIsShown, setRightIsShown] = useState(false);
 
-  //   const mousePosX = mouse.x
   return (
     <div style={heroContainer}>
       <div
@@ -58,4 +57,6 @@ const heroTitle: CSSProperties = {
   marginLeft: "3rem",
 };
 
+
 export default Hero;
+
