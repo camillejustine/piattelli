@@ -1,7 +1,29 @@
+import { Grid } from "@material-ui/core";
+import Pic from '../../assets/bag.jpg';
+
+const image = "../assets/bag.jpg";
+
+const products: {
+    name: string;
+    price: number;
+    preview: string;
+}[] = [
+    {name: "mickeyBag", price: 100, preview: Pic},
+    {name: "mickeyBag", price: 100, preview: image},
+    {name: "mickeyBag", price: 100, preview: image}
+]
+   
 function Catalogue() { 
+
     return(
-        <>
-        </>
+        <Grid>
+            {products.map((product) => (
+                <div>
+                    {product.name}
+                    <img src={product.preview} alt=' '/>
+                </div>
+            ))}
+        </Grid>
     )
 }
 
