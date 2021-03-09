@@ -1,15 +1,29 @@
 import { CSSProperties } from "react";
+import { useState } from "react";
 import heroPic1 from "../../assets/hero1.png";
 import heroPic2 from "../../assets/hero2.png";
 
-function Header() {
+function Hero() {
+  const [leftIsShown1, setLeftIsShown] = useState(false);
+  const [rightIsShown, setRightIsShown] = useState(false);
+
+  //   const mousePosX = mouse.x
+
   return (
     <div style={heroContainer}>
-      <div style={heroPicLeft}>
-        <h2 style={heroTitle}>NEW COLLECTION</h2>
+      <div
+        style={heroPicLeft}
+        onMouseEnter={() => setLeftIsShown(true)}
+        onMouseLeave={() => setLeftIsShown(false)}
+      >
+        {leftIsShown1 && <h2 style={heroTitle}>NEW COLLECTION</h2>}
       </div>
-      <div style={heroPicRight}>
-        <h2 style={heroTitle}>THE SOFTY</h2>
+      <div
+        style={heroPicRight}
+        onMouseEnter={() => setRightIsShown(true)}
+        onMouseLeave={() => setRightIsShown(false)}
+      >
+        {rightIsShown && <h2 style={heroTitle}>THE SOFTY</h2>}
       </div>
     </div>
   );
@@ -45,4 +59,5 @@ const heroTitle: CSSProperties = {
   marginLeft: "3rem",
 };
 
-export default Header;
+export default Hero;
+
