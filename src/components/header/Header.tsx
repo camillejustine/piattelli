@@ -32,10 +32,17 @@ class Header extends Component {
 }
 
 const rootStyle: CSSProperties = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center'
-}
-
+  top: 0,
+  margin: "0",
+  padding: "0",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  position: "fixed",
+  zIndex: 5,
+  width: "100vw",
+  height: "8.5rem",
+  backgroundColor: "white",
+};
 
 export default Header;
