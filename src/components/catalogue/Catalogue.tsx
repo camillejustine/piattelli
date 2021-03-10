@@ -2,6 +2,8 @@ import { Grid, Box, Typography } from "@material-ui/core";
 import { CSSProperties } from "react";
 import Pic from '../../assets/carouselPH.png';
 
+//const ProductView = lazy(() =>('./products/ProductView'))
+
 const products: {
     name: string;
     price: number;
@@ -22,12 +24,17 @@ const products: {
 ]
    
 function Catalogue() { 
+
+    function productView(){
+        console.log('test')
+    }
+
     return(
         <Grid style={gridWidth}>
             <Grid container item xs={12} spacing={1} style={innerGridStyle}>
                 {products.map((product) => (
                     <Typography>
-                        <Box style={boxStyle}>
+                        <Box style={boxStyle} onClick={productView}>
                             <img src={product.preview} alt=' ' width='400' height='400'/>
                             <span>{product.name}</span>
                             <span>{product.price}</span>  
