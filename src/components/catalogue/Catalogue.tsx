@@ -3,6 +3,7 @@ import { CSSProperties } from "react";
 import Pic from '../../assets/carouselPH.png';
 import { Link } from 'react-router-dom';
 
+
 //const ProductView = lazy(() =>('./products/ProductView'))
 
 const products: {
@@ -32,7 +33,6 @@ function Catalogue() {
 
     return(
         <div>
-        
             <Grid style={gridWidth}>
                 <Grid container item xs={12} spacing={1} style={innerGridStyle}>
                     {products.map((product) => (

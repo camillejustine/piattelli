@@ -4,7 +4,7 @@
 function ProductView() {
     return (
         <>
-            <div>Hello</div>
+            <div>Hello oooooowowowowo</div>
         </>
     )
 }
