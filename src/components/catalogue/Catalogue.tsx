@@ -1,6 +1,7 @@
 import { Grid, Box, Typography } from "@material-ui/core";
 import { CSSProperties } from "react";
 import Pic from '../../assets/carouselPH.png';
+import { Link } from 'react-router-dom';
 
 //const ProductView = lazy(() =>('./products/ProductView'))
 
@@ -26,23 +27,28 @@ const products: {
 function Catalogue() { 
 
     function productView(){
-        console.log('test')
+        
     }
 
     return(
-        <Grid style={gridWidth}>
-            <Grid container item xs={12} spacing={1} style={innerGridStyle}>
-                {products.map((product) => (
-                    <Typography>
-                        <Box style={boxStyle} onClick={productView}>
-                            <img src={product.preview} alt=' ' width='400' height='400'/>
-                            <span>{product.name}</span>
-                            <span>{product.price}</span>  
-                        </Box>
-                    </Typography>
-                ))}
+        <div>
+        
+            <Grid style={gridWidth}>
+                <Grid container item xs={12} spacing={1} style={innerGridStyle}>
+                    {products.map((product) => (
+                        <Typography>
+                                <Link to={product.name}>
+                                    <Box style={boxStyle} onClick={productView}>
+                                        <img src={product.preview} alt=' ' width='400' height='400'/>
+                                        <span>{product.name}</span>
+                                        <span>{product.price}</span>  
+                                    </Box>
+                                </Link>
+                        </Typography>
+                    ))}
+                </Grid>
             </Grid>
-        </Grid>
+        </div>
     )
 }
 
