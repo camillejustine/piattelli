@@ -12,24 +12,20 @@ const products: {
     preview: string;
 }[] = [
     {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic},
-    {name: "mickeyBag", price: 100, preview: Pic}
+    {name: "fishbag", price: 100, preview: Pic},
+    {name: "mickeyfffBag", price: 100, preview: Pic},
+    {name: "mickeasdasdyBag", price: 100, preview: Pic},
+    {name: "mickeddsasdasyBag", price: 100, preview: Pic},
+    {name: "mickasdasdaseyBag", price: 100, preview: Pic},
+    {name: "micksdfsdfeyBag", price: 100, preview: Pic},
+    {name: "mickweweeyBag", price: 100, preview: Pic},
+    {name: "mickasdasdeyBag", price: 100, preview: Pic},
+    {name: "miccvxcvkeyBag", price: 100, preview: Pic},
+    {name: "micksdfdeyBag", price: 100, preview: Pic},
+    {name: "mickfasdfsdfeyBag", price: 100, preview: Pic}
 ]
    
 function Catalogue() { 
-
-    function productView(){
-        
-    }
 
     return(
         <div>
@@ -38,7 +34,7 @@ function Catalogue() {
                     {products.map((product) => (
                         <Typography>
                                 <Link to={product.name}>
-                                    <Box style={boxStyle} onClick={productView}>
+                                    <Box style={boxStyle}>
                                         <img src={product.preview} alt=' ' width='400' height='400'/>
                                         <span>{product.name}</span>
                                         <span>{product.price}</span>  
@@ -71,3 +67,5 @@ const boxStyle: CSSProperties = {
 }
 
 export default Catalogue;
+
+//connect routes to onclick value from catalogue grid. 
