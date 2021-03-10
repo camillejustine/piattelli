@@ -1,19 +1,21 @@
 // import { Box } from "@material-ui/core";
 import { CSSProperties } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
-import leScandinave from "../../assets/le-scandinave.png";
+import dress from "../../assets/dress-cu.png";
 import { Typography, Box, Button } from "@material-ui/core";
 
-function Promotion() {
+function PromotionSecond() {
   return (
     <Box style={promotionContainer}>
       <Box style={promotionText}>
-        <Typography variant="h4">Explore</Typography>
-        <Typography variant="h2">LE SCANDINAVE</Typography>
+        <Typography variant="h6">who is</Typography>
+        <Typography variant="h2">MONA-LISA</Typography>
+        <Typography variant="body2">by</Typography>
+        <Typography variant="h2">PIATELLI</Typography>
       </Box>
       <Box>
         <img
-          src={leScandinave}
+          src={dress}
           style={customCursor}
           draggable="false"
           alt="A Le Scandinave promotion."
@@ -43,4 +45,4 @@ const promotionText: CSSProperties = {
 const customCursor: CSSProperties = {
   cursor: `url(${alternativeCursor}), auto`,
 };
-export default Promotion;
+export default PromotionSecond;
