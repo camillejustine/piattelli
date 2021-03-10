@@ -11,28 +11,27 @@ const responsive = {
 };
 
 const items = [
-  <img src={placeholder} onDragStart={handleDragStart} />,
-  <img src={placeholder} onDragStart={handleDragStart} />,
-  <img src={placeholder} onDragStart={handleDragStart} />,
-  <img src={placeholder} onDragStart={handleDragStart} />,
-  <img src={placeholder} onDragStart={handleDragStart} />,
-  <img src={placeholder} onDragStart={handleDragStart} />,
-  <img src={placeholder} onDragStart={handleDragStart} />,
+  <img src={placeholder} onDragStart={handleDragStart} alt="placeholder" />,
+  <img src={placeholder} onDragStart={handleDragStart} alt="placeholder" />,
+  <img src={placeholder} onDragStart={handleDragStart} alt="placeholder" />,
+  <img src={placeholder} onDragStart={handleDragStart} alt="placeholder" />,
+  <img src={placeholder} onDragStart={handleDragStart} alt="placeholder" />,
+  <img src={placeholder} onDragStart={handleDragStart} alt="placeholder" />,
+  <img src={placeholder} onDragStart={handleDragStart} alt="placeholder" />,
 ];
 
 function Carousel() {
   return (
-  <AliceCarousel 
-  mouseTracking 
-  items={items} 
-  responsive={responsive} 
-  autoPlay={true}
-  autoPlayInterval={5000}
-  infinite={true}
-  disableDotsControls={true}
-
-  />
-  )
+    <AliceCarousel
+      mouseTracking
+      items={items}
+      responsive={responsive}
+      autoPlay={true}
+      autoPlayInterval={5000}
+      infinite={true}
+      disableDotsControls={true}
+    />
+  );
 }
 
 export default Carousel;
