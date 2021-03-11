@@ -1,8 +1,8 @@
-import { Box, Link, TextField, Typography } from "@material-ui/core";
-import { Component, CSSProperties } from "react";
-import SearchIcon from "@material-ui/icons/Search";
-import { ShoppingCart } from "@material-ui/icons";
-import "animate.css/animate.css";
+import { Box, Link, TextField, Typography } from '@material-ui/core';
+import { Component, CSSProperties } from 'react';
+import SearchIcon from '@material-ui/icons/Search';
+import { ShoppingCart } from '@material-ui/icons';
+import 'animate.css/animate.css';
 interface IState {
   searchClicked: boolean;
 }
@@ -16,18 +16,17 @@ class Header extends Component<{}, IState> {
     };
 
     this.onSearchClick = this.onSearchClick.bind(this);
-    this.onLeavingSeachField = this.onLeavingSeachField.bind(this);
+    this.onLeavingSearchField = this.onLeavingSearchField.bind(this);
   }
 
   onSearchClick() {
-      this.setState({ searchClicked: true })
+    this.setState({ searchClicked: true });
   }
 
-  onLeavingSeachField(){
-    this.setState({ searchClicked: false })
-
+  onLeavingSearchField() {
+    this.setState({ searchClicked: false });
   }
-  
+
   render() {
     console.log(this.state.searchClicked);
 
@@ -36,17 +35,22 @@ class Header extends Component<{}, IState> {
         <Box style={rootStyle}>
           <Link>New Collection</Link>
           <Link>All Bags</Link>
-          <Link>
-            <h1>PIATELLI</h1>
-          </Link>
+          <Typography variant="h5">
+            <Link>PIATELLI</Link>
+          </Typography>
           <Link>Timless Favorites</Link>
           <Box display="flex" m="1rem">
             <Box onClick={this.onSearchClick} m="1rem">
               {!this.state.searchClicked ? (
                 <SearchIcon />
               ) : (
-                <form className='animate__animated animate__backInRight'>
-                  <TextField autoFocus onBlur={this.onLeavingSeachField} id="standard-basic" label="Standard" />
+                <form className="animate__animated animate__fadeIn">
+                  <TextField
+                    autoFocus
+                    onBlur={this.onLeavingSearchField}
+                    id="standard-basic"
+                    label="Standard"
+                  />
                 </form>
               )}
             </Box>
@@ -62,16 +66,16 @@ class Header extends Component<{}, IState> {
 
 const rootStyle: CSSProperties = {
   top: 0,
-  margin: "0",
-  padding: "0",
-  display: "flex",
-  justifyContent: "space-evenly",
-  alignItems: "center",
-  position: "fixed",
+  margin: '0',
+  padding: '0',
+  display: 'flex',
+  justifyContent: 'space-evenly',
+  alignItems: 'center',
+  position: 'fixed',
   zIndex: 5,
-  width: "100vw",
-  height: "8.5rem",
-  backgroundColor: "white",
+  width: '100vw',
+  height: '8.5rem',
+  backgroundColor: 'white',
 };
 
 export default Header;
