@@ -27,7 +27,7 @@ function Layout() {
               <Footer />
             </Route>
             <Route path="/:name">
-                <ProductView />
+                <ProductView productView={productDetail}/>
             </Route>
       </div>
     );
