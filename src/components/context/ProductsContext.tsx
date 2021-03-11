@@ -1,15 +1,28 @@
 import {Component, createContext} from 'react';
+import Pic from '../../assets/carouselPH.png';
 
 interface iState {
     products: any[]
 }
-
 interface ContextValue extends iState {
     productViewDisplay: (product: string) => void;
 }
 
 export const ProductsContext = createContext<ContextValue>({
-    products: [],
+    products: [
+            {name: "mickeyBag", price: 100, preview: Pic},
+            {name: "fishbag", price: 100, preview: Pic},
+            {name: "mickeyfffBag", price: 100, preview: Pic},
+            {name: "mickeasdasdyBag", price: 100, preview: Pic},
+            {name: "mickeddsasdasyBag", price: 100, preview: Pic},
+            {name: "mickasdasdaseyBag", price: 100, preview: Pic},
+            {name: "micksdfsdfeyBag", price: 100, preview: Pic},
+            {name: "mickweweeyBag", price: 100, preview: Pic},
+            {name: "mickasdasdeyBag", price: 100, preview: Pic},
+            {name: "miccvxcvkeyBag", price: 100, preview: Pic},
+            {name: "micksdfdeyBag", price: 100, preview: Pic},
+            {name: "mickfasdfsdfeyBag", price: 100, preview: Pic}
+    ],
     productViewDisplay: () => {}
 })
 
