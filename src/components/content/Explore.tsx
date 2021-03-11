@@ -36,12 +36,11 @@ const exploreContainer: CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
   height: "53rem",
-  width: "50%",
   margin: "auto",
 };
 
 const imageStyling: CSSProperties = {
-  width: "25rem",
+  width: "20vw",
 };
 
 const imageContainer: CSSProperties = {
@@ -55,7 +54,7 @@ const imageContainer: CSSProperties = {
 
 const textContainer: CSSProperties = {
   height: "50rem",
-  width: "80%",
+  width: "50vw",
   background: "#F2F2F2",
   display: "flex",
   justifyContent: "center",
@@ -66,6 +65,7 @@ const textContainer: CSSProperties = {
 const textStyling: CSSProperties = {
   maxWidth: "50%",
   textAlign: "center",
+  marginBottom: "1rem",
 };
 
 const buttonStyling: CSSProperties = {
