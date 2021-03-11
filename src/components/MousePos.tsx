@@ -13,7 +13,6 @@ export function useMouse() {
         x: e.pageX,
         y: e.pageY,
       });
-      //   console.log(e.pageX, e.pageY);
     }
     document.addEventListener("mousemove", handle);
     return () => document.removeEventListener("mousemove", handle);

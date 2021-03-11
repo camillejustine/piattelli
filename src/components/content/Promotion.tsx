@@ -1,5 +1,6 @@
 // import { Box } from "@material-ui/core";
 import { CSSProperties } from 'react';
+import { Typography, Box, Button } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import alternativeCursor from '../../assets/alternativeCursor.png';
 import leScandinave from '../../assets/le-scandinave.png';
@@ -12,14 +13,15 @@ function Promotion() {
         <Typography variant="h3">LE SCANDINAVE</Typography>
       </div>
       <div>
+
         <img
           src={leScandinave}
           style={customCursor}
           draggable="false"
           alt="A Le Scandinave promotion."
         />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 
