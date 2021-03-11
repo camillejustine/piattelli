@@ -1,27 +1,27 @@
 import { Grid, Box, Typography } from "@material-ui/core";
-import { CSSProperties, ContextType, Component } from "react";
+import { CSSProperties, useContext } from "react";
 import { Link } from 'react-router-dom';
 import { ProductsContext } from '../context/ProductsContext'
 
 interface iProps {
     getProduct: (value: {}) => void;
 }
-class Catalogue extends Component<iProps> { 
 
-    context!: ContextType<typeof ProductsContext>
-    static contextType = ProductsContext;
+function Catalogue(props: iProps) { 
+    const { products } = useContext(ProductsContext)
+/*  context!: ContextType<typeof ProductsContext>
+    static contextType = ProductsContext; */
 
-    render() {
         return(
             <div>
                 <Grid style={gridWidth}>
                     <Grid container item xs={12} spacing={1} style={innerGridStyle}>
-                        {this.context.products.map((product: any) => (
+                        {products.map((product: any) => (
                             <Link to={product.name}>
                                 <Box 
                                     style={boxStyle} 
                                     onClick={() => {
-                                        this.props.getProduct(product)
+                                        props.getProduct(product)
                                     }}
                                     >
                                     <img src={product.preview} 
@@ -40,7 +40,6 @@ class Catalogue extends Component<iProps> {
                 </Grid>
             </div>
         )
-    }
 }
 
 const gridWidth: CSSProperties = {
