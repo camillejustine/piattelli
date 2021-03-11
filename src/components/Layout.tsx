@@ -4,7 +4,7 @@ import Footer from "./footer/Footer";
 import Promotion from "./content/Promotion";
 import Explore from "./content/Explore";
 import PromotionSecond from "./content/PromotionSecond";
-import CataloguePreview from "./content/CatalogPreview";
+import Catalogue from "./catalogue/Catalogue";
 import { Box } from "@material-ui/core";
 import { CSSProperties } from "react";
 
@@ -17,7 +17,7 @@ function Layout() {
         <Promotion />
         <Explore />
         <PromotionSecond />
-        <CataloguePreview />
+        <Catalogue isLarge={false} />
       </div>
       <Footer />
     </Box>
