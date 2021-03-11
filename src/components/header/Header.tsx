@@ -38,7 +38,7 @@ function Header() {
                 <form className="animate__animated animate__fadeIn">
                   <TextField
                     autoFocus
-                    onBlur={this.onLeavingSearchField}
+                    onBlur={() => setSearchClicked(false)}
                     id="standard-basic"
                     label="Standard"
                   />
