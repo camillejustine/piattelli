@@ -1,10 +1,8 @@
 import { Grid, Box, Typography } from "@material-ui/core";
-import { CSSProperties } from "react";
+import { CSSProperties, ContextType, Component } from "react";
 import Pic from '../../assets/carouselPH.png';
 import { Link } from 'react-router-dom';
-
-
-//const ProductView = lazy(() =>('./products/ProductView'))
+import { ProductsContext } from '../context/ProductsContext'
 
 const products: {
     name: string;
@@ -25,31 +23,36 @@ const products: {
     {name: "mickfasdfsdfeyBag", price: 100, preview: Pic}
 ]
    
-function Catalogue() { 
+class Catalogue extends Component { 
+    context!: ContextType<typeof ProductsContext>
+    static contextType = ProductsContext;
 
-    return(
-        <div>
-            <Grid style={gridWidth}>
-                <Grid container item xs={12} spacing={1} style={innerGridStyle}>
-                    {products.map((product) => (
-                        <Typography>
-                                <Link to={product.name}>
-                                    <Box style={boxStyle}>
-                                        <img src={product.preview} alt=' ' width='400' height='400'/>
-                                        <span>{product.name}</span>
-                                        <span>{product.price}</span>  
-                                    </Box>
-                                </Link>
-                        </Typography>
-                    ))}
+    render() {
+        console.log(this.context)
+        return(
+            <div>
+                <Grid style={gridWidth}>
+                    <Grid container item xs={12} spacing={1} style={innerGridStyle}>
+                        {products.map((product: any) => (
+                            <Typography>
+                                    <Link to={product.name}>
+                                        <Box style={boxStyle} onClick={() => this.context.productViewDisplay(product.name)}>
+                                            <img src={product.preview} alt=' ' width='400' height='400'/>
+                                            <span>{product.name}</span>
+                                            <span>{product.price}</span>  
+                                        </Box>
+                                    </Link>
+                            </Typography>
+                        ))}
+                    </Grid>
                 </Grid>
-            </Grid>
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
 const gridWidth: CSSProperties = {
-    maxWidth: '1400px',
+    maxWidth: '1500px',
     margin: 'auto'
 }
 
@@ -57,7 +60,6 @@ const innerGridStyle: CSSProperties = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '1rem',
 }
 
 const boxStyle: CSSProperties = {
@@ -68,4 +70,3 @@ const boxStyle: CSSProperties = {
 
 export default Catalogue;
 
-//connect routes to onclick value from catalogue grid. 
