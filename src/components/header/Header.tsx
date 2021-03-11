@@ -1,64 +1,55 @@
 import { Box, Link, TextField, Typography } from "@material-ui/core";
-import { Component, CSSProperties } from "react";
+import { Component, CSSProperties, useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
-import { ShoppingCart } from "@material-ui/icons";
+import { ShoppingCart as CartIcon } from "@material-ui/icons";
 import "animate.css/animate.css";
-interface IState {
-  searchClicked: boolean;
-}
+import Cart from "./Cart";
 
-class Header extends Component<{}, IState> {
-  constructor(props: any) {
-    super(props);
+function Header() {
+  const [searchClicked, setSearchClicked] = useState(false);
+  const [isCartVisible, setIsCartVisible] = useState(false);
 
-    this.state = {
-      searchClicked: false,
-    };
-
-    this.onSearchClick = this.onSearchClick.bind(this);
-    this.onLeavingSeachField = this.onLeavingSeachField.bind(this);
+  function hideCart() {
+    setIsCartVisible(false);
   }
-
-  onSearchClick() {
-      this.setState({ searchClicked: true })
-  }
-
-  onLeavingSeachField(){
-    this.setState({ searchClicked: false })
-
-  }
-  
-  render() {
-    console.log(this.state.searchClicked);
 
     return (
-      <Typography>
         <Box style={rootStyle}>
           <Link>New Collection</Link>
           <Link>All Bags</Link>
           <Link>
-            <h1>PIATELLI</h1>
+            <Typography variant='h1'>
+              PIATELLI
+            </Typography>
           </Link>
           <Link>Timless Favorites</Link>
           <Box display="flex" m="1rem">
-            <Box onClick={this.onSearchClick} m="1rem">
-              {!this.state.searchClicked ? (
+            <Box onClick={() => setSearchClicked(true)} m="1rem">
+              {!searchClicked 
+              ? (
                 <SearchIcon />
               ) : (
                 <form className='animate__animated animate__backInRight'>
-                  <TextField autoFocus onBlur={this.onLeavingSeachField} id="standard-basic" label="Standard" />
+                  <TextField autoFocus onBlur={() => setSearchClicked(false)} id="standard-basic" label="Standard" />
                 </form>
               )}
             </Box>
             <Box m="1rem">
-              <ShoppingCart />
+              {/* Icon */}
+              <CartIcon onClick={ () => {
+                setIsCartVisible(true);
+                console.log('clicked');
+                console.log(isCartVisible);
+                
+              }}/>
+              {/* Cart view */}
+              <Cart onHide={hideCart} isVisible={isCartVisible}/>
             </Box>
           </Box>
         </Box>
-      </Typography>
     );
   }
-}
+
 
 const rootStyle: CSSProperties = {
   top: 0,
