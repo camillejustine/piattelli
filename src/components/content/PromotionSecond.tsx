@@ -16,7 +16,7 @@ function PromotionSecond() {
       <Box>
         <img
           src={dress}
-          style={customCursor}
+          style={{ ...customCursor, ...imgStyling }}
           draggable="false"
           alt="A Le Scandinave promotion."
         />
@@ -30,6 +30,10 @@ const promotionContainer: CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
+};
+
+const imgStyling: CSSProperties = {
+  width: "50vw",
 };
 
 const promotionText: CSSProperties = {

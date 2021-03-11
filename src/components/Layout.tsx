@@ -4,18 +4,29 @@ import Footer from "./footer/Footer";
 import Promotion from "./content/Promotion";
 import Explore from "./content/Explore";
 import PromotionSecond from "./content/PromotionSecond";
+import CataloguePreview from "./content/CatalogPreview";
+import { Box } from "@material-ui/core";
+import { CSSProperties } from "react";
 
 function Layout() {
   return (
-    <div>
+    <Box>
       <Header />
-      <Hero />
-      <Promotion />
-      <Explore />
-      <PromotionSecond />
+      <div style={landingContainer}>
+        <Hero />
+        <Promotion />
+        <Explore />
+        <PromotionSecond />
+        <CataloguePreview />
+      </div>
       <Footer />
-    </div>
+    </Box>
   );
 }
+
+const landingContainer: CSSProperties = {
+  width: "50vw",
+  margin: "auto",
+};
 
 export default Layout;

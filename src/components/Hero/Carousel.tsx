@@ -26,6 +26,7 @@ function Carousel() {
       mouseTracking
       items={items}
       responsive={responsive}
+      autoWidth={true}
       autoPlay={true}
       autoPlayInterval={5000}
       infinite={true}
