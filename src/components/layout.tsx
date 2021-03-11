@@ -9,7 +9,7 @@ import {useState} from 'react';
 
 function Layout() {
 
-  const[productDetail,setProductDetail] = useState({name: "", price: "", preview: ""})
+  const[productDetail,setProductDetail] = useState<object>()
 
   function productDetails(value: object){
       setProductDetail(value)

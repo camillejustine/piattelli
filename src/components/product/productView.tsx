@@ -1,6 +1,3 @@
-
-
-
 function ProductView() {
     return (
         <>
