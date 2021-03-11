@@ -16,14 +16,14 @@ class Header extends Component<{}, IState> {
     };
 
     this.onSearchClick = this.onSearchClick.bind(this);
-    this.onLeavingSeachField = this.onLeavingSeachField.bind(this);
+    this.onLeavingSearchField = this.onLeavingSearchField.bind(this);
   }
 
   onSearchClick() {
     this.setState({ searchClicked: true });
   }
 
-  onLeavingSeachField() {
+  onLeavingSearchField() {
     this.setState({ searchClicked: false });
   }
 
@@ -47,7 +47,7 @@ class Header extends Component<{}, IState> {
                 <form className="animate__animated animate__fadeIn">
                   <TextField
                     autoFocus
-                    onBlur={this.onLeavingSeachField}
+                    onBlur={this.onLeavingSearchField}
                     id="standard-basic"
                     label="Standard"
                   />
