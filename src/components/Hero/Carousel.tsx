@@ -44,7 +44,7 @@ function Carousel() {
 }
 
 const customCursor: CSSProperties = {
-  cursor: `url(${alternativeCursor}), auto`,
+  cursor: `url(${alternativeCursor}) 9 7, auto`,
 };
 
 export default Carousel;
