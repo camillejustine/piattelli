@@ -44,7 +44,7 @@ const useStyles: any = makeStyles({
     margin: "auto",
   },
   imageStyling: {
-    width: "20vw",
+    width: "15vw",
   },
   imageContainer: {
     height: "50rem",

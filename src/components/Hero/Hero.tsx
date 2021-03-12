@@ -56,7 +56,7 @@ function Hero() {
       </Box>
       <Box>
         <Typography
-          variant="h4"
+          variant="h6"
           className={classes.flexCenter && classes.carouselText}
         >
           More than 135 years of timeless Italian craftmanship.

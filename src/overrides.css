@@ -4,7 +4,7 @@ body {
 
 @font-face {
   font-family: "Piatelli-Sans";
-  src: local("Piatelli-sans"),
+  src: local("Piatelli-Sans"),
     url(./font/texgyreadventor-regular.otf) format("truetype");
 }
 
@@ -16,6 +16,10 @@ body {
 
 .MuiButton-root {
   cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
+  border-radius: 0 !important;
+  text-transform: none !important;
+  letter-spacing: 0.05rem !important;
+  line-height: 26px !important;
 }
 
 .MuiButton-label {
@@ -40,4 +44,45 @@ body {
   position: absolute;
   top: -2rem;
   right: 1rem;
+}
+
+.MuiTypography-body1 {
+  letter-spacing: 0.05rem !important;
+  line-height: 26px !important;
+}
+
+.MuiTypography-h4 {
+  letter-spacing: 0.05rem !important;
+  font-weight: 400;
+}
+
+.MuiTypography-h2 {
+  letter-spacing: 0.05rem !important;
+  font-weight: 400 !important;
+}
+
+.MuiTypography-h3 {
+  letter-spacing: 0.05rem !important;
+  font-weight: 400 !important;
+  line-height: 65px !important;
+  font-size: 2.8rem !important;
+}
+
+.MuiTypography-h6 {
+  letter-spacing: 0.07rem !important;
+  font-weight: 400 !important;
+  line-height: 35px !important;
+  font-size: 1.5rem !important;
+}
+
+.MuiTypography-subtitle2 {
+  font-size: 1.125rem !important;
+  line-height: 40px !important;
+  letter-spacing: 0.05em !important;
+  text-decoration: none !important;
+}
+
+.MuiLink-underlineHover:hover {
+  text-decoration: none !important;
+  color: #fafafa;
 }
