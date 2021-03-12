@@ -1,3 +1,8 @@
 body {
   margin: 0;
 }
+
+* {
+  cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
+  cursor: url(../src/assets/alternativeCursorBlack.png) 9 7, default;
+}
