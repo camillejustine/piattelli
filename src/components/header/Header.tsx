@@ -17,18 +17,18 @@ function Header() {
 
   return (
     <Box className={classes.rootStyle}>
-      <Link>
+      <Link href="#" color='inherit' underline='none'>
         <Typography variant="body1">New Collection </Typography>
       </Link>
-      <Link>
+      <Link href="#" color='inherit' underline='none'>
         <Typography variant="body1">All Bags </Typography>{" "}
       </Link>
 
-      <Link href="#">
+      <Link href="#" color='inherit' underline='none'>
         <Typography variant="h1">PIATELLI</Typography>
       </Link>
 
-      <Link>
+      <Link href="#" color='inherit' underline='none'>
         <Typography variant="body1">Timless Favorites</Typography>{" "}
       </Link>
       <Box className={classes.iconWrapper}>
