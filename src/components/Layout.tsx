@@ -29,7 +29,9 @@ function Layout() {
           <Promotion />
           <Explore />
           <PromotionSecond />
-          <Catalogue isLarge={false} getProduct={productDetails} />
+          <Box style={cataloguePreviewContainer}>
+            <Catalogue isLarge={false} getProduct={productDetails} />
+          </Box>
         </Route>
       </div>
       <Route path="/:name">
@@ -42,8 +44,8 @@ function Layout() {
 }
 
 const landingContainer: CSSProperties = {
-  width: '50vw',
-  margin: 'auto',
+  width: "50vw",
+  margin: "auto",
 };
 
 const customCursorBlack: CSSProperties = {
@@ -52,6 +54,10 @@ const customCursorBlack: CSSProperties = {
 
 const customCursor: CSSProperties = {
   cursor: `url(${alternativeCursor}) 9 7, auto`,
+};
+
+const cataloguePreviewContainer: CSSProperties = {
+  marginTop: "1rem",
 };
 
 export default Layout;
