@@ -40,8 +40,8 @@ function productDetails(value: object){
 }
 
 const landingContainer: CSSProperties = {
-  width: "50vw",
-  margin: "auto",
+  width: '50vw',
+  margin: 'auto',
 };
 
 export default Layout;
