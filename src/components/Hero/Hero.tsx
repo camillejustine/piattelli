@@ -22,6 +22,7 @@ function Hero() {
     marginLeft: "-8rem",
     marginTop: "-3rem",
     whiteSpace: "nowrap",
+    fontFamily: "roboto",
   };
 
   const heroTitleRight: CSSProperties = {
@@ -29,9 +30,10 @@ function Hero() {
     position: "absolute",
     left: x,
     top: y,
-    marginLeft: "-8rem",
+    marginLeft: "-5rem",
     marginTop: "-3rem",
     whiteSpace: "nowrap",
+    fontFamily: "roboto",
   };
 
   return (

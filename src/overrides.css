@@ -6,3 +6,15 @@ body {
   cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
   cursor: url(../src/assets/alternativeCursorBlack.png) 9 7, default;
 }
+
+.MuiButton-root {
+  cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
+}
+
+.MuiButton-label {
+  cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
+}
+
+.MuiButton-root:hover {
+  cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
+}

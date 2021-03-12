@@ -71,9 +71,6 @@ const useStyles: any = makeStyles({
   buttonStyling: {
     marginTop: "1rem",
   },
-  customCursor: {
-    cursor: `url(${alternativeCursor}) 9 7, auto`,
-  },
 });
 
 export default Explore;
