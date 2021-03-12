@@ -9,6 +9,7 @@ import { Box } from "@material-ui/core";
 import { CSSProperties, useState } from "react";
 import { Route } from 'react-router-dom';
 import ProductView from './product/ProductView';
+import Carousel from "../carousel/Carousel";
 
 function Layout() {
   const[productDetail,setProductDetail] = useState<object>()
