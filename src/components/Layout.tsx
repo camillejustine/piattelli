@@ -8,16 +8,10 @@ import Catalogue from "./catalogue/Catalogue";
 import Newsletter from "./content/Newsletter";
 import { Box } from "@material-ui/core";
 import { CSSProperties, useState } from "react";
-<<<<<<< HEAD
-import { Route } from 'react-router-dom';
-import ProductView from './product/ProductView';
-import Carousel from "../carousel/Carousel";
-=======
 import { Route } from "react-router-dom";
 import ProductView from "./product/ProductView";
 import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
 import alternativeCursor from "../assets/alternativeCursor.png";
->>>>>>> c6ddddefe624939386e1163bb92a90098a7f45d7
 
 function Layout() {
   const [productDetail, setProductDetail] = useState<object>();
