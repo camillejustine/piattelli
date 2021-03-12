@@ -23,18 +23,22 @@ const productDetails: {
 //     {img: 'url()'}
 // ]
 
-function ProductDetails() {
+interface iProps {
+  productView: any;
+}
+
+function ProductDetails(props: iProps) {
   const classes = useStyles();
 
   return (
-    <Box className={classes.row}>
-      <Box className={classes.column}>
-        <img src={ImgTest} alt="" width="400" height="400" />
-        <img src={ImgTest} alt="" width="400" height="400" />
-        <img src={ImgTest} alt="" width="400" height="400" />
+    <Box className={classes.wrapper}>
+      <Box className={classes.productWrapper}>
+        <img src={ImgTest} alt="" width="600" height="750" />
+        <img src={ImgTest} alt="" width="600" height="750" />
+        <img src={ImgTest} alt="" width="600" height="750" />
       </Box>
 
-      <Box className={classes.column}>
+      <Box className={classes.infoWrapper}>
         <Box>
           {productTitle.map((product) => (
             <Box className={classes.column}>
@@ -59,7 +63,7 @@ function ProductDetails() {
           <Box className={classes.circle}></Box>
         </Box>
 
-        <Button style={classes.button}>
+        <Button className={classes.button}>
           <Typography variant="button">Add to cart</Typography>
         </Button>
       </Box>
@@ -68,6 +72,24 @@ function ProductDetails() {
 }
 
 const useStyles: any = makeStyles({
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: '10rem',
+  },
+  productWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  infoWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: 'purple',
+    width: '25rem',
+    height: '50rem',
+  },
   button: {
     height: '4rem',
     width: '8rem',

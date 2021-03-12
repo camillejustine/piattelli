@@ -13,6 +13,7 @@ import ProductView from "./product/ProductView";
 import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
 import alternativeCursor from "../assets/alternativeCursor.png";
 
+
 function Layout() {
   const [productDetail, setProductDetail] = useState<object>();
 
