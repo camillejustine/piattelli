@@ -2,7 +2,14 @@ body {
   margin: 0;
 }
 
+@font-face {
+  font-family: "Piatelli-Sans";
+  src: local("Piatelli-sans"),
+    url(./font/texgyreadventor-regular.otf) format("truetype");
+}
+
 * {
+  font-family: Piatelli-Sans !important;
   cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
   cursor: url(../src/assets/alternativeCursorBlack.png) 9 7, default;
 }
