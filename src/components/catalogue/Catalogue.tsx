@@ -1,37 +1,16 @@
 import { Grid, Box, Typography } from "@material-ui/core";
 import { PinDropSharp } from "@material-ui/icons";
-import { CSSProperties, useState } from "react";
-import bag1 from "../../assets/bags/bag-1.png";
-import bag2 from "../../assets/bags/bag-2.png";
-import bag3 from "../../assets/bags/bag-3.png";
-import bag4 from "../../assets/bags/bag-4.png";
-import bag5 from "../../assets/bags/bag-5.png";
-import bag6 from "../../assets/bags/bag-6.png";
+import { CSSProperties, useState, useContext } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
-
-const products: {
-  name: string;
-  price: number;
-  preview: string;
-}[] = [
-  { name: "mickeyBag", price: 100, preview: bag1 },
-  { name: "mickeyBag", price: 100, preview: bag2 },
-  { name: "mickeyBag", price: 100, preview: bag3 },
-  { name: "mickeyBag", price: 100, preview: bag4 },
-  { name: "mickeyBag", price: 100, preview: bag5 },
-  { name: "mickeyBag", price: 100, preview: bag6 },
-  { name: "mickeyBag", price: 100, preview: bag1 },
-  { name: "mickeyBag", price: 100, preview: bag2 },
-  { name: "mickeyBag", price: 100, preview: bag3 },
-  { name: "mickeyBag", price: 100, preview: bag4 },
-  { name: "mickeyBag", price: 100, preview: bag5 },
-  { name: "mickeyBag", price: 100, preview: bag6 },
-];
+import { ProductsContext } from '../context/ProductsContext'
 interface IProps {
   isLarge: boolean;
 }
 
 function Catalogue(props: IProps) {
+
+  const { products } = useContext(ProductsContext)
+
   const [isLarge, setIsLarge] = useState(props.isLarge);
   const previewCatalogue = products.slice(1, 7);
   return (
