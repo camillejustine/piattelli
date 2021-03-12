@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@material-ui/core";
+import { Box, Button, Link, Typography } from "@material-ui/core";
 import { CSSProperties, makeStyles } from "@material-ui/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import { ShoppingCart as CartIcon } from "@material-ui/icons";
@@ -30,7 +30,7 @@ function Cart(props: IProps) {
                   Total: 300000
                 </Typography>
                 <Button className={classes.keepRight} variant="contained">
-                  Checkout
+                  <Link href='/checkout' underline='none' color='inherit'>Checkout</Link>
                 </Button>
               </Box>
             </Box>

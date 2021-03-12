@@ -7,7 +7,10 @@ import PromotionSecond from "./content/PromotionSecond";
 import Catalogue from "./catalogue/Catalogue";
 import Newsletter from "./content/Newsletter";
 import { Box } from "@material-ui/core";
+
 import { CSSProperties, useState } from "react";
+import Checkout from "./checkout/Checkout";
+        
 import { Route } from "react-router-dom";
 import ProductDetails from "./product/ProductDetails";
 import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
@@ -34,10 +37,15 @@ function Layout() {
           </Box>
         </Route>
       </div>
+
       <Route path="/:name">
         <ProductDetails productView={productDetail} />
       </Route>
+          <Route path='/checkout'>
+          <Checkout />
+        </Route>
       <Newsletter />
+
       <Footer />
     </Box>
   );
