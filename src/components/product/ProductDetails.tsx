@@ -29,7 +29,7 @@ interface iProps {
 
 function ProductDetails(props: iProps) {
   const classes = useStyles();
-
+  console.log(props)
   return (
     <Box className={classes.wrapper}>
       <Box className={classes.productWrapper}>
