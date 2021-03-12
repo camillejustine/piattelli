@@ -22,6 +22,7 @@ function Hero() {
     marginLeft: "-8rem",
     marginTop: "-3rem",
     whiteSpace: "nowrap",
+    fontFamily: "roboto",
   };
 
   const heroTitleRight: CSSProperties = {
@@ -29,9 +30,10 @@ function Hero() {
     position: "absolute",
     left: x,
     top: y,
-    marginLeft: "-8rem",
+    marginLeft: "-5rem",
     marginTop: "-3rem",
     whiteSpace: "nowrap",
+    fontFamily: "roboto",
   };
 
   return (
@@ -71,20 +73,22 @@ const useStyles: any = makeStyles({
   heroPicLeft: {
     backgroundImage: `url(${heroPic1})`,
     width: "40rem",
-    height: "50rem",
+    height: "55rem",
+    backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    objectFit: "cover",
+    objectFit: "fill",
     marginRight: ".5rem",
-    cursor: `url(${alternativeCursor}), auto`,
+    cursor: `url(${alternativeCursor}) 9 7, auto`,
   },
   heroPicRight: {
     backgroundImage: `url(${heroPic2})`,
     width: "40rem",
-    height: "50rem",
+    height: "55rem",
+    backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     objectFit: "cover",
     marginLeft: ".5rem",
-    cursor: `url(${alternativeCursor}), auto`,
+    cursor: `url(${alternativeCursor}) 9 7, auto`,
   },
   heroContainer: {
     display: "flex",

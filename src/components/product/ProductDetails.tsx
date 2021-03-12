@@ -2,64 +2,44 @@
 import { Typography, Box, Button, makeStyles } from '@material-ui/core';
 import ImgTest from '../../assets/hero2.png';
 
-const productTitle: {
-  name: string;
-  collectionName: string;
-  price: number;
-}[] = [{ name: 'Name', collectionName: 'Collection Name', price: 200 }];
-
-// do we need to make a method of this
-// cause these are description titles
-const productDetails: {
-  desc: string;
-  details: string;
-  fabricCare: string;
-}[] = [{ desc: 'hello', details: 'hello', fabricCare: 'hello' }];
-
 // we should use pexels api here?
 // const productImg: {
 //     img: string;
 // }[] = [
 //     {img: 'url()'}
 // ]
+interface iProps {
+  productView: any;
+}
 
-function ProductDetails() {
+function ProductDetails(props: iProps) {
   const classes = useStyles();
-
   return (
-    <Box className={classes.row}>
-      <Box className={classes.column}>
-        <img src={ImgTest} alt="" width="400" height="400" />
-        <img src={ImgTest} alt="" width="400" height="400" />
-        <img src={ImgTest} alt="" width="400" height="400" />
+    <Box className={classes.wrapper}>
+      <Box className={classes.productWrapper}>
+        <img src={ImgTest} alt="" width="600" height="750" />
+        <img src={ImgTest} alt="" width="600" height="750" />
+        <img src={ImgTest} alt="" width="600" height="750" />
       </Box>
-
-      <Box className={classes.column}>
+      <Box className={classes.infoWrapper}>
         <Box>
-          {productTitle.map((product) => (
             <Box className={classes.column}>
-              <Typography>{product.name}</Typography>
-              <Typography>{product.collectionName}</Typography>
-              <Typography>{product.price}</Typography>
+              <Typography>{props.productView.name}</Typography>
+              <Typography>{props.productView.collection}</Typography>
+              <Typography>{props.productView.price}</Typography>
             </Box>
-          ))}
-
-          {productDetails.map((product) => (
             <Box className={classes.row}>
-              <Typography>{product.desc}</Typography>
-              <Typography>{product.details}</Typography>
-              <Typography>{product.fabricCare}</Typography>
+              <Typography>{props.productView.description}</Typography>
+              <Typography>{props.productView.details}</Typography>
+              <Typography>{props.productView.fabricCare}</Typography>
             </Box>
-          ))}
         </Box>
-
         <Box className={classes.row}>
           <Box className={classes.circle}></Box>
           <Box className={classes.circle}></Box>
           <Box className={classes.circle}></Box>
         </Box>
-
-        <Button style={classes.button}>
+        <Button className={classes.button}>
           <Typography variant="button">Add to cart</Typography>
         </Button>
       </Box>
@@ -68,6 +48,24 @@ function ProductDetails() {
 }
 
 const useStyles: any = makeStyles({
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: '10rem',
+  },
+  productWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  infoWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: 'purple',
+    width: '25rem',
+    height: '50rem',
+  },
   button: {
     height: '4rem',
     width: '8rem',

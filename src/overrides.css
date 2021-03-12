@@ -1,3 +1,43 @@
 body {
   margin: 0;
 }
+
+@font-face {
+  font-family: "Piatelli-Sans";
+  src: local("Piatelli-sans"),
+    url(./font/texgyreadventor-regular.otf) format("truetype");
+}
+
+* {
+  font-family: Piatelli-Sans !important;
+  cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
+  cursor: url(../src/assets/alternativeCursorBlack.png) 9 7, default;
+}
+
+.MuiButton-root {
+  cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
+}
+
+.MuiButton-label {
+  cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
+}
+
+.MuiButton-root:hover {
+  cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
+}
+
+.MuiTypography-h1 {
+  font-size: 3rem !important;
+}
+
+.alice-carousel__next-btn-wrapper {
+  position: absolute;
+  top: -2rem;
+  right: 0;
+}
+
+.alice-carousel__prev-btn-wrapper {
+  position: absolute;
+  top: -2rem;
+  right: 1rem;
+}

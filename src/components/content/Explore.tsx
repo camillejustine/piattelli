@@ -1,8 +1,7 @@
-import { CSSProperties } from "react";
-// import Box from "@material-ui/core/Box";
 import exploreScandinave from "../../assets/explore-scandinave.png";
 import { Typography, Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import alternativeCursor from "../../assets/alternativeCursor.png";
 
 function Explore() {
   const classes = useStyles();
@@ -13,7 +12,7 @@ function Explore() {
           src={exploreScandinave}
           draggable="false"
           alt="A Le Scandinave promotion."
-          className={classes.imageStyling}
+          className={`${classes.imageStyling} ${classes.customCursor}`}
         />
       </Box>
       <Box className={classes.textContainer}>
@@ -25,7 +24,10 @@ function Explore() {
           The steersman of Triest<br></br> Looked where his mark should be,
           <br></br> But empty was the west<br></br> And Venice under sea.
         </Typography>
-        <Button variant="outlined" className={classes.buttonStyling}>
+        <Button
+          variant="outlined"
+          className={`${classes.buttonStyling} ${classes.customCursor}`}
+        >
           Explore Le Scandinave Collection
         </Button>
       </Box>
