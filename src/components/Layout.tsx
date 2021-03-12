@@ -9,7 +9,7 @@ import Newsletter from "./content/Newsletter";
 import { Box } from "@material-ui/core";
 import { CSSProperties, useState } from "react";
 import { Route } from "react-router-dom";
-import ProductView from "./product/ProductView";
+import ProductDetails from "./product/ProductDetails";
 import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
 import alternativeCursor from "../assets/alternativeCursor.png";
 
@@ -33,7 +33,7 @@ function Layout() {
         </Route>
       </div>
       <Route path="/:name">
-        <ProductView productView={productDetail} />
+        <ProductDetails productView={productDetail} />
       </Route>
       <Newsletter />
       <Footer />
