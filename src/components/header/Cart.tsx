@@ -16,25 +16,25 @@ function Cart(props: IProps) {
   return (
     <>
       {props.isVisible ? (
-        <Box
-          className={
-            "animate__animated animate__slideInRight" && classes.rootStyle
-          }
-        >
-          <Box className={classes.topContent}>
-            <CloseIcon onClick={props.onHide}></CloseIcon>
-            <Typography variant="body1">Your Items</Typography>
-            <CartIcon></CartIcon>
-          </Box>
-          <Box>{/* PUTT ALL PROJECT IN CART HERE */}</Box>
+          <Box className={`animate__animated animate__slideInRight ${classes.rootStyle}`}>
+            <Box className={classes.topContent}>
+              <CloseIcon onClick={props.onHide}></CloseIcon>
+              <Typography variant="body1">Your Items</Typography>
+              <CartIcon></CartIcon>
+            </Box>
+            <Box>{/* PUTT ALL PROJECT IN CART HERE */}</Box>
 
-          <Box className={classes.bottomContentWrapper}>
-            <Box className={classes.bottomContent}>
-              <Typography className={classes.keepLeft} variant="h6">Total: 300000</Typography>
-              <Button className={classes.keepRight} variant="contained">Checkout</Button>
+            <Box className={classes.bottomContentWrapper}>
+              <Box className={classes.bottomContent}>
+                <Typography className={classes.keepLeft} variant="h6">
+                  Total: 300000
+                </Typography>
+                <Button className={classes.keepRight} variant="contained">
+                  Checkout
+                </Button>
+              </Box>
             </Box>
           </Box>
-        </Box>
       ) : null}
     </>
   );
@@ -49,8 +49,10 @@ const useStlyes = makeStyles({
     right: 0,
     backgroundColor: "white",
     border: "1px solid black",
-    display: 'flex',
-    flexDirection: 'column'
+    borderRadius: 3,
+    display: "flex",
+    flexDirection: "column",
+    margin: '0.2rem'
   },
   topContent: {
     top: 0,
@@ -64,17 +66,17 @@ const useStlyes = makeStyles({
     justifyContent: "space-between",
   },
   bottomContentWrapper: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    borderTop: 'solid 1px black',
-    padding: '1rem'
+    borderTop: "solid 1px black",
+    padding: "1rem",
   },
   keepLeft: {
-    left: 0
+    left: 0,
   },
   keepRight: {
-    right: 0
-  }
+    right: 0,
+  },
 });
 
 export default Cart;
