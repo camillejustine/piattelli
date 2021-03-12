@@ -47,15 +47,13 @@ function Catalogue(props: IProps) {
         <Grid style={gridWidth}>
           <Grid container item xs={12} spacing={1} style={innerGridStyle}>
             {previewCatalogue.map((product) => (
-              <Link to={product.name}>
-                <Typography variant="h6">
-                  <Box
-                    style={boxStyle}
-                    onClick={() => {
-                      props.getProduct(product);
-                    }}
-                  >
+              <Box style={boxStyle}>
+                <Link to={product.name}>
+                  <Typography variant="h6">
                     <img
+                      onClick={() => {
+                        props.getProduct(product);
+                      }}
                       src={product.preview}
                       style={customCursor}
                       draggable={false}
@@ -63,9 +61,9 @@ function Catalogue(props: IProps) {
                       width="400"
                       height="400"
                     />
-                  </Box>
-                </Typography>
-              </Link>
+                  </Typography>
+                </Link>
+              </Box>
             ))}
           </Grid>
         </Grid>
