@@ -6,9 +6,14 @@ import Explore from "./content/Explore";
 import PromotionSecond from "./content/PromotionSecond";
 import Catalogue from "./catalogue/Catalogue";
 import { Box } from "@material-ui/core";
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
 
 function Layout() {
+  const[productDetail,setProductDetail] = useState<object>()
+
+function productDetails(value: object){
+    setProductDetail(value)
+}
   return (
     <Box>
       <Header />
@@ -17,7 +22,10 @@ function Layout() {
         <Promotion />
         <Explore />
         <PromotionSecond />
-        <Catalogue isLarge={false} />
+        <Catalogue 
+          isLarge={false} 
+          getProduct={productDetails}
+        />
       </div>
       <Footer />
     </Box>

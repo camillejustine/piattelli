@@ -5,6 +5,7 @@ import alternativeCursor from "../../assets/alternativeCursor.png";
 import { ProductsContext } from '../context/ProductsContext'
 interface IProps {
   isLarge: boolean;
+  getProduct: (value: {}) => void;
 }
 
 function Catalogue(props: IProps) {
@@ -20,7 +21,12 @@ function Catalogue(props: IProps) {
           <Grid container item xs={12} spacing={1} style={innerGridStyle}>
             {products.map((product) => (
               <Typography variant="h6">
-                <Box style={boxStyle}>
+                <Box 
+                  style={boxStyle}
+                  onClick={() => {
+                    props.getProduct(product)
+                  }}
+                  >
                   <img src={product.preview} alt=" " width="400" height="400" />
                   <span>{product.name}</span>
                   <span>{product.price}kr</span>
@@ -35,7 +41,12 @@ function Catalogue(props: IProps) {
           <Grid container item xs={12} spacing={1} style={innerGridStyle}>
             {previewCatalogue.map((product) => (
               <Typography variant="h6">
-                <Box style={boxStyle}>
+                <Box 
+                  style={boxStyle}
+                  onClick={() => {
+                    props.getProduct(product)
+                  }}
+                  >
                   <img
                     src={product.preview}
                     style={customCursor}
