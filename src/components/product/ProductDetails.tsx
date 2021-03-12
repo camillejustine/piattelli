@@ -23,7 +23,11 @@ const productDetails: {
 //     {img: 'url()'}
 // ]
 
-function ProductDetails() {
+interface iProps {
+  productView: any;
+}
+
+function ProductDetails(props: iProps) {
   const classes = useStyles();
 
   return (
@@ -59,7 +63,7 @@ function ProductDetails() {
           <Box className={classes.circle}></Box>
         </Box>
 
-        <Button style={classes.button}>
+        <Button className={classes.button}>
           <Typography variant="button">Add to cart</Typography>
         </Button>
       </Box>
