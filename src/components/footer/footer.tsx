@@ -1,10 +1,10 @@
-import { Box, Container, Typography } from '@material-ui/core';
-import { CSSProperties } from 'react';
-import FooterSection from './FooterSection';
+import { Box, Container, Typography } from "@material-ui/core";
+import { CSSProperties } from "react";
+import FooterSection from "./FooterSection";
 
 function Footer() {
   return (
-    <Container style={containerStyle}>
+    <Container style={containerStyle} maxWidth={false}>
       <Box style={rootStyle}>
         <FooterSection />
         <FooterSection />
@@ -21,22 +21,23 @@ function Footer() {
 }
 
 const containerStyle: CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  background: '#333333',
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  background: "#333333",
+  width: "100%",
 };
 
 const rootStyle: CSSProperties = {
-  width: '90%',
-  display: 'flex',
-  justifyContent: 'space-around',
-  padding: '5rem',
+  width: "60%",
+  display: "flex",
+  justifyContent: "space-around",
+  padding: "5rem",
 };
 
 const footerLogo: CSSProperties = {
-  paddingBottom: '2rem',
-  color: '#E5E5E5',
+  paddingBottom: "2rem",
+  color: "#E5E5E5",
 };
 
 export default Footer;
