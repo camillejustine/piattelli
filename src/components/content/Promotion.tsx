@@ -16,7 +16,7 @@ function Promotion() {
       <Box>
         <img
           src={leScandinave}
-          className={classes.customCursor && classes.imgStyling}
+          className={`${classes.customCursor} ${classes.imgStyling}`}
           draggable="false"
           alt="A Le Scandinave promotion."
         />
@@ -45,7 +45,7 @@ const useStyles: any = makeStyles({
     width: "50vw",
   },
   customCursor: {
-    cursor: `url(${alternativeCursor}), auto`,
+    cursor: `url(${alternativeCursor}) 9 7, auto`,
   },
 });
 

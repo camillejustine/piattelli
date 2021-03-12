@@ -2,16 +2,15 @@ import { Grid, Box, Typography } from "@material-ui/core";
 import { PinDropSharp } from "@material-ui/icons";
 import { CSSProperties, useState, useContext } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
-import { ProductsContext } from '../context/ProductsContext'
-import { Link } from 'react-router-dom';
+import { ProductsContext } from "../context/ProductsContext";
+import { Link } from "react-router-dom";
 interface IProps {
   isLarge: boolean;
   getProduct: (value: {}) => void;
 }
 
 function Catalogue(props: IProps) {
-
-  const { products } = useContext(ProductsContext)
+  const { products } = useContext(ProductsContext);
 
   const [isLarge, setIsLarge] = useState(props.isLarge);
   const previewCatalogue = products.slice(1, 7);
@@ -23,13 +22,18 @@ function Catalogue(props: IProps) {
             {products.map((product) => (
               <Link to={product.name}>
                 <Typography variant="h6">
-                  <Box 
+                  <Box
                     style={boxStyle}
                     onClick={() => {
-                      props.getProduct(product)
+                      props.getProduct(product);
                     }}
-                    >
-                    <img src={product.preview} alt=" " width="400" height="400" />
+                  >
+                    <img
+                      src={product.preview}
+                      alt=" "
+                      width="400"
+                      height="400"
+                    />
                     <span>{product.name}</span>
                     <span>{product.price}kr</span>
                   </Box>
@@ -45,12 +49,12 @@ function Catalogue(props: IProps) {
             {previewCatalogue.map((product) => (
               <Link to={product.name}>
                 <Typography variant="h6">
-                  <Box 
+                  <Box
                     style={boxStyle}
                     onClick={() => {
-                      props.getProduct(product)
+                      props.getProduct(product);
                     }}
-                    >
+                  >
                     <img
                       src={product.preview}
                       style={customCursor}
@@ -89,7 +93,7 @@ const boxStyle: CSSProperties = {
 };
 
 const customCursor: CSSProperties = {
-  cursor: `url(${alternativeCursor}), auto`,
+  cursor: `url(${alternativeCursor}) 9 7, auto`,
 };
 
 export default Catalogue;

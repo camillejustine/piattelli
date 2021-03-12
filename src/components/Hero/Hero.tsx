@@ -75,7 +75,7 @@ const useStyles: any = makeStyles({
     backgroundPosition: "center",
     objectFit: "cover",
     marginRight: ".5rem",
-    cursor: `url(${alternativeCursor}), auto`,
+    cursor: `url(${alternativeCursor}) 9 7, auto`,
   },
   heroPicRight: {
     backgroundImage: `url(${heroPic2})`,
@@ -84,7 +84,7 @@ const useStyles: any = makeStyles({
     backgroundPosition: "center",
     objectFit: "cover",
     marginLeft: ".5rem",
-    cursor: `url(${alternativeCursor}), auto`,
+    cursor: `url(${alternativeCursor}) 9 7, auto`,
   },
   heroContainer: {
     display: "flex",
