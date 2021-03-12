@@ -14,11 +14,14 @@ interface iProps {
   productView: any;
 }
 
+const testArray = [
+    {thing: 'here'}
+]
+
 function ProductDetails(props: iProps) {
-  const { cart,addToCart } = useContext(CartContext);
-  console.log(props)
-  console.log(cart)
+  const { addToCart } = useContext(CartContext);
   const classes = useStyles();
+
   return (
     <Box className={classes.wrapper}>
       <Box className={classes.productWrapper}>
@@ -44,14 +47,11 @@ function ProductDetails(props: iProps) {
           <Box className={classes.circle}></Box>
           <Box className={classes.circle}></Box>
         </Box>
-        <Button 
-          className={classes.button} 
-          onClick={()=>{
-            addToCart(props.productView)
-          }}
-        >
-          <Typography variant="button">Add to cart</Typography>
-        </Button>
+          <Button 
+            className={classes.button} 
+            onClick={() => addToCart(testArray)}>
+            <Typography variant="button">Add to cart</Typography>
+          </Button>
       </Box>
     </Box>
   );

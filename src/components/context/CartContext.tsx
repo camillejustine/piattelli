@@ -1,21 +1,24 @@
 import {Component, createContext} from 'react';
 
 interface iState {
-    cart: any[]
+    cart: any
 }
-
 interface ContextValue extends iState {
-    addToCart: (product: object) => void;
+    addToCart: (product: any) => void;
 }
 
+export const CartContext = createContext<ContextValue>({
+    cart: [],
+    addToCart: () => {}
+})
 class CartProvider extends Component<{},iState> {
     state: iState = {
         cart: [],
     }
 
     addProductToCart(product: any) {
-        const updateProductView = [...this.state.cart, product]
-        this.setState({cart: updateProductView})
+        const updateCart = [...this.state.cart, product]
+        this.setState({cart: updateCart})
     }
 
     render() {
@@ -31,10 +34,6 @@ class CartProvider extends Component<{},iState> {
     }
 }
 
-export const CartContext = createContext<ContextValue>({
-    cart: [],
-    addToCart: () => {}
-})
 
 export const CartConsumer = CartContext.Consumer
 export default CartProvider;
