@@ -3,11 +3,13 @@ import { CSSProperties } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 import dress from "../../assets/dress-cu.png";
 import { Typography, Box, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 
 function PromotionSecond() {
+  const classes = useStyles();
   return (
-    <Box style={promotionContainer}>
-      <Box style={promotionText}>
+    <Box className={classes.promotionContainer}>
+      <Box className={classes.promotionText}>
         <Typography variant="h6">who is</Typography>
         <Typography variant="h2">MONA-LISA</Typography>
         <Typography variant="body2">by</Typography>
@@ -16,7 +18,7 @@ function PromotionSecond() {
       <Box>
         <img
           src={dress}
-          style={{ ...customCursor, ...imgStyling }}
+          className={classes.customCursor && classes.imgStyling}
           draggable="false"
           alt="A Le Scandinave promotion."
         />
@@ -25,28 +27,28 @@ function PromotionSecond() {
   );
 }
 
-const promotionContainer: CSSProperties = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  flexDirection: "column",
-};
+const useStyles: any = makeStyles({
+  promotionContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  imgStyling: {
+    width: "50vw",
+  },
+  promotionText: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    position: "absolute",
+    color: "white",
+    cursor: `url(${alternativeCursor}), auto`,
+  },
+  customCursor: {
+    cursor: `url(${alternativeCursor}), auto`,
+  },
+});
 
-const imgStyling: CSSProperties = {
-  width: "50vw",
-};
-
-const promotionText: CSSProperties = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  flexDirection: "column",
-  position: "absolute",
-  color: "white",
-  cursor: `url(${alternativeCursor}), auto`,
-};
-
-const customCursor: CSSProperties = {
-  cursor: `url(${alternativeCursor}), auto`,
-};
 export default PromotionSecond;
