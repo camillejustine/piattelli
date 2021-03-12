@@ -1,24 +1,39 @@
-import Header from './header/Header';
-import Hero from './hero/Hero';
-import Footer from './footer/Footer';
-import Promotion from './content/Promotion';
-import Explore from './content/Explore';
-import PromotionSecond from './content/PromotionSecond';
-import Catalogue from './catalogue/Catalogue';
-import { Box } from '@material-ui/core';
-import { CSSProperties } from 'react';
+import Header from "./header/Header";
+import Hero from "./hero/Hero";
+import Footer from "./footer/Footer";
+import Promotion from "./content/Promotion";
+import Explore from "./content/Explore";
+import PromotionSecond from "./content/PromotionSecond";
+import Catalogue from "./catalogue/Catalogue";
+import { Box } from "@material-ui/core";
+import { CSSProperties, useState } from "react";
+import { Route } from 'react-router-dom';
+import ProductView from './product/ProductView';
 
 function Layout() {
+  const[productDetail,setProductDetail] = useState<object>()
+
+function productDetails(value: object){
+    setProductDetail(value)
+}
   return (
     <Box>
       <Header />
       <div style={landingContainer}>
-        <Hero />
-        <Promotion />
-        <Explore />
-        <PromotionSecond />
-        <Catalogue isLarge={false} />
+        <Route exact path='/'>
+          <Hero />
+          <Promotion />
+          <Explore />
+          <PromotionSecond />
+          <Catalogue 
+            isLarge={false} 
+            getProduct={productDetails}
+          />
+        </Route>
       </div>
+        <Route path="/:name">
+          <ProductView productView={productDetail}/>
+        </Route>
       <Footer />
     </Box>
   );
