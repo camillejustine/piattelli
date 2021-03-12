@@ -12,27 +12,7 @@ interface iState {
 interface ContextValue extends iState {
     productViewDisplay: (product: string) => void;
 }
-
-export const ProductsContext = createContext<ContextValue>({
-    products: [
-        { name: "mickeyBag", price: 100, preview: bag1 },
-        { name: "mickeyBag", price: 100, preview: bag2 },
-        { name: "mickeyBag", price: 100, preview: bag3 },
-        { name: "mickeyBag", price: 100, preview: bag4 },
-        { name: "mickeyBag", price: 100, preview: bag5 },
-        { name: "mickeyBag", price: 100, preview: bag6 },
-        { name: "mickeyBag", price: 100, preview: bag1 },
-        { name: "mickeyBag", price: 100, preview: bag2 },
-        { name: "mickeyBag", price: 100, preview: bag3 },
-        { name: "mickeyBag", price: 100, preview: bag4 },
-        { name: "mickeyBag", price: 100, preview: bag5 },
-        { name: "mickeyBag", price: 100, preview: bag6 },
-      ],
-    productViewDisplay: () => {}
-})
-
 class ProductContext extends Component<{},iState> {
-
     state: iState = {
         products: []
     }
@@ -54,6 +34,108 @@ class ProductContext extends Component<{},iState> {
         )
     }
 }
+
+export const ProductsContext = createContext<ContextValue>({
+    products: [
+        {   
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag1, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care: ""
+        },
+        { 
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag2, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:    
+        },
+        { 
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag3, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:    
+        },
+        { 
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag4, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:    
+        },
+        { 
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag5, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:    
+        },
+        {
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag6, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:    
+        },
+        { 
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag1, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:    
+        },
+        { 
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag2, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:    
+        },
+        { 
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag3, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:    
+        },
+        { 
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag4, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:    
+        },
+        { 
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag5, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:   
+        },
+        { 
+            name: "mickeyBag", 
+            price: 100, 
+            preview: bag6, 
+            description: "With its warm and gentle tone, Blond Beige is one of Lemaire’ Spring-Summer 2021 key color. This theme is presented on a cotton linen blend with a soft twill structure for the women’s, men’s, and unisex wardrobe.For carry-overs, the shade is part of our seasonal colorama with six soft nappa leather accessories", 
+            details: "",
+            care:    
+        },
+      ],
+    productViewDisplay: () => {}
+})
 
 export const ProductConsumer = ProductsContext.Consumer
 export default ProductContext;
