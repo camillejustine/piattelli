@@ -14,7 +14,7 @@ interface ContextValue extends iState {
 }
 class ProductContext extends Component<{},iState> {
     state: iState = {
-        products: []
+        products: [],
     }
 
     displayInProductView(product: any) {

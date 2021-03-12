@@ -23,6 +23,7 @@ function Layout() {
   function productDetails(value: object) {
     setProductDetail(value);
   }
+  
   return (
     <Box style={customCursorBlack}>
       <Header />
