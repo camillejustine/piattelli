@@ -1,5 +1,7 @@
 // import { CSSProperties } from 'react';
 import { Typography, Box, Button, makeStyles } from '@material-ui/core';
+import {  useContext } from "react";
+import { CartContext } from "../context/CartContext";
 import ImgTest from '../../assets/hero2.png';
 
 // we should use pexels api here?
@@ -13,6 +15,9 @@ interface iProps {
 }
 
 function ProductDetails(props: iProps) {
+  const { cart,addToCart } = useContext(CartContext);
+  console.log(props)
+  console.log(cart)
   const classes = useStyles();
   return (
     <Box className={classes.wrapper}>
@@ -39,7 +44,12 @@ function ProductDetails(props: iProps) {
           <Box className={classes.circle}></Box>
           <Box className={classes.circle}></Box>
         </Box>
-        <Button className={classes.button}>
+        <Button 
+          className={classes.button} 
+          onClick={()=>{
+            addToCart(props.productView)
+          }}
+        >
           <Typography variant="button">Add to cart</Typography>
         </Button>
       </Box>
