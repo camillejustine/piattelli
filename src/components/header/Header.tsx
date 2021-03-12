@@ -24,8 +24,8 @@ function Header() {
         <Typography variant="body1">All Bags </Typography>{" "}
       </Link>
 
-      <Link href="#" color='inherit' underline='none'>
-        <Typography variant="h1">PIATELLI</Typography>
+      <Link href="/" color='inherit' underline='none'>
+        <Typography variant="h1">PIATTELLI</Typography>
       </Link>
 
       <Link href="#" color='inherit' underline='none'>

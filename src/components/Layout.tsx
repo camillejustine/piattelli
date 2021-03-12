@@ -6,9 +6,10 @@ import Explore from "./content/Explore";
 import PromotionSecond from "./content/PromotionSecond";
 import Catalogue from "./catalogue/Catalogue";
 import { Box } from "@material-ui/core";
-import { CSSProperties, useState } from "react";
+import React, { CSSProperties, useState } from "react";
 import { Route } from 'react-router-dom';
 import ProductView from './product/ProductView';
+import Checkout from "./checkout/Checkout";
 
 function Layout() {
   const[productDetail,setProductDetail] = useState<object>()
@@ -33,6 +34,9 @@ function productDetails(value: object){
       </div>
         <Route path="/:name">
           <ProductView productView={productDetail}/>
+        </Route>
+        <Route path='/checkout'>
+          <Checkout />
         </Route>
       <Footer />
     </Box>
