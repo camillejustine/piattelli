@@ -16,6 +16,11 @@ function Catalogue(props: IProps) {
   const previewCatalogue = products.slice(1, 7);
   const cartItems = JSON.parse(localStorage.getItem("cart")!) || [];
 
+  function assignRandomProductId(product: any){
+      product['uniqueId'] = Math.random().toString(36).substr(2, 9);
+      return product;
+  } 
+
   return (
     <Box>
       {isLarge ? (
@@ -83,7 +88,8 @@ function Catalogue(props: IProps) {
                             <Button
                               style={button}
                               onClick={() => {
-                                cartItems.push(product);
+                                const uniqueProduct = assignRandomProductId(product)
+                                cartItems.push(uniqueProduct);
                                 localStorage.setItem(
                                   "cart",
                                   JSON.stringify(cartItems)
