@@ -1,4 +1,4 @@
-import { Grid, Box, Typography } from "@material-ui/core";
+import { Grid, Box, Typography, Button } from "@material-ui/core";
 import { PinDropSharp } from "@material-ui/icons";
 import { CSSProperties, useState, useContext } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
@@ -11,9 +11,10 @@ interface IProps {
 
 function Catalogue(props: IProps) {
   const { products } = useContext(ProductsContext);
-
   const [isLarge, setIsLarge] = useState(props.isLarge);
   const previewCatalogue = products.slice(1, 7);
+  const cartItems = JSON.parse(localStorage.getItem('cart')!) || [];
+
   return (
     <Box>
       {isLarge ? (
@@ -61,8 +62,18 @@ function Catalogue(props: IProps) {
                       width="400"
                       height="400"
                     />
-                  </Typography>
-                </Link>
+                    </Typography> 
+                    </Link>
+                    <Button 
+                        style={button}
+                        onClick={       
+                          () => {
+                            cartItems.push(product);
+                            localStorage.setItem('cart', JSON.stringify(cartItems)); 
+                          }
+                        }>
+                      <Typography variant="button">Add to cart</Typography>
+                    </Button>
               </Box>
             ))}
           </Grid>
@@ -94,4 +105,11 @@ const customCursor: CSSProperties = {
   cursor: `url(${alternativeCursor}) 9 7, auto`,
 };
 
+const button: CSSProperties = {
+  height: "4rem",
+  width: "8rem",
+  border: "solid 1.5px black",
+  borderRadius: "0%",
+  textDecoration: 'none',
+}
 export default Catalogue;
