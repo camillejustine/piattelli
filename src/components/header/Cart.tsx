@@ -15,7 +15,7 @@ function Cart(props: IProps) {
   const classes = useStyles();
   let cart = JSON.parse(localStorage.getItem('cart')!) || [];
   const total = cart.reduce((n: any, {price}: any) => n + price, 0)
-
+  console.log(cart)
   useEffect(()=>{
     
   })

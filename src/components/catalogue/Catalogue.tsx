@@ -15,6 +15,8 @@ function Catalogue(props: IProps) {
   const previewCatalogue = products.slice(1, 7);
   const cartItems = JSON.parse(localStorage.getItem('cart')!) || [];
 
+  console.log(cartItems)
+
   return (
     <Box>
       {isLarge ? (
@@ -54,6 +56,7 @@ function Catalogue(props: IProps) {
                     <img
                       onClick={() => {
                         props.getProduct(product);
+                        
                       }}
                       src={product.preview}
                       style={customCursor}
@@ -68,6 +71,7 @@ function Catalogue(props: IProps) {
                         style={button}
                         onClick={       
                           () => {
+                            Object.assign(product,{newValue: 'value'})
                             cartItems.push(product);
                             localStorage.setItem('cart', JSON.stringify(cartItems)); 
                           }

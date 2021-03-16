@@ -22,7 +22,6 @@ class CartProvider extends Component<{},iState> {
     }
 
     render() {
-        console.log(this.state)
         return (
             <CartContext.Provider value={{
                 cart: this.state.cart,
