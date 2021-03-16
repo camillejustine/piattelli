@@ -38,6 +38,7 @@ class ProductContext extends Component<{},iState> {
 export const ProductsContext = createContext<ContextValue>({
     products: [
         {   
+            id: "1",
             name: "Dogbag", 
             price: 1002222, 
             preview: bag1, 
@@ -47,6 +48,7 @@ export const ProductsContext = createContext<ContextValue>({
             care: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         { 
+            id: "2",
             name: "fishbag", 
             price: 1044440, 
             preview: bag2, 
@@ -55,6 +57,7 @@ export const ProductsContext = createContext<ContextValue>({
             care: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."   
         },
         { 
+            id: "3",
             name: "bagbag", 
             price: 12300, 
             preview: bag3,
@@ -64,6 +67,7 @@ export const ProductsContext = createContext<ContextValue>({
             care:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."   
         },
         { 
+            id: "4",
             name: "reversebag", 
             price: 102220, 
             preview: bag4,
@@ -73,6 +77,7 @@ export const ProductsContext = createContext<ContextValue>({
             care: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."    
         },
         { 
+            id: "5",
             name: "lol", 
             price: 9000, 
             preview: bag5,
@@ -82,6 +87,7 @@ export const ProductsContext = createContext<ContextValue>({
             care: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."    
         },
         {
+            id: "6",
             name: "You think you know me?", 
             price: -100, 
             preview: bag6,
@@ -91,6 +97,7 @@ export const ProductsContext = createContext<ContextValue>({
             care: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."    
         },
         { 
+            id: "7",
             name: "Wow", 
             price: 1080, 
             preview: bag1,
@@ -100,6 +107,7 @@ export const ProductsContext = createContext<ContextValue>({
             care: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."    
         },
         { 
+            id: "8",
             name: "left", 
             price: 10234, 
             preview: bag2,
@@ -109,6 +117,7 @@ export const ProductsContext = createContext<ContextValue>({
             care: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."    
         },
         { 
+            id: "9",
             name: "hahaha", 
             price: 1020, 
             preview: bag3,
@@ -118,6 +127,7 @@ export const ProductsContext = createContext<ContextValue>({
             care: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."    
         },
         { 
+            id: "10",
             name: "mickeyBag", 
             price: 1, 
             preview: bag4,
@@ -127,6 +137,7 @@ export const ProductsContext = createContext<ContextValue>({
             care: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."    
         },
         { 
+            id: "11",
             name: "donaldbag", 
             price: 10034, 
             preview: bag5,
@@ -136,6 +147,7 @@ export const ProductsContext = createContext<ContextValue>({
             care: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."   
         },
         { 
+            id: "12",
             name: "klump", 
             price: 999, 
             preview: bag6,

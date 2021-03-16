@@ -4,7 +4,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { PermDeviceInformation, ShoppingCart as CartIcon } from "@material-ui/icons";
 import React, { Component, useState } from "react";
 import { flexbox } from "@material-ui/system";
-import { AnyAaaaRecord } from "node:dns";
+
 
 interface IProps {
   isVisible: boolean;
@@ -12,8 +12,14 @@ interface IProps {
 }
 
 function Cart(props: IProps) {
-  const classes = useStlyes();
-  const  cart = JSON.parse(localStorage.getItem('cart')!) || [];
+  const classes = useStyles();
+  let cart = JSON.parse(localStorage.getItem('cart')!) || [];
+  const total = cart.reduce((n: any, {price}: any) => n + price, 0)
+
+  function removeProductFromCart(id: any) {
+    cart = cart.filter((item: any) => item.id !== id);
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }
   
   return (
     <>
@@ -22,9 +28,7 @@ function Cart(props: IProps) {
             <Box className={classes.topContent}>
               <CloseIcon onClick={props.onHide}></CloseIcon>
               <Typography variant="body1">Your Items</Typography>
-              
                 <CartIcon />
-             
             </Box>
             <Box>{
               cart.map((product: any) => (
@@ -34,16 +38,20 @@ function Cart(props: IProps) {
                     <span>{product.name}</span>
                     <span>Price: {product.price}</span>
                   </div>
-                <CloseIcon></CloseIcon>
+                <CloseIcon onClick={
+                  () => {
+                    console.log(product.id)
+                    removeProductFromCart(product.id)
+                  }
+                }></CloseIcon>
                 </Box>
               ))
             }
             </Box>
-
             <Box className={classes.bottomContentWrapper}>
               <Box className={classes.bottomContent}>
                 <Typography className={classes.keepLeft} variant="h6">
-                  Total: {cart.reduce((n: any, {price}: any) => n + price, 0)};
+                  Total: {total}
                 </Typography>
                 <Button className={classes.keepRight} variant="contained">
                   <Link href='/checkout' underline='none' color='inherit'>Checkout</Link>
@@ -56,7 +64,7 @@ function Cart(props: IProps) {
   );
 }
 
-const useStlyes = makeStyles({
+const useStyles = makeStyles({
   rootStyle: {
     position: "fixed",
     width: "20rem",
