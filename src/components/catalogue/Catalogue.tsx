@@ -12,8 +12,9 @@ interface IProps {
 function Catalogue(props: IProps) {
   const { products } = useContext(ProductsContext);
   const [isLarge, setIsLarge] = useState(props.isLarge);
+  const [isHover, setIsHover] = useState(false);
   const previewCatalogue = products.slice(1, 7);
-  const cartItems = JSON.parse(localStorage.getItem('cart')!) || [];
+  const cartItems = JSON.parse(localStorage.getItem("cart")!) || [];
 
   return (
     <Box>
@@ -30,6 +31,8 @@ function Catalogue(props: IProps) {
                     }}
                   >
                     <img
+                      onMouseEnter={() => setIsHover(true)}
+                      onMouseLeave={() => setIsHover(false)}
                       src={product.preview}
                       alt=" "
                       width="400"
@@ -48,10 +51,11 @@ function Catalogue(props: IProps) {
         <Grid style={gridWidth}>
           <Grid container item xs={12} spacing={1} style={innerGridStyle}>
             {previewCatalogue.map((product) => (
-              <Box style={boxStyle}>
+              <Box style={boxStyle} onMouseLeave={() => setIsHover(false)}>
                 <Link to={product.name}>
                   <Typography variant="h6">
                     <img
+                      onMouseEnter={() => setIsHover(true)}
                       onClick={() => {
                         props.getProduct(product);
                       }}
@@ -62,18 +66,40 @@ function Catalogue(props: IProps) {
                       width="400"
                       height="400"
                     />
-                    </Typography> 
-                    </Link>
-                    <Button 
-                        style={button}
-                        onClick={       
-                          () => {
-                            cartItems.push(product);
-                            localStorage.setItem('cart', JSON.stringify(cartItems)); 
-                          }
-                        }>
-                      <Typography variant="button">Add to cart</Typography>
-                    </Button>
+                  </Typography>
+                  {isHover ? (
+                    <>
+                      <Box style={{ ...hoverContainer, ...customCursor }}>
+                        <Box style={{ ...hoverEffect, ...customCursor }}>
+                          <Box style={{ ...hoverText, ...customCursor }}>
+                            <Typography variant="body1">
+                              {product.name}
+                            </Typography>
+                            <Typography variant="body1">
+                              {product.price}kr
+                            </Typography>
+                          </Box>
+                          <Box style={{ ...buttonContainer, ...customCursor }}>
+                            <Button
+                              style={button}
+                              onClick={() => {
+                                cartItems.push(product);
+                                localStorage.setItem(
+                                  "cart",
+                                  JSON.stringify(cartItems)
+                                );
+                              }}
+                            >
+                              <Typography variant="button" style={customCursor}>
+                                Add to cart
+                              </Typography>
+                            </Button>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </>
+                  ) : null}
+                </Link>
               </Box>
             ))}
           </Grid>
@@ -82,6 +108,41 @@ function Catalogue(props: IProps) {
     </Box>
   );
 }
+
+const buttonContainer: CSSProperties = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "120px",
+  height: "60px",
+  marginTop: "1rem",
+};
+const hoverText: CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "column",
+  width: "100%",
+  color: "black",
+};
+
+const hoverContainer: CSSProperties = {
+  position: "relative",
+  bottom: "25.5rem",
+};
+
+const hoverEffect: CSSProperties = {
+  top: "0",
+  position: "absolute",
+  width: "400px",
+  height: "400px",
+  backgroundColor: "rgba(231, 234, 249, 0.2)",
+  backdropFilter: "blur(10px)",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  transition: "backgdrop-filter 1000ms linear",
+};
 
 const gridWidth: CSSProperties = {
   maxWidth: "1400px",
@@ -110,6 +171,7 @@ const button: CSSProperties = {
   width: "8rem",
   border: "solid 1.5px black",
   borderRadius: "0%",
-  textDecoration: 'none',
-}
+  textDecoration: "none",
+  position: "absolute",
+};
 export default Catalogue;
