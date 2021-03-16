@@ -71,7 +71,6 @@ const useStyles = makeStyles({
   rootStyle: {
     position: "fixed",
     width: "20rem",
-    height: "40rem",
     top: 0,
     right: 0,
     backgroundColor: "white",
@@ -93,10 +92,10 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
   },
   bottomContentWrapper: {
-    position: "absolute",
     bottom: 0,
     borderTop: "solid 1px black",
-    padding: "1rem",
+    margin: "1rem 1rem",
+    paddingTop: '1rem'
   },
   keepLeft: {
     left: 0,
@@ -109,7 +108,7 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     paddingLeft: '2rem',
-    padding: '0.5rem'
+    padding: '0.5rem',
   },
   cartItemDetail: {
     width: '30%',
