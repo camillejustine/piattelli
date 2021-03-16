@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import swishLogo from "../../assets/swish.png";
 import cardLogo from "../../assets/card.png";
 import bitcoinLogo from "../../assets/bitcoin.png";
-import moment from 'moment';
+import moment from "moment";
 
 function getSteps() {
   return [
@@ -24,21 +24,51 @@ function getSteps() {
 }
 
 function Checkout() {
+  //Step counter
   const [activeStep, setActiveStep] = useState(0);
-  const [paymentOption, setPaymentOption] = useState<string>();
-  const [deliveryOption, setDeliveryOption] = useState<string>();
   const steps = getSteps();
+
+  //Form states
+  const [fullName, setFullName] = useState<string>();
+  const [phoneNumber, setPhoneNumber] = useState<string>();
+  const [email, setEmail] = useState<string>();
+  const [adress, setAdress] = useState<string>();
+  const [zipCode, setZipCode] = useState<string>();
+  const [country, setCountry] = useState<string>();
+  const [city, setCity] = useState<string>();
+  const [deliveryOption, setDeliveryOption] = useState<string>();
+
+  const isFormValid =
+    fullName &&
+    phoneNumber &&
+    deliveryOption &&
+    email &&
+    adress &&
+    zipCode &&
+    country &&
+    city;
+
+  // Payment state
+  const [paymentOption, setPaymentOption] = useState<string>();
+  const [nameOnCard, setNameOnCard] = useState<string>();
+  const [cardNumber, setCardNumber] = useState<string>();
+  const [cvcNumber, setCvcNumber] = useState<string>();
+  const [giftCard, setGiftCard] = useState<string>();
+  const [swishNumber, setSwishNumber] = useState(phoneNumber);
+
+  const isCardValid = nameOnCard && cardNumber && cvcNumber;
+  const isPaymentValid = paymentOption && (isCardValid || giftCard || swishNumber );
+
+  // Styling
   const classes = useStyles();
 
+  //vars for delivery dates
   let today = moment();
   let today2 = today.clone();
   let today3 = today.clone();
-  let pnDel = today.add(3, 'd').format('dddd, MMMM Do');
-  let budbeeDel = today2.add(2, 'd').format('dddd, MMMM Do');
-  let instaDel = today3.add(1, 'd').format('dddd, MMMM Do');
-  
-  
-  
+  let pnDel = today.add(3, "d").format("dddd, MMMM Do");
+  let budbeeDel = today2.add(2, "d").format("dddd, MMMM Do");
+  let instaDel = today3.add(1, "d").format("dddd, MMMM Do");
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -61,34 +91,45 @@ function Checkout() {
               Fill in your personal detail below:
             </Typography>
             <Box>
-              <form
-                className={classes.contentWrapper}
-                noValidate
-                autoComplete="off"
-              >
+              <form className={classes.contentWrapper} autoComplete="off">
                 <Box className={classes.flexColumn}>
                   <TextField
                     required
+                    name="name"
+                    value={fullName}
+                    error={fullName === ""}
                     id="standard-required"
-                    label="Full Name"
+                    label="Name"
+                    onChange={(event) => setFullName(event.target.value)}
                     // defaultValue="Full Name"
                   />
                   <TextField
                     required
+                    name="email"
+                    type="email"
+                    error={email === ""}
                     id="standard-required"
                     label="Email"
+                    onChange={(event) => setEmail(event.target.value)}
+
                     // defaultValue="Email"
                   />
                   <TextField
                     required
                     id="standard-required"
                     label="Adress"
+                    error={adress === ""}
+                    onChange={(event) => setAdress(event.target.value)}
+
                     // defaultValue="Adress"
                   />
                   <TextField
                     required
                     id="standard-required"
                     label="Phone number"
+                    type="number"
+                    error={phoneNumber === ""}
+                    onChange={(event) => setPhoneNumber(event.target.value)}
                     // defaultValue="Phone number"
                   />
                 </Box>
@@ -97,19 +138,26 @@ function Checkout() {
                     required
                     id="standard-required"
                     label="Zip code"
+                    error={zipCode === ""}
+                    onChange={(event) => setZipCode(event.target.value)}
+
                     // defaultValue="Zip code"
                   />
                   <TextField
                     required
                     id="standard-required"
                     label="Country"
+                    error={country === ""}
+                    onChange={(event) => setCountry(event.target.value)}
+
                     // defaultValue="Country"
                   />
                   <TextField
                     required
                     id="standard-required"
                     label="City"
-                    // defaultValue="Hello World"
+                    error={city === ""}
+                    onChange={(event) => setCity(event.target.value)}
                   />
                 </Box>
               </form>
@@ -136,23 +184,28 @@ function Checkout() {
                   </Box>
                 </Box>
                 <Box className={classes.centerFlex}>
-                  {deliveryOption === "pn" ? 
-                  (
+                  {deliveryOption === "pn" ? (
                     <Box>
                       <Typography>Delivery cost: free</Typography>
-                      <Typography>Estimated delivery time: {String(pnDel)}</Typography>
+                      <Typography>
+                        Estimated delivery time: {String(pnDel)}
+                      </Typography>
                     </Box>
                   ) : null}
                   {deliveryOption === "budbee" ? (
                     <Box>
                       <Typography>Delivery cost: 69kr</Typography>
-                      <Typography>Estimated delivery time: {String(budbeeDel)}</Typography>
+                      <Typography>
+                        Estimated delivery time: {String(budbeeDel)}
+                      </Typography>
                     </Box>
                   ) : null}
                   {deliveryOption === "instabox" ? (
                     <Box>
                       <Typography>Delivery cost: 39kr</Typography>
-                      <Typography>Estimated delivery time: {String(instaDel)}</Typography>
+                      <Typography>
+                        Estimated delivery time: {String(instaDel)}
+                      </Typography>
                     </Box>
                   ) : null}
                 </Box>
@@ -191,7 +244,7 @@ function Checkout() {
               </Box>
               <Box
                 className={classes.paymentMethodWrapper}
-                onClick={() => setPaymentOption("bitcoin")}
+                onClick={() => setPaymentOption("giftcard")}
               >
                 <Typography className={classes.centerFlex} variant="h6">
                   GIFTCARD
@@ -200,42 +253,63 @@ function Checkout() {
             </Box>
             <Box>
               {paymentOption === "swish" ? (
-                <TextField
-                  required
-                  id="standard-required"
-                  label="Phone number for swish"
-                  // defaultValue="Email"
-                />
+                <Box className={classes.centerFlex}>
+                  <TextField
+                    required
+                    id="standard-required"
+                    label="Phone number for swish"
+                    defaultValue={phoneNumber}
+                    onChange={(event) => {
+                      setSwishNumber(event.target.value);
+                    }}
+                  />
+                </Box>
               ) : null}
               {paymentOption === "card" ? (
-                <>
+                <Box className={classes.centerFlex}>
                   <TextField
                     required
                     id="standard-required"
                     label="Name on card"
-                    // defaultValue="Email"
+                    defaultValue={fullName}
+                    onChange={(event) => {
+                      setNameOnCard(event.target.value);
+                    }}
                   />
                   <TextField
                     required
                     id="standard-required"
                     label="Card number"
+                    onChange={(event) => {
+                      setCardNumber(event.target.value);
+                    }}
                     // defaultValue="Email"
                   />
                   <TextField
                     required
                     id="standard-required"
                     label="CVC"
+                    onChange={(event) => {
+                      setCvcNumber(event.target.value);
+                    }}
+
                     // defaultValue="Email"
                   />
-                </>
+                </Box>
               ) : null}
-              {paymentOption === "bitcoin" ? (
-                <TextField
-                  required
-                  id="standard-required"
-                  label="Giftcard number"
-                  // defaultValue="Email"
-                />
+              {paymentOption === "giftcard" ? (
+                <Box className={classes.centerFlex}>
+                  <TextField
+                    required
+                    id="standard-required"
+                    label="Giftcard number"
+                    onChange={(event) => {
+                      setGiftCard(event.target.value);
+                    }}
+
+                    // defaultValue="Email"
+                  />
+                </Box>
               ) : null}
             </Box>
           </Box>
@@ -277,9 +351,34 @@ function Checkout() {
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back
               </Button>
-              <Button variant="contained" onClick={handleNext}>
-                {activeStep === steps.length - 1 ? "Complete" : "Next"}
-              </Button>
+              {activeStep === 0 ? (
+                <Button variant="contained" onClick={handleNext}>
+                  {activeStep === steps.length - 1 ? "Complete" : "Next"}
+                </Button>
+              ) : null}
+              {activeStep === 1 ? (
+                <Button
+                  variant="contained"
+                  onClick={handleNext}
+                  disabled={!isFormValid}
+                >
+                  {activeStep === steps.length - 1 ? "Complete" : "Next"}
+                </Button>
+              ) : null}
+              {activeStep === 2 ? (
+                <Button
+                  variant="contained"
+                  onClick={handleNext}
+                  disabled={!isPaymentValid}
+                >
+                  {activeStep === steps.length - 1 ? "Complete" : "Next"}
+                </Button>
+              ) : null}
+              {activeStep === 3 ? (
+                <Button variant="contained">
+                  {activeStep === steps.length - 1 ? "Complete" : "Next"}
+                </Button>
+              ) : null}
             </Box>
           </Box>
         )}
