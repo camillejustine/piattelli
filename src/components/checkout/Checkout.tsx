@@ -13,6 +13,7 @@ import swishLogo from "../../assets/swish.png";
 import cardLogo from "../../assets/card.png";
 import bitcoinLogo from "../../assets/bitcoin.png";
 import moment from "moment";
+import CloseIcon from "@material-ui/icons/Close";
 
 function getSteps() {
   return [
@@ -57,7 +58,8 @@ function Checkout() {
   const [swishNumber, setSwishNumber] = useState(phoneNumber);
 
   const isCardValid = nameOnCard && cardNumber && cvcNumber;
-  const isPaymentValid = paymentOption && (isCardValid || giftCard || swishNumber );
+  const isPaymentValid =
+    paymentOption && (isCardValid || giftCard || swishNumber);
 
   // Styling
   const classes = useStyles();
@@ -70,6 +72,10 @@ function Checkout() {
   let budbeeDel = today2.add(2, "d").format("dddd, MMMM Do");
   let instaDel = today3.add(1, "d").format("dddd, MMMM Do");
 
+  //get content of cart from ls
+  let cart = JSON.parse(localStorage.getItem("cart")!) || [];
+  const total = cart.reduce((n: any, { price }: any) => n + price, 0);
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -79,11 +85,41 @@ function Checkout() {
   const handleReset = () => {
     setActiveStep(0);
   };
+  function removeProductFromCart(id: any) {
+    cart = cart.filter((item: any) => item.id !== id);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
 
   function getStepContent(stepIndex: number) {
     switch (stepIndex) {
       case 0:
-        return <Typography> PRODUCTS IN CART HERE</Typography>;
+        return (
+          <>
+            <Typography variant='h5' className={classes.centerFlex}>
+              Products in cart
+            </Typography>
+            <Typography variant='body1' className={classes.centerFlex}>
+              Total: {total}kr
+            </Typography>
+            <Box className={classes.cartContentWrapper}>
+              {cart.map((product: any) => (
+                <Box className={classes.cartContent}>
+                  <CloseIcon
+                    onClick={() => {
+                      removeProductFromCart(product.id);
+                    }}
+                  ></CloseIcon>
+                  <img src={product.preview} width="100rem" height="100rem" />
+                  <div className={classes.productInfo}>
+                    <Typography variant='body1'>{product.name}</Typography>
+                    <Typography variant='body2'>Price: {product.price}</Typography>
+                  </div>
+                </Box>
+              ))}
+              
+            </Box>
+          </>
+        );
       case 1:
         return (
           <>
@@ -436,5 +472,16 @@ const useStyles = makeStyles({
     borderRadius: 5,
     cursor: "pointer",
   },
+  cartContentWrapper: {
+    overflow: "auto",
+  },
+  cartContent: {
+    margin: "1rem 2rem",
+    display: "flex",
+  },
+  productInfo: {
+    marginLeft: '1rem'
+  }
+
 });
 export default Checkout;
