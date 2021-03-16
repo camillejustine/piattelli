@@ -1,4 +1,4 @@
-import { Box, Link, TextField, Typography } from "@material-ui/core";
+import { Box, Link, TextField, Typography, Badge } from "@material-ui/core";
 import { Component, CSSProperties, useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { ShoppingCart as CartIcon } from "@material-ui/icons";
@@ -10,6 +10,7 @@ function Header() {
   const [searchClicked, setSearchClicked] = useState(false);
   const [isCartVisible, setIsCartVisible] = useState(false);
   const classes = useStyles();
+  const  cart = JSON.parse(localStorage.getItem('cart')!) || [];
 
   function hideCart() {
     setIsCartVisible(false);
@@ -56,7 +57,9 @@ function Header() {
             }}
           />
           {/* Cart view */}
-          <Cart onHide={hideCart} isVisible={isCartVisible} />
+          <Badge badgeContent={cart.length} color='primary'>
+            <Cart onHide={hideCart} isVisible={isCartVisible} />
+          </Badge>
         </Box>
       </Box>
     </Box>

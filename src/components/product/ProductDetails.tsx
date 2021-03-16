@@ -3,8 +3,6 @@ import { Typography, Box, Button, makeStyles } from "@material-ui/core";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import ImgTest from '../../assets/hero2.png';
-import ImgTest from "../../assets/hero2.png";
-
 
 // we should use pexels api here?
 // const productImg: {
