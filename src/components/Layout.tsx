@@ -30,29 +30,28 @@ function Layout() {
   return (
     <Box style={customCursorBlack}>
       <CartProvider>
-      <div style={landingContainer}>
-        <Route exact path="/">
-          <Hero />
-          <Promotion />
-          <Explore />
-          <PromotionSecond />
-          <ErrorBoundary>
-            <Box style={cataloguePreviewContainer}>
-              <Catalogue isLarge={false} getProduct={productDetails} />
-            </Box>
-          </ErrorBoundary>
-        </Route>
-      </div>
-          <Header />
-          <Route path="/:name">
-              <ProductDetails productView={productDetail} />
+        <div style={landingContainer}>
+          <Route exact path="/">
+            <Hero />
+            <Promotion />
+            <Explore />
+            <PromotionSecond />
+            <ErrorBoundary>
+              <Box style={cataloguePreviewContainer}>
+                <Catalogue isLarge={false} getProduct={productDetails} />
+              </Box>
+            </ErrorBoundary>
           </Route>
-              <Route path='/checkout'>
-              <Checkout />
-          </Route>
-        
-      <Newsletter />
-      <Footer />
+        </div>
+            <Header />
+            <Route path="/:name">
+                <ProductDetails productView={productDetail} />
+            </Route>
+            <Route path='/checkout'>
+                <Checkout />
+            </Route>
+        <Newsletter />
+        <Footer />
       </CartProvider>
     </Box>
   );

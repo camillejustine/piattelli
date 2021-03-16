@@ -15,13 +15,13 @@ function Cart(props: IProps) {
   const classes = useStyles();
   let cart = JSON.parse(localStorage.getItem('cart')!) || [];
   const total = cart.reduce((n: any, {price}: any) => n + price, 0)
-  console.log(cart)
+
   useEffect(()=>{
     
   })
 
   function removeProductFromCart(id: any) {
-    cart = cart.filter((item: any) => item.id !== id);
+    cart = cart.filter((item: any) => item.uniqueId !== id);
     localStorage.setItem('cart', JSON.stringify(cart))
   }
   
@@ -44,7 +44,7 @@ function Cart(props: IProps) {
                   </div>
                 <CloseIcon onClick={
                   () => {
-                    removeProductFromCart(product.id)
+                    removeProductFromCart(product.uniqueId)
                   }
                 }></CloseIcon>
                 </Box>
