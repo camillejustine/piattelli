@@ -45,9 +45,11 @@ function ProductDetails(props: iProps) {
           <Box className={classes.circle}></Box>
           <Box className={classes.circle}></Box>
         </Box>
-        <Button className={classes.button} onClick={() => addToCart(testArray)}>
-          <Typography variant="button">Add to cart</Typography>
-        </Button>
+          <Button 
+            className={classes.button} 
+            onClick={() => addToCart(props.productView)}>
+            <Typography variant="button">Add to cart</Typography>
+          </Button>
       </Box>
     </Box>
   );

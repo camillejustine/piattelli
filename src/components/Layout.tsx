@@ -17,6 +17,9 @@ import ProductDetails from "./product/ProductDetails";
 import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
 import alternativeCursor from "../assets/alternativeCursor.png";
 
+
+import CartProvider from './context/CartContext';
+
 function Layout() {
   const [productDetail, setProductDetail] = useState<object>();
 
@@ -26,7 +29,7 @@ function Layout() {
 
   return (
     <Box style={customCursorBlack}>
-      <Header />
+      
       <div style={landingContainer}>
         <Route exact path="/">
           <Hero />
@@ -41,16 +44,16 @@ function Layout() {
         </Route>
       </div>
 
-      <Route path="/:name">
-        <ProductDetails productView={productDetail} />
-      </Route>
-      <ErrorBoundary>
-        <Route path="/checkout">
-          <Checkout />
-        </Route>
-      </ErrorBoundary>
+        <CartProvider>
+          <Header />
+          <Route path="/:name">
+              <ProductDetails productView={productDetail} />
+          </Route>
+              <Route path='/checkout'>
+              <Checkout />
+          </Route>
+        </CartProvider>
       <Newsletter />
-
       <Footer />
     </Box>
   );
