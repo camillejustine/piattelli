@@ -1,9 +1,10 @@
 import { Box, Button, Link, Typography, Badge } from "@material-ui/core";
 import { CSSProperties, makeStyles } from "@material-ui/styles";
 import CloseIcon from "@material-ui/icons/Close";
-import { ShoppingCart as CartIcon } from "@material-ui/icons";
+import { PermDeviceInformation, ShoppingCart as CartIcon } from "@material-ui/icons";
 import React, { Component, useState } from "react";
 import { flexbox } from "@material-ui/system";
+import { AnyAaaaRecord } from "node:dns";
 
 interface IProps {
   isVisible: boolean;
@@ -13,7 +14,6 @@ interface IProps {
 function Cart(props: IProps) {
   const classes = useStlyes();
   const  cart = JSON.parse(localStorage.getItem('cart')!) || [];
-
   
   return (
     <>
@@ -43,7 +43,7 @@ function Cart(props: IProps) {
             <Box className={classes.bottomContentWrapper}>
               <Box className={classes.bottomContent}>
                 <Typography className={classes.keepLeft} variant="h6">
-                  Total: 300000
+                  Total: {cart.reduce((n: any, {price}: any) => n + price, 0)};
                 </Typography>
                 <Button className={classes.keepRight} variant="contained">
                   <Link href='/checkout' underline='none' color='inherit'>Checkout</Link>
