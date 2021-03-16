@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import swishLogo from "../../assets/swish.png";
 import cardLogo from "../../assets/card.png";
 import bitcoinLogo from "../../assets/bitcoin.png";
+import moment from 'moment';
 
 function getSteps() {
   return [
@@ -25,8 +26,19 @@ function getSteps() {
 function Checkout() {
   const [activeStep, setActiveStep] = useState(0);
   const [paymentOption, setPaymentOption] = useState<string>();
+  const [deliveryOption, setDeliveryOption] = useState<string>();
   const steps = getSteps();
   const classes = useStyles();
+
+  let today = moment();
+  let today2 = today.clone();
+  let today3 = today.clone();
+  let pnDel = today.add(3, 'd').format('dddd, MMMM Do');
+  let budbeeDel = today2.add(2, 'd').format('dddd, MMMM Do');
+  let instaDel = today3.add(1, 'd').format('dddd, MMMM Do');
+  
+  
+  
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -101,6 +113,50 @@ function Checkout() {
                   />
                 </Box>
               </form>
+              <Box>
+                <h5 className={classes.centerFlex}>Delivery Options</h5>
+                <Box className={classes.centerFlex}>
+                  <Box
+                    onClick={() => setDeliveryOption("pn")}
+                    className={classes.deliveryBox}
+                  >
+                    Post Nord: 2-5 days
+                  </Box>
+                  <Box
+                    onClick={() => setDeliveryOption("budbee")}
+                    className={classes.deliveryBox}
+                  >
+                    Budbee home delivery: 1-3 days
+                  </Box>
+                  <Box
+                    onClick={() => setDeliveryOption("instabox")}
+                    className={classes.deliveryBox}
+                  >
+                    Instabox: 1-3 days
+                  </Box>
+                </Box>
+                <Box className={classes.centerFlex}>
+                  {deliveryOption === "pn" ? 
+                  (
+                    <Box>
+                      <Typography>Delivery cost: free</Typography>
+                      <Typography>Estimated delivery time: {String(pnDel)}</Typography>
+                    </Box>
+                  ) : null}
+                  {deliveryOption === "budbee" ? (
+                    <Box>
+                      <Typography>Delivery cost: 69kr</Typography>
+                      <Typography>Estimated delivery time: {String(budbeeDel)}</Typography>
+                    </Box>
+                  ) : null}
+                  {deliveryOption === "instabox" ? (
+                    <Box>
+                      <Typography>Delivery cost: 39kr</Typography>
+                      <Typography>Estimated delivery time: {String(instaDel)}</Typography>
+                    </Box>
+                  ) : null}
+                </Box>
+              </Box>
             </Box>
           </>
         );
@@ -137,7 +193,9 @@ function Checkout() {
                 className={classes.paymentMethodWrapper}
                 onClick={() => setPaymentOption("bitcoin")}
               >
-                <Typography className={classes.centerFlex} variant="h6">GIFTCARD</Typography>
+                <Typography className={classes.centerFlex} variant="h6">
+                  GIFTCARD
+                </Typography>
               </Box>
             </Box>
             <Box>
@@ -184,11 +242,11 @@ function Checkout() {
         );
       case 3:
         return (
-            <Typography className={classes.centerFlex}>CONGRATIOFUCKINGLATIONS <br/>
-
-            YOU JUST BOUGHT BAGS WORTH MORE THAN MY CAR <br/>
-            
-            YOU’LL GET AN INVOICE ON YOUR EMAIL</Typography>
+          <Typography className={classes.centerFlex}>
+            CONGRATIOFUCKINGLATIONS <br />
+            YOU JUST BOUGHT BAGS WORTH MORE THAN MY CAR <br />
+            YOU’LL GET AN INVOICE ON YOUR EMAIL
+          </Typography>
         );
       default:
         return "Unknown stepIndex";
@@ -208,12 +266,14 @@ function Checkout() {
         {activeStep === steps.length ? (
           <Box>
             <Typography>All steps completed</Typography>
-            <Button onClick={handleReset}>Reset</Button>
+            <Box className={classes.buttonWrapper}>
+              <Button onClick={handleReset}>Reset</Button>
+            </Box>
           </Box>
         ) : (
           <Box>
             <Box>{getStepContent(activeStep)}</Box>
-            <Box>
+            <Box className={classes.buttonWrapper}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 Back
               </Button>
@@ -231,6 +291,17 @@ function Checkout() {
 const useStyles = makeStyles({
   root: {
     marginTop: "8.5rem",
+    height: "50rem",
+    border: "solid 2px black",
+    position: "relative",
+  },
+  buttonWrapper: {
+    position: "absolute",
+    display: "flex",
+    bottom: "1rem",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   contentWrapper: {
     display: "flex",
@@ -245,7 +316,7 @@ const useStyles = makeStyles({
   centerFlex: {
     display: "flex",
     justifyContent: "center",
-    alignItems: 'center'
+    alignItems: "center",
   },
   paymentMethodWrapper: {
     width: "15rem",
@@ -258,6 +329,13 @@ const useStyles = makeStyles({
   paymentLogoSize: {
     width: "15rem",
     height: "8rem",
+  },
+  deliveryBox: {
+    margin: "1rem",
+    padding: "0.5rem",
+    border: "1px solid black",
+    borderRadius: 5,
+    cursor: "pointer",
   },
 });
 export default Checkout;
