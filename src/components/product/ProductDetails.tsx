@@ -49,7 +49,7 @@ function ProductDetails(props: iProps) {
         </Box>
           <Button 
             className={classes.button} 
-            onClick={() => addToCart(testArray)}>
+            onClick={() => addToCart(props.productView)}>
             <Typography variant="button">Add to cart</Typography>
           </Button>
       </Box>

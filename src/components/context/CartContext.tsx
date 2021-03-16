@@ -16,7 +16,7 @@ class CartProvider extends Component<{},iState> {
         cart: [],
     }
 
-    addProductToCart(product: any) {
+    addProductToCart = (product: any) => {
         const updateCart = [...this.state.cart, product]
         this.setState({cart: updateCart})
     }
