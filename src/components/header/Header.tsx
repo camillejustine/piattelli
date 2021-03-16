@@ -10,7 +10,7 @@ function Header() {
   const [searchClicked, setSearchClicked] = useState(false);
   const [isCartVisible, setIsCartVisible] = useState(false);
   const classes = useStyles();
-  const  cart = JSON.parse(localStorage.getItem('cart')!) || [];
+  const cart = JSON.parse(localStorage.getItem("cart")!) || [];
 
   function hideCart() {
     setIsCartVisible(false);
@@ -18,18 +18,18 @@ function Header() {
 
   return (
     <Box className={classes.rootStyle}>
-      <Link href="#" color='inherit' underline='none'>
+      <Link href="#" color="inherit" underline="none">
         <Typography variant="body1">New Collection </Typography>
       </Link>
-      <Link href="#" color='inherit' underline='none'>
+      <Link href="#" color="inherit" underline="none">
         <Typography variant="body1">All Bags </Typography>{" "}
       </Link>
 
-      <Link href="/" color='inherit' underline='none'>
+      <Link href="/" color="inherit" underline="none">
         <Typography variant="h1">PIATTELLI</Typography>
       </Link>
 
-      <Link href="#" color='inherit' underline='none'>
+      <Link href="#" color="inherit" underline="none">
         <Typography variant="body1">Timless Favorites</Typography>{" "}
       </Link>
       <Box className={classes.iconWrapper}>
@@ -57,7 +57,11 @@ function Header() {
             }}
           />
           {/* Cart view */}
-          <Badge badgeContent={cart.length} color='primary'>
+          <Badge
+            badgeContent={cart.length}
+            color="primary"
+            className="animate__animated animate__bounceIn"
+          >
             <Cart onHide={hideCart} isVisible={isCartVisible} />
           </Badge>
         </Box>
