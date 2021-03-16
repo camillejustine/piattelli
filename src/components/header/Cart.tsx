@@ -1,4 +1,4 @@
-import { Box, Button, Link, Typography } from "@material-ui/core";
+import { Box, Button, Link, Typography, Badge } from "@material-ui/core";
 import { CSSProperties, makeStyles } from "@material-ui/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import { ShoppingCart as CartIcon } from "@material-ui/icons";
@@ -12,7 +12,9 @@ interface IProps {
 
 function Cart(props: IProps) {
   const classes = useStlyes();
+  const  cart = JSON.parse(localStorage.getItem('cart')!) || [];
 
+  
   return (
     <>
       {props.isVisible ? (
@@ -20,9 +22,23 @@ function Cart(props: IProps) {
             <Box className={classes.topContent}>
               <CloseIcon onClick={props.onHide}></CloseIcon>
               <Typography variant="body1">Your Items</Typography>
-              <CartIcon></CartIcon>
+              
+                <CartIcon />
+             
             </Box>
-            <Box>{/* PUTT ALL PROJECT IN CART HERE */}</Box>
+            <Box>{
+              cart.map((product: any) => (
+                <Box className={classes.cartItems}>
+                  <img src={product.preview} width='100rem' height='100rem'/>
+                  <div className={classes.cartItemDetail}>
+                    <span>{product.name}</span>
+                    <span>Price: {product.price}</span>
+                  </div>
+                <CloseIcon></CloseIcon>
+                </Box>
+              ))
+            }
+            </Box>
 
             <Box className={classes.bottomContentWrapper}>
               <Box className={classes.bottomContent}>
@@ -77,6 +93,19 @@ const useStlyes = makeStyles({
   keepRight: {
     right: 0,
   },
+  cartItems: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: '2rem',
+    padding: '0.5rem'
+  },
+  cartItemDetail: {
+    width: '30%',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '1rem'
+  }
 });
 
 export default Cart;
