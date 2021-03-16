@@ -29,16 +29,16 @@ function ProductDetails(props: iProps) {
       </Box>
       <Box className={classes.infoWrapper}>
         <Box>
-          <Box className={classes.column}>
-            <Typography>{props.productView.name}</Typography>
-            <Typography>{props.productView.collection}</Typography>
-            <Typography>{props.productView.price}</Typography>
-          </Box>
-          <Box className={classes.row}>
-            <Typography>{props.productView.description}</Typography>
-            <Typography>{props.productView.details}</Typography>
-            <Typography>{props.productView.fabricCare}</Typography>
-          </Box>
+            <Box className={classes.column}>
+              <Typography>{props.productView && props.productView.name}</Typography>
+              <Typography>{props.productView && props.productView.collection}</Typography>
+              <Typography>{props.productView && props.productView.price}</Typography>
+            </Box>
+            <Box className={classes.row}>
+              <Typography>{props.productView && props.productView.description}</Typography>
+              <Typography>{props.productView && props.productView.details}</Typography>
+              <Typography>{props.productView && props.productView.fabricCare}</Typography>
+            </Box>
         </Box>
         <Box className={classes.row}>
           <Box className={classes.circle}></Box>
