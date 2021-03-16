@@ -15,7 +15,10 @@ function Catalogue(props: IProps) {
   const previewCatalogue = products.slice(1, 7);
   const cartItems = JSON.parse(localStorage.getItem('cart')!) || [];
 
-  console.log(cartItems)
+  function assignRandomProductId(product: any){
+      product['uniqueId'] = Math.random().toString(36).substr(2, 9);
+      return product;
+  } 
 
   return (
     <Box>
@@ -56,7 +59,6 @@ function Catalogue(props: IProps) {
                     <img
                       onClick={() => {
                         props.getProduct(product);
-                        
                       }}
                       src={product.preview}
                       style={customCursor}
@@ -71,8 +73,8 @@ function Catalogue(props: IProps) {
                         style={button}
                         onClick={       
                           () => {
-                            Object.assign(product,{newValue: 'value'})
-                            cartItems.push(product);
+                            const uniqueProduct = assignRandomProductId(product)
+                            cartItems.push(uniqueProduct);
                             localStorage.setItem('cart', JSON.stringify(cartItems)); 
                           }
                         }>
