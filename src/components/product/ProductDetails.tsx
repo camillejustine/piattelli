@@ -2,7 +2,9 @@
 import { Typography, Box, Button, makeStyles } from "@material-ui/core";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import ImgTest from '../../assets/hero2.png';
 import ImgTest from "../../assets/hero2.png";
+
 
 // we should use pexels api here?
 // const productImg: {
@@ -19,6 +21,7 @@ const testArray = [{ thing: "here" }];
 function ProductDetails(props: iProps) {
   const { addToCart } = useContext(CartContext);
   const classes = useStyles();
+  const cartItems = JSON.parse(localStorage.getItem('cart')!) || [];
 
   return (
     <Box className={classes.wrapper}>
@@ -47,7 +50,12 @@ function ProductDetails(props: iProps) {
         </Box>
           <Button 
             className={classes.button} 
-            onClick={() => addToCart(props.productView)}>
+            onClick={       
+              () => {
+                cartItems.push(props.productView);
+                localStorage.setItem('cart', JSON.stringify(cartItems))
+              }
+            }>
             <Typography variant="button">Add to cart</Typography>
           </Button>
       </Box>

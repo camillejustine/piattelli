@@ -29,7 +29,7 @@ function Layout() {
 
   return (
     <Box style={customCursorBlack}>
-      
+      <CartProvider>
       <div style={landingContainer}>
         <Route exact path="/">
           <Hero />
@@ -43,8 +43,6 @@ function Layout() {
           </ErrorBoundary>
         </Route>
       </div>
-
-        <CartProvider>
           <Header />
           <Route path="/:name">
               <ProductDetails productView={productDetail} />
@@ -52,9 +50,10 @@ function Layout() {
               <Route path='/checkout'>
               <Checkout />
           </Route>
-        </CartProvider>
+        
       <Newsletter />
       <Footer />
+      </CartProvider>
     </Box>
   );
 }
