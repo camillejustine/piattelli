@@ -6,18 +6,19 @@ import Explore from "./content/Explore";
 import PromotionSecond from "./content/PromotionSecond";
 import Catalogue from "./catalogue/Catalogue";
 import Newsletter from "./content/Newsletter";
+import ErrorBoundary from "./ErrorBoundary";
 import { Box } from "@material-ui/core";
 
 import { CSSProperties, useState } from "react";
 import Checkout from "./checkout/Checkout";
-        
+
 import { Route } from "react-router-dom";
 import ProductDetails from "./product/ProductDetails";
 import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
 import alternativeCursor from "../assets/alternativeCursor.png";
 
-import CartProvider from './context/CartContext';
 
+import CartProvider from './context/CartContext';
 
 function Layout() {
   const [productDetail, setProductDetail] = useState<object>();
@@ -25,7 +26,7 @@ function Layout() {
   function productDetails(value: object) {
     setProductDetail(value);
   }
-  
+
   return (
     <Box style={customCursorBlack}>
       
@@ -35,11 +36,14 @@ function Layout() {
           <Promotion />
           <Explore />
           <PromotionSecond />
-          <Box style={cataloguePreviewContainer}>
-            <Catalogue isLarge={false} getProduct={productDetails} />
-          </Box>
+          <ErrorBoundary>
+            <Box style={cataloguePreviewContainer}>
+              <Catalogue isLarge={false} getProduct={productDetails} />
+            </Box>
+          </ErrorBoundary>
         </Route>
       </div>
+
         <CartProvider>
           <Header />
           <Route path="/:name">
