@@ -105,7 +105,12 @@ function Catalogue(props: IProps, id: string) {
                                 props.getProduct(product);
                               }}
                             >
-                              <Typography variant="body1">More info</Typography>
+                              <Typography
+                                variant="body1"
+                                className={classes.moreInfoStyle}
+                              >
+                                More info
+                              </Typography>
                             </Link>
                             <Typography variant="h5">{product.name}</Typography>
                           </Box>
@@ -162,6 +167,7 @@ const useStyles: any = makeStyles({
     paddingRight: "4rem",
     paddingTop: "4rem",
     margin: "-2rem",
+    bottom: "5rem",
   },
   buttonContainer: {
     display: "flex",
@@ -221,6 +227,9 @@ const useStyles: any = makeStyles({
     borderRadius: "0%",
     textDecoration: "none",
     position: "absolute",
+  },
+  moreInfoStyle: {
+    marginTop: "2rem",
   },
 });
 
