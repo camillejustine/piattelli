@@ -5,13 +5,15 @@ import { ShoppingCart as CartIcon } from "@material-ui/icons";
 import "animate.css/animate.css";
 import Cart from "./Cart";
 import { makeStyles } from "@material-ui/styles";
+import {CartContext} from '../context/CartContext';
+import { useContext } from "react";
 
 function Header() {
   const [searchClicked, setSearchClicked] = useState(false);
   const [isCartVisible, setIsCartVisible] = useState(false);
+  const { cart } = useContext(CartContext);
   const classes = useStyles();
-  const cart = JSON.parse(localStorage.getItem("cart")!) || [];
-
+ 
   function hideCart() {
     setIsCartVisible(false);
   }

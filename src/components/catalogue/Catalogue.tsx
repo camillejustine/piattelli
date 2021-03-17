@@ -3,6 +3,7 @@ import { PinDropSharp } from "@material-ui/icons";
 import { CSSProperties, useState, useContext } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 import { ProductsContext } from "../context/ProductsContext";
+import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 interface IProps {
@@ -12,12 +13,13 @@ interface IProps {
 
 function Catalogue(props: IProps, id: string) {
   const { products } = useContext(ProductsContext);
+  const { addToCart } = useContext(CartContext);
   const [isLarge, setIsLarge] = useState(props.isLarge);
   const [isHover, setIsHover] = useState(id);
   // const [isOut, setIsOut] = useState(null);
   const previewCatalogue = products.slice(1, 7);
-  const cartItems = JSON.parse(localStorage.getItem("cart")!) || [];
   const classes = useStyles();
+
 
   function assignRandomProductId(product: any) {
     product["uniqueId"] = Math.random().toString(36).substr(2, 9);
@@ -114,7 +116,6 @@ function Catalogue(props: IProps, id: string) {
                             </Link>
                             <Typography variant="h5">{product.name}</Typography>
                           </Box>
-
                           <Typography variant="body2">
                             {product.price}&nbsp;kr
                           </Typography>
@@ -125,13 +126,10 @@ function Catalogue(props: IProps, id: string) {
                           <Button
                             className={classes.button}
                             onClick={() => {
-                              const uniqueProduct = assignRandomProductId(
-                                product
-                              );
-                              cartItems.push(uniqueProduct);
-                              localStorage.setItem(
-                                "cart",
-                                JSON.stringify(cartItems)
+                              const uniqueProduct = assignRandomProductId(product)
+                                addToCart(uniqueProduct)
+                                /* cartItems.push(uniqueProduct);
+                                localStorage.setItem("cart",JSON.stringify(cartItems)); */
                               );
                             }}
                           >

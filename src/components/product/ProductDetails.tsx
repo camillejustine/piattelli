@@ -29,16 +29,21 @@ function ProductDetails(props: iProps) {
         <img src={ImgTest} alt="" width="600" height="750" />
       </Box>
       <Box className={classes.infoWrapper}>
-        <Box>
+        <Box className={classes.detailPadding}>
             <Box className={classes.column}>
-              <Typography>{props.productView && props.productView.name}</Typography>
-              <Typography>{props.productView && props.productView.collection}</Typography>
-              <Typography>{props.productView && props.productView.price}</Typography>
+              <Typography><h2>{props.productView && props.productView.name}</h2></Typography>
+              <Typography><h3>{props.productView && props.productView.collection}</h3></Typography>
+              <Typography><h4>{props.productView && props.productView.price}Sek</h4></Typography>
             </Box>
+            <div className={classes.row}>
+              <Typography className={classes.padding}>Description</Typography>
+              <Typography className={classes.padding}>Details</Typography>
+              <Typography className={classes.padding}>Fabric & Care</Typography>
+            </div>
             <Box className={classes.row}>
               <Typography>{props.productView && props.productView.description}</Typography>
-              <Typography>{props.productView && props.productView.details}</Typography>
-              <Typography>{props.productView && props.productView.fabricCare}</Typography>
+              {/* <Typography>{props.productView && props.productView.details}</Typography>
+              <Typography>{props.productView && props.productView.fabricCare}</Typography> */}
             </Box>
         </Box>
         <Box className={classes.row}>
@@ -67,6 +72,7 @@ const useStyles: any = makeStyles({
     flexDirection: "row",
     justifyContent: "center",
     paddingTop: "10rem",
+    width: '100%'
   },
   productWrapper: {
     display: "flex",
@@ -76,19 +82,21 @@ const useStyles: any = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "purple",
-    width: "25rem",
+    width: "30rem",
     height: "50rem",
   },
   button: {
-    height: "4rem",
-    width: "8rem",
+    color: 'white',
+    height: "3rem",
+    width: "77%",
     border: "solid 1.5px black",
     borderRadius: "0%",
+    background: 'black'
   },
   row: {
     display: "flex",
     flexDirection: "row",
+    padding: '0.5rem'
   },
   column: {
     display: "flex",
@@ -101,6 +109,12 @@ const useStyles: any = makeStyles({
     border: "solid 1px white",
     backgroundColor: "black",
   },
+  padding: {
+    paddingRight: '1rem'
+  },
+  detailPadding: {
+    padding: '3rem'
+  }
 });
 
 export default ProductDetails;
