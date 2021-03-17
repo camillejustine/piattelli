@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, makeStyles, TextField, Typography } from "@material-ui/core";
+import { Box, CircularProgress, makeStyles, TextField, Typography } from "@material-ui/core";
 import swishLogo from "../../assets/swish.png";
 import cardLogo from "../../assets/card.png";
 
@@ -16,6 +16,7 @@ interface IProps {
   fullName: string | undefined;
   total: number;
   clearValues: () => void;
+  isLoading: boolean;
 }
 
 function PaymentMethod(props: IProps) {
@@ -152,6 +153,9 @@ function PaymentMethod(props: IProps) {
             </Box>
           ) : null}
         </Box>
+        <Box className={`${classes.centerFlex} ${classes.loadingAnimation}`}>
+       {props.isLoading ? <CircularProgress /> : null } 
+        </Box>
       </Box>
     </>
   );
@@ -160,20 +164,6 @@ function PaymentMethod(props: IProps) {
 export default PaymentMethod;
 
 const useStyles = makeStyles({
-  root: {
-    marginTop: "8.5rem",
-    height: "50rem",
-    border: "solid 2px black",
-    position: "relative",
-  },
-  buttonWrapper: {
-    position: "absolute",
-    display: "flex",
-    bottom: "1rem",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   contentWrapper: {
     display: "flex",
     justifyContent: "center",
@@ -201,21 +191,9 @@ const useStyles = makeStyles({
     width: "15rem",
     height: "8rem",
   },
-  deliveryBox: {
-    margin: "1rem",
-    padding: "0.5rem",
-    border: "1px solid black",
-    borderRadius: 5,
-    cursor: "pointer",
-  },
-  cartContentWrapper: {
-    overflow: "auto",
-  },
-  cartContent: {
-    margin: "1rem 2rem",
-    display: "flex",
-  },
-  productInfo: {
-    marginLeft: "1rem",
-  },
+  loadingAnimation: {
+    margin: '5rem',
+  }
+
+
 });

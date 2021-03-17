@@ -55,6 +55,7 @@ function PersonalDetails(props: IProps) {
               required
               id="standard-required"
               label="Adress"
+              name='adress'
               error={props.adress === ""}
               onChange={(event) => props.setAdress(event.target.value)}
               defaultValue={props.adress}

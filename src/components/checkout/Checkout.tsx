@@ -17,7 +17,7 @@ import PersonalDetails from "./PersonalDetails";
 import DeliveryOptions from "./DeliveryOptions";
 import PaymentMethod from "./PaymentMethod";
 import { CartContext } from "../context/CartContext";
-
+import { resolve } from "node:path";
 
 function getSteps() {
   return [
@@ -60,11 +60,13 @@ function Checkout() {
   const [cvcNumber, setCvcNumber] = useState<string>();
   const [giftCard, setGiftCard] = useState<string>();
   const [swishNumber, setSwishNumber] = useState(phoneNumber);
+  const [isLoading, setIsLoading] = useState(false);
 
   const isCardValid = nameOnCard && cardNumber && cvcNumber;
   const isPaymentValid =
     paymentOption && (isCardValid || giftCard || swishNumber);
 
+  // value clearing for payment methods (when user swaps from one method to another)
   function clearValues() {
     setCardNumber(undefined);
     setSwishNumber(undefined);
@@ -89,8 +91,19 @@ function Checkout() {
     setActiveStep(0);
   };
 
+  //promise for "awaiting" payment validation
+  const paymentPromise = () => new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 3000);
+  });
+  async function makePayment(){
+    setIsLoading(true);
+    await paymentPromise();
+    handleNext();
+  }
 
-  //Cases tur
+  //Cases for stepper
   //Each case is one step on the stepper
   function getStepContent(stepIndex: number) {
     switch (stepIndex) {
@@ -167,6 +180,7 @@ function Checkout() {
             fullName={fullName}
             total={total}
             clearValues={clearValues}
+            isLoading={isLoading}
           />
         );
       case 3:
@@ -223,7 +237,7 @@ function Checkout() {
               {activeStep === 2 ? (
                 <Button
                   variant="contained"
-                  onClick={handleNext}
+                  onClick={makePayment}
                   disabled={!isPaymentValid}
                 >
                   {activeStep === steps.length - 1 ? "Complete" : "Next"}
@@ -244,7 +258,7 @@ function Checkout() {
 
 const useStyles = makeStyles({
   root: {
-    padding: '0 10rem',
+    padding: "0 10rem",
     marginTop: "8.5rem",
     height: "50rem",
     border: "solid 2px black",
