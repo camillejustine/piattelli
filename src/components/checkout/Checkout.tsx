@@ -128,9 +128,6 @@ function Checkout() {
       case 1:
         return (
           <>
-            <Typography className={classes.centerFlex} variant="h6">
-              Fill in your personal detail below:
-            </Typography>
             <Box>
               <PersonalDetails
                 fullName={fullName}
@@ -248,6 +245,7 @@ function Checkout() {
 
 const useStyles = makeStyles({
   root: {
+    padding: '0 10rem',
     marginTop: "8.5rem",
     height: "50rem",
     border: "solid 2px black",
@@ -257,7 +255,7 @@ const useStyles = makeStyles({
     position: "absolute",
     display: "flex",
     bottom: "1rem",
-    width: "100%",
+    width: "80%",
     alignItems: "center",
     justifyContent: "center",
   },
