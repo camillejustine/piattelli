@@ -107,7 +107,7 @@ function Catalogue(props: IProps, id: string) {
                             >
                               <Typography
                                 variant="body1"
-                                className={classes.moreInfoStyle}
+                                className={`${classes.moreInfoStyle} ${classes.customCursor}`}
                               >
                                 More info
                               </Typography>
