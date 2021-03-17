@@ -56,33 +56,34 @@ function Catalogue(props: IProps) {
         <Grid style={gridWidth}>
           <Grid container item xs={12} spacing={1} style={innerGridStyle}>
             {previewCatalogue.map((product) => (
-              <Box style={boxStyle} onMouseLeave={() => setIsHover(false)}>
-                <Link to={product.name}>
-                  <Typography variant="h6">
-                    <img
-                      onMouseEnter={() => setIsHover(true)}
-                      onClick={() => {
-                        props.getProduct(product);
-                      }}
-                      src={product.preview}
-                      style={customCursor}
-                      draggable={false}
-                      alt="Bags from Pialetti"
-                      width="400"
-                      height="400"
-                    />
-                  </Typography>
+              <Box style={boxStyle} onMouseLeave={() => setIsHover(false)}>              
+                    <Typography variant="h6">
+                      <img
+                        onMouseEnter={() => setIsHover(true)}
+                        src={product.preview}
+                        style={customCursor}
+                        draggable={false}
+                        alt="Bags from Pialetti"
+                        width="400"
+                        height="400"
+                      />
+                    </Typography>
                   {isHover ? (
                     <>
                       <Box style={{ ...hoverContainer, ...customCursor }}>
                         <Box style={{ ...hoverEffect, ...customCursor }}>
                           <Box style={{ ...hoverText, ...customCursor }}>
-                            <Typography variant="body1">
-                              {product.name}
-                            </Typography>
-                            <Typography variant="body1">
-                              {product.price}kr
-                            </Typography>
+                            <Link to={product.name}  
+                              onClick={() => {
+                                props.getProduct(product);
+                              }}>
+                              <Typography variant="body1">
+                                {product.name}
+                              </Typography>
+                              <Typography variant="body1">
+                                {product.price}kr
+                              </Typography>
+                            </Link>
                           </Box>
                           <Box style={{ ...buttonContainer, ...customCursor }}>
                             <Button
@@ -105,7 +106,7 @@ function Catalogue(props: IProps) {
                       </Box>
                     </>
                   ) : null}
-                </Link>
+                
               </Box>
             ))}
           </Grid>
