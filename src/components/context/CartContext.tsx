@@ -1,9 +1,9 @@
 import {Component, createContext} from 'react';
 
-interface iState {
-    cart: any
+interface IState {
+    cart: any[]
 }
-interface ContextValue extends iState {
+interface ContextValue extends IState {
     addToCart: (product: any) => void;
     removeProductFromCart: (id: any) => void;
 }
@@ -13,8 +13,8 @@ export const CartContext = createContext<ContextValue>({
     addToCart: () => {},
     removeProductFromCart: () => {}
 })
-class CartProvider extends Component<{},iState> {
-    state: iState = {
+class CartProvider extends Component<{},IState> {
+    state: IState = {
         cart: [],
     }
 
@@ -22,6 +22,7 @@ class CartProvider extends Component<{},iState> {
         const updateCart = [...this.state.cart, product]
         this.setState({cart: updateCart})
     }
+
 
     removeProductFromCart = (id: any) =>  {
         const cart = this.state.cart.filter((item: any) => item.uniqueId !== id);

@@ -11,9 +11,11 @@ import {
 import React, { useState } from "react";
 import swishLogo from "../../assets/swish.png";
 import cardLogo from "../../assets/card.png";
-import bitcoinLogo from "../../assets/bitcoin.png";
 import moment from "moment";
 import CloseIcon from "@material-ui/icons/Close";
+import PersonalDetails from "./PersonalDetails";
+import DeliveryOptions from "./DeliveryOptions";
+import PaymentMethod from "./PaymentMethod";
 
 function getSteps() {
   return [
@@ -61,21 +63,19 @@ function Checkout() {
   const isPaymentValid =
     paymentOption && (isCardValid || giftCard || swishNumber);
 
+  function clearValues() {
+    setCardNumber(undefined);
+    setSwishNumber(undefined);
+    setGiftCard(undefined);
+  }
   // Styling
   const classes = useStyles();
-
-  //vars for delivery dates
-  let today = moment();
-  let today2 = today.clone();
-  let today3 = today.clone();
-  let pnDel = today.add(3, "d").format("dddd, MMMM Do");
-  let budbeeDel = today2.add(2, "d").format("dddd, MMMM Do");
-  let instaDel = today3.add(1, "d").format("dddd, MMMM Do");
 
   //get content of cart from ls
   let cart = JSON.parse(localStorage.getItem("cart")!) || [];
   const total = cart.reduce((n: any, { price }: any) => n + price, 0);
 
+  // changes to the stepper
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -85,20 +85,24 @@ function Checkout() {
   const handleReset = () => {
     setActiveStep(0);
   };
+
+  //remove from ls
   function removeProductFromCart(id: any) {
     cart = cart.filter((item: any) => item.id !== id);
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 
+  //Cases tur
+  //Each case is one step on the stepper
   function getStepContent(stepIndex: number) {
     switch (stepIndex) {
       case 0:
         return (
           <>
-            <Typography variant='h5' className={classes.centerFlex}>
+            <Typography variant="h5" className={classes.centerFlex}>
               Products in cart
             </Typography>
-            <Typography variant='body1' className={classes.centerFlex}>
+            <Typography variant="body1" className={classes.centerFlex}>
               Total: {total}kr
             </Typography>
             <Box className={classes.cartContentWrapper}>
@@ -111,244 +115,60 @@ function Checkout() {
                   ></CloseIcon>
                   <img src={product.preview} width="100rem" height="100rem" />
                   <div className={classes.productInfo}>
-                    <Typography variant='body1'>{product.name}</Typography>
-                    <Typography variant='body2'>Price: {product.price}</Typography>
+                    <Typography variant="body1">{product.name}</Typography>
+                    <Typography variant="body2">
+                      Price: {product.price}
+                    </Typography>
                   </div>
                 </Box>
               ))}
-              
             </Box>
           </>
         );
       case 1:
         return (
           <>
-            <Typography className={classes.centerFlex} variant="h6">
-              Fill in your personal detail below:
-            </Typography>
             <Box>
-              <form className={classes.contentWrapper} autoComplete="off">
-                <Box className={classes.flexColumn}>
-                  <TextField
-                    required
-                    name="name"
-                    value={fullName}
-                    error={fullName === ""}
-                    id="standard-required"
-                    label="Name"
-                    onChange={(event) => setFullName(event.target.value)}
-                    // defaultValue="Full Name"
-                  />
-                  <TextField
-                    required
-                    name="email"
-                    type="email"
-                    error={email === ""}
-                    id="standard-required"
-                    label="Email"
-                    onChange={(event) => setEmail(event.target.value)}
-
-                    // defaultValue="Email"
-                  />
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="Adress"
-                    error={adress === ""}
-                    onChange={(event) => setAdress(event.target.value)}
-
-                    // defaultValue="Adress"
-                  />
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="Phone number"
-                    type="number"
-                    error={phoneNumber === ""}
-                    onChange={(event) => setPhoneNumber(event.target.value)}
-                    // defaultValue="Phone number"
-                  />
-                </Box>
-                <Box className={classes.flexColumn}>
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="Zip code"
-                    error={zipCode === ""}
-                    onChange={(event) => setZipCode(event.target.value)}
-
-                    // defaultValue="Zip code"
-                  />
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="Country"
-                    error={country === ""}
-                    onChange={(event) => setCountry(event.target.value)}
-
-                    // defaultValue="Country"
-                  />
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="City"
-                    error={city === ""}
-                    onChange={(event) => setCity(event.target.value)}
-                  />
-                </Box>
-              </form>
+              <PersonalDetails
+                fullName={fullName}
+                setFullName={setFullName}
+                email={email}
+                setEmail={setEmail}
+                adress={adress}
+                setAdress={setAdress}
+                phoneNumber={phoneNumber}
+                setPhoneNumber={setPhoneNumber}
+                zipCode={zipCode}
+                setZipCode={setZipCode}
+                country={country}
+                setCountry={setCountry}
+                city={city}
+                setCity={setCity}
+              />
               <Box>
-                <h5 className={classes.centerFlex}>Delivery Options</h5>
-                <Box className={classes.centerFlex}>
-                  <Box
-                    onClick={() => setDeliveryOption("pn")}
-                    className={classes.deliveryBox}
-                  >
-                    Post Nord: 2-5 days
-                  </Box>
-                  <Box
-                    onClick={() => setDeliveryOption("budbee")}
-                    className={classes.deliveryBox}
-                  >
-                    Budbee home delivery: 1-3 days
-                  </Box>
-                  <Box
-                    onClick={() => setDeliveryOption("instabox")}
-                    className={classes.deliveryBox}
-                  >
-                    Instabox: 1-3 days
-                  </Box>
-                </Box>
-                <Box className={classes.centerFlex}>
-                  {deliveryOption === "pn" ? (
-                    <Box>
-                      <Typography>Delivery cost: free</Typography>
-                      <Typography>
-                        Estimated delivery time: {String(pnDel)}
-                      </Typography>
-                    </Box>
-                  ) : null}
-                  {deliveryOption === "budbee" ? (
-                    <Box>
-                      <Typography>Delivery cost: 69kr</Typography>
-                      <Typography>
-                        Estimated delivery time: {String(budbeeDel)}
-                      </Typography>
-                    </Box>
-                  ) : null}
-                  {deliveryOption === "instabox" ? (
-                    <Box>
-                      <Typography>Delivery cost: 39kr</Typography>
-                      <Typography>
-                        Estimated delivery time: {String(instaDel)}
-                      </Typography>
-                    </Box>
-                  ) : null}
-                </Box>
+                <DeliveryOptions
+                  deliveryOption={deliveryOption}
+                  setDeliveryOption={setDeliveryOption}
+                />
               </Box>
             </Box>
           </>
         );
       case 2:
         return (
-          <Box>
-            <Typography variant="h5" className={classes.centerFlex}>
-              Choose Payment Method
-            </Typography>
-            <Box className={classes.contentWrapper}>
-              <Box
-                className={classes.paymentMethodWrapper}
-                onClick={() => setPaymentOption("swish")}
-              >
-                <img
-                  className={classes.paymentLogoSize}
-                  draggable="false"
-                  src={swishLogo}
-                  alt="swish"
-                />
-              </Box>
-              <Box
-                className={classes.paymentMethodWrapper}
-                onClick={() => setPaymentOption("card")}
-              >
-                <img
-                  className={classes.paymentLogoSize}
-                  draggable="false"
-                  src={cardLogo}
-                  alt="card"
-                />
-              </Box>
-              <Box
-                className={classes.paymentMethodWrapper}
-                onClick={() => setPaymentOption("giftcard")}
-              >
-                <Typography className={classes.centerFlex} variant="h6">
-                  GIFTCARD
-                </Typography>
-              </Box>
-            </Box>
-            <Box>
-              {paymentOption === "swish" ? (
-                <Box className={classes.centerFlex}>
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="Phone number for swish"
-                    defaultValue={phoneNumber}
-                    onChange={(event) => {
-                      setSwishNumber(event.target.value);
-                    }}
-                  />
-                </Box>
-              ) : null}
-              {paymentOption === "card" ? (
-                <Box className={classes.centerFlex}>
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="Name on card"
-                    defaultValue={fullName}
-                    onChange={(event) => {
-                      setNameOnCard(event.target.value);
-                    }}
-                  />
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="Card number"
-                    onChange={(event) => {
-                      setCardNumber(event.target.value);
-                    }}
-                    // defaultValue="Email"
-                  />
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="CVC"
-                    onChange={(event) => {
-                      setCvcNumber(event.target.value);
-                    }}
-
-                    // defaultValue="Email"
-                  />
-                </Box>
-              ) : null}
-              {paymentOption === "giftcard" ? (
-                <Box className={classes.centerFlex}>
-                  <TextField
-                    required
-                    id="standard-required"
-                    label="Giftcard number"
-                    onChange={(event) => {
-                      setGiftCard(event.target.value);
-                    }}
-
-                    // defaultValue="Email"
-                  />
-                </Box>
-              ) : null}
-            </Box>
-          </Box>
+          <PaymentMethod
+            deliveryOption={deliveryOption}
+            setPaymentOption={setPaymentOption}
+            setSwishNumber={setSwishNumber}
+            setNameOnCard={setNameOnCard}
+            setCardNumber={setCardNumber}
+            setCvcNumber={setCvcNumber}
+            setGiftCard={setGiftCard}
+            paymentOption={paymentOption}
+            phoneNumber={phoneNumber}
+            fullName={fullName}
+            total={total}
+          />
         );
       case 3:
         return (
@@ -425,6 +245,7 @@ function Checkout() {
 
 const useStyles = makeStyles({
   root: {
+    padding: '0 10rem',
     marginTop: "8.5rem",
     height: "50rem",
     border: "solid 2px black",
@@ -434,7 +255,7 @@ const useStyles = makeStyles({
     position: "absolute",
     display: "flex",
     bottom: "1rem",
-    width: "100%",
+    width: "80%",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -480,8 +301,7 @@ const useStyles = makeStyles({
     display: "flex",
   },
   productInfo: {
-    marginLeft: '1rem'
-  }
-
+    marginLeft: "1rem",
+  },
 });
 export default Checkout;
