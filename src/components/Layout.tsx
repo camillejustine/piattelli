@@ -24,7 +24,6 @@ function Layout() {
   const [productDetail, setProductDetail] = useState<object>();
 
   function productDetails(value: object) {
-    console.log(value)
     setProductDetail(value);
   }
 
