@@ -93,8 +93,6 @@ function Catalogue(props: IProps) {
                               onClick={() => {
                                 const uniqueProduct = assignRandomProductId(product)
                                 addToCart(uniqueProduct)
-
-                                
                                 /* cartItems.push(uniqueProduct);
                                 localStorage.setItem("cart",JSON.stringify(cartItems)); */
                               }}
