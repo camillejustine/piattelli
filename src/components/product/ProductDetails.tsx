@@ -1,6 +1,6 @@
 // import { CSSProperties } from 'react';
-import { Typography, Box, Button, makeStyles, Tab } from "@material-ui/core";
-import { useContext, useState } from "react";
+import { Typography, Box, Button, makeStyles } from "@material-ui/core";
+import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import ImgTest from '../../assets/hero2.png';
 
@@ -14,17 +14,12 @@ interface iProps {
   productView: any;
 }
 
-const textInfoStrings = [
-  "Description",
-  "Detail",
-  "Care"
-];
+const testArray = [{ thing: "here" }];
 
 function ProductDetails(props: iProps) {
-  let [textView, setTextView] = useState<string>("Description");
   const { addToCart } = useContext(CartContext);
   const classes = useStyles();
-
+  const cartItems = JSON.parse(localStorage.getItem('cart')!) || [];
 
   return (
     <Box className={classes.wrapper}>
@@ -41,28 +36,14 @@ function ProductDetails(props: iProps) {
               <Typography><h4>{props.productView && props.productView.price}Sek</h4></Typography>
             </Box>
             <div className={classes.row}>
-              {
-                textInfoStrings.map((tab) => (
-                  <Typography 
-                    className={classes.padding}
-                    onClick={()=>{
-                      setTextView(tab)
-                    }}
-                  >{tab}
-                  </Typography>
-                ))
-              }
+              <Typography className={classes.padding}>Description</Typography>
+              <Typography className={classes.padding}>Details</Typography>
+              <Typography className={classes.padding}>Fabric & Care</Typography>
             </div>
             <Box className={classes.row}>
-              {textView === "Description" ? (
-                 <Typography>{props.productView && props.productView.description}</Typography>
-              ) : null}
-              {textView === "Detail" ? (
-                <Typography>{props.productView && props.productView.details}</Typography>
-              ) : null}
-              {textView === "Care" ? (
-                <Typography>{props.productView && props.productView.care}</Typography>
-              ) : null}
+              <Typography>{props.productView && props.productView.description}</Typography>
+              {/* <Typography>{props.productView && props.productView.details}</Typography>
+              <Typography>{props.productView && props.productView.fabricCare}</Typography> */}
             </Box>
         </Box>
         <Box className={classes.row}>
@@ -74,7 +55,8 @@ function ProductDetails(props: iProps) {
             className={classes.button} 
             onClick={       
               () => {
-                addToCart(props.productView)
+                cartItems.push(props.productView);
+                localStorage.setItem('cart', JSON.stringify(cartItems))
               }
             }>
             <Typography variant="button">Add to cart</Typography>
