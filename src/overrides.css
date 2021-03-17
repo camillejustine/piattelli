@@ -23,16 +23,25 @@ body {
   line-height: 26px !important;
   width: 18rem !important;
 }
+
+.makeStyles-moreInfoStyle-69 {
+  transition: color 0.2s ease-in-out !important;
+}
+
 .makeStyles-moreInfoStyle-69:hover {
-  color: #3f51b5;
+  color: #7a8790;
 }
 
 .makeStyles-moreInfoStyle-17:hover {
-  color: #3f51b5;
+  color: #7a8790;
+}
+
+.MuiTypography-body2 {
+  transition: color 0.2s ease-in-out !important;
 }
 
 .MuiTypography-body2:hover {
-  color: #3f51b5;
+  color: #7a8790;
 }
 
 .MuiTypography-body2 {
@@ -40,21 +49,14 @@ body {
 }
 
 h1:hover {
-  font-size: 3.2rem !important;
-  /* -webkit-transition: all 12s !important;
-  -moz-transition: all 12s !important;
-  -o-transition: all 12s !important; */
-  transition: all 0.1s ease-in-out !important;
-  background: -webkit-linear-gradient(rgb(130, 90, 195), #3f51b5) !important;
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
+  margin-bottom: 0.5rem !important;
+  text-shadow: -1px 11px 11px rgba(0, 0, 0, 0.22) !important;
+  background: transparent !important;
+
+  transition: all 0.5s ease-in-out !important;
 }
 
-h1:not(:hover) {
-  /* -webkit-transition: all 12s !important;
-  -moz-transition: all 12s !important;
-  -o-transition: all 12s !important; */
+h1 {
   transition: all 0.1s ease-in-out !important;
 }
 
