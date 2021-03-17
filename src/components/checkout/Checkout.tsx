@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import swishLogo from "../../assets/swish.png";
 import cardLogo from "../../assets/card.png";
 import moment from "moment";
@@ -16,6 +16,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import PersonalDetails from "./PersonalDetails";
 import DeliveryOptions from "./DeliveryOptions";
 import PaymentMethod from "./PaymentMethod";
+import { CartContext } from "../context/CartContext";
+import { resolve } from "node:path";
 
 function getSteps() {
   return [
@@ -58,21 +60,24 @@ function Checkout() {
   const [cvcNumber, setCvcNumber] = useState<string>();
   const [giftCard, setGiftCard] = useState<string>();
   const [swishNumber, setSwishNumber] = useState(phoneNumber);
+  const [isLoading, setIsLoading] = useState(false);
 
   const isCardValid = nameOnCard && cardNumber && cvcNumber;
   const isPaymentValid =
     paymentOption && (isCardValid || giftCard || swishNumber);
 
+  // value clearing for payment methods (when user swaps from one method to another)
   function clearValues() {
     setCardNumber(undefined);
     setSwishNumber(undefined);
+    setCvcNumber(undefined);
     setGiftCard(undefined);
   }
   // Styling
   const classes = useStyles();
 
-  //get content of cart from ls
-  let cart = JSON.parse(localStorage.getItem("cart")!) || [];
+  //get content of cart from context/ls
+  const { cart, removeProductFromCart } = useContext(CartContext);
   const total = cart.reduce((n: any, { price }: any) => n + price, 0);
 
   // changes to the stepper
@@ -86,13 +91,19 @@ function Checkout() {
     setActiveStep(0);
   };
 
-  //remove from ls
-  function removeProductFromCart(id: any) {
-    cart = cart.filter((item: any) => item.id !== id);
-    localStorage.setItem("cart", JSON.stringify(cart));
+  //promise for "awaiting" payment validation
+  const paymentPromise = () => new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 3000);
+  });
+  async function makePayment(){
+    setIsLoading(true);
+    await paymentPromise();
+    handleNext();
   }
 
-  //Cases tur
+  //Cases for stepper
   //Each case is one step on the stepper
   function getStepContent(stepIndex: number) {
     switch (stepIndex) {
@@ -110,7 +121,7 @@ function Checkout() {
                 <Box className={classes.cartContent}>
                   <CloseIcon
                     onClick={() => {
-                      removeProductFromCart(product.id);
+                      removeProductFromCart(product.uniqueId);
                     }}
                   ></CloseIcon>
                   <img src={product.preview} width="100rem" height="100rem" />
@@ -168,6 +179,8 @@ function Checkout() {
             phoneNumber={phoneNumber}
             fullName={fullName}
             total={total}
+            clearValues={clearValues}
+            isLoading={isLoading}
           />
         );
       case 3:
@@ -224,7 +237,7 @@ function Checkout() {
               {activeStep === 2 ? (
                 <Button
                   variant="contained"
-                  onClick={handleNext}
+                  onClick={makePayment}
                   disabled={!isPaymentValid}
                 >
                   {activeStep === steps.length - 1 ? "Complete" : "Next"}
@@ -245,7 +258,7 @@ function Checkout() {
 
 const useStyles = makeStyles({
   root: {
-    padding: '0 10rem',
+    padding: "0 10rem",
     marginTop: "8.5rem",
     height: "50rem",
     border: "solid 2px black",

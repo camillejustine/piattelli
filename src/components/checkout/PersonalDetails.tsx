@@ -39,7 +39,7 @@ function PersonalDetails(props: IProps) {
               id="standard-required"
               label="Name"
               onChange={(event) => props.setFullName(event.target.value)}
-            //   defaultValue="Full Name"
+              defaultValue={props.fullName}
             />
             <TextField
               required
@@ -49,15 +49,16 @@ function PersonalDetails(props: IProps) {
               id="standard-required"
               label="Email"
               onChange={(event) => props.setEmail(event.target.value)}
-            //   defaultValue="Email"
+              defaultValue={props.email}
             />
             <TextField
               required
               id="standard-required"
               label="Adress"
+              name='adress'
               error={props.adress === ""}
               onChange={(event) => props.setAdress(event.target.value)}
-            //   defaultValue="Adress"
+              defaultValue={props.adress}
             />
             <TextField
               required
@@ -66,7 +67,7 @@ function PersonalDetails(props: IProps) {
               type="number"
               error={props.phoneNumber === ""}
               onChange={(event) => props.setPhoneNumber(event.target.value)}
-            //   defaultValue="Phone number"
+              defaultValue={props.phoneNumber}
             />
           </Box>
           <Box className={classes.flexColumn}>
@@ -76,7 +77,7 @@ function PersonalDetails(props: IProps) {
               label="Zip code"
               error={props.zipCode === ""}
               onChange={(event) => props.setZipCode(event.target.value)}
-            //   defaultValue="Zip code"
+              defaultValue={props.zipCode}
             />
             <TextField
               required
@@ -84,7 +85,7 @@ function PersonalDetails(props: IProps) {
               label="Country"
               error={props.country === ""}
               onChange={(event) => props.setCountry(event.target.value)}
-            //   defaultValue="Country"
+              defaultValue={props.country}
             />
             <TextField
               required
@@ -92,6 +93,8 @@ function PersonalDetails(props: IProps) {
               label="City"
               error={props.city === ""}
               onChange={(event) => props.setCity(event.target.value)}
+              defaultValue={props.city}
+
             />
           </Box>
         </form>

@@ -6,6 +6,12 @@ interface IProps {
   setDeliveryOption: (value: string) => void;
 }
 
+const deliveryOptionsArray = [
+  "Post Nord: 2-5 days",
+  "Budbee home delivery: 1-3 days",
+  "Instabox: 1-3 days",
+];
+
 function DeliveryOptions(props: IProps) {
   const classes = useStyles();
 
