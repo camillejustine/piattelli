@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import swishLogo from "../../assets/swish.png";
 import cardLogo from "../../assets/card.png";
 import moment from "moment";
@@ -16,6 +16,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import PersonalDetails from "./PersonalDetails";
 import DeliveryOptions from "./DeliveryOptions";
 import PaymentMethod from "./PaymentMethod";
+import { CartContext } from "../context/CartContext";
+
 
 function getSteps() {
   return [
@@ -66,13 +68,14 @@ function Checkout() {
   function clearValues() {
     setCardNumber(undefined);
     setSwishNumber(undefined);
+    setCvcNumber(undefined);
     setGiftCard(undefined);
   }
   // Styling
   const classes = useStyles();
 
-  //get content of cart from ls
-  let cart = JSON.parse(localStorage.getItem("cart")!) || [];
+  //get content of cart from context/ls
+  const { cart, removeProductFromCart } = useContext(CartContext);
   const total = cart.reduce((n: any, { price }: any) => n + price, 0);
 
   // changes to the stepper
@@ -86,11 +89,6 @@ function Checkout() {
     setActiveStep(0);
   };
 
-  //remove from ls
-  function removeProductFromCart(id: any) {
-    cart = cart.filter((item: any) => item.id !== id);
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
 
   //Cases tur
   //Each case is one step on the stepper
@@ -110,7 +108,7 @@ function Checkout() {
                 <Box className={classes.cartContent}>
                   <CloseIcon
                     onClick={() => {
-                      removeProductFromCart(product.id);
+                      removeProductFromCart(product.uniqueId);
                     }}
                   ></CloseIcon>
                   <img src={product.preview} width="100rem" height="100rem" />
@@ -168,6 +166,7 @@ function Checkout() {
             phoneNumber={phoneNumber}
             fullName={fullName}
             total={total}
+            clearValues={clearValues}
           />
         );
       case 3:

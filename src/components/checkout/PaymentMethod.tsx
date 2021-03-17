@@ -1,31 +1,24 @@
 import React from "react";
-import {
-  Box,
-  makeStyles,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import { Box, makeStyles, TextField, Typography } from "@material-ui/core";
 import swishLogo from "../../assets/swish.png";
 import cardLogo from "../../assets/card.png";
 
-
-
-
 interface IProps {
-    deliveryOption: string | undefined;
-    setPaymentOption: (value: string)=> void; 
-    setSwishNumber: (value: string)=> void; 
-    setNameOnCard: (value: string)=> void; 
-    setCardNumber: (value: string)=> void; 
-    setCvcNumber: (value: string)=> void; 
-    setGiftCard: (value: string)=> void; 
-    paymentOption: string | undefined;
-    phoneNumber: string | undefined
-    fullName: string | undefined
-    total: number;
+  deliveryOption: string | undefined;
+  setPaymentOption: (value: string) => void;
+  setSwishNumber: (value: string) => void;
+  setNameOnCard: (value: string) => void;
+  setCardNumber: (value: string) => void;
+  setCvcNumber: (value: string) => void;
+  setGiftCard: (value: string) => void;
+  paymentOption: string | undefined;
+  phoneNumber: string | undefined;
+  fullName: string | undefined;
+  total: number;
+  clearValues: () => void;
 }
 
-function PaymentMethod(props:IProps) {
+function PaymentMethod(props: IProps) {
   const classes = useStyles();
 
   return (
@@ -54,7 +47,7 @@ function PaymentMethod(props:IProps) {
             className={classes.paymentMethodWrapper}
             onClick={() => {
               props.setPaymentOption("swish");
-              // clearValues;
+              props.clearValues();
             }}
           >
             <img
@@ -66,7 +59,10 @@ function PaymentMethod(props:IProps) {
           </Box>
           <Box
             className={classes.paymentMethodWrapper}
-            onClick={() => props.setPaymentOption("card")}
+            onClick={() => {
+              props.setPaymentOption("card");
+              props.clearValues();
+            }}
           >
             <img
               className={classes.paymentLogoSize}
@@ -77,7 +73,10 @@ function PaymentMethod(props:IProps) {
           </Box>
           <Box
             className={classes.paymentMethodWrapper}
-            onClick={() => props.setPaymentOption("giftcard")}
+            onClick={() => {
+              props.setPaymentOption("giftcard");
+              props.clearValues();
+            }}
           >
             <Typography className={classes.centerFlex} variant="h6">
               GIFTCARD
@@ -94,10 +93,10 @@ function PaymentMethod(props:IProps) {
                 label="Phone number for swish"
                 defaultValue={props.phoneNumber}
                 onChange={(event) => {
-                    props.setSwishNumber(event.target.value);
+                  props.setSwishNumber(event.target.value);
                 }}
                 onBlur={(event) => {
-                    props.setSwishNumber(event.target.value);
+                  props.setSwishNumber(event.target.value);
                 }}
               />
             </Box>
@@ -111,10 +110,10 @@ function PaymentMethod(props:IProps) {
                 label="Name on card"
                 defaultValue={props.fullName}
                 onChange={(event) => {
-                    props.setNameOnCard(event.target.value);
+                  props.setNameOnCard(event.target.value);
                 }}
                 onBlur={(event) => {
-                    props.setNameOnCard(event.target.value);
+                  props.setNameOnCard(event.target.value);
                 }}
               />
               <TextField
@@ -122,7 +121,7 @@ function PaymentMethod(props:IProps) {
                 id="standard-required"
                 label="Card number"
                 onChange={(event) => {
-                    props.setCardNumber(event.target.value);
+                  props.setCardNumber(event.target.value);
                 }}
                 // defaultValue="Email"
               />
@@ -131,7 +130,7 @@ function PaymentMethod(props:IProps) {
                 id="standard-required"
                 label="CVC"
                 onChange={(event) => {
-                    props.setCvcNumber(event.target.value);
+                  props.setCvcNumber(event.target.value);
                 }}
 
                 // defaultValue="Email"
@@ -145,7 +144,7 @@ function PaymentMethod(props:IProps) {
                 id="standard-required"
                 label="Giftcard number"
                 onChange={(event) => {
-                    props.setGiftCard(event.target.value);
+                  props.setGiftCard(event.target.value);
                 }}
 
                 // defaultValue="Email"
@@ -161,62 +160,62 @@ function PaymentMethod(props:IProps) {
 export default PaymentMethod;
 
 const useStyles = makeStyles({
-    root: {
-      marginTop: "8.5rem",
-      height: "50rem",
-      border: "solid 2px black",
-      position: "relative",
-    },
-    buttonWrapper: {
-      position: "absolute",
-      display: "flex",
-      bottom: "1rem",
-      width: "100%",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    contentWrapper: {
-      display: "flex",
-      justifyContent: "center",
-      margin: "3rem",
-      flexDirection: "row",
-    },
-    flexColumn: {
-      flexDirection: "column",
-      display: "flex",
-    },
-    centerFlex: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    paymentMethodWrapper: {
-      width: "15rem",
-      height: "8rem",
-      border: "solid 1px black",
-      margin: "1rem",
-      padding: "2rem",
-      borderRadius: 5,
-    },
-    paymentLogoSize: {
-      width: "15rem",
-      height: "8rem",
-    },
-    deliveryBox: {
-      margin: "1rem",
-      padding: "0.5rem",
-      border: "1px solid black",
-      borderRadius: 5,
-      cursor: "pointer",
-    },
-    cartContentWrapper: {
-      overflow: "auto",
-    },
-    cartContent: {
-      margin: "1rem 2rem",
-      display: "flex",
-    },
-    productInfo: {
-      marginLeft: "1rem",
-    },
-  });
+  root: {
+    marginTop: "8.5rem",
+    height: "50rem",
+    border: "solid 2px black",
+    position: "relative",
+  },
+  buttonWrapper: {
+    position: "absolute",
+    display: "flex",
+    bottom: "1rem",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  contentWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    margin: "3rem",
+    flexDirection: "row",
+  },
+  flexColumn: {
+    flexDirection: "column",
+    display: "flex",
+  },
+  centerFlex: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  paymentMethodWrapper: {
+    width: "15rem",
+    height: "8rem",
+    border: "solid 1px black",
+    margin: "1rem",
+    padding: "2rem",
+    borderRadius: 5,
+  },
+  paymentLogoSize: {
+    width: "15rem",
+    height: "8rem",
+  },
+  deliveryBox: {
+    margin: "1rem",
+    padding: "0.5rem",
+    border: "1px solid black",
+    borderRadius: 5,
+    cursor: "pointer",
+  },
+  cartContentWrapper: {
+    overflow: "auto",
+  },
+  cartContent: {
+    margin: "1rem 2rem",
+    display: "flex",
+  },
+  productInfo: {
+    marginLeft: "1rem",
+  },
+});
