@@ -20,7 +20,6 @@ function Catalogue(props: IProps, id: string) {
   const previewCatalogue = products.slice(1, 7);
   const classes = useStyles();
 
-
   function assignRandomProductId(product: any) {
     product["uniqueId"] = Math.random().toString(36).substr(2, 9);
     return product;
@@ -38,27 +37,78 @@ function Catalogue(props: IProps, id: string) {
             className={classes.innerGridStyle}
           >
             {products.map((product) => (
-              <Link to={product.name}>
+              <Box
+                className={classes.boxStyle}
+                onMouseLeave={() => setIsHover("null")}
+              >
                 <Typography variant="h6">
-                  <Box
-                    onMouseLeave={() => setIsHover("null")}
-                    className={classes.boxStyle}
-                    onClick={() => {
-                      props.getProduct(product);
-                    }}
-                  >
-                    <img
-                      onMouseEnter={() => setIsHover(product.name)}
-                      src={product.preview}
-                      alt=" "
-                      width="400"
-                      height="400"
-                    />
-                    <span>{product.name}</span>
-                    <span>{product.price}kr</span>
-                  </Box>
+                  <img
+                    onMouseEnter={() => setIsHover(product.name)}
+                    src={product.preview}
+                    className={classes.customCursor}
+                    draggable={false}
+                    alt="Bags from Pialetti"
+                    width="400"
+                    height="400"
+                  />
                 </Typography>
-              </Link>
+                {isHover === product.name ? (
+                  <>
+                    <Box
+                      className={`${classes.hoverContainer} ${classes.customCursor}`}
+                    >
+                      <Box
+                        className={`${classes.hoverEffect} ${classes.customCursor}`}
+                      >
+                        <Box
+                          className={`${classes.hoverText} ${classes.customCursor}`}
+                        >
+                          <Box className={classes.customCursor}>
+                            <Link
+                              className={`${classes.linkStyle} ${classes.customCursor}`}
+                              to={product.name}
+                              onClick={() => {
+                                props.getProduct(product);
+                              }}
+                            >
+                              <Typography
+                                variant="body1"
+                                className={`${classes.moreInfoStyle} ${classes.customCursor}`}
+                              >
+                                More info
+                              </Typography>
+                            </Link>
+                            <Typography variant="h5">{product.name}</Typography>
+                          </Box>
+                          <Typography variant="body1">
+                            {product.price}&nbsp;kr
+                          </Typography>
+                        </Box>
+                        <Box
+                          className={`${classes.buttonContainer} ${classes.customCursor}`}
+                        >
+                          <Button
+                            className={classes.button}
+                            onClick={() => {
+                              const uniqueProduct = assignRandomProductId(
+                                product
+                              );
+                              addToCart(uniqueProduct);
+                            }}
+                          >
+                            <Typography
+                              variant="button"
+                              className={classes.customCursor}
+                            >
+                              Add to cart
+                            </Typography>
+                          </Button>
+                        </Box>
+                      </Box>
+                    </Box>
+                  </>
+                ) : null}
+              </Box>
             ))}
           </Grid>
         </Grid>
@@ -116,7 +166,7 @@ function Catalogue(props: IProps, id: string) {
                             </Link>
                             <Typography variant="h5">{product.name}</Typography>
                           </Box>
-                          <Typography variant="body2">
+                          <Typography variant="body1">
                             {product.price}&nbsp;kr
                           </Typography>
                         </Box>
@@ -126,8 +176,10 @@ function Catalogue(props: IProps, id: string) {
                           <Button
                             className={classes.button}
                             onClick={() => {
-                              const uniqueProduct = assignRandomProductId(product)
-                                addToCart(uniqueProduct)                            
+                              const uniqueProduct = assignRandomProductId(
+                                product
+                              );
+                              addToCart(uniqueProduct);
                             }}
                           >
                             <Typography
@@ -155,14 +207,9 @@ const useStyles: any = makeStyles({
   linkStyle: {
     textDecoration: "none",
     color: "black",
-    display: "inline-block",
     position: "relative",
-    zIndex: 1,
-    paddingLeft: "4rem",
-    paddingRight: "4rem",
-    paddingTop: "4rem",
-    margin: "-2rem",
-    bottom: "5rem",
+    top: "14.5rem",
+    textAlign: "center",
   },
   buttonContainer: {
     display: "flex",
@@ -216,15 +263,16 @@ const useStyles: any = makeStyles({
     cursor: `url(${alternativeCursor}) 9 7, auto`,
   },
   button: {
-    height: "4rem",
+    height: "2rem",
     width: "8rem",
     border: "solid 1.5px black",
     borderRadius: "0%",
     textDecoration: "none",
     position: "absolute",
+    bottom: "4rem",
   },
   moreInfoStyle: {
-    marginTop: "2rem",
+    marginTop: "0rem",
   },
 });
 

@@ -21,6 +21,41 @@ body {
   text-transform: none !important;
   letter-spacing: 0.05rem !important;
   line-height: 26px !important;
+  width: 18rem !important;
+}
+.makeStyles-moreInfoStyle-69:hover {
+  color: #3f51b5;
+}
+
+.makeStyles-moreInfoStyle-17:hover {
+  color: #3f51b5;
+}
+
+.MuiTypography-body2:hover {
+  color: #3f51b5;
+}
+
+.MuiTypography-body2 {
+  font-size: 1.2rem !important;
+}
+
+h1:hover {
+  font-size: 3.2rem !important;
+  /* -webkit-transition: all 12s !important;
+  -moz-transition: all 12s !important;
+  -o-transition: all 12s !important; */
+  transition: all 0.1s ease-in-out !important;
+  background: -webkit-linear-gradient(rgb(130, 90, 195), #3f51b5) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+h1:not(:hover) {
+  /* -webkit-transition: all 12s !important;
+  -moz-transition: all 12s !important;
+  -o-transition: all 12s !important; */
+  transition: all 0.1s ease-in-out !important;
 }
 
 .MuiButton-label {
@@ -29,6 +64,7 @@ body {
 
 .MuiButton-root:hover {
   cursor: url(../src/assets/alternativeCursor.png) 9 7, pointer;
+  background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
 .MuiTypography-h1 {

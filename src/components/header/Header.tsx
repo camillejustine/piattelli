@@ -5,7 +5,7 @@ import { ShoppingCart as CartIcon } from "@material-ui/icons";
 import "animate.css/animate.css";
 import Cart from "./Cart";
 import { makeStyles } from "@material-ui/styles";
-import {CartContext} from '../context/CartContext';
+import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 
 function Header() {
@@ -13,26 +13,26 @@ function Header() {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const { cart } = useContext(CartContext);
   const classes = useStyles();
- 
+
   function hideCart() {
     setIsCartVisible(false);
   }
 
   return (
     <Box className={classes.rootStyle}>
-      <Link href="#" color="inherit" underline="none">
-        <Typography variant="body1">New Collection </Typography>
+      <Link href="/catalogue" color="inherit" underline="none">
+        <Typography variant="body2">New Collection </Typography>
       </Link>
-      <Link href="#" color="inherit" underline="none">
-        <Typography variant="body1">All Bags </Typography>{" "}
+      <Link href="/catalogue" color="inherit" underline="none">
+        <Typography variant="body2">All Bags </Typography>{" "}
       </Link>
 
       <Link href="/" color="inherit" underline="none">
         <Typography variant="h1">PIATTELLI</Typography>
       </Link>
 
-      <Link href="#" color="inherit" underline="none">
-        <Typography variant="body1">Timless Favorites</Typography>{" "}
+      <Link href="/catalogue" color="inherit" underline="none">
+        <Typography variant="body2">Timless Favorites</Typography>{" "}
       </Link>
       <Box className={classes.iconWrapper}>
         <Box onClick={() => setSearchClicked(true)} m="1rem">

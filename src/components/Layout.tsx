@@ -7,7 +7,7 @@ import PromotionSecond from "./content/PromotionSecond";
 import Catalogue from "./catalogue/Catalogue";
 import Newsletter from "./content/Newsletter";
 import ErrorBoundary from "./ErrorBoundary";
-import { Box } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 
 import { CSSProperties, useState } from "react";
 import Checkout from "./checkout/Checkout";
@@ -17,8 +17,7 @@ import ProductDetails from "./product/ProductDetails";
 import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
 import alternativeCursor from "../assets/alternativeCursor.png";
 
-
-import CartProvider from './context/CartContext';
+import CartProvider from "./context/CartContext";
 
 function Layout() {
   const [productDetail, setProductDetail] = useState<object>();
@@ -30,7 +29,15 @@ function Layout() {
   return (
     <Box style={customCursorBlack}>
       <CartProvider>
-        <div style={landingContainer}>
+        <Box style={landingContainer}>
+          <Route path="/catalogue">
+            <Box style={catalogueStyles}>
+              <Typography variant={"h3"} align={"center"}>
+                Our bags
+              </Typography>
+              <Catalogue isLarge={true} getProduct={productDetails} />
+            </Box>
+          </Route>
           <Route exact path="/">
             <Hero />
             <Promotion />
@@ -42,20 +49,24 @@ function Layout() {
               </Box>
             </ErrorBoundary>
           </Route>
-        </div>
-            <Header />
-            <Route path="/:name">
-                <ProductDetails productView={productDetail} />
-            </Route>
-            <Route path='/checkout'>
-                <Checkout />
-            </Route>
+        </Box>
+        <Header />
+        <Route path="/:name">
+          <ProductDetails productView={productDetail} />
+        </Route>
+        <Route path="/checkout">
+          <Checkout />
+        </Route>
         <Newsletter />
         <Footer />
       </CartProvider>
     </Box>
   );
 }
+
+const catalogueStyles: CSSProperties = {
+  marginTop: "15rem",
+};
 
 const landingContainer: CSSProperties = {
   width: "50vw",
