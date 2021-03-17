@@ -127,10 +127,7 @@ function Catalogue(props: IProps, id: string) {
                             className={classes.button}
                             onClick={() => {
                               const uniqueProduct = assignRandomProductId(product)
-                                addToCart(uniqueProduct)
-                                /* cartItems.push(uniqueProduct);
-                                localStorage.setItem("cart",JSON.stringify(cartItems)); */
-                              );
+                                addToCart(uniqueProduct)                            
                             }}
                           >
                             <Typography
