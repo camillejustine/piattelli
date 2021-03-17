@@ -7,6 +7,7 @@ import bag5 from "../../assets/bags/bag-5.png";
 import bag6 from "../../assets/bags/bag-6.png";
 
 interface iState {
+    //make interface for objects
     products: any[]
 }
 interface ContextValue extends iState {

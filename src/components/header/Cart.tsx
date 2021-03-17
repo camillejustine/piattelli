@@ -1,9 +1,11 @@
 import { Box, Button, Link, Typography, Badge } from "@material-ui/core";
-import { CSSProperties, makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 import CloseIcon from "@material-ui/icons/Close";
-import { PermDeviceInformation, ShoppingCart as CartIcon } from "@material-ui/icons";
-import React, { Component, useState, useEffect } from "react";
-import { flexbox } from "@material-ui/system";
+import { ShoppingCart as CartIcon } from "@material-ui/icons";
+import React, { useState, useEffect } from "react";
+import {CartContext} from '../context/CartContext';
+import { useContext } from "react";
+//import { flexbox } from "@material-ui/system";
 
 
 interface IProps {
@@ -12,19 +14,10 @@ interface IProps {
 }
 
 function Cart(props: IProps) {
+  const { cart, removeProductFromCart } = useContext(CartContext);
   const classes = useStyles();
-  let cart = JSON.parse(localStorage.getItem('cart')!) || [];
   const total = cart.reduce((n: any, {price}: any) => n + price, 0)
 
-  useEffect(()=>{
-    
-  })
-
-  function removeProductFromCart(id: any) {
-    cart = cart.filter((item: any) => item.uniqueId !== id);
-    localStorage.setItem('cart', JSON.stringify(cart))
-  }
-  
   return (
     <>
       {props.isVisible ? (
