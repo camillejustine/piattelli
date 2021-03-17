@@ -67,6 +67,7 @@ const useStyles: any = makeStyles({
     maxWidth: "50%",
     textAlign: "center",
     marginBottom: "1rem",
+    lineHeight: "2rem",
   },
   buttonStyling: {
     marginTop: "1rem",
