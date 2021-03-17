@@ -91,6 +91,7 @@ const useStyles: any = makeStyles({
     cursor: `url(${alternativeCursor}) 9 7, auto`,
   },
   heroContainer: {
+    marginTop: '8.5rem',
     display: "flex",
     justifyContent: "center",
   },
