@@ -17,6 +17,7 @@ function Cart(props: IProps) {
   const { cart, removeProductFromCart } = useContext(CartContext);
   const classes = useStyles();
   const total = cart.reduce((n: any, {price}: any) => n + price, 0)
+  //hahahaha
 
   return (
     <>
