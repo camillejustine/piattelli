@@ -3,6 +3,7 @@ import { PinDropSharp } from "@material-ui/icons";
 import { CSSProperties, useState, useContext } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 import { ProductsContext } from "../context/ProductsContext";
+import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 interface IProps {
   isLarge: boolean;
@@ -11,10 +12,11 @@ interface IProps {
 
 function Catalogue(props: IProps) {
   const { products } = useContext(ProductsContext);
+  const { addToCart } = useContext(CartContext);
   const [isLarge, setIsLarge] = useState(props.isLarge);
   const [isHover, setIsHover] = useState(false);
   const previewCatalogue = products.slice(1, 7);
-  const cartItems = JSON.parse(localStorage.getItem("cart")!) || [];
+  //const cartItems = JSON.parse(localStorage.getItem("cart")!) || [];
 
   function assignRandomProductId(product: any){
       product['uniqueId'] = Math.random().toString(36).substr(2, 9);
@@ -90,11 +92,11 @@ function Catalogue(props: IProps) {
                               style={button}
                               onClick={() => {
                                 const uniqueProduct = assignRandomProductId(product)
-                                cartItems.push(uniqueProduct);
-                                localStorage.setItem(
-                                  "cart",
-                                  JSON.stringify(cartItems)
-                                );
+                                addToCart(uniqueProduct)
+
+                                
+                                /* cartItems.push(uniqueProduct);
+                                localStorage.setItem("cart",JSON.stringify(cartItems)); */
                               }}
                             >
                               <Typography variant="button" style={customCursor}>

@@ -21,7 +21,17 @@ class CartProvider extends Component<{},iState> {
         this.setState({cart: updateCart})
     }
 
+    componentDidMount() {
+        let cart = JSON.parse(localStorage.getItem('cart') || "[]");
+        this.setState({ cart });
+    }
+
+    componentDidUpdate() {
+        localStorage.setItem('cart', JSON.stringify(this.state.cart))
+    }
+
     render() {
+        console.log(this.state)
         return (
             <CartContext.Provider value={{
                 cart: this.state.cart,
