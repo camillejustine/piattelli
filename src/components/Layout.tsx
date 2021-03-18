@@ -6,6 +6,7 @@ import Explore from "./content/Explore";
 import PromotionSecond from "./content/PromotionSecond";
 import Catalogue from "./catalogue/Catalogue";
 import Newsletter from "./content/Newsletter";
+import Collection from "./catalogue/Collection";
 import ErrorBoundary from "./ErrorBoundary";
 import { Box, Typography } from "@material-ui/core";
 
@@ -32,6 +33,7 @@ function Layout() {
         <Box style={landingContainer}>
           <Route path="/catalogue">
             <Box style={catalogueStyles}>
+              <Collection />
               <Typography variant={"h3"} align={"center"}>
                 Our bags
               </Typography>
