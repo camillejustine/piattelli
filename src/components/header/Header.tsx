@@ -51,21 +51,23 @@ function Header() {
         </Box>
         <Box m="1rem">
           {/* Icon */}
+
           <CartIcon
             onClick={() => {
-              setIsCartVisible(true);
-              console.log("clicked");
-              console.log(isCartVisible);
+              setIsCartVisible(!isCartVisible);
             }}
           />
-          {/* Cart view */}
           <Badge
             badgeContent={cart.length}
             color="primary"
             className="animate__animated animate__bounceIn"
-          >
-            <Cart onHide={hideCart} isVisible={isCartVisible} />
-          </Badge>
+            onClick={() => {
+              setIsCartVisible(!isCartVisible);
+            }}
+          ></Badge>
+
+          {/* Cart view */}
+          <Cart onHide={hideCart} isVisible={isCartVisible} />
         </Box>
       </Box>
     </Box>
