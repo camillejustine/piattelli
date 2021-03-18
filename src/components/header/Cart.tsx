@@ -32,7 +32,9 @@ function Cart(props: IProps) {
             <Box>{
               cart.map((product: any) => (
                 <Box className={classes.cartItems}>
-                  <img src={product.preview} width='100rem' height='100rem'/>
+                  <Link href={`/products/${product.name}`}>
+                    <img src={product.preview} width='100rem' height='100rem'/>
+                  </Link>
                   <div className={classes.cartItemDetail}>
                     <span>{product.name}</span>
                     <span>Price: {product.price}</span>
