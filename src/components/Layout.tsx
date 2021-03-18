@@ -51,7 +51,7 @@ function Layout() {
           </Route>
         </Box>
         <Header />
-        <Route path="/:name">
+        <Route path="/products/:name">
           <ProductDetails productView={productDetail} />
         </Route>
         <Route path="/checkout">

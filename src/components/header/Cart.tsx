@@ -22,7 +22,8 @@ function Cart(props: IProps) {
   return (
     <>
       {props.isVisible ? (
-          <Box className={`animate__animated animate__slideInRight ${classes.rootStyle}`}>
+          <Box
+          className={`animate__animated animate__slideInRight ${classes.rootStyle}`}>
             <Box className={classes.topContent}>
               <CloseIcon onClick={props.onHide}></CloseIcon>
               <Typography variant="body1">Your Items</Typography>
