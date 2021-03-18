@@ -1,7 +1,8 @@
 import { Typography, Box, Button, makeStyles, Tab } from "@material-ui/core";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import ImgTest from '../../assets/hero2.png';
+import { ProductsContext } from "../context/ProductsContext";
 
 // we should use pexels api here?
 // const productImg: {
@@ -21,9 +22,14 @@ const textInfoStrings = [
 
 function ProductDetails(props: iProps) {
   let [textView, setTextView] = useState<string>("Description");
+  const { products } = useContext(ProductsContext);
   const { addToCart } = useContext(CartContext);
   const classes = useStyles();
+  console.log(products)
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <Box className={classes.wrapper}>
@@ -63,11 +69,6 @@ function ProductDetails(props: iProps) {
                 <Typography>{props.productView && props.productView.care}</Typography>
               ) : null}
             </Box>
-        </Box>
-        <Box className={classes.row}>
-          <Box className={classes.circle}></Box>
-          <Box className={classes.circle}></Box>
-          <Box className={classes.circle}></Box>
         </Box>
           <Button 
             className={classes.button} 
