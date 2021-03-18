@@ -92,12 +92,13 @@ function Checkout() {
   };
 
   //promise for "awaiting" payment validation
-  const paymentPromise = () => new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 3000);
-  });
-  async function makePayment(){
+  const paymentPromise = () =>
+    new Promise<void>((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 3000);
+    });
+  async function makePayment() {
     setIsLoading(true);
     await paymentPromise();
     handleNext();
@@ -117,6 +118,11 @@ function Checkout() {
               Total: {total}kr
             </Typography>
             <Box className={classes.cartContentWrapper}>
+              {cart.length === 0 ? (
+                <Typography className={classes.centerFlex} variant="h6">
+                  Cart is empty
+                </Typography>
+              ) : null}
               {cart.map((product: any) => (
                 <Box className={classes.cartContent}>
                   <CloseIcon
@@ -221,7 +227,11 @@ function Checkout() {
                 Back
               </Button>
               {activeStep === 0 ? (
-                <Button variant="contained" onClick={handleNext}>
+                <Button
+                  variant="contained"
+                  onClick={handleNext}
+                  disabled={cart.length === 0}
+                >
                   {activeStep === steps.length - 1 ? "Complete" : "Next"}
                 </Button>
               ) : null}
