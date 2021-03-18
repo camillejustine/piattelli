@@ -66,7 +66,7 @@ function Catalogue(props: IProps, id: string) {
                           <Box className={classes.customCursor}>
                             <Link
                               className={`${classes.linkStyle} ${classes.customCursor}`}
-                              to={product.name}
+                              to={`/products/${product.name}`}
                               onClick={() => {
                                 props.getProduct(product);
                               }}
