@@ -12,7 +12,7 @@ import { Box, Typography } from "@material-ui/core";
 import { CSSProperties, useState } from "react";
 import Checkout from "./checkout/Checkout";
 
-import { Route } from "react-router-dom";
+import {  Route } from "react-router-dom";
 import ProductDetails from "./product/ProductDetails";
 import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
 import alternativeCursor from "../assets/alternativeCursor.png";
@@ -27,42 +27,46 @@ function Layout() {
   }
 
   return (
-    <Box style={customCursorBlack}>
-      <CartProvider>
-        <Box style={landingContainer}>
-          <Route path="/catalogue">
-            <Box style={catalogueStyles}>
-              <Typography variant={"h3"} align={"center"}>
-                Our bags
-              </Typography>
-              <Catalogue isLarge={true} getProduct={productDetails} />
-            </Box>
-          </Route>
-          <Route exact path="/">
-            <Hero />
-            <Promotion />
-            <Explore />
-            <PromotionSecond />
-            <ErrorBoundary>
-              <Box style={cataloguePreviewContainer}>
-                <Catalogue isLarge={false} getProduct={productDetails} />
+
+      <Box style={customCursorBlack}>
+        <CartProvider>
+          <Box style={landingContainer}>
+            <Route path="/catalogue">
+              <Box style={catalogueStyles}>
+                <Typography variant={"h3"} align={"center"}>
+                  Our bags
+                </Typography>
+                <Catalogue isLarge={true} getProduct={productDetails} />
               </Box>
-            </ErrorBoundary>
+            </Route>
+            <Route exact path="/">
+              <Hero />
+              <Promotion />
+              <Explore />
+              <PromotionSecond />
+              <ErrorBoundary>
+                <Box style={cataloguePreviewContainer}>
+                  <Catalogue isLarge={false} getProduct={productDetails} />
+                </Box>
+              </ErrorBoundary>
+            </Route>
+          </Box>
+          <Header />
+            <Route path="/products/:name">
+              <ProductDetails productView={productDetail} />
+            </Route>
+          <Route path="/checkout">
+            <Checkout />
           </Route>
-        </Box>
-        <Header />
-        <Route path="/products/:name">
-          <ProductDetails productView={productDetail} />
-        </Route>
-        <Route path="/checkout">
-          <Checkout />
-        </Route>
-        <Newsletter />
-        <Footer />
-      </CartProvider>
-    </Box>
+          <Newsletter />
+          <Footer />
+        </CartProvider>
+      </Box>
+
   );
 }
+
+
 
 const catalogueStyles: CSSProperties = {
   marginTop: "15rem",

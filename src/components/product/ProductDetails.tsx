@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import ImgTest from '../../assets/hero2.png';
 import { ProductsContext } from "../context/ProductsContext";
+import { useParams } from "react-router-dom";
 
 // we should use pexels api here?
 // const productImg: {
@@ -15,16 +16,19 @@ interface iProps {
 }
 
 const textInfoStrings = [
-  "Description",
+  "Description", 
   "Detail",
   "Care"
 ];
 
 function ProductDetails(props: iProps) {
-  let [textView, setTextView] = useState<string>("Description");
+  const [textView, setTextView] = useState<string>("Description");
   const { products } = useContext(ProductsContext);
   const { addToCart } = useContext(CartContext);
   const classes = useStyles();
+  const productName = useParams();
+  
+  console.log(productName)
   console.log(products)
 
   useEffect(() => {
