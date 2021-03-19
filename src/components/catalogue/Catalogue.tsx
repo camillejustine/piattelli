@@ -90,9 +90,7 @@ function Catalogue(props: IProps, id: string) {
                           <Button
                             className={classes.button}
                             onClick={() => {
-                              const uniqueProduct = assignRandomProductId(
-                                product
-                              );
+                              const uniqueProduct = assignRandomProductId(product);
                               addToCart(uniqueProduct);
                             }}
                           >

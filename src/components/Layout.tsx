@@ -40,15 +40,16 @@ function Layout() {
               <Catalogue isLarge={true} getProduct={productDetails} />
             </Box>
           </Route>
-          <Route exact path="/">
-            <Hero />
-            <Promotion />
-            <Explore />
-            <PromotionSecond />
-            <ErrorBoundary>
-              <Box style={cataloguePreviewContainer}>
-                <Catalogue isLarge={false} getProduct={productDetails} />
-              </Box>
+            <Route exact path="/">
+              <Hero />
+              <Promotion />
+              <Explore />
+              <PromotionSecond />
+                <ErrorBoundary>
+                  <Box style={cataloguePreviewContainer}>
+                    <Catalogue isLarge={false} getProduct={productDetails} />
+                  </Box>
+                </ErrorBoundary>
             </Route>
             <Route exact path="/">
               <Hero />
@@ -66,9 +67,9 @@ function Layout() {
             <Route path="/products/:name">
               <ProductDetails productView={productDetail} />
             </Route>
-          <Route path="/checkout">
-            <Checkout />
-          </Route>
+            <Route path="/checkout">
+              <Checkout />
+            </Route>
           <Newsletter />
           <Footer />
         </CartProvider>
