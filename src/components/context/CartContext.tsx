@@ -6,12 +6,14 @@ interface IState {
 interface ContextValue extends IState {
     addToCart: (product: any) => void;
     removeProductFromCart: (id: any) => void;
+    clearCart: () => void;
 }
 
 export const CartContext = createContext<ContextValue>({
     cart: [],
     addToCart: () => {},
-    removeProductFromCart: () => {}
+    removeProductFromCart: () => {},
+    clearCart: () => {}
 })
 class CartProvider extends Component<{},IState> {
     state: IState = {
@@ -28,6 +30,10 @@ class CartProvider extends Component<{},IState> {
         const cart = this.state.cart.filter((item: any) => item.uniqueId !== id);
         this.setState({cart: cart}) 
     }
+    clearCart = () => {
+        this.setState({cart: []});
+        localStorage.setItem('cart', JSON.stringify(this.state.cart));
+    }
 
     componentDidMount() {
         let cart = JSON.parse(localStorage.getItem('cart') || "[]");
@@ -43,7 +49,8 @@ class CartProvider extends Component<{},IState> {
             <CartContext.Provider value={{
                 cart: this.state.cart,
                 addToCart: this.addProductToCart,
-                removeProductFromCart: this.removeProductFromCart
+                removeProductFromCart: this.removeProductFromCart,
+                clearCart: this.clearCart
             }}>
                 {this.props.children}
             </CartContext.Provider>
