@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Link,
   makeStyles,
   Step,
   StepLabel,
@@ -124,7 +125,9 @@ function Checkout() {
                       removeProductFromCart(product.uniqueId);
                     }}
                   ></CloseIcon>
-                  <img src={product.preview} width="100rem" height="100rem" />
+                  <Link href={`/products/${product.name}`}>
+                    <img src={product.preview} width="100rem" height="100rem" />
+                  </Link>
                   <div className={classes.productInfo}>
                     <Typography variant="body1">{product.name}</Typography>
                     <Typography variant="body2">
