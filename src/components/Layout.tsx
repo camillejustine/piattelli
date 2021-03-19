@@ -8,7 +8,7 @@ import Catalogue from "./catalogue/Catalogue";
 import Newsletter from "./content/Newsletter";
 import Collection from "./catalogue/Collection";
 import ErrorBoundary from "./ErrorBoundary";
-import AdminPage from "./AdminPage";
+import AdminPage from "./adminpage/AdminPage";
 import { Box, Typography } from "@material-ui/core";
 
 import { CSSProperties, useState } from "react";
