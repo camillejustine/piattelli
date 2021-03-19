@@ -8,12 +8,13 @@ import Catalogue from "./catalogue/Catalogue";
 import Newsletter from "./content/Newsletter";
 import Collection from "./catalogue/Collection";
 import ErrorBoundary from "./ErrorBoundary";
+import AdminPage from "./AdminPage";
 import { Box, Typography } from "@material-ui/core";
 
 import { CSSProperties, useState } from "react";
 import Checkout from "./checkout/Checkout";
 
-import {  Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import ProductDetails from "./product/ProductDetails";
 import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
 import alternativeCursor from "../assets/alternativeCursor.png";
@@ -40,45 +41,43 @@ function Layout() {
               <Catalogue isLarge={true} getProduct={productDetails} />
             </Box>
           </Route>
-            <Route exact path="/">
-              <Hero />
-              <Promotion />
-              <Explore />
-              <PromotionSecond />
-                <ErrorBoundary>
-                  <Box style={cataloguePreviewContainer}>
-                    <Catalogue isLarge={false} getProduct={productDetails} />
-                  </Box>
-                </ErrorBoundary>
-            </Route>
-            <Route exact path="/">
-              <Hero />
-              <Promotion />
-              <Explore />
-              <PromotionSecond />
-              <ErrorBoundary>
-                <Box style={cataloguePreviewContainer}>
-                  <Catalogue isLarge={false} getProduct={productDetails} />
-                </Box>
-              </ErrorBoundary>
-            </Route>
-          </Box>
-          <Header />
-            <Route path="/products/:name">
-              <ProductDetails productView={productDetail} />
-            </Route>
-            <Route path="/checkout">
-              <Checkout />
-            </Route>
-          <Newsletter />
-          <Footer />
-        </CartProvider>
-      </Box>
-
+          <Route exact path="/">
+            <Hero />
+            <Promotion />
+            <Explore />
+            <PromotionSecond />
+            <ErrorBoundary>
+              <Box style={cataloguePreviewContainer}>
+                <Catalogue isLarge={false} getProduct={productDetails} />
+              </Box>
+            </ErrorBoundary>
+          </Route>
+          <Route exact path="/">
+            <Hero />
+            <Promotion />
+            <Explore />
+            <PromotionSecond />
+            <ErrorBoundary>
+              <Box style={cataloguePreviewContainer}>
+                <Catalogue isLarge={false} getProduct={productDetails} />
+              </Box>
+            </ErrorBoundary>
+          </Route>
+        </Box>
+        <Header />
+        <Route path="/products/:name">
+          <ProductDetails productView={productDetail} />
+        </Route>
+        <Route path="/checkout">
+          <Checkout />
+        </Route>
+        <Newsletter />
+        <Footer />
+        <AdminPage />
+      </CartProvider>
+    </Box>
   );
 }
-
-
 
 const catalogueStyles: CSSProperties = {
   marginTop: "15rem",
