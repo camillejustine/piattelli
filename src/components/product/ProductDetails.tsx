@@ -5,6 +5,7 @@ import ImgTest from '../../assets/hero2.png';
 import ProductContext, { ProductsContext } from "../context/ProductsContext";
 import { useParams } from "react-router-dom";
 
+
 // we should use pexels api here?
 // const productImg: {
 //     img: string;
@@ -15,11 +16,7 @@ interface iProps {
   productView: any;
 }
 
-const textInfoStrings = [
-  "Description", 
-  "Detail",
-  "Care"
-];
+const textInfoStrings = ["Description", "Detail", "Care"];
 
 function ProductDetails(props: iProps) {
   const [textView, setTextView] = useState<string>("Description");
@@ -28,6 +25,7 @@ function ProductDetails(props: iProps) {
   const classes = useStyles();
   const urlValueProductValue: any = useParams();
   const detailViewProduct = setDetailViewProduct();
+
 
   function setDetailViewProduct(){
     for(const product of products) {
@@ -100,7 +98,7 @@ const useStyles: any = makeStyles({
     flexDirection: "row",
     justifyContent: "center",
     paddingTop: "10rem",
-    width: '100%'
+    width: "100%",
   },
   productWrapper: {
     display: "flex",
@@ -114,17 +112,17 @@ const useStyles: any = makeStyles({
     height: "50rem",
   },
   button: {
-    color: 'white',
+    color: "white",
     height: "3rem",
     width: "77%",
     border: "solid 1.5px black",
     borderRadius: "0%",
-    background: 'black'
+    background: "black",
   },
   row: {
     display: "flex",
     flexDirection: "row",
-    padding: '0.5rem'
+    padding: "0.5rem",
   },
   column: {
     display: "flex",
@@ -138,11 +136,11 @@ const useStyles: any = makeStyles({
     backgroundColor: "black",
   },
   padding: {
-    paddingRight: '1rem'
+    paddingRight: "1rem",
   },
   detailPadding: {
-    padding: '3rem'
-  }
+    padding: "3rem",
+  },
 });
 
 export default ProductDetails;
