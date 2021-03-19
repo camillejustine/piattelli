@@ -20,7 +20,7 @@ function Header() {
 
   return (
     <Box className={classes.rootStyle}>
-      <Link href="/catalogue" color="inherit" underline="none">
+      <Link href="/new-collection" color="inherit" underline="none">
         <Typography variant="body2">New Collection </Typography>
       </Link>
       <Link href="/catalogue" color="inherit" underline="none">
