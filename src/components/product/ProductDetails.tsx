@@ -26,18 +26,17 @@ function ProductDetails(props: iProps) {
   const { products } = useContext(ProductsContext);
   const { addToCart } = useContext(CartContext);
   const classes = useStyles();
-  const urlValue: any = useParams();
-  const value = getProductNameFromUrlValue();
+  const urlValueProductValue: any = useParams();
+  const detailViewProduct = setDetailViewProduct();
 
-  function getProductNameFromUrlValue(){
+  function setDetailViewProduct(){
     for(const product of products) {
-      if(urlValue.name === product.name){
+      if(urlValueProductValue.name === product.name){
         return product
       }
     }
   }
   
-
   useEffect(() => {
     window.scrollTo(0, 0) 
   }, [])
@@ -52,9 +51,9 @@ function ProductDetails(props: iProps) {
         <Box className={classes.infoWrapper}>
           <Box className={classes.detailPadding}>
               <Box className={classes.column}>
-                <Typography><h2>{value.name}</h2></Typography>
-                <Typography><h3>{value.collection}</h3></Typography>
-                <Typography><h4>{value.price}Sek</h4></Typography>
+                <Typography><h2>{detailViewProduct.name}</h2></Typography>
+                <Typography><h3>{detailViewProduct.collection}</h3></Typography>
+                <Typography><h4>{detailViewProduct.price}Sek</h4></Typography>
               </Box>
               <div className={classes.row}>
                 {
@@ -71,13 +70,13 @@ function ProductDetails(props: iProps) {
               </div>
               <Box className={classes.row}>
                 {textView === "Description" ? (
-                  <Typography>{value.description}</Typography>
+                  <Typography>{detailViewProduct.description}</Typography>
                 ) : null}
                 {textView === "Detail" ? (
-                  <Typography>{value.details}</Typography>
+                  <Typography>{detailViewProduct.details}</Typography>
                 ) : null}
                 {textView === "Care" ? (
-                  <Typography>{value.care}</Typography>
+                  <Typography>{detailViewProduct.care}</Typography>
                 ) : null}
               </Box>
           </Box>
@@ -85,7 +84,7 @@ function ProductDetails(props: iProps) {
               className={classes.button} 
               onClick={       
                 () => {
-                  addToCart(props.productView)
+                  addToCart(detailViewProduct)
                 }
               }>
               <Typography variant="button">Add to cart</Typography>
