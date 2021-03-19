@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Link,
   makeStyles,
   Step,
   StepLabel,
@@ -18,6 +19,7 @@ import DeliveryOptions from "./DeliveryOptions";
 import PaymentMethod from "./PaymentMethod";
 import { CartContext } from "../context/CartContext";
 import { resolve } from "node:path";
+import OrderComfirmation from "./OrderComfirmation";
 
 function getSteps() {
   return [
@@ -27,6 +29,8 @@ function getSteps() {
     "Order Confirmation",
   ];
 }
+
+
 
 function Checkout() {
   //Step counter
@@ -77,8 +81,11 @@ function Checkout() {
   const classes = useStyles();
 
   //get content of cart from context/ls
-  const { cart, removeProductFromCart } = useContext(CartContext);
+  const { cart, removeProductFromCart, clearCart } = useContext(CartContext);
   const total = cart.reduce((n: any, { price }: any) => n + price, 0);
+  const [payedProducts, setPayedProducts] = useState<any[]>()
+  const [totalPayed, setTotalPayed] = useState<number>()
+  // let payedProducts = [''];
 
   // changes to the stepper
   const handleNext = () => {
@@ -100,9 +107,13 @@ function Checkout() {
     });
   async function makePayment() {
     setIsLoading(true);
+    setPayedProducts(cart);
+    setTotalPayed(total);
     await paymentPromise();
+    clearCart();
     handleNext();
   }
+  
 
   //Cases for stepper
   //Each case is one step on the stepper
@@ -191,11 +202,12 @@ function Checkout() {
         );
       case 3:
         return (
-          <Typography className={classes.centerFlex}>
-            CONGRATIOFUCKINGLATIONS <br />
-            YOU JUST BOUGHT BAGS WORTH MORE THAN MY CAR <br />
-            YOU’LL GET AN INVOICE ON YOUR EMAIL
-          </Typography>
+          <OrderComfirmation
+          email={email}
+          payedProducts={payedProducts}
+          deliveryOption={deliveryOption}
+          total={totalPayed}
+          />
         );
       default:
         return "Unknown stepIndex";
@@ -223,7 +235,10 @@ function Checkout() {
           <Box>
             <Box>{getStepContent(activeStep)}</Box>
             <Box className={classes.buttonWrapper}>
-              <Button disabled={activeStep === 0} onClick={handleBack}>
+              <Button
+                disabled={activeStep === 0 || activeStep === 3}
+                onClick={handleBack}
+              >
                 Back
               </Button>
               {activeStep === 0 ? (
@@ -232,7 +247,7 @@ function Checkout() {
                   onClick={handleNext}
                   disabled={cart.length === 0}
                 >
-                  {activeStep === steps.length - 1 ? "Complete" : "Next"}
+                  {activeStep === steps.length - 1 ? "Error" : "Next"}
                 </Button>
               ) : null}
               {activeStep === 1 ? (
@@ -241,7 +256,7 @@ function Checkout() {
                   onClick={handleNext}
                   disabled={!isFormValid}
                 >
-                  {activeStep === steps.length - 1 ? "Complete" : "Next"}
+                  {activeStep === steps.length - 1 ? "Error" : "Next"}
                 </Button>
               ) : null}
               {activeStep === 2 ? (
@@ -250,13 +265,17 @@ function Checkout() {
                   onClick={makePayment}
                   disabled={!isPaymentValid}
                 >
-                  {activeStep === steps.length - 1 ? "Complete" : "Next"}
+                  {activeStep === steps.length - 1 ? "Error" : "Next"}
                 </Button>
               ) : null}
               {activeStep === 3 ? (
-                <Button variant="contained">
-                  {activeStep === steps.length - 1 ? "Complete" : "Next"}
-                </Button>
+                <Link href="/#">
+                  <Button variant="contained">
+                    {activeStep === steps.length - 1
+                      ? "Continue shopping"
+                      : "Error"}
+                  </Button>
+                </Link>
               ) : null}
             </Box>
           </Box>
