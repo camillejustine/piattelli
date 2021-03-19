@@ -2,7 +2,8 @@ import { Typography, Box, Button, makeStyles, Tab } from "@material-ui/core";
 import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import ImgTest from '../../assets/hero2.png';
-import { ProductsContext } from "../context/ProductsContext";
+import ProductContext, { ProductsContext } from "../context/ProductsContext";
+import { useParams } from "react-router-dom";
 
 // we should use pexels api here?
 // const productImg: {
@@ -15,73 +16,82 @@ interface iProps {
 }
 
 const textInfoStrings = [
-  "Description",
+  "Description", 
   "Detail",
   "Care"
 ];
 
 function ProductDetails(props: iProps) {
-  let [textView, setTextView] = useState<string>("Description");
+  const [textView, setTextView] = useState<string>("Description");
   const { products } = useContext(ProductsContext);
   const { addToCart } = useContext(CartContext);
   const classes = useStyles();
-  console.log(products)
+  const urlValueProductValue: any = useParams();
+  const detailViewProduct = setDetailViewProduct();
 
+  function setDetailViewProduct(){
+    for(const product of products) {
+      if(urlValueProductValue.name === product.name){
+        return product
+      }
+    }
+  }
+  
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0) 
   }, [])
 
   return (
-    <Box className={classes.wrapper}>
-      <Box className={classes.productWrapper}>
-        <img src={ImgTest} alt="" width="600" height="750" />
-        <img src={ImgTest} alt="" width="600" height="750" />
-        <img src={ImgTest} alt="" width="600" height="750" />
-      </Box>
-      <Box className={classes.infoWrapper}>
-        <Box className={classes.detailPadding}>
-            <Box className={classes.column}>
-              <Typography><h2>{props.productView && props.productView.name}</h2></Typography>
-              <Typography><h3>{props.productView && props.productView.collection}</h3></Typography>
-              <Typography><h4>{props.productView && props.productView.price}Sek</h4></Typography>
-            </Box>
-            <div className={classes.row}>
-              {
-                textInfoStrings.map((tab) => (
-                  <Typography 
-                    className={classes.padding}
-                    onClick={()=>{
-                      setTextView(tab)
-                    }}
-                  >{tab}
-                  </Typography>
-                ))
-              }
-            </div>
-            <Box className={classes.row}>
-              {textView === "Description" ? (
-                 <Typography>{props.productView && props.productView.description}</Typography>
-              ) : null}
-              {textView === "Detail" ? (
-                <Typography>{props.productView && props.productView.details}</Typography>
-              ) : null}
-              {textView === "Care" ? (
-                <Typography>{props.productView && props.productView.care}</Typography>
-              ) : null}
-            </Box>
+      <Box className={classes.wrapper}>
+        <Box className={classes.productWrapper}>
+          <img src={ImgTest} alt="" width="600" height="750" />
+          <img src={ImgTest} alt="" width="600" height="750" />
+          <img src={ImgTest} alt="" width="600" height="750" />
         </Box>
-          <Button 
-            className={classes.button} 
-            onClick={       
-              () => {
-                addToCart(props.productView)
-              }
-            }>
-            <Typography variant="button">Add to cart</Typography>
-          </Button>
+        <Box className={classes.infoWrapper}>
+          <Box className={classes.detailPadding}>
+              <Box className={classes.column}>
+                <Typography><h2>{detailViewProduct.name}</h2></Typography>
+                <Typography><h3>{detailViewProduct.collection}</h3></Typography>
+                <Typography><h4>{detailViewProduct.price}Sek</h4></Typography>
+              </Box>
+              <div className={classes.row}>
+                {
+                  textInfoStrings.map((tab) => (
+                    <Typography 
+                      className={classes.padding}
+                      onClick={()=>{
+                        setTextView(tab)
+                      }}
+                    >{tab}
+                    </Typography>
+                  ))
+                }
+              </div>
+              <Box className={classes.row}>
+                {textView === "Description" ? (
+                  <Typography>{detailViewProduct.description}</Typography>
+                ) : null}
+                {textView === "Detail" ? (
+                  <Typography>{detailViewProduct.details}</Typography>
+                ) : null}
+                {textView === "Care" ? (
+                  <Typography>{detailViewProduct.care}</Typography>
+                ) : null}
+              </Box>
+          </Box>
+            <Button 
+              className={classes.button} 
+              onClick={       
+                () => {
+                  addToCart(detailViewProduct)
+                }
+              }>
+              <Typography variant="button">Add to cart</Typography>
+            </Button>
+        </Box>
       </Box>
-    </Box>
-  );
+    );
 }
 
 const useStyles: any = makeStyles({
