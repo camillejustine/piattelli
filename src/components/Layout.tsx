@@ -34,6 +34,14 @@ function Layout() {
         <Box style={landingContainer}>
           <Route path="/catalogue">
             <Box style={catalogueStyles}>
+              <Typography variant={"h3"} align={"center"}>
+                Our bags
+              </Typography>
+              <Catalogue isLarge={true} getProduct={productDetails} />
+            </Box>
+          </Route>
+          <Route path="/new-collection">
+            <Box style={catalogueStyles}>
               <Collection />
               <Typography variant={"h3"} align={"center"}>
                 Our bags
@@ -69,7 +77,7 @@ function Layout() {
 }
 
 const catalogueStyles: CSSProperties = {
-  marginTop: "15rem",
+  marginTop: "8.5rem",
 };
 
 const landingContainer: CSSProperties = {
