@@ -6,6 +6,7 @@ import Explore from "./content/Explore";
 import PromotionSecond from "./content/PromotionSecond";
 import Catalogue from "./catalogue/Catalogue";
 import Newsletter from "./content/Newsletter";
+import Collection from "./catalogue/Collection";
 import ErrorBoundary from "./ErrorBoundary";
 import { Box, Typography } from "@material-ui/core";
 
@@ -27,16 +28,26 @@ function Layout() {
   }
 
   return (
-
-      <Box style={customCursorBlack}>
-        <CartProvider>
-          <Box style={landingContainer}>
-            <Route path="/catalogue">
-              <Box style={catalogueStyles}>
-                <Typography variant={"h3"} align={"center"}>
-                  Our bags
-                </Typography>
-                <Catalogue isLarge={true} getProduct={productDetails} />
+    <Box style={customCursorBlack}>
+      <CartProvider>
+        <Box style={landingContainer}>
+          <Route path="/catalogue">
+            <Box style={catalogueStyles}>
+              <Collection />
+              <Typography variant={"h3"} align={"center"}>
+                Our bags
+              </Typography>
+              <Catalogue isLarge={true} getProduct={productDetails} />
+            </Box>
+          </Route>
+          <Route exact path="/">
+            <Hero />
+            <Promotion />
+            <Explore />
+            <PromotionSecond />
+            <ErrorBoundary>
+              <Box style={cataloguePreviewContainer}>
+                <Catalogue isLarge={false} getProduct={productDetails} />
               </Box>
             </Route>
             <Route exact path="/">
