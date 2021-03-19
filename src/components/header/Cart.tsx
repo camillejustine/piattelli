@@ -5,6 +5,8 @@ import { ShoppingCart as CartIcon } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
+import GroupedButtons from "./CartIncrementer";
+
 //import { flexbox } from "@material-ui/system";
 
 interface IProps {
@@ -16,8 +18,20 @@ function Cart(props: IProps) {
   const { cart, removeProductFromCart } = useContext(CartContext);
   const classes = useStyles();
   const total = cart.reduce((n: any, { price }: any) => n + price, 0);
-  //hahahaha
+  const sameProduct = []
 
+  function checkIfSameProduct(product: object) {
+    for(const sameProduct of cart){
+      console.log(sameProduct)
+    }
+    console.log(product)
+  }
+  //take cart array
+  //if name value of cart same
+  //display only one of
+  //add other values to number length
+  //remove add from this with button 
+  
   return (
     <>
       {props.isVisible ? (
@@ -38,12 +52,14 @@ function Cart(props: IProps) {
                 <div className={classes.cartItemDetail}>
                   <span>{product.name}</span>
                   <span>Price: {product.price}&nbsp;kr</span>
+                  <GroupedButtons/>
                 </div>
                 <CloseIcon
                   onClick={() => {
                     removeProductFromCart(product.uniqueId);
                   }}
                 ></CloseIcon>
+                
               </Box>
             ))}
           </Box>
