@@ -52,17 +52,6 @@ function Layout() {
               </Box>
             </ErrorBoundary>
           </Route>
-          <Route exact path="/">
-            <Hero />
-            <Promotion />
-            <Explore />
-            <PromotionSecond />
-            <ErrorBoundary>
-              <Box style={cataloguePreviewContainer}>
-                <Catalogue isLarge={false} getProduct={productDetails} />
-              </Box>
-            </ErrorBoundary>
-          </Route>
         </Box>
         <Header />
         <Route path="/products/:name">
