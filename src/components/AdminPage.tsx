@@ -2,7 +2,6 @@ import { Typography, Box, Button, Modal } from "@material-ui/core";
 import { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
-import useKonami from "react-konami-code";
 
 function OpenAdminPage() {
   const classes = useStyles();
