@@ -1,4 +1,4 @@
-import { Typography, Box, Button, Modal } from "@material-ui/core";
+import { Typography, Box, Button, Modal, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { useContext, useState, useEffect } from "react";
@@ -27,29 +27,43 @@ function OpenAdminPage() {
         <Box className={classes.modalContainer}>
           <Typography variant={"h3"}>Admin page</Typography>
           <Box className={classes.productsContainer}>
-            {products.map((product) => (
-              <Box className={classes.productCard}>
-                <img
-                  src={product.preview}
-                  className={classes.imageStyling}
-                  draggable={false}
-                  alt="Bags from Pialetti"
-                  width="100"
-                  height="100"
-                />
-                <Box className={classes.flexRow}>
-                  <Typography variant={"body1"} className={classes.productName}>
-                    {product.name}
-                  </Typography>
-                  <EditOutlinedIcon fontSize={"small"} />
+            <Grid
+              container
+              item
+              xs={12}
+              spacing={1}
+              className={classes.innerGridStyle}
+            >
+              {products.map((product) => (
+                <Box className={classes.productCard}>
+                  <img
+                    src={product.preview}
+                    className={classes.imageStyling}
+                    draggable={false}
+                    alt="Bags from Pialetti"
+                    width="100"
+                    height="100"
+                  />
+                  <Box className={classes.flexRow}>
+                    <Typography
+                      variant={"body1"}
+                      className={classes.productName}
+                    >
+                      {product.name}
+                    </Typography>
+                    <EditOutlinedIcon fontSize={"small"} />
+                  </Box>
+                  <Box className={classes.flexRow}>
+                    <Typography
+                      variant={"body1"}
+                      className={classes.productName}
+                    >
+                      {product.price}&nbsp;kr
+                    </Typography>
+                  </Box>
                 </Box>
-                <Box className={classes.flexRow}>
-                  <Typography variant={"body1"} className={classes.productName}>
-                    {product.price}&nbsp;kr
-                  </Typography>
-                </Box>
-              </Box>
-            ))}
+              ))}
+            </Grid>
           </Box>
         </Box>
       </Modal>
@@ -73,7 +87,7 @@ const useStyles: any = makeStyles({
     display: "flex",
     justifyContent: "space-between",
     flexWrap: "wrap",
-    maxWidth: "50%",
+    maxWidth: "100%",
   },
   productName: {
     fontSize: "0.6rem",
@@ -83,6 +97,7 @@ const useStyles: any = makeStyles({
     alignItems: "center",
     flexDirection: "column",
     marginTop: "5rem",
+    marginRight: "2rem",
   },
   imageStyling: {
     marginRight: ".5rem",
@@ -92,6 +107,11 @@ const useStyles: any = makeStyles({
     display: "flex",
     flexDirection: "row",
     // justifyContent: "space-between",
+  },
+  innerGridStyle: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
