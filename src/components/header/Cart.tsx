@@ -49,17 +49,16 @@ function Cart(props: IProps) {
                 <Link href={`/products/${product.name}`}>
                   <img src={product.preview} width="100rem" height="100rem" />
                 </Link>
-                <div className={classes.cartItemDetail}>
-                  <span>{product.name}</span>
-                  <span>Price: {product.price}&nbsp;kr</span>
-                  <GroupedButtons/>
-                </div>
+                  <div className={classes.cartItemDetail}>
+                    <span>{product.name}</span>
+                    <span>Price: {product.price}&nbsp;kr</span>
+                    <GroupedButtons/>
+                  </div>
                 <CloseIcon
                   onClick={() => {
                     removeProductFromCart(product);
                   }}
                 ></CloseIcon>
-                
               </Box>
             ))}
           </Box>
