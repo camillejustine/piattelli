@@ -15,23 +15,24 @@ const handleDragStart = (e: any) => e.preventDefault();
 const responsive = {
   0: { items: 1 },
   568: { items: 2 },
-  1024: { items: 4 },
+  1024: { items: 3 },
 };
 
-const items = [
-  <img src={bag1} onDragStart={handleDragStart} alt="bag1" />,
-  <img src={bag2} onDragStart={handleDragStart} alt="bag2" />,
-  <img src={bag3} onDragStart={handleDragStart} alt="bag3" />,
-  <img src={bag4} onDragStart={handleDragStart} alt="bag4" />,
-  <img src={bag5} onDragStart={handleDragStart} alt="bag5" />,
-];
 
 function Carousel() {
+  const items = [
+    <img src={bag1} onDragStart={handleDragStart} alt="bag1" />,
+    <img src={bag2} onDragStart={handleDragStart} alt="bag2" />,
+    <img src={bag3} onDragStart={handleDragStart} alt="bag3" />,
+    <img src={bag4} onDragStart={handleDragStart} alt="bag4" />,
+    <img src={bag5} onDragStart={handleDragStart} alt="bag5" />,
+  ];
   return (
     <Box style={customCursor}>
       <AliceCarousel
-        mouseTracking
+        activeIndex={1}
         items={items}
+        mouseTracking
         responsive={responsive}
         autoWidth={true}
         autoPlay={true}
