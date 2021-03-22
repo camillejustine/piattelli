@@ -30,9 +30,9 @@ class CartProvider extends Component<{},IState> {
         this.setState({ cart: updateCart })
     }
 
-
-    removeProductFromCart = (id: any) =>  {
-        const cart = this.state.cart.filter((item: any) => item.uniqueId !== id);
+    removeProductFromCart = (productName: Product) =>  {
+        console.log(productName)
+        const cart = this.state.cart.filter((product: Product) => productName.name !== product.name);
         this.setState({cart: cart}) 
     }
     clearCart = () => {

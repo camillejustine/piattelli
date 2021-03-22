@@ -41,7 +41,7 @@ function OpenAdminPage() {
               className={classes.innerGridStyle}
             >
               {products.map((product) => {
-                console.log(product);
+                //console.log(product); 
                 return (
                   <>
                     <Box className={classes.productCard}>

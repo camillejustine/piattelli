@@ -17,7 +17,7 @@ interface IProps {
 function Cart(props: IProps) {
   const { cart, removeProductFromCart } = useContext(CartContext);
   const classes = useStyles();
-  const total = cart.reduce((n: any, { price }: any) => n + price, 0);
+  const total = cart.reduce((n, { price }: any) => n + price, 0);
   const sameProduct = []
 
   function checkIfSameProduct(product: object) {
@@ -56,7 +56,7 @@ function Cart(props: IProps) {
                 </div>
                 <CloseIcon
                   onClick={() => {
-                    removeProductFromCart(product.uniqueId);
+                    removeProductFromCart(product);
                   }}
                 ></CloseIcon>
                 

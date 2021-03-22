@@ -5,19 +5,13 @@ import ImgTest from "../../assets/hero2.png";
 import ProductContext, { ProductsContext } from "../context/ProductsContext";
 import { useParams } from "react-router-dom";
 
-// we should use pexels api here?
-// const productImg: {
-//     img: string;
-// }[] = [
-//     {img: 'url()'}
-// ]
-interface iProps {
+interface IProps {
   productView: any;
 }
 
 const textInfoStrings = ["Description", "Detail", "Care"];
 
-function ProductDetails(props: iProps) {
+function ProductDetails(props: IProps) {
   const [textView, setTextView] = useState<string>("Description");
   const { products } = useContext(ProductsContext);
   const { addToCart } = useContext(CartContext);
@@ -28,7 +22,7 @@ function ProductDetails(props: iProps) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+ 
   if (!detailViewProduct) {
     return <p>This product does not exist</p>
   }
