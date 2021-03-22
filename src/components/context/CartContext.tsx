@@ -1,10 +1,15 @@
 import {Component, createContext} from 'react';
+import { Product } from './ProductsContext';
+
+interface CartItem extends Product {
+    quantity: number;
+}
 
 interface IState {
-    cart: any[]
+    cart: CartItem[]
 }
 interface ContextValue extends IState {
-    addToCart: (product: any) => void;
+    addToCart: (product: Product) => void;
     removeProductFromCart: (id: any) => void;
     clearCart: () => void;
 }
@@ -20,9 +25,9 @@ class CartProvider extends Component<{},IState> {
         cart: [],
     }
 
-    addProductToCart = (product: any) => {
-        const updateCart = [...this.state.cart, product]
-        this.setState({cart: updateCart})
+    addProductToCart = (product: Product) => {
+        const updateCart = [...this.state.cart, { ...product, quantity: 1 }]
+        this.setState({ cart: updateCart })
     }
 
 

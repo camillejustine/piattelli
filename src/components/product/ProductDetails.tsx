@@ -22,20 +22,16 @@ function ProductDetails(props: iProps) {
   const { products } = useContext(ProductsContext);
   const { addToCart } = useContext(CartContext);
   const classes = useStyles();
-  const urlValueProductValue: any = useParams();
-  const detailViewProduct = setDetailViewProduct();
-
-  function setDetailViewProduct() {
-    for (const product of products) {
-      if (urlValueProductValue.name === product.name) {
-        return product;
-      }
-    }
-  }
+  const params = useParams<{ name: string }>();
+  const detailViewProduct = products.find(p => p.name === params.name);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  if (!detailViewProduct) {
+    return <p>This product does not exist</p>
+  }
 
   return (
     <Box className={classes.wrapper}>
