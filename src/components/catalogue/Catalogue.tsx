@@ -124,6 +124,7 @@ function Catalogue(props: IProps, id: string) {
               <Box
                 className={classes.boxStyle}
                 onMouseLeave={() => setIsHover("null")}
+                key={product.name}
               >
                 <Typography variant="h6">
                   <img
