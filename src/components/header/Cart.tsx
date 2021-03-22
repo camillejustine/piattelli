@@ -43,7 +43,7 @@ function Cart(props: IProps) {
             <Typography variant="body1">Your Items</Typography>
             <CartIcon />
           </Box>
-          <Box>
+          <Box className={classes.cartWrapper}>
             {cart.map((product: any) => (
               <Box className={classes.cartItems}>
                 <Link href={`/products/${product.name}`}>
@@ -122,11 +122,11 @@ const useStyles = makeStyles({
     right: 0,
   },
   cartItems: {
-    width: "100%",
+    width: "80%",
     display: "flex",
     alignItems: "center",
     paddingLeft: "2rem",
-    padding: "0.5rem",
+    // padding: "0.5rem",
   },
   cartItemDetail: {
     width: "34%",
@@ -134,6 +134,11 @@ const useStyles = makeStyles({
     flexDirection: "column",
     padding: "1rem",
   },
+  cartWrapper: {
+    height: '30rem',
+    overflow: 'auto',
+
+  }
 });
 
 export default Cart;
