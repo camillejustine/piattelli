@@ -29,16 +29,16 @@ class CartProvider extends Component<{},IState> {
         const updateCart = [...this.state.cart, { ...product, quantity: 1 }]
         this.setState(prev => { 
             const isItemInCart = prev.cart.find(item => item.name === product.name);
-
+            
             if(isItemInCart) {
-                console.log(prev)
-                /* return prev.cart.map(item => 
+               const cart = prev.cart.map((item: any) => 
                     item.name === product.name
                         ? {...item, quantity: item.quantity + 1} 
-                        : item   
-                ) */
+                        : item           
+                ) 
+                this.setState({cart})    
             }
-            this.setState({cart: updateCart})
+            this.setState({cart:updateCart})
         })
     }
 
@@ -62,7 +62,7 @@ class CartProvider extends Component<{},IState> {
     }
 
     render() {
-        console.log(this.state)
+        console.log(this.state.cart)
         return (
             <CartContext.Provider value={{
                 cart: this.state.cart,
