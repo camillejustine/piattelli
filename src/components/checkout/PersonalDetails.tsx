@@ -1,4 +1,10 @@
-import { Box, makeStyles, TextField, Typography } from "@material-ui/core";
+import {
+  Box,
+  makeStyles,
+  TextField,
+  Typography,
+  withWidth,
+} from "@material-ui/core";
 import React from "react";
 
 interface IProps {
@@ -12,12 +18,10 @@ interface IProps {
   setPhoneNumber: (event: string) => void;
   zipCode: string | undefined;
   setZipCode: (event: string) => void;
-  country: string | undefined; 
-  setCountry: (event:string) => void; 
-  city: string | undefined; 
-  setCity: (event: string) => void; 
-
-
+  country: string | undefined;
+  setCountry: (event: string) => void;
+  city: string | undefined;
+  setCity: (event: string) => void;
 }
 
 function PersonalDetails(props: IProps) {
@@ -32,16 +36,18 @@ function PersonalDetails(props: IProps) {
         <form className={classes.contentWrapper} autoComplete="off">
           <Box className={classes.flexColumn}>
             <TextField
+              className={classes.textField}
               required
-              name="name"
+              name="fname"
               value={props.fullName}
               error={props.fullName === ""}
               id="standard-required"
-              label="Name"
+              label="Full Name"
               onChange={(event) => props.setFullName(event.target.value)}
               defaultValue={props.fullName}
             />
             <TextField
+              className={classes.textField}
               required
               name="email"
               type="email"
@@ -52,15 +58,17 @@ function PersonalDetails(props: IProps) {
               defaultValue={props.email}
             />
             <TextField
+              className={classes.textField}
               required
               id="standard-required"
               label="Adress"
-              name='adress'
+              name="street"
               error={props.adress === ""}
               onChange={(event) => props.setAdress(event.target.value)}
               defaultValue={props.adress}
             />
             <TextField
+              className={classes.textField}
               required
               id="standard-required"
               label="Phone number"
@@ -72,6 +80,7 @@ function PersonalDetails(props: IProps) {
           </Box>
           <Box className={classes.flexColumn}>
             <TextField
+              className={classes.textField}
               required
               id="standard-required"
               label="Zip code"
@@ -80,6 +89,7 @@ function PersonalDetails(props: IProps) {
               defaultValue={props.zipCode}
             />
             <TextField
+              className={classes.textField}
               required
               id="standard-required"
               label="Country"
@@ -88,13 +98,13 @@ function PersonalDetails(props: IProps) {
               defaultValue={props.country}
             />
             <TextField
+              className={classes.textField}
               required
               id="standard-required"
               label="City"
               error={props.city === ""}
               onChange={(event) => props.setCity(event.target.value)}
               defaultValue={props.city}
-
             />
           </Box>
         </form>
@@ -111,14 +121,7 @@ const useStyles = makeStyles({
     border: "solid 2px black",
     position: "relative",
   },
-  buttonWrapper: {
-    position: "absolute",
-    display: "flex",
-    bottom: "1rem",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+
   contentWrapper: {
     display: "flex",
     justifyContent: "center",
@@ -134,14 +137,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-  paymentMethodWrapper: {
-    width: "15rem",
-    height: "8rem",
-    border: "solid 1px black",
-    margin: "1rem",
-    padding: "2rem",
-    borderRadius: 5,
-  },
+
   paymentLogoSize: {
     width: "15rem",
     height: "8rem",
@@ -153,14 +149,8 @@ const useStyles = makeStyles({
     borderRadius: 5,
     cursor: "pointer",
   },
-  cartContentWrapper: {
-    overflow: "auto",
-  },
-  cartContent: {
-    margin: "1rem 2rem",
-    display: "flex",
-  },
-  productInfo: {
-    marginLeft: "1rem",
+  textField: {
+    margin: "0.5rem 2rem",
+    width: "20rem",
   },
 });
