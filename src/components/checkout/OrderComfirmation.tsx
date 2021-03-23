@@ -3,6 +3,7 @@ import React from "react";
 
 interface IProps {
   email: string | undefined;
+  name: string | undefined;
   payedProducts: any;
   deliveryOption: string | undefined;
   total: number | undefined;
@@ -43,13 +44,18 @@ function OrderComfirmation(props: IProps) {
             </Box>
           ))}
           <Typography>
-            Total price for purchase: {props.total}kr + shipping cost: (
+            Total price: {props.total}kr + shipping cost: (
             {props.deliveryOption === "pn" ? "0kr" : null}
             {props.deliveryOption === "budbee" ? "69kr" : null}
             {props.deliveryOption === "instabox" ? "39kr" : null})
           </Typography>
         </Box>
         <Box>
+          <Box>
+            <Typography>Customer:</Typography>
+            <Typography>Name: props.name</Typography>
+            
+          </Box>
           {props.deliveryOption === "pn" ? (
             <Typography>
               Delivery method: <br /> Delivery to closest Postombud with Post

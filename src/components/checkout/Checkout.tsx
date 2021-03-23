@@ -205,6 +205,7 @@ function Checkout() {
       case 3:
         return (
           <OrderComfirmation
+          name={fullName}
           email={email}
           payedProducts={payedProducts}
           deliveryOption={deliveryOption}
