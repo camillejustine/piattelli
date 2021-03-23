@@ -12,7 +12,6 @@ export interface Product {
 }
 
 interface IState {
-  //make interface for objects
   products: Product[];
 }
 interface ContextValue extends IState {

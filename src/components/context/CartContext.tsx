@@ -57,12 +57,17 @@ function CartProvider(props: Props){
         setCartItems(cart);
     }, []) 
 
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cartItems))
+    })
+
     /* componentDidMount() {
-        
+        let cart = JSON.parse(localStorage.getItem('cart') || "[]");
+        this.setState({ cart });
     }
 
     componentDidUpdate() {
-        
+        localStorage.setItem('cart', JSON.stringify(this.state.cart))
     } */
 
         return (
