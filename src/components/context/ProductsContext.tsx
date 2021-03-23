@@ -2,13 +2,14 @@ import { Component, createContext } from "react";
 import { products } from "./mockedProducts";
 
 export interface Product {
-  name: string,
-  price: number,
-  preview: string,
-  collection: string,
-  description: string,
-  details: string,
-  care: string,
+  name: string;
+  price: number;
+  preview: string;
+  collection: string;
+  description: string;
+  details: string;
+  care: string;
+  id?: string;
 }
 
 interface IState {
@@ -21,6 +22,14 @@ class ProductContext extends Component<{}, IState> {
   state: IState = {
     products: products,
   };
+
+  componentDidMount() {
+    if (!localStorage.hasOwnProperty("products")) {
+      localStorage.setItem("products", JSON.stringify(this.state.products));
+    }
+    let productsLS = JSON.parse(localStorage.getItem("products") || "[]");
+    this.setState({ products: productsLS });
+  }
 
   displayInProductView(product: Product) {
     const updateProductView = [...this.state.products, product];

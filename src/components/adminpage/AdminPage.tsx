@@ -2,7 +2,10 @@ import { Typography, Box, Button, Modal, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { useContext, useState, useEffect } from "react";
-import ProductContext, { ProductsContext } from "../context/ProductsContext";
+import ProductContext, {
+  Product,
+  ProductsContext,
+} from "../context/ProductsContext";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
@@ -17,7 +20,7 @@ function OpenAdminPage() {
   const classes = useStyles();
   const { products } = useContext(ProductsContext);
   const [open, setOpen] = React.useState(false);
-  const [editOpen, setEditOpen] = React.useState(false);
+  const [editingProduct, setEditingProduct] = React.useState<Product>();
 
   return (
     <>
@@ -69,18 +72,10 @@ function OpenAdminPage() {
                           {product.price}&nbsp;kr
                         </Typography>
                       </Box>
-                      <Button>
-                        <EditOutlinedIcon
-                          fontSize={"small"}
-                          onClick={() => setEditOpen(true)}
-                        />
+                      <Button onClick={() => setEditingProduct(product)}>
+                        <EditOutlinedIcon fontSize={"small"} />
                       </Button>
                     </Box>
-                    <EditModal
-                      setEditOpen={setEditOpen}
-                      editOpen={editOpen}
-                      product={product}
-                    />
                   </>
                 );
               })}
@@ -89,6 +84,11 @@ function OpenAdminPage() {
               </Button>
             </Grid>
           </Box>
+          <EditModal
+            closeModal={() => setEditingProduct(undefined)}
+            editOpen={Boolean(editingProduct)}
+            product={editingProduct}
+          />
         </Box>
       </Modal>
     </>
