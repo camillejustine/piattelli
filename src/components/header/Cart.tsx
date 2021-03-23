@@ -15,10 +15,10 @@ interface IProps {
 }
 
 function Cart(props: IProps) {
-  const { cart, removeProductFromCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
   const classes = useStyles();
 
-  const total = cart.reduce((number: number, item) => number + item.quantity * item.price, 0);
+  const total = cart.reduce((ack: number, item) => ack + item.quantity * item.price, 0);
  
   return (
     <>

@@ -20,6 +20,7 @@ import PaymentMethod from "./PaymentMethod";
 import { CartContext } from "../context/CartContext";
 import { resolve } from "node:path";
 import OrderComfirmation from "./OrderComfirmation";
+import GroupedButtons from "../header/CartIncrementer";
 
 function getSteps() {
   return [
@@ -82,7 +83,7 @@ function Checkout() {
 
   //get content of cart from context/ls
   const { cart, removeProductFromCart, clearCart } = useContext(CartContext);
-  const total = cart.reduce((n: any, { price }: any) => n + price, 0);
+  const total = cart.reduce((ack: number, item) => ack + item.quantity * item.price, 0);
   const [payedProducts, setPayedProducts] = useState<any[]>()
   const [totalPayed, setTotalPayed] = useState<number>()
   // let payedProducts = [''];
@@ -136,11 +137,7 @@ function Checkout() {
               ) : null}
               {cart.map((product: any) => (
                 <Box className={classes.cartContent}>
-                  <CloseIcon
-                    onClick={() => {
-                      removeProductFromCart(product.name);
-                    }}
-                  ></CloseIcon>
+                  
                   <Link href={`/products/${product.name}`}>
                     <img src={product.preview} width="100rem" height="100rem" />
                   </Link>
@@ -149,6 +146,9 @@ function Checkout() {
                     <Typography variant="body2">
                       Price: {product.price}
                     </Typography>
+                    <GroupedButtons 
+                      product={product}
+                    />
                   </div>
                 </Box>
               ))}
