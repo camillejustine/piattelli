@@ -52,7 +52,7 @@ function Cart(props: IProps) {
                   <div className={classes.cartItemDetail}>
                     <span>{product.name}</span>
                     <span>Price: {product.price}&nbsp;kr</span>
-                    <GroupedButtons/>
+                    <GroupedButtons quantity={product.quantity}/>
                   </div>
                 <CloseIcon
                   onClick={() => {
