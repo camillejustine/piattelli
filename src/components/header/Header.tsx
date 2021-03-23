@@ -14,8 +14,7 @@ function Header() {
   const { cart } = useContext(CartContext);
   const classes = useStyles();
 
-  const amountOfItemsInCart = cart.reduce((number: number, item) => number + item.quantity, 0);
-
+  const amountOfItemsInCart = cart.reduce((ack: number, item) => ack + item.quantity, 0);
 
   function hideCart() {
     setIsCartVisible(false);
