@@ -28,7 +28,6 @@ class ProductContext extends Component<{}, IState> {
   }
 
   render() {
-    console.log(this.state);
     return (
       <ProductsContext.Provider
         value={{
