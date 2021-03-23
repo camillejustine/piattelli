@@ -31,8 +31,6 @@ function getSteps() {
   ];
 }
 
-
-
 function Checkout() {
   //Step counter
   const [activeStep, setActiveStep] = useState(0);
@@ -83,9 +81,12 @@ function Checkout() {
 
   //get content of cart from context/ls
   const { cart, clearCart } = useContext(CartContext);
-  const total = cart.reduce((ack: number, item) => ack + item.quantity * item.price, 0);
-  const [payedProducts, setPayedProducts] = useState<any[]>()
-  const [totalPayed, setTotalPayed] = useState<number>()
+  const total = cart.reduce(
+    (ack: number, item) => ack + item.quantity * item.price,
+    0
+  );
+  const [payedProducts, setPayedProducts] = useState<any[]>();
+  const [totalPayed, setTotalPayed] = useState<number>();
   // let payedProducts = [''];
 
   // changes to the stepper
@@ -114,7 +115,6 @@ function Checkout() {
     clearCart();
     handleNext();
   }
-  
 
   //Cases for stepper
   //Each case is one step on the stepper
@@ -137,7 +137,6 @@ function Checkout() {
               ) : null}
               {cart.map((product: any) => (
                 <Box className={classes.cartContent}>
-                  
                   <Link href={`/products/${product.name}`}>
                     <img src={product.preview} width="100rem" height="100rem" />
                   </Link>
@@ -146,9 +145,7 @@ function Checkout() {
                     <Typography variant="body2">
                       Price: {product.price}
                     </Typography>
-                    <GroupedButtons 
-                      product={product}
-                    />
+                    <GroupedButtons product={product} />
                   </div>
                 </Box>
               ))}
@@ -205,11 +202,16 @@ function Checkout() {
       case 3:
         return (
           <OrderComfirmation
-          name={fullName}
-          email={email}
-          payedProducts={payedProducts}
-          deliveryOption={deliveryOption}
-          total={totalPayed}
+            name={fullName}
+            adress={adress}
+            phoneNumber={phoneNumber}
+            zipCode={zipCode}
+            country={country}
+            city={city}
+            email={email}
+            payedProducts={payedProducts}
+            deliveryOption={deliveryOption}
+            total={totalPayed}
           />
         );
       default:
@@ -293,7 +295,7 @@ const useStyles = makeStyles({
     padding: "0 10rem",
     marginTop: "8.5rem",
     height: "50rem",
-    border: "solid 2px black",
+    // border: "solid 2px black",
     position: "relative",
   },
   buttonWrapper: {

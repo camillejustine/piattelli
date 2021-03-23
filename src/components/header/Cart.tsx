@@ -121,6 +121,21 @@ const useStyles = makeStyles({
   cartWrapper: {
     height: '30rem',
     overflow: 'auto',
+    marginRight: '0.5rem',
+    '&::-webkit-scrollbar': {
+      width: '0.4em'
+    },
+    '&::-webkit-scrollbar-track': {
+      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: 'rgba(0,0,0,.1)',
+      outline: '1px solid slategrey',
+      border:' 4px solid transparent',
+      borderRadius:'8px',
+      backgroundClip: 'padding-box',
+    }
 
   }
 });
