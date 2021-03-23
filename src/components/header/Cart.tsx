@@ -17,21 +17,9 @@ interface IProps {
 function Cart(props: IProps) {
   const { cart, removeProductFromCart } = useContext(CartContext);
   const classes = useStyles();
-  const total = cart.reduce((n: any, { price }: any) => n + price, 0);
-  const sameProduct = []
 
-  function checkIfSameProduct(product: object) {
-    for(const sameProduct of cart){
-      console.log(sameProduct)
-    }
-    console.log(product)
-  }
-  //take cart array
-  //if name value of cart same
-  //display only one of
-  //add other values to number length
-  //remove add from this with button 
-  
+  const total = cart.reduce((number: number, item) => number + item.quantity * item.price, 0);
+ 
   return (
     <>
       {props.isVisible ? (
@@ -49,17 +37,13 @@ function Cart(props: IProps) {
                 <Link href={`/products/${product.name}`}>
                   <img src={product.preview} width="100rem" height="100rem" />
                 </Link>
-                <div className={classes.cartItemDetail}>
-                  <span>{product.name}</span>
-                  <span>Price: {product.price}&nbsp;kr</span>
-                  <GroupedButtons/>
-                </div>
-                <CloseIcon
-                  onClick={() => {
-                    removeProductFromCart(product.uniqueId);
-                  }}
-                ></CloseIcon>
-                
+                  <div className={classes.cartItemDetail}>
+                    <span>{product.name}</span>
+                    <span>Price: {product.price}&nbsp;kr</span>
+                    <GroupedButtons 
+                      product={product}
+                    />
+                  </div>
               </Box>
             ))}
           </Box>

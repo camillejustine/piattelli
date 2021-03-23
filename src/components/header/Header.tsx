@@ -14,6 +14,9 @@ function Header() {
   const { cart } = useContext(CartContext);
   const classes = useStyles();
 
+  const amountOfItemsInCart = cart.reduce((number: number, item) => number + item.quantity, 0);
+
+
   function hideCart() {
     setIsCartVisible(false);
   }
@@ -58,7 +61,7 @@ function Header() {
             }}
           />
           <Badge
-            badgeContent={cart.length}
+            badgeContent={amountOfItemsInCart}
             color="primary"
             className="animate__animated animate__bounceIn"
             onClick={() => {

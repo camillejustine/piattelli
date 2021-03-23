@@ -12,7 +12,6 @@ export interface Product {
 }
 
 interface IState {
-  //make interface for objects
   products: Product[];
 }
 interface ContextValue extends IState {
@@ -29,7 +28,6 @@ class ProductContext extends Component<{}, IState> {
   }
 
   render() {
-    console.log(this.state);
     return (
       <ProductsContext.Provider
         value={{

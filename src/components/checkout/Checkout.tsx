@@ -138,7 +138,7 @@ function Checkout() {
                 <Box className={classes.cartContent}>
                   <CloseIcon
                     onClick={() => {
-                      removeProductFromCart(product.uniqueId);
+                      removeProductFromCart(product.name);
                     }}
                   ></CloseIcon>
                   <Link href={`/products/${product.name}`}>

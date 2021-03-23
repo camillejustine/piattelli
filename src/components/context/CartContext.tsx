@@ -1,4 +1,4 @@
-import {Component, createContext} from 'react';
+import {Component, createContext, useEffect, useState} from 'react';
 import { Product } from './ProductsContext';
 
 interface CartItem extends Product {
@@ -20,47 +20,66 @@ export const CartContext = createContext<ContextValue>({
     removeProductFromCart: () => {},
     clearCart: () => {}
 })
-class CartProvider extends Component<{},IState> {
-    state: IState = {
-        cart: [],
+
+interface Props {
+    children: any;
+}
+
+function CartProvider(props: Props){
+    const [cartItems, setCartItems] = useState([] as CartItem[])
+
+    function addProductToCart(product: Product) {
+        setCartItems(prev => { 
+            const isItemInCart = prev.find(item => item.name === product.name);
+            
+            if(isItemInCart) {
+               return prev.map((item: any) => 
+                    item.name === product.name
+                        ? {...item, quantity: item.quantity + 1} 
+                        : item           
+                )    
+            }
+            return [...prev, { ...product, quantity: 1 }]
+        })
     }
 
-    addProductToCart = (product: Product) => {
-        const updateCart = [...this.state.cart, { ...product, quantity: 1 }]
-        this.setState({ cart: updateCart })
+    function removeProductFromCart(productName: Product){
+        const cart = cartItems.filter((product: Product) => productName.name !== product.name);
+        setCartItems(cart) 
+    }
+     function clearCart(){
+        setCartItems([]);
+        localStorage.setItem('cart', JSON.stringify([]));
     }
 
+    useEffect(() => {
+        let cart = JSON.parse(localStorage.getItem('cart') || "[]");
+        setCartItems(cart);
+    }, []) 
 
-    removeProductFromCart = (id: any) =>  {
-        const cart = this.state.cart.filter((item: any) => item.uniqueId !== id);
-        this.setState({cart: cart}) 
-    }
-    clearCart = () => {
-        this.setState({cart: []});
-        localStorage.setItem('cart', JSON.stringify(this.state.cart));
-    }
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cartItems))
+    })
 
-    componentDidMount() {
+    /* componentDidMount() {
         let cart = JSON.parse(localStorage.getItem('cart') || "[]");
         this.setState({ cart });
     }
 
     componentDidUpdate() {
         localStorage.setItem('cart', JSON.stringify(this.state.cart))
-    }
+    } */
 
-    render() {
         return (
             <CartContext.Provider value={{
-                cart: this.state.cart,
-                addToCart: this.addProductToCart,
-                removeProductFromCart: this.removeProductFromCart,
-                clearCart: this.clearCart
+                cart: cartItems,
+                addToCart: addProductToCart,
+                removeProductFromCart: removeProductFromCart,
+                clearCart: clearCart
             }}>
-                {this.props.children}
+                {props.children}
             </CartContext.Provider>
         )
-    }
 }
 
 

@@ -1,29 +1,31 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { CartContext } from "../context/CartContext";
+import { PropertySignature } from "typescript";
+import { Product } from "../context/ProductsContext";
 
-class GroupedButtons extends React.Component<{}, { counter: number }>{
-  state = { counter:  0 };
+interface IProps {
+  product: any;
+}
 
-  handleIncrement = () => {
-    this.setState(state => ({ counter: state.counter + 1 }));
-  };
+function GroupedButtons(props: IProps){
+  let [count, setCounter] = useState<number>(0);
+  const { addToCart, removeProductFromCart } = useContext(CartContext)
 
-  handleDecrement = () => {
-    this.setState(state => ({ counter: state.counter - 1 }));
-  };
-
-  render() {
-    const displayCounter = this.state.counter > 0;
+  console.log(props.product.quantity)
 
     return (
       <ButtonGroup size="small" aria-label="small outlined button group">
-        <Button onClick={this.handleIncrement}>+</Button>
-        {displayCounter && <Button disabled>{this.state.counter}</Button>}
-        {displayCounter && <Button onClick={this.handleDecrement}>-</Button>}
+        <Button onClick={() => {
+          addToCart(props.product)
+        }}>+</Button>
+        <Button disabled>{props.product.quantity}</Button>
+        <Button onClick={() => {
+          removeProductFromCart(props.product)
+        }}>-</Button>
       </ButtonGroup>
     );
-  }
 }
 
 export default GroupedButtons;
