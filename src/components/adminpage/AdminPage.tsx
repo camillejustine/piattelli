@@ -24,88 +24,78 @@ function OpenAdminPage() {
 
   return (
     <>
-      <Box>
-        <button type="button" onClick={() => setOpen(true)}>
-          Open Modal
-        </button>
-      </Box>
-      <Modal open={open}>
-        <Box className={classes.modalContainer}>
-          <Typography variant={"h3"}>Admin page</Typography>
-          <Button onClick={() => setOpen(false)}>
-            <CancelOutlinedIcon />
-          </Button>
-          <Box className={classes.productsContainer}>
-            <Grid
-              container
-              item
-              xs={12}
-              spacing={1}
-              className={classes.innerGridStyle}
-            >
-              {products.map((product) => {
-                //console.log(product); 
-                return (
-                  <>
-                    <Box className={classes.productCard}>
-                      <img
-                        src={product.preview}
-                        className={classes.imageStyling}
-                        draggable={false}
-                        alt="Bags from Pialetti"
-                        width="100"
-                        height="100"
-                      />
-                      <Box className={classes.flexRow}>
-                        <Typography
-                          variant={"body1"}
-                          className={classes.productName}
-                        >
-                          {product.name}
-                        </Typography>
-                      </Box>
-                      <Box className={classes.flexRow}>
-                        <Typography
-                          variant={"body1"}
-                          className={classes.productName}
-                        >
-                          {product.price}&nbsp;kr
-                        </Typography>
-                      </Box>
-                      <Button onClick={() => setEditingProduct(product)}>
-                        <EditOutlinedIcon fontSize={"small"} />
-                      </Button>
+      <Box className={classes.modalContainer}>
+        <Typography variant={"h3"}>Admin page</Typography>
+        <Box className={classes.productsContainer}>
+          <Grid
+            container
+            item
+            xs={12}
+            spacing={1}
+            className={classes.innerGridStyle}
+          >
+            {products.map((product) => {
+              //console.log(product);
+              return (
+                <>
+                  <Box className={classes.productCard}>
+                    <img
+                      src={product.preview}
+                      className={classes.imageStyling}
+                      draggable={false}
+                      alt="Bags from Pialetti"
+                      width="150"
+                      height="150"
+                    />
+                    <Box className={classes.flexRow}>
+                      <Typography
+                        variant={"body1"}
+                        className={classes.productName}
+                      >
+                        {product.name}
+                      </Typography>
                     </Box>
-                  </>
-                );
-              })}
+                    <Box className={classes.flexRow}>
+                      <Typography
+                        variant={"body1"}
+                        className={classes.productName}
+                      >
+                        {product.price}&nbsp;kr
+                      </Typography>
+                    </Box>
+                    <Button onClick={() => setEditingProduct(product)}>
+                      <EditOutlinedIcon fontSize={"small"} />
+                    </Button>
+                  </Box>
+                </>
+              );
+            })}
+            <Box className={classes.addItemButton}>
               <Button>
                 <PostAddIcon fontSize={"large"} />
               </Button>
-            </Grid>
-          </Box>
-          <EditModal
-            closeModal={() => setEditingProduct(undefined)}
-            editOpen={Boolean(editingProduct)}
-            product={editingProduct}
-          />
+            </Box>
+          </Grid>
         </Box>
-      </Modal>
+        <EditModal
+          closeModal={() => setEditingProduct(undefined)}
+          editOpen={Boolean(editingProduct)}
+          product={editingProduct}
+        />
+      </Box>
     </>
   );
 }
 
 const useStyles: any = makeStyles({
   modalContainer: {
-    marginTop: "10rem",
-    height: "60%",
-    width: "60%",
-    margin: "auto",
-    backgroundColor: "#eaeaea",
+    height: "80vh",
+    width: "100%",
+    backgroundColor: "white",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    outline: "0",
+    // outline: "0",
     overflowY: "auto",
   },
 
@@ -138,6 +128,9 @@ const useStyles: any = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+  addItemButton: {
+    marginTop: "5rem",
   },
 });
 

@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@material-ui/core";
+import { Box, Container, Typography, Link } from "@material-ui/core";
 import { CSSProperties } from "react";
 import FooterSection from "./FooterSection";
 
@@ -11,6 +11,9 @@ function Footer() {
         <FooterSection />
         <FooterSection />
       </Box>
+      <Link href="/admin">
+        <Typography>Secret</Typography>
+      </Link>
       <Typography>
         <Box style={footerLogo}>
           <Typography variant="h4">PIATTELLI</Typography>
