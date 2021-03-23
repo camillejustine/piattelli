@@ -3,30 +3,27 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { CartContext } from "../context/CartContext";
 import { PropertySignature } from "typescript";
+import { Product } from "../context/ProductsContext";
 
 interface IProps {
-  quantity: number;
+  product: any;
 }
 
 function GroupedButtons(props: IProps){
   let [count, setCounter] = useState<number>(0);
-  const { cart } = useContext(CartContext)
+  const { addToCart, removeProductFromCart } = useContext(CartContext)
 
- 
-  function handleIncrement() {
-    setCounter(count += 1);
-  };
+  console.log(props.product.quantity)
 
-  function handleDecrement() {
-    setCounter(count -= 1);
-  };
-
-    /* const displayCounter = count > 0; */
     return (
       <ButtonGroup size="small" aria-label="small outlined button group">
-        <Button onClick={handleIncrement}>+</Button>
-        <Button disabled>{props.quantity}</Button>
-        <Button onClick={handleDecrement}>-</Button>
+        <Button onClick={() => {
+          addToCart(props.product)
+        }}>+</Button>
+        <Button disabled>{props.product.quantity}</Button>
+        <Button onClick={() => {
+          removeProductFromCart(props.product)
+        }}>-</Button>
       </ButtonGroup>
     );
 }

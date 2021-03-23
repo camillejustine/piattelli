@@ -40,13 +40,10 @@ function Cart(props: IProps) {
                   <div className={classes.cartItemDetail}>
                     <span>{product.name}</span>
                     <span>Price: {product.price}&nbsp;kr</span>
-                    <GroupedButtons quantity={product.quantity}/>
+                    <GroupedButtons 
+                      product={product}
+                    />
                   </div>
-                <CloseIcon
-                  onClick={() => {
-                    removeProductFromCart(product);
-                  }}
-                ></CloseIcon>
               </Box>
             ))}
           </Box>
