@@ -20,27 +20,26 @@ export const CartContext = createContext<ContextValue>({
     removeProductFromCart: () => {},
     clearCart: () => {}
 })
-function CartProvider(){
+
+interface Props {
+    children: any;
+}
+
+function CartProvider(props: Props){
     const [cartItems, setCartItems] = useState([] as CartItem[])
 
-    /* state: IState = {
-        cart: [],
-    }
- */
-    function addProductToCartproduct: Product) {
-        const updateCart = [...this.state.cart, { ...product, quantity: 1 }]
-        this.setState(prev => { 
-            const isItemInCart = prev.cart.find(item => item.name === product.name);
+    function addProductToCart(product: Product) {
+        setCartItems(prev => { 
+            const isItemInCart = prev.find(item => item.name === product.name);
             
             if(isItemInCart) {
-               const cart = prev.cart.map((item: any) => 
+               return prev.map((item: any) => 
                     item.name === product.name
                         ? {...item, quantity: item.quantity + 1} 
                         : item           
-                ) 
-                this.setState({cart})    
+                )    
             }
-            this.setState({cart:updateCart})
+            return [...prev, { ...product, quantity: 1 }]
         })
     }
 
@@ -56,8 +55,7 @@ function CartProvider(){
     useEffect(() => {
         let cart = JSON.parse(localStorage.getItem('cart') || "[]");
         setCartItems(cart);
-        localStorage.setItem('cart', JSON.stringify(cartItems))
-    }) 
+    }, []) 
 
     /* componentDidMount() {
         
@@ -74,7 +72,7 @@ function CartProvider(){
                 removeProductFromCart: removeProductFromCart,
                 clearCart: clearCart
             }}>
-                {this.props.children}
+                {props.children}
             </CartContext.Provider>
         )
 }
