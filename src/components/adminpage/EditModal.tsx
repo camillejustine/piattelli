@@ -22,15 +22,21 @@ function EditModal(props: IProps) {
   const classes = useStyles();
 
   const [nameState, setNameState] = useState<string>("");
+  const [priceState, setPriceState] = useState<number>(0);
+  const [previewState, setPreviewState] = useState<string>("");
+  const [collectionState, setCollectionState] = useState<string>("");
+  const [descriptionState, setDescriptionState] = useState<string>("");
+  const [detailsState, setDetailsState] = useState<string>("");
+  const [careState, setCareState] = useState<string>("");
 
   function updateLSCatalogue(
     name: string,
-    price?: number,
-    preview?: string,
-    collection?: string,
-    description?: string,
-    details?: string,
-    care?: string
+    price: number,
+    preview: string,
+    collection: string,
+    description: string,
+    details: string,
+    care: string
   ) {
     const productData = JSON.stringify({
       name: name,
@@ -88,33 +94,31 @@ function EditModal(props: IProps) {
             <TextField
               required
               name="price"
-              value={props.product.price}
+              type="number"
               error={props.product.price === null}
               id="product-price"
               label="price"
-              // onChange={(event) => props.setFullName(event.target.value)}
+              onChange={(event) => setPriceState(parseInt(event.target.value))}
               defaultValue={props.product.price}
             ></TextField>
 
             <TextField
               required
               name="Picture"
-              value={props.product.preview}
               error={props.product.preview === ""}
               id="product-Picture"
               label="Picture"
-              // onChange={(event) => props.setFullName(event.target.value)}
+              onChange={(event) => setPreviewState(event.target.value)}
               defaultValue={props.product.preview}
             ></TextField>
 
             <TextField
               required
               name="collection"
-              value={props.product.collection}
               error={props.product.collection === ""}
               id="product-collection"
               label="collection"
-              // onChange={(event) => props.setFullName(event.target.value)}
+              onChange={(event) => setCollectionState(event.target.value)}
               defaultValue={props.product.collection}
             ></TextField>
           </Box>
@@ -124,11 +128,10 @@ function EditModal(props: IProps) {
             rows={15}
             multiline={true}
             name="description"
-            value={props.product.description}
             error={props.product.description === ""}
             id="product-description"
             label="description"
-            // onChange={(event) => props.setFullName(event.target.value)}
+            onChange={(event) => setDescriptionState(event.target.value)}
             defaultValue={props.product.description}
           ></TextField>
 
@@ -137,11 +140,10 @@ function EditModal(props: IProps) {
             rows={15}
             multiline={true}
             name="details"
-            value={props.product.details}
             error={props.product.details === ""}
             id="product-details"
             label="details"
-            // onChange={(event) => props.setFullName(event.target.value)}
+            onChange={(event) => setDetailsState(event.target.value)}
             defaultValue={props.product.details}
           ></TextField>
 
@@ -149,16 +151,29 @@ function EditModal(props: IProps) {
             required
             rows={15}
             multiline={true}
-            className={classes.largeField}
             name="care"
             error={props.product.care === ""}
             id="product-care"
             label="care"
-            // onChange={(event) => props.setFullName(event.target.value)}
+            onChange={(event) => setCareState(event.target.value)}
             defaultValue={props.product.care}
           ></TextField>
 
-          <Button onClick={() => updateLSCatalogue(nameState)}>Save</Button>
+          <Button
+            onClick={() =>
+              updateLSCatalogue(
+                nameState,
+                priceState,
+                previewState,
+                collectionState,
+                descriptionState,
+                detailsState,
+                careState
+              )
+            }
+          >
+            Save
+          </Button>
         </form>
       </Box>
     </Modal>
