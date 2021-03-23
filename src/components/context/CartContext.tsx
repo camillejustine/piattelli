@@ -31,7 +31,6 @@ function CartProvider(props: Props){
     function addProductToCart(product: Product) {
         setCartItems(prev => { 
             const isItemInCart = prev.find(item => item.name === product.name);
-            
             if(isItemInCart) {
                return prev.map((item: any) => 
                     item.name === product.name
@@ -44,9 +43,18 @@ function CartProvider(props: Props){
     }
 
     function removeProductFromCart(productName: Product){
-        const cart = cartItems.filter((product: Product) => productName.name !== product.name);
-        setCartItems(cart) 
+        setCartItems(prev =>
+            prev.reduce((ack, item) => {
+              if (item.name === productName.name) {
+                if (item.quantity === 1) return ack;
+                return [...ack, { ...item, quantity: item.quantity - 1 }];
+              } else {
+                return [...ack, item];
+              }
+            }, [] as CartItem[])
+        );
     }
+
      function clearCart(){
         setCartItems([]);
         localStorage.setItem('cart', JSON.stringify([]));

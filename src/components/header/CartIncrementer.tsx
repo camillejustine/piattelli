@@ -13,8 +13,6 @@ function GroupedButtons(props: IProps){
   let [count, setCounter] = useState<number>(0);
   const { addToCart, removeProductFromCart } = useContext(CartContext)
 
-  console.log(props.product.quantity)
-
     return (
       <ButtonGroup size="small" aria-label="small outlined button group">
         <Button onClick={() => {

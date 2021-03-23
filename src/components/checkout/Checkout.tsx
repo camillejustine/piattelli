@@ -82,7 +82,7 @@ function Checkout() {
   const classes = useStyles();
 
   //get content of cart from context/ls
-  const { cart, removeProductFromCart, clearCart } = useContext(CartContext);
+  const { cart, clearCart } = useContext(CartContext);
   const total = cart.reduce((ack: number, item) => ack + item.quantity * item.price, 0);
   const [payedProducts, setPayedProducts] = useState<any[]>()
   const [totalPayed, setTotalPayed] = useState<number>()
