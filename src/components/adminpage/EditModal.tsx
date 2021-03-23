@@ -9,7 +9,7 @@ import {
 import { FormatColorResetOutlined } from "@material-ui/icons";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
 import { makeStyles } from "@material-ui/styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "../context/ProductsContext";
 
 interface IProps {
@@ -21,13 +21,38 @@ interface IProps {
 function EditModal(props: IProps) {
   const classes = useStyles();
 
-  const [nameState, setNameState] = useState<string>("");
+  const productCatalogue = localStorage.getItem("products");
+  // console.log(productCatalogue);
+
+  const [lsCatalogue, setLsCatalogue] = useState([] as Product[]);
+
+  const [nameState, setNameState] = useState<string>("poop");
   const [priceState, setPriceState] = useState<number>(0);
   const [previewState, setPreviewState] = useState<string>("");
   const [collectionState, setCollectionState] = useState<string>("");
   const [descriptionState, setDescriptionState] = useState<string>("");
   const [detailsState, setDetailsState] = useState<string>("");
   const [careState, setCareState] = useState<string>("");
+
+  // useEffect(() => {
+  //   setNameState(props.product!.name);
+  // });
+
+  function editProduct(product: Product) {
+    setLsCatalogue((prev) => {
+      const isProductInLS = prev.find((item) => item.name === product.name);
+
+      if (isProductInLS) {
+        return prev.map((item: any) =>
+          item.name === product.name
+            ? { ...item, name: (item.name = nameState) }
+            : item
+        );
+      }
+      return [...prev, { ...product, name: nameState }];
+    });
+    console.log(lsCatalogue);
+  }
 
   function updateLSCatalogue(
     name: string,
@@ -160,16 +185,17 @@ function EditModal(props: IProps) {
           ></TextField>
 
           <Button
-            onClick={() =>
-              updateLSCatalogue(
-                nameState,
-                priceState,
-                previewState,
-                collectionState,
-                descriptionState,
-                detailsState,
-                careState
-              )
+            onClick={
+              () => editProduct(props.product!)
+              // updateLSCatalogue(
+              //   nameState,
+              //   priceState,
+              //   previewState,
+              //   collectionState,
+              //   descriptionState,
+              //   detailsState,
+              //   careState
+              // )
             }
           >
             Save

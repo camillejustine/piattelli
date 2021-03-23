@@ -69,8 +69,10 @@ function Layout() {
           <Checkout />
         </Route>
         <Newsletter />
+        <Route path="/admin">
+          <AdminPage />
+        </Route>
         <Footer />
-        <AdminPage />
       </CartProvider>
     </Box>
   );
