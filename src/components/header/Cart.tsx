@@ -17,21 +17,9 @@ interface IProps {
 function Cart(props: IProps) {
   const { cart, removeProductFromCart } = useContext(CartContext);
   const classes = useStyles();
-  const total = cart.reduce((n, { price }: any) => n + price, 0);
-  const sameProduct = []
 
-  function checkIfSameProduct(product: object) {
-    for(const sameProduct of cart){
-      console.log(sameProduct)
-    }
-    console.log(product)
-  }
-  //take cart array
-  //if name value of cart same
-  //display only one of
-  //add other values to number length
-  //remove add from this with button 
-  
+  const total = cart.reduce((number: number, item) => number + item.quantity * item.price, 0);
+ 
   return (
     <>
       {props.isVisible ? (
