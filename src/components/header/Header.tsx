@@ -1,5 +1,6 @@
 import { Box, Link, TextField, Typography, Badge } from "@material-ui/core";
-import { Component, CSSProperties, useEffect, useState } from "react";
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import React, { Component, CSSProperties, useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { ShoppingCart as CartIcon } from "@material-ui/icons";
 import "animate.css/animate.css";
@@ -7,12 +8,16 @@ import Cart from "./Cart";
 import { makeStyles } from "@material-ui/styles";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
-
+import { ProductsContext } from "../context/ProductsContext";
+ 
 function Header() {
   const [searchClicked, setSearchClicked] = useState(false);
   const [isCartVisible, setIsCartVisible] = useState(false);
+  const { products } = useContext(ProductsContext);
   const { cart } = useContext(CartContext);
   const classes = useStyles();
+
+  console.log(products)
 
   const amountOfItemsInCart = cart.reduce((ack: number, item) => ack + item.quantity, 0);
 
@@ -42,11 +47,22 @@ function Header() {
             <SearchIcon />
           ) : (
             <form className="animate__animated animate__fadeIn">
-              <TextField
-                autoFocus
-                onBlur={() => setSearchClicked(false)}
-                id="search-basic"
-                label="Search"
+              <Autocomplete
+                freeSolo
+                disableClearable
+                options={products.map((option) => option.name)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    style={width}
+                    autoFocus
+                    id="search-basic"
+                    label="Search"
+                    margin="normal"
+                    InputProps={{ ...params.InputProps, type: 'search' }}
+                    onBlur={() => setSearchClicked(false)} 
+                  />)
+                }
               />
             </form>
           )}
@@ -95,5 +111,9 @@ const useStyles = makeStyles({
     alignItems: "center",
   },
 });
+
+const width: CSSProperties = {
+  width: "10rem"
+}
 
 export default Header;
