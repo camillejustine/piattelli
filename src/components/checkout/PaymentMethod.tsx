@@ -1,5 +1,11 @@
 import React from "react";
-import { Box, CircularProgress, makeStyles, TextField, Typography } from "@material-ui/core";
+import {
+  Box,
+  CircularProgress,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import swishLogo from "../../assets/swish.png";
 import cardLogo from "../../assets/card.png";
 
@@ -45,7 +51,7 @@ function PaymentMethod(props: IProps) {
         ) : null}
         <Box className={classes.contentWrapper}>
           <Box
-            className={classes.paymentMethodWrapper}
+            className={`${classes.paymentMethodWrapper} ${classes.centerFlex}`}
             onClick={() => {
               props.setPaymentOption("swish");
               props.clearValues();
@@ -59,7 +65,7 @@ function PaymentMethod(props: IProps) {
             />
           </Box>
           <Box
-            className={classes.paymentMethodWrapper}
+            className={`${classes.paymentMethodWrapper} ${classes.centerFlex}`}
             onClick={() => {
               props.setPaymentOption("card");
               props.clearValues();
@@ -73,7 +79,7 @@ function PaymentMethod(props: IProps) {
             />
           </Box>
           <Box
-            className={classes.paymentMethodWrapper}
+            className={`${classes.paymentMethodWrapper} ${classes.centerFlex}`}
             onClick={() => {
               props.setPaymentOption("giftcard");
               props.clearValues();
@@ -86,8 +92,11 @@ function PaymentMethod(props: IProps) {
         </Box>
         <Box>
           {props.paymentOption === "swish" ? (
-            <Box className={classes.centerFlex}>
+            <Box
+              className={`${classes.centerFlex} animate__animated animate__fadeIn`}
+            >
               <TextField
+                className={classes.textFields}
                 required
                 autoFocus
                 id="standard-required"
@@ -103,8 +112,11 @@ function PaymentMethod(props: IProps) {
             </Box>
           ) : null}
           {props.paymentOption === "card" ? (
-            <Box className={classes.centerFlex}>
+            <Box
+              className={`${classes.centerFlex} animate__animated animate__fadeIn`}
+            >
               <TextField
+                className={classes.textFields}
                 autoFocus
                 required
                 id="standard-required"
@@ -118,6 +130,7 @@ function PaymentMethod(props: IProps) {
                 }}
               />
               <TextField
+                className={classes.textFields}
                 required
                 id="standard-required"
                 label="Card number"
@@ -127,6 +140,7 @@ function PaymentMethod(props: IProps) {
                 // defaultValue="Email"
               />
               <TextField
+                className={classes.textFields}
                 required
                 id="standard-required"
                 label="CVC"
@@ -139,8 +153,11 @@ function PaymentMethod(props: IProps) {
             </Box>
           ) : null}
           {props.paymentOption === "giftcard" ? (
-            <Box className={classes.centerFlex}>
+            <Box
+              className={`${classes.centerFlex} animate__animated animate__fadeIn`}
+            >
               <TextField
+                className={classes.textFields}
                 required
                 id="standard-required"
                 label="Giftcard number"
@@ -154,7 +171,7 @@ function PaymentMethod(props: IProps) {
           ) : null}
         </Box>
         <Box className={`${classes.centerFlex} ${classes.loadingAnimation}`}>
-       {props.isLoading ? <CircularProgress /> : null } 
+          {props.isLoading ? <CircularProgress /> : null}
         </Box>
       </Box>
     </>
@@ -188,12 +205,14 @@ const useStyles = makeStyles({
     borderRadius: 5,
   },
   paymentLogoSize: {
-    width: "15rem",
-    height: "8rem",
+    width: "10rem",
+    height: "auto",
   },
   loadingAnimation: {
-    margin: '5rem',
-  }
-
-
+    margin: "5rem",
+  },
+  textFields: {
+    margin: "1rem 1rem",
+    width: "15rem",
+  },
 });

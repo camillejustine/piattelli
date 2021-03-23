@@ -38,7 +38,7 @@ function Checkout() {
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
 
-  //Form states
+  //Form states (cst details)
   const [fullName, setFullName] = useState<string>();
   const [phoneNumber, setPhoneNumber] = useState<string>();
   const [email, setEmail] = useState<string>();
@@ -205,6 +205,7 @@ function Checkout() {
       case 3:
         return (
           <OrderComfirmation
+          name={fullName}
           email={email}
           payedProducts={payedProducts}
           deliveryOption={deliveryOption}
