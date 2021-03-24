@@ -27,7 +27,6 @@ function EditModal(props: IProps) {
 
   const [product, setProduct] = useState<Product>();
 
-  
   const inputFieldNames = [
     "name",
     "price",
@@ -38,7 +37,7 @@ function EditModal(props: IProps) {
     "care",
   ];
 
-  function handleChange(event: any) {
+  function handleNameChange(event: any) {
     setProduct(props.product);
 
     setProduct((prev: any) => {
@@ -46,6 +45,56 @@ function EditModal(props: IProps) {
       return prev;
     });
   }
+  function handlePriceChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.price = parseInt(event);
+      return prev;
+    });
+  }
+  function handlePreviewChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.preview = event;
+      return prev;
+    });
+  }
+  function handleCollectionChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.collection = event;
+      return prev;
+    });
+  }
+  function handleDescriptionChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.description = event;
+      return prev;
+    });
+  }
+  function handleDetailsChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.details = event;
+      return prev;
+    });
+  }
+  function handleCareChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.care = event;
+      return prev;
+    });
+  }
+
+
 
   if (!props.product) return null;
   return (
@@ -82,7 +131,7 @@ function EditModal(props: IProps) {
               error={props.product.name === ""}
               id="product-name"
               label="Name"
-              onChange={(event) => handleChange(event.target.value)}
+              onChange={(event) => handleNameChange(event.target.value)}
               defaultValue={props.product.name}
             ></TextField>
 
@@ -93,14 +142,8 @@ function EditModal(props: IProps) {
               error={props.product.price === null}
               id="product-price"
               label="price"
-              onChange={(event) => {
-                setProduct(props.product);
+              onChange={(event) => handlePriceChange(event.target.value)}
 
-                setProduct((prev: any) => {
-                  prev.price = parseInt(event.target.value);
-                  return prev;
-                });
-              }}
               defaultValue={props.product.price}
             ></TextField>
 
@@ -110,14 +153,8 @@ function EditModal(props: IProps) {
               error={props.product.preview === ""}
               id="product-Picture"
               label="Picture"
-              onChange={(event) => {
-                setProduct(props.product);
-
-                setProduct((prev: any) => {
-                  prev.preview = event.target.value;
-                  return prev;
-                });
-              }}
+              onChange={(event) => handlePreviewChange(event.target.value)}
+              
               defaultValue={props.product.preview}
             ></TextField>
 
@@ -127,14 +164,8 @@ function EditModal(props: IProps) {
               error={props.product.collection === ""}
               id="product-collection"
               label="collection"
-              onChange={(event) => {
-                setProduct(props.product);
+              onChange={(event) => handleCollectionChange(event.target.value)}
 
-                setProduct((prev: any) => {
-                  prev.collection = event.target.value;
-                  return prev;
-                });
-              }}
               defaultValue={props.product.collection}
             ></TextField>
           </Box>
@@ -147,14 +178,8 @@ function EditModal(props: IProps) {
             error={props.product.description === ""}
             id="product-description"
             label="description"
-            onChange={(event) => {
-              setProduct(props.product);
+            onChange={(event) => handleDescriptionChange(event.target.value)}
 
-              setProduct((prev: any) => {
-                prev.description = event.target.value;
-                return prev;
-              });
-            }}
             defaultValue={props.product.description}
           ></TextField>
 
@@ -166,14 +191,8 @@ function EditModal(props: IProps) {
             error={props.product.details === ""}
             id="product-details"
             label="details"
-            onChange={(event) => {
-              setProduct(props.product);
+            onChange={(event) => handleDetailsChange(event.target.value)}
 
-              setProduct((prev: any) => {
-                prev.details = event.target.value;
-                return prev;
-              });
-            }}
             defaultValue={props.product.details}
           ></TextField>
 
@@ -185,14 +204,8 @@ function EditModal(props: IProps) {
             error={props.product.care === ""}
             id="product-care"
             label="care"
-            onChange={(event) => {
-              setProduct(props.product);
+            onChange={(event) => handleCareChange(event.target.value)}
 
-              setProduct((prev: any) => {
-                prev.care = event.target.value;
-                return prev;
-              });
-            }}
             defaultValue={props.product.care}
           ></TextField>
 
