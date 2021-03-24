@@ -49,7 +49,7 @@ function ProductContext(props: IProps) {
     console.log(product);
 
     let updatedProducts = products.map((item) => {
-      if (item.name === product.name) {
+      if (item.id === product.id) {
         return { ...item, product };
       }
       return item;
@@ -61,7 +61,7 @@ function ProductContext(props: IProps) {
   function removeProduct(product: Product) {
     setProducts((prev) =>
       prev.reduce((ack, item) => {
-        if (item.name === product.name) {
+        if (item.id === product.id) {
           return ack;
         } else {
           return [...ack, item];
