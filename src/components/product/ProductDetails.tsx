@@ -5,9 +5,6 @@ import { useParams } from "react-router-dom";
 //context
 import { CartContext } from "../context/CartContext";
 import { ProductsContext } from "../context/ProductsContext";
-//image
-import ImgTest from "../../assets/hero2.png";
-
 interface IProps {
   productView: any;
 }
