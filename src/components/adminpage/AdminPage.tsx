@@ -18,6 +18,7 @@ function OpenAdminPage() {
   const { products } = useContext(ProductsContext);
   const [open, setOpen] = React.useState(false);
   const [editingProduct, setEditingProduct] = useState<any>();
+  const [emptyProduct, setEmptyProduct] = useState<Product>({} as Product);
   const [newProduct, setNewProduct] = useState<boolean>(false);
 
   const { removeProduct } = useContext(ProductsContext);
@@ -77,8 +78,9 @@ function OpenAdminPage() {
             <Box className={classes.addItemButton}>
               <Button
                 onClick={() => {
-                  setEditingProduct("");
+                  setEditingProduct(emptyProduct);
                   setNewProduct(true);
+                  console.log(emptyProduct);
                 }}
               >
                 <PostAddIcon fontSize={"large"} />
@@ -87,6 +89,7 @@ function OpenAdminPage() {
           </Grid>
         </Box>
         <EditModal
+          newProduct={newProduct}
           closeModal={() => setEditingProduct(undefined)}
           editOpen={Boolean(editingProduct)}
           product={editingProduct}
