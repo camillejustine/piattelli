@@ -20,7 +20,7 @@ function OpenAdminPage() {
   const classes = useStyles();
   const { products } = useContext(ProductsContext);
   const [open, setOpen] = React.useState(false);
-  const [editingProduct, setEditingProduct] = React.useState<Product>();
+  const [editingProduct, setEditingProduct] = useState<any>();
 
   return (
     <>

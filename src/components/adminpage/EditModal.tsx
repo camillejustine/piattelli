@@ -9,73 +9,31 @@ import {
 import { FormatColorResetOutlined } from "@material-ui/icons";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
 import { makeStyles } from "@material-ui/styles";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Product } from "../context/ProductsContext";
+import { ProductsContext } from "../context/ProductsContext";
 
 interface IProps {
   closeModal: () => void;
   editOpen: boolean;
-  product?: Product;
+  product: Product;
 }
 
 function EditModal(props: IProps) {
   const classes = useStyles();
+  const { products, addNewProduct, updateProduct, removeProduct } = useContext(
+    ProductsContext
+  );
 
-  const productCatalogue = localStorage.getItem("products");
-  // console.log(productCatalogue);
+  const [product, setProduct] = useState([] as Product[]);
 
-  const [lsCatalogue, setLsCatalogue] = useState([] as Product[]);
-
-  const [nameState, setNameState] = useState<string>("poop");
+  const [nameState, setNameState] = useState<string>("");
   const [priceState, setPriceState] = useState<number>(0);
   const [previewState, setPreviewState] = useState<string>("");
   const [collectionState, setCollectionState] = useState<string>("");
   const [descriptionState, setDescriptionState] = useState<string>("");
   const [detailsState, setDetailsState] = useState<string>("");
   const [careState, setCareState] = useState<string>("");
-
-  // useEffect(() => {
-  //   setNameState(props.product!.name);
-  // });
-
-  function editProduct(product: Product) {
-    setLsCatalogue((prev) => {
-      const isProductInLS = prev.find((item) => item.name === product.name);
-
-      if (isProductInLS) {
-        return prev.map((item: any) =>
-          item.name === product.name
-            ? { ...item, name: (item.name = nameState) }
-            : item
-        );
-      }
-      return [...prev, { ...product, name: nameState }];
-    });
-    console.log(lsCatalogue);
-  }
-
-  function updateLSCatalogue(
-    name: string,
-    price: number,
-    preview: string,
-    collection: string,
-    description: string,
-    details: string,
-    care: string
-  ) {
-    const productData = JSON.stringify({
-      name: name,
-      price: Number(price),
-      preview: preview,
-      collection: collection,
-      description: description,
-      details: details,
-      care: care,
-    });
-
-    //this function clears LS atm
-    localStorage.setItem("products", productData);
-  }
 
   if (!props.product) return null;
   return (
@@ -186,7 +144,9 @@ function EditModal(props: IProps) {
 
           <Button
             onClick={
-              () => editProduct(props.product!)
+              () => {
+                updateProduct(props.product);
+              }
               // updateLSCatalogue(
               //   nameState,
               //   priceState,
