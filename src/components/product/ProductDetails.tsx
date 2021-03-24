@@ -33,9 +33,7 @@ function ProductDetails(props: IProps) {
   return (
     <Box className={classes.wrapper}>
       <Box className={classes.productWrapper}>
-        <img src={ImgTest} alt="" width="600" height="750" />
-        <img src={ImgTest} alt="" width="600" height="750" />
-        <img src={ImgTest} alt="" width="600" height="750" />
+        <img src={detailViewProduct.preview} alt="" width="600" height="600" />
       </Box>
       <Box className={classes.infoWrapper}>
         <Box className={classes.detailPadding}>
