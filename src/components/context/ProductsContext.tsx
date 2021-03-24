@@ -9,7 +9,7 @@ export interface Product {
   description: string;
   details: string;
   care: string;
-  id?: string;
+  id: number;
 }
 
 interface IState {
@@ -47,6 +47,8 @@ function ProductContext(props: IProps) {
 
   function updateProduct(product: Product) {
     console.log(product);
+    //compare product id coming in, to the id of products in state
+    // update correct product
   }
 
   function removeProduct(product: Product) {
