@@ -1,5 +1,5 @@
-import { Component, createContext } from "react";
-import { products } from "./mockedProducts";
+import { Component, createContext, useEffect, useState } from "react";
+import { productsMocked } from "./mockedProducts";
 
 export interface Product {
   name: string;
@@ -15,44 +15,63 @@ export interface Product {
 interface IState {
   products: Product[];
 }
-interface ContextValue extends IState {
-  productViewDisplay: (product: Product) => void;
-}
-class ProductContext extends Component<{}, IState> {
-  state: IState = {
-    products: products,
-  };
 
-  componentDidMount() {
+interface IProps {
+  children: Object;
+}
+interface ContextValue extends IState {
+  addNewProduct: (product: Product) => void;
+  updateProduct: (product: Product) => void;
+  removeProduct: (product: Product) => void;
+}
+function ProductContext(props: IProps) {
+  const [products, setProducts] = useState(productsMocked);
+
+  useEffect(() => {
     if (!localStorage.hasOwnProperty("products")) {
-      localStorage.setItem("products", JSON.stringify(this.state.products));
+      localStorage.setItem("products", JSON.stringify(products));
     }
     let productsLS = JSON.parse(localStorage.getItem("products") || "[]");
-    this.setState({ products: productsLS });
+    setProducts(productsLS);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(products));
+  });
+
+  function addNewProduct(product: Product) {
+    const updateProductView = [...products, product];
+    setProducts(updateProductView);
+    console.log(product);
   }
 
-  displayInProductView(product: Product) {
-    const updateProductView = [...this.state.products, product];
-    this.setState({ products: updateProductView });
+  function updateProduct(product: Product) {
+    console.log(product);
   }
 
-  render() {
-    return (
-      <ProductsContext.Provider
-        value={{
-          products: this.state.products,
-          productViewDisplay: this.displayInProductView,
-        }}
-      >
-        {this.props.children}
-      </ProductsContext.Provider>
-    );
+  function removeProduct(product: Product) {
+    console.log(product);
   }
+
+  return (
+    <ProductsContext.Provider
+      value={{
+        products: products,
+        addNewProduct: addNewProduct,
+        updateProduct: updateProduct,
+        removeProduct: removeProduct,
+      }}
+    >
+      {props.children}
+    </ProductsContext.Provider>
+  );
 }
 
 export const ProductsContext = createContext<ContextValue>({
   products: [],
-  productViewDisplay: () => {},
+  addNewProduct: () => {},
+  updateProduct: () => {},
+  removeProduct: () => {},
 });
 
 export const ProductConsumer = ProductsContext.Consumer;
