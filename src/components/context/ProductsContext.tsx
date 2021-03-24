@@ -40,8 +40,12 @@ function ProductContext(props: IProps) {
     
   });
 
+  function randomID(){
+    return Math.random() * (99999 - 1) + 1;
+  }
+
   function addNewProduct(product: Product) {
-    product.id = products.length + 10001;
+    product.id = randomID();
     const updateProductView = [...products, product];
     setProducts(updateProductView);
     console.log(updateProductView);
