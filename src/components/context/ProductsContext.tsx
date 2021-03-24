@@ -47,8 +47,15 @@ function ProductContext(props: IProps) {
 
   function updateProduct(product: Product) {
     console.log(product);
-    //compare product id coming in, to the id of products in state
-    // update correct product
+
+    let updatedProducts = products.map((item) => {
+      if (item.id === product.id) {
+        return { ...item, product };
+      }
+      return item;
+    });
+
+    setProducts(updatedProducts);
   }
 
   function removeProduct(product: Product) {

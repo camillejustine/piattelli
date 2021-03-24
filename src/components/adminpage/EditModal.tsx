@@ -26,16 +26,77 @@ function EditModal(props: IProps) {
     ProductsContext
   );
 
-  const [product, setProduct] = useState([] as Product[]);
-  const [editingProduct, setEditingProduct] = useState<any>();
 
-  const [nameState, setNameState] = useState<string>("");
-  const [priceState, setPriceState] = useState<number>(0);
-  const [previewState, setPreviewState] = useState<string>("");
-  const [collectionState, setCollectionState] = useState<string>("");
-  const [descriptionState, setDescriptionState] = useState<string>("");
-  const [detailsState, setDetailsState] = useState<string>("");
-  const [careState, setCareState] = useState<string>("");
+  const [product, setProduct] = useState<Product>();
+
+  const inputFieldNames = [
+    "name",
+    "price",
+    "preview",
+    "collection",
+    "description",
+    "details",
+    "care",
+  ];
+
+  function handleNameChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.name = event;
+      return prev;
+    });
+  }
+  function handlePriceChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.price = parseInt(event);
+      return prev;
+    });
+  }
+  function handlePreviewChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.preview = event;
+      return prev;
+    });
+  }
+  function handleCollectionChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.collection = event;
+      return prev;
+    });
+  }
+  function handleDescriptionChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.description = event;
+      return prev;
+    });
+  }
+  function handleDetailsChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.details = event;
+      return prev;
+    });
+  }
+  function handleCareChange(event: any) {
+    setProduct(props.product);
+
+    setProduct((prev: any) => {
+      prev.care = event;
+      return prev;
+    });
+  }
+
+
 
   function saveChanges() {
     let saveContext = updateProduct(props.product);
@@ -81,7 +142,7 @@ function EditModal(props: IProps) {
               error={props.product.name === ""}
               id="product-name"
               label="Name"
-              onChange={(event) => setNameState(event.target.value)}
+              onChange={(event) => handleNameChange(event.target.value)}
               defaultValue={props.product.name}
             ></TextField>
 
@@ -92,7 +153,8 @@ function EditModal(props: IProps) {
               error={props.product.price === null}
               id="product-price"
               label="price"
-              onChange={(event) => setPriceState(parseInt(event.target.value))}
+              onChange={(event) => handlePriceChange(event.target.value)}
+
               defaultValue={props.product.price}
             ></TextField>
 
@@ -102,7 +164,8 @@ function EditModal(props: IProps) {
               error={props.product.preview === ""}
               id="product-Picture"
               label="Picture"
-              onChange={(event) => setPreviewState(event.target.value)}
+              onChange={(event) => handlePreviewChange(event.target.value)}
+              
               defaultValue={props.product.preview}
             ></TextField>
 
@@ -112,7 +175,8 @@ function EditModal(props: IProps) {
               error={props.product.collection === ""}
               id="product-collection"
               label="collection"
-              onChange={(event) => setCollectionState(event.target.value)}
+              onChange={(event) => handleCollectionChange(event.target.value)}
+
               defaultValue={props.product.collection}
             ></TextField>
           </Box>
@@ -125,7 +189,8 @@ function EditModal(props: IProps) {
             error={props.product.description === ""}
             id="product-description"
             label="description"
-            onChange={(event) => setDescriptionState(event.target.value)}
+            onChange={(event) => handleDescriptionChange(event.target.value)}
+
             defaultValue={props.product.description}
           ></TextField>
 
@@ -137,7 +202,8 @@ function EditModal(props: IProps) {
             error={props.product.details === ""}
             id="product-details"
             label="details"
-            onChange={(event) => setDetailsState(event.target.value)}
+            onChange={(event) => handleDetailsChange(event.target.value)}
+
             defaultValue={props.product.details}
           ></TextField>
 
@@ -149,25 +215,15 @@ function EditModal(props: IProps) {
             error={props.product.care === ""}
             id="product-care"
             label="care"
-            onChange={(event) => setCareState(event.target.value)}
+            onChange={(event) => handleCareChange(event.target.value)}
+
             defaultValue={props.product.care}
           ></TextField>
 
           <Button
-            onClick={
-              () => {
-                saveChanges();
-              }
-              // updateLSCatalogue(
-              //   nameState,
-              //   priceState,
-              //   previewState,
-              //   collectionState,
-              //   descriptionState,
-              //   detailsState,
-              //   careState
-              // )
-            }
+            onClick={() => {
+              updateProduct(props.product);
+            }}
           >
             Save
           </Button>
