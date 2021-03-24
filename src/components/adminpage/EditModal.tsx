@@ -17,7 +17,7 @@ interface IProps {
   closeModal: () => void;
   editOpen: boolean;
   product: Product;
-  NewProduct?: boolean;
+  newProduct: boolean;
 }
 
 function EditModal(props: IProps) {
@@ -25,7 +25,6 @@ function EditModal(props: IProps) {
   const { products, addNewProduct, updateProduct, removeProduct } = useContext(
     ProductsContext
   );
-
 
   const [product, setProduct] = useState<Product>();
 
@@ -96,17 +95,6 @@ function EditModal(props: IProps) {
     });
   }
 
-
-
-  function saveChanges() {
-    let saveContext = updateProduct(props.product);
-
-    if ((props.NewProduct = true)) {
-      saveContext = addNewProduct(props.product);
-    } else saveContext = updateProduct(props.product);
-    console.log(saveContext);
-  }
-
   if (!props.product) return null;
   return (
     <Modal open={props.editOpen}>
@@ -154,7 +142,6 @@ function EditModal(props: IProps) {
               id="product-price"
               label="price"
               onChange={(event) => handlePriceChange(event.target.value)}
-
               defaultValue={props.product.price}
             ></TextField>
 
@@ -165,7 +152,6 @@ function EditModal(props: IProps) {
               id="product-Picture"
               label="Picture"
               onChange={(event) => handlePreviewChange(event.target.value)}
-              
               defaultValue={props.product.preview}
             ></TextField>
 
@@ -176,7 +162,6 @@ function EditModal(props: IProps) {
               id="product-collection"
               label="collection"
               onChange={(event) => handleCollectionChange(event.target.value)}
-
               defaultValue={props.product.collection}
             ></TextField>
           </Box>
@@ -190,7 +175,6 @@ function EditModal(props: IProps) {
             id="product-description"
             label="description"
             onChange={(event) => handleDescriptionChange(event.target.value)}
-
             defaultValue={props.product.description}
           ></TextField>
 
@@ -203,7 +187,6 @@ function EditModal(props: IProps) {
             id="product-details"
             label="details"
             onChange={(event) => handleDetailsChange(event.target.value)}
-
             defaultValue={props.product.details}
           ></TextField>
 
@@ -216,13 +199,14 @@ function EditModal(props: IProps) {
             id="product-care"
             label="care"
             onChange={(event) => handleCareChange(event.target.value)}
-
             defaultValue={props.product.care}
           ></TextField>
 
           <Button
             onClick={() => {
-              updateProduct(props.product);
+              props.newProduct
+                ? addNewProduct(props.product)
+                : updateProduct(props.product);
             }}
           >
             Save
