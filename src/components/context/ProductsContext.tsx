@@ -37,12 +37,16 @@ function ProductContext(props: IProps) {
 
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products));
+    
   });
 
   function addNewProduct(product: Product) {
+    product.id = products.length + 10001;
     const updateProductView = [...products, product];
     setProducts(updateProductView);
-    console.log(product);
+    console.log(updateProductView);
+    console.log(products);
+    
   }
 
   function updateProduct(product: Product) {

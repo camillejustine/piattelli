@@ -18,6 +18,7 @@ interface IProps {
   editOpen: boolean;
   product: Product;
   newProduct: boolean;
+  isProductNew: () => void;
 }
 
 function EditModal(props: IProps) {
@@ -206,6 +207,7 @@ function EditModal(props: IProps) {
             onClick={() => {
               if (props.newProduct) {
                 addNewProduct(props.product);
+                props.isProductNew();
               } else {
                 updateProduct(props.product);
               }
