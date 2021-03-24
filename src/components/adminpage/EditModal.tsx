@@ -17,6 +17,7 @@ interface IProps {
   closeModal: () => void;
   editOpen: boolean;
   product: Product;
+  NewProduct?: boolean;
 }
 
 function EditModal(props: IProps) {
@@ -24,6 +25,7 @@ function EditModal(props: IProps) {
   const { products, addNewProduct, updateProduct, removeProduct } = useContext(
     ProductsContext
   );
+
 
   const [product, setProduct] = useState<Product>();
 
@@ -95,6 +97,15 @@ function EditModal(props: IProps) {
   }
 
 
+
+  function saveChanges() {
+    let saveContext = updateProduct(props.product);
+
+    if ((props.NewProduct = true)) {
+      saveContext = addNewProduct(props.product);
+    } else saveContext = updateProduct(props.product);
+    console.log(saveContext);
+  }
 
   if (!props.product) return null;
   return (
@@ -249,6 +260,7 @@ const useStyles: any = makeStyles({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
+    overflow: "auto",
   },
   smallerForms: {
     display: "flex",

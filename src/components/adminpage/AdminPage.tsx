@@ -1,26 +1,26 @@
-import { Typography, Box, Button, Modal, Grid,  } from "@material-ui/core";
+import { Typography, Box, Button, Modal, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { useContext, useState, useEffect } from "react";
-import  {Product, ProductsContext} from "../context/ProductsContext";
+import { Product, ProductsContext } from "../context/ProductsContext";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
-import ClearIcon from '@material-ui/icons/Clear';
+import ClearIcon from "@material-ui/icons/Clear";
 import EditModal from "./EditModal";
-
 
 // interface IProps {
 //   getProduct: (value: {}) => void;
 // }
 
 function OpenAdminPage() {
-  
   const classes = useStyles();
   const { products } = useContext(ProductsContext);
   const [open, setOpen] = React.useState(false);
   const [editingProduct, setEditingProduct] = useState<any>();
-  const {  removeProduct } = useContext(ProductsContext);
+  const [newProduct, setNewProduct] = useState<boolean>(false);
+
+  const { removeProduct } = useContext(ProductsContext);
 
   return (
     <>
@@ -65,17 +65,22 @@ function OpenAdminPage() {
                     <div>
                       <Button onClick={() => setEditingProduct(product)}>
                         <EditOutlinedIcon fontSize={"small"} />
-                      </Button> 
-                      <Button onClick={() => removeProduct(product)}>             
-                        <ClearIcon fontSize={"small"}/>
-                      </Button> 
+                      </Button>
+                      <Button onClick={() => removeProduct(product)}>
+                        <ClearIcon fontSize={"small"} />
+                      </Button>
                     </div>
                   </Box>
                 </>
               );
             })}
             <Box className={classes.addItemButton}>
-              <Button>
+              <Button
+                onClick={() => {
+                  setEditingProduct("");
+                  setNewProduct(true);
+                }}
+              >
                 <PostAddIcon fontSize={"large"} />
               </Button>
             </Box>
