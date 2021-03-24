@@ -59,7 +59,15 @@ function ProductContext(props: IProps) {
   }
 
   function removeProduct(product: Product) {
-    console.log(product);
+    setProducts(prev =>
+      prev.reduce((ack, item) => {
+        if (item.id === product.id) {
+          return ack;
+        } else {
+          return [...ack, item];
+        }
+      }, [] as Product[])
+  );
   }
 
   return (
