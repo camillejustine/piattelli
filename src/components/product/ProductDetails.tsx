@@ -1,9 +1,12 @@
-import { Typography, Box, Button, makeStyles, Tab } from "@material-ui/core";
+//node components
+import { Typography, Box, Button, makeStyles } from "@material-ui/core";
 import { useContext, useState, useEffect } from "react";
-import { CartContext } from "../context/CartContext";
-import ImgTest from "../../assets/hero2.png";
-import ProductContext, { ProductsContext } from "../context/ProductsContext";
 import { useParams } from "react-router-dom";
+//context
+import { CartContext } from "../context/CartContext";
+import { ProductsContext } from "../context/ProductsContext";
+//image
+import ImgTest from "../../assets/hero2.png";
 
 interface IProps {
   productView: any;

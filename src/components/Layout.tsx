@@ -1,3 +1,13 @@
+//node components
+import { Box, Typography } from "@material-ui/core";
+import { CSSProperties, useState } from "react";
+import { Route } from "react-router-dom";
+//images
+import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
+import alternativeCursor from "../assets/alternativeCursor.png";
+//context
+import CartProvider from "./context/CartContext";
+//components
 import Header from "./header/Header";
 import Hero from "./hero/Hero";
 import Footer from "./footer/Footer";
@@ -9,17 +19,8 @@ import Newsletter from "./content/Newsletter";
 import Collection from "./catalogue/Collection";
 import ErrorBoundary from "./ErrorBoundary";
 import AdminPage from "./adminpage/AdminPage";
-import { Box, Typography } from "@material-ui/core";
-
-import { CSSProperties, useState } from "react";
 import Checkout from "./checkout/Checkout";
-
-import { Route } from "react-router-dom";
 import ProductDetails from "./product/ProductDetails";
-import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
-import alternativeCursor from "../assets/alternativeCursor.png";
-
-import CartProvider from "./context/CartContext";
 
 function Layout() {
   const [productDetail, setProductDetail] = useState<object>();

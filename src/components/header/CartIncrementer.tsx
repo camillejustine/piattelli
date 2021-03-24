@@ -1,16 +1,12 @@
 import React, { useContext, useState } from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import { CartContext } from "../context/CartContext";
-import { PropertySignature } from "typescript";
-import { Product } from "../context/ProductsContext";
-
+import { CartContext, CartItem } from "../context/CartContext";
 interface IProps {
-  product: any;
+  product: CartItem;
 }
 
 function GroupedButtons(props: IProps){
-  let [count, setCounter] = useState<number>(0);
   const { addToCart, removeProductFromCart } = useContext(CartContext)
 
     return (
@@ -18,7 +14,7 @@ function GroupedButtons(props: IProps){
         <Button onClick={() => {
           addToCart(props.product)
         }}>+</Button>
-        <Button disabled>{props.product.quantity}</Button>
+        <Button >{props.product.quantity}</Button>
         <Button onClick={() => {
           removeProductFromCart(props.product)
         }}>-</Button>

@@ -2,8 +2,7 @@ import { Box, Button, Link, Typography, Badge } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import { ShoppingCart as CartIcon } from "@material-ui/icons";
-import React, { useState, useEffect } from "react";
-import { CartContext } from "../context/CartContext";
+import { CartContext, CartItem } from "../context/CartContext";
 import { useContext } from "react";
 import GroupedButtons from "./CartIncrementer";
 
@@ -32,7 +31,7 @@ function Cart(props: IProps) {
             <CartIcon />
           </Box>
           <Box className={classes.cartWrapper}>
-            {cart.map((product: any) => (
+            {cart.map((product: CartItem) => (
               <Box className={classes.cartItems}>
                 <Link href={`/products/${product.name}`}>
                   <img src={product.preview} width="100rem" height="100rem" />
