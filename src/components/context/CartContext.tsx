@@ -1,7 +1,7 @@
-import {Component, createContext, useEffect, useState} from 'react';
+import { createContext, useEffect, useState} from 'react';
 import { Product } from './ProductsContext';
 
-interface CartItem extends Product {
+export interface CartItem extends Product {
     quantity: number;
 }
 
@@ -22,7 +22,7 @@ export const CartContext = createContext<ContextValue>({
 })
 
 interface Props {
-    children: any;
+    children: Object;
 }
 
 function CartProvider(props: Props){
@@ -55,7 +55,7 @@ function CartProvider(props: Props){
         );
     }
 
-     function clearCart(){
+    function clearCart(){
         setCartItems([]);
         localStorage.setItem('cart', JSON.stringify([]));
     }
@@ -68,16 +68,7 @@ function CartProvider(props: Props){
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems))
     })
-
-    /* componentDidMount() {
-        let cart = JSON.parse(localStorage.getItem('cart') || "[]");
-        this.setState({ cart });
-    }
-
-    componentDidUpdate() {
-        localStorage.setItem('cart', JSON.stringify(this.state.cart))
-    } */
-
+    
         return (
             <CartContext.Provider value={{
                 cart: cartItems,
