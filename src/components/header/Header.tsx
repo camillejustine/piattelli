@@ -17,8 +17,6 @@ function Header() {
   const { cart } = useContext(CartContext);
   const classes = useStyles();
 
-  console.log(products)
-
   const amountOfItemsInCart = cart.reduce((ack: number, item) => ack + item.quantity, 0);
 
   function hideCart() {
@@ -69,7 +67,6 @@ function Header() {
         </Box>
         <Box m="1rem">
           {/* Icon */}
-
           <CartIcon
             onClick={() => {
               setIsCartVisible(!isCartVisible);
