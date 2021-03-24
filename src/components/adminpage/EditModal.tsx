@@ -204,9 +204,11 @@ function EditModal(props: IProps) {
 
           <Button
             onClick={() => {
-              props.newProduct
-                ? addNewProduct(props.product)
-                : updateProduct(props.product);
+              if (props.newProduct) {
+                addNewProduct(props.product);
+              } else {
+                updateProduct(props.product);
+              }
             }}
           >
             Save
