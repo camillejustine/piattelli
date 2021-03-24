@@ -17,8 +17,9 @@ export const productsMocked: Product[] = [
     details:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
-      "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
+    id: 10001,
+    },
   {
     name: "Fishbag",
     price: 4440,
@@ -30,7 +31,9 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+      id: 10002,
+    
+    },
   {
     name: "Bagbag",
     price: 12000,
@@ -42,7 +45,9 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+      id: 10003,
+  
+    },
   {
     name: "Reversebag",
     price: 1700,
@@ -54,7 +59,9 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+      id: 10004,
+    
+    },
   {
     name: "Baggybag",
     price: 9000,
@@ -66,7 +73,9 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+      id: 10005,
+  
+    },
   {
     name: "You think you know me?",
     price: 6000,
@@ -78,7 +87,9 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+      id: 10006,
+  
+    },
   {
     name: "Nice",
     price: 6969,
@@ -90,7 +101,9 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+      id: 10007,
+  
+    },
   {
     name: "Left",
     price: 1440,
@@ -102,7 +115,9 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+  
+      id: 10008,
+    },
   {
     name: "Just A Bag",
     price: 1500,
@@ -114,7 +129,9 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+      id: 10009,
+ 
+    },
   {
     name: "MickeyBag",
     price: 29000,
@@ -126,7 +143,9 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+      id: 10010,
+ 
+    },
   {
     name: "Donaldbag",
     price: 6700,
@@ -138,7 +157,9 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+      id: 10011,
+  
+    },
   {
     name: "Klump",
     price: 9990,
@@ -150,5 +171,7 @@ export const productsMocked: Product[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     care:
       "This bag is really soft and if you wash it it will become cleaner, like most fabrics it is hand crafted from non child laborers. If you don't feel like washing this bag you can just rub it gently and it will become clean, it's somekind of new technology.",
-  },
+      id: 10012,
+ 
+    },
 ];
