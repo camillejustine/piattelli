@@ -37,19 +37,23 @@ function ProductContext(props: IProps) {
 
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products));
+    
   });
 
   function addNewProduct(product: Product) {
+    product.id = products.length + 10001;
     const updateProductView = [...products, product];
     setProducts(updateProductView);
-    console.log(product);
+    console.log(updateProductView);
+    console.log(products);
+    
   }
 
   function updateProduct(product: Product) {
     console.log(product);
 
     let updatedProducts = products.map((item) => {
-      if (item.name === product.name) {
+      if (item.id === product.id) {
         return { ...item, product };
       }
       return item;
@@ -61,7 +65,7 @@ function ProductContext(props: IProps) {
   function removeProduct(product: Product) {
     setProducts((prev) =>
       prev.reduce((ack, item) => {
-        if (item.name === product.name) {
+        if (item.id === product.id) {
           return ack;
         } else {
           return [...ack, item];

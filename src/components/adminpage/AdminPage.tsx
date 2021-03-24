@@ -19,7 +19,7 @@ function OpenAdminPage() {
   const [open, setOpen] = React.useState(false);
   const [editingProduct, setEditingProduct] = useState<any>();
   const [emptyProduct, setEmptyProduct] = useState<Product>({} as Product);
-  const [newProduct, setNewProduct] = useState<boolean>(false);
+  const [newProduct, setNewProduct] = useState(false);
 
   const { removeProduct } = useContext(ProductsContext);
 
@@ -90,6 +90,7 @@ function OpenAdminPage() {
         </Box>
         <EditModal
           newProduct={newProduct}
+          isProductNew={() => setNewProduct(false)}
           closeModal={() => setEditingProduct(undefined)}
           editOpen={Boolean(editingProduct)}
           product={editingProduct}
