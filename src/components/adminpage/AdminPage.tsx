@@ -1,26 +1,26 @@
-import { Typography, Box, Button, Modal, Grid } from "@material-ui/core";
+import { Typography, Box, Button, Modal, Grid,  } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { useContext, useState, useEffect } from "react";
-import ProductContext, {
-  Product,
-  ProductsContext,
-} from "../context/ProductsContext";
+import  {Product, ProductsContext} from "../context/ProductsContext";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
-import { Height } from "@material-ui/icons";
+import ClearIcon from '@material-ui/icons/Clear';
 import EditModal from "./EditModal";
+
 
 // interface IProps {
 //   getProduct: (value: {}) => void;
 // }
 
 function OpenAdminPage() {
+  
   const classes = useStyles();
   const { products } = useContext(ProductsContext);
   const [open, setOpen] = React.useState(false);
   const [editingProduct, setEditingProduct] = useState<any>();
+  const {  removeProduct } = useContext(ProductsContext);
 
   return (
     <>
@@ -35,7 +35,6 @@ function OpenAdminPage() {
             className={classes.innerGridStyle}
           >
             {products.map((product) => {
-              //console.log(product);
               return (
                 <>
                   <Box className={classes.productCard}>
@@ -63,9 +62,14 @@ function OpenAdminPage() {
                         {product.price}&nbsp;kr
                       </Typography>
                     </Box>
-                    <Button onClick={() => setEditingProduct(product)}>
-                      <EditOutlinedIcon fontSize={"small"} />
-                    </Button>
+                    <div>
+                      <Button onClick={() => setEditingProduct(product)}>
+                        <EditOutlinedIcon fontSize={"small"} />
+                      </Button> 
+                      <Button onClick={() => removeProduct(product)}>             
+                        <ClearIcon fontSize={"small"}/>
+                      </Button> 
+                    </div>
                   </Box>
                 </>
               );
