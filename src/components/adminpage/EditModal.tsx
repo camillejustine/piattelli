@@ -204,6 +204,7 @@ function EditModal(props: IProps) {
           ></TextField>
 
           <Button
+            href={"/admin"}
             onClick={() => {
               if (props.newProduct) {
                 addNewProduct(props.product);
