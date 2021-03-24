@@ -26,7 +26,7 @@ interface ContextValue extends IState {
 }
 function ProductContext(props: IProps) {
   const [products, setProducts] = useState(productsMocked);
-  
+
   useEffect(() => {
     if (!localStorage.hasOwnProperty("products")) {
       localStorage.setItem("products", JSON.stringify(products));
@@ -34,9 +34,8 @@ function ProductContext(props: IProps) {
     let productsLS = JSON.parse(localStorage.getItem("products") || "[]");
     setProducts(productsLS);
   }, []);
-  
+
   useEffect(() => {
-    console.log(products);
     localStorage.setItem("products", JSON.stringify(products));
   });
 
@@ -47,46 +46,27 @@ function ProductContext(props: IProps) {
   }
 
   function updateProduct(product: Product) {
-    
-    // console.log(product);
-    setProducts(prevState => {
-      const productId = prevState.find((obj => obj.id === product.id));
-
-    })
-
-
     console.log(product);
-    
 
-    
-    
-    
-    
-    
-    //   setProducts(prev => { 
-      //     const isProductUpdated = prev.find(item => item.id === product.id);
-      
-      //     if(isProductUpdated) {
-        //        return prev.map((item: any) => 
-        //             item.id === product.id
-        //                 ? {...item, product} 
-        //                 : null           
-        //         )    
-        //     }
-        
-        //     return [...prev, { ...product, product }]
-        // })
+    let updatedProducts = products.map((item) => {
+      if (item.id === product.id) {
+        return { ...item, product };
       }
-      
-      function removeProduct(product: Product) {
-        console.log(product);
-      }
-      
-      return (
-        <ProductsContext.Provider
-        value={{
-          products: products,
-          addNewProduct: addNewProduct,
+      return item;
+    });
+
+    setProducts(updatedProducts);
+  }
+
+  function removeProduct(product: Product) {
+    console.log(product);
+  }
+
+  return (
+    <ProductsContext.Provider
+      value={{
+        products: products,
+        addNewProduct: addNewProduct,
         updateProduct: updateProduct,
         removeProduct: removeProduct,
       }}
