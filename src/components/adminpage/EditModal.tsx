@@ -17,6 +17,7 @@ interface IProps {
   closeModal: () => void;
   editOpen: boolean;
   product: Product;
+  NewProduct?: boolean;
 }
 
 function EditModal(props: IProps) {
@@ -26,6 +27,7 @@ function EditModal(props: IProps) {
   );
 
   const [product, setProduct] = useState([] as Product[]);
+  const [editingProduct, setEditingProduct] = useState<any>();
 
   const [nameState, setNameState] = useState<string>("");
   const [priceState, setPriceState] = useState<number>(0);
@@ -34,6 +36,15 @@ function EditModal(props: IProps) {
   const [descriptionState, setDescriptionState] = useState<string>("");
   const [detailsState, setDetailsState] = useState<string>("");
   const [careState, setCareState] = useState<string>("");
+
+  function saveChanges() {
+    let saveContext = updateProduct(props.product);
+
+    if ((props.NewProduct = true)) {
+      saveContext = addNewProduct(props.product);
+    } else saveContext = updateProduct(props.product);
+    console.log(saveContext);
+  }
 
   if (!props.product) return null;
   return (
@@ -145,7 +156,7 @@ function EditModal(props: IProps) {
           <Button
             onClick={
               () => {
-                updateProduct(props.product);
+                saveChanges();
               }
               // updateLSCatalogue(
               //   nameState,
@@ -193,6 +204,7 @@ const useStyles: any = makeStyles({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
+    overflow: "auto",
   },
   smallerForms: {
     display: "flex",
