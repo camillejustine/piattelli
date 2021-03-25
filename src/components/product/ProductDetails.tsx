@@ -1,5 +1,6 @@
 //node components
-import { Typography, Box, Button, makeStyles } from "@material-ui/core";
+import { Typography, Box, Button} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 //context
@@ -30,7 +31,7 @@ function ProductDetails(props: IProps) {
   return (
     <Box className={classes.wrapper}>
       <Box className={classes.productWrapper}>
-        <img src={detailViewProduct.preview} alt="" width="600" height="600" />
+        <img src={detailViewProduct.preview} alt="" className={classes.preview} />
       </Box>
       <Box className={classes.infoWrapper}>
         <Box className={classes.detailPadding}>
@@ -83,13 +84,27 @@ function ProductDetails(props: IProps) {
   );
 }
 
-const useStyles: any = makeStyles({
+const useStyles: any = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     paddingTop: "10rem",
     width: "100%",
+    [theme.breakpoints.down("xs")]: {
+      display: "flex",
+      flexDirection: "column",
+      alignContent: 'center',
+      
+    },
+  },
+  preview: {
+    height: 600,
+    width: 600,
+    [theme.breakpoints.down("xs")]: {
+      height: '100%',
+      width: '100%',
+    },
   },
   productWrapper: {
     display: "flex",
@@ -101,6 +116,9 @@ const useStyles: any = makeStyles({
     alignItems: "center",
     width: "30rem",
     height: "50rem",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   button: {
     color: "white",
@@ -118,13 +136,9 @@ const useStyles: any = makeStyles({
   column: {
     display: "flex",
     flexDirection: "column",
-  },
-  circle: {
-    height: "2rem",
-    width: "2rem",
-    borderRadius: "50%",
-    border: "solid 1px white",
-    backgroundColor: "black",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "row",
+    },
   },
   padding: {
     paddingRight: "1rem",
@@ -132,6 +146,6 @@ const useStyles: any = makeStyles({
   detailPadding: {
     padding: "3rem",
   },
-});
+}));
 
 export default ProductDetails;
