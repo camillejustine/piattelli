@@ -6,7 +6,7 @@ import heroPic2 from "../../assets/hero2.png";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 import { useMouse } from "../MousePos";
 import Carousel from "./Carousel";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 function Hero() {
   const [leftIsShown, setLeftIsShown] = useState(false);
@@ -69,7 +69,7 @@ function Hero() {
   );
 }
 
-const useStyles: any = makeStyles({
+const useStyles: any = makeStyles((theme) => ({
   heroPicLeft: {
     backgroundImage: `url(${heroPic1})`,
     width: "40rem",
@@ -79,6 +79,11 @@ const useStyles: any = makeStyles({
     objectFit: "fill",
     marginRight: ".5rem",
     cursor: `url(${alternativeCursor}) 9 7, auto`,
+    [theme.breakpoints.down("xs")]: {
+      width: "20rem",
+      height: "40rem",
+      marginLeft: "0",
+    },
   },
   heroPicRight: {
     backgroundImage: `url(${heroPic2})`,
@@ -89,11 +94,19 @@ const useStyles: any = makeStyles({
     objectFit: "cover",
     marginLeft: ".5rem",
     cursor: `url(${alternativeCursor}) 9 7, auto`,
+    [theme.breakpoints.down("xs")]: {
+      width: "20rem",
+      height: "40rem",
+      marginLeft: "0",
+    },
   },
   heroContainer: {
-    marginTop: '8.5rem',
+    marginTop: "8.5rem",
     display: "flex",
     justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+    },
   },
   flexCenter: {
     display: "flex",
@@ -104,6 +117,6 @@ const useStyles: any = makeStyles({
     marginTop: "2rem",
     textAlign: "center",
   },
-});
+}));
 
 export default Hero;

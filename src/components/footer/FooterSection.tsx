@@ -1,27 +1,35 @@
-import { Box, Link, Typography } from '@material-ui/core';
-import { CSSProperties } from 'react';
+import { Box, Link, Typography, Hidden } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 function FooterSection() {
+  const classes = useStyles();
   return (
     <Box>
-      <Typography variant="h5" style={textColor}>
-        Collection
-      </Typography>
-      <Typography variant="subtitle2" style={textColor}>
-        <Link>The Softy Basic</Link>
-        <Link>Le Scandinive</Link>
-        <Link>Mona-Lisa Piattelli</Link>
-        <Link>Rinacimento</Link>
-      </Typography>
+      <Hidden smDown>
+        <Typography variant="h5" className={classes.textColor}>
+          Collection
+        </Typography>
+        <Typography variant="subtitle2" className={classes.textColor}>
+          <Link>The Softy Basic</Link>
+          <Link>Le Scandinive</Link>
+          <Link>Mona-Lisa Piattelli</Link>
+          <Link>Rinacimento</Link>
+        </Typography>
+      </Hidden>
     </Box>
   );
 }
 
-const textColor: CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  lineHeight: '300%',
-  color: 'white',
-};
+const useStyles: any = makeStyles((theme) => ({
+  textColor: {
+    display: "flex",
+    flexDirection: "column",
+    lineHeight: "300%",
+    color: "white",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+    },
+  },
+}));
 
 export default FooterSection;
