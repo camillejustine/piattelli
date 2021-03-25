@@ -1,15 +1,22 @@
-import { Box, Link, TextField, Typography, Badge } from "@material-ui/core";
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import React, { Component, CSSProperties, useEffect, useState } from "react";
+import {
+  Box,
+  Link,
+  TextField,
+  Typography,
+  Badge,
+  Hidden,
+} from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import React, { Component, useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { ShoppingCart as CartIcon } from "@material-ui/icons";
 import "animate.css/animate.css";
 import Cart from "./Cart";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 import { ProductsContext } from "../context/ProductsContext";
- 
+
 function Header() {
   const [searchClicked, setSearchClicked] = useState(false);
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -17,7 +24,10 @@ function Header() {
   const { cart } = useContext(CartContext);
   const classes = useStyles();
 
-  const amountOfItemsInCart = cart.reduce((ack: number, item) => ack + item.quantity, 0);
+  const amountOfItemsInCart = cart.reduce(
+    (ack: number, item) => ack + item.quantity,
+    0
+  );
 
   function hideCart() {
     setIsCartVisible(false);
@@ -25,20 +35,24 @@ function Header() {
 
   return (
     <Box className={classes.rootStyle}>
-      <Link href="/new-collection" color="inherit" underline="none">
-        <Typography variant="body2">New Collection </Typography>
-      </Link>
-      <Link href="/catalogue" color="inherit" underline="none">
-        <Typography variant="body2">All Bags </Typography>{" "}
-      </Link>
+      <Hidden smDown>
+        <Link href="/new-collection" color="inherit" underline="none">
+          <Typography variant="body2">New Collection </Typography>
+        </Link>
+        <Link href="/catalogue" color="inherit" underline="none">
+          <Typography variant="body2">All Bags </Typography>{" "}
+        </Link>
+      </Hidden>
 
       <Link href="/" color="inherit" underline="none">
         <Typography variant="h1">PIATTELLI</Typography>
       </Link>
 
-      <Link href="/catalogue" color="inherit" underline="none">
-        <Typography variant="body2">Timless Favorites</Typography>{" "}
-      </Link>
+      <Hidden smDown>
+        <Link href="/catalogue" color="inherit" underline="none">
+          <Typography variant="body2">Timless Favorites</Typography>{" "}
+        </Link>
+      </Hidden>
       <Box className={classes.iconWrapper}>
         <Box onClick={() => setSearchClicked(true)} m="1rem">
           {!searchClicked ? (
@@ -52,15 +66,15 @@ function Header() {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    style={width}
+                    className={classes.width}
                     autoFocus
                     id="search-basic"
                     label="Search"
                     margin="normal"
-                    InputProps={{ ...params.InputProps, type: 'search' }}
-                    onBlur={() => setSearchClicked(false)} 
-                  />)
-                }
+                    InputProps={{ ...params.InputProps, type: "search" }}
+                    onBlur={() => setSearchClicked(false)}
+                  />
+                )}
               />
             </form>
           )}
@@ -89,7 +103,7 @@ function Header() {
   );
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   rootStyle: {
     top: 0,
     margin: "0",
@@ -102,15 +116,17 @@ const useStyles = makeStyles({
     width: "100vw",
     height: "8.5rem",
     backgroundColor: "white",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   iconWrapper: {
     display: "flex",
     alignItems: "center",
   },
-});
-
-const width: CSSProperties = {
-  width: "10rem"
-}
+  width: {
+    width: "10rem",
+  },
+}));
 
 export default Header;

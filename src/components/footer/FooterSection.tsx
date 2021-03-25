@@ -5,7 +5,7 @@ function FooterSection() {
   const classes = useStyles();
   return (
     <Box>
-      <Hidden smDown>
+      <Hidden only={"xs"}>
         <Typography variant="h5" className={classes.textColor}>
           Collection
         </Typography>
