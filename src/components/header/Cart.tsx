@@ -1,5 +1,5 @@
 import { Box, Button, Link, Typography, Badge } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import { ShoppingCart as CartIcon } from "@material-ui/icons";
 import { CartContext, CartItem } from "../context/CartContext";
@@ -68,7 +68,7 @@ function Cart(props: IProps) {
   );
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   rootStyle: {
     position: "fixed",
     width: "20rem",
@@ -80,6 +80,9 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     margin: "0.2rem",
+    [theme.breakpoints.down("xs")]: {
+      width: "98.5%",
+    },
   },
   topContent: {
     top: 0,
@@ -137,6 +140,6 @@ const useStyles = makeStyles({
     }
 
   }
-});
+}));
 
 export default Cart;
