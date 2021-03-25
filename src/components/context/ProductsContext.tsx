@@ -37,7 +37,6 @@ function ProductContext(props: IProps) {
 
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products));
-    
   });
 
   function randomID(){
