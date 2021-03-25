@@ -5,7 +5,7 @@ import alternativeCursor from "../../assets/alternativeCursor.png";
 import { Product, ProductsContext } from "../context/ProductsContext";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 interface IProps {
   isLarge: boolean;
   getProduct: (value: {}) => void;
@@ -168,7 +168,7 @@ function Catalogue(props: IProps, id: string) {
                         >
                           <Button
                             className={classes.button}
-                            onClick={() => {                 
+                            onClick={() => {
                               addToCart(product);
                             }}
                           >

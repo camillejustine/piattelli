@@ -1,6 +1,6 @@
 import { Typography, Box, Button, TextField } from "@material-ui/core";
 import { Height } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 
@@ -25,14 +25,13 @@ function Newsletter() {
           className={`${classes.textField} animate__animated animate__fadeIn`}
           id="filled-disabled"
           label="Email"
-          // defaultValue="Hello World"
         />
       )}
     </Box>
   );
 }
 
-const useStyles: any = makeStyles({
+const useStyles: any = makeStyles((theme) => ({
   textContainer: {
     display: "flex",
     justifyContent: "center",
@@ -47,15 +46,15 @@ const useStyles: any = makeStyles({
   textField: {
     width: "30rem",
     borderColor: "black",
-    color: 'black',
+    color: "black",
     // height: '7rem'
-    '& .MuiInput-underline:after': {
-      borderColor: 'black',
+    "& .MuiInput-underline:after": {
+      borderColor: "black",
     },
-    'label + &': {
-      color:'black'
+    "label + &": {
+      color: "black",
     },
   },
-});
+}));
 
 export default Newsletter;

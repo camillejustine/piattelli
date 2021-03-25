@@ -1,7 +1,8 @@
 //node components
-import { Box, Typography } from "@material-ui/core";
-import { CSSProperties, useState } from "react";
+import { Box, Typography, Hidden } from "@material-ui/core";
+import { useState } from "react";
 import { Route } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 //images
 import alternativeCursorBlack from "../assets/alternativeCursorBlack.png";
 import alternativeCursor from "../assets/alternativeCursor.png";
@@ -24,17 +25,18 @@ import ProductDetails from "./product/ProductDetails";
 
 function Layout() {
   const [productDetail, setProductDetail] = useState<object>();
+  const classes = useStyles();
 
   function productDetails(value: object) {
     setProductDetail(value);
   }
 
   return (
-    <Box style={customCursorBlack}>
+    <Box className={classes.customCursorBlack}>
       <CartProvider>
-        <Box style={landingContainer}>
+        <Box className={classes.landingContainer}>
           <Route path="/catalogue">
-            <Box style={catalogueStyles}>
+            <Box className={classes.catalogueStyles}>
               <Typography variant={"h3"} align={"center"}>
                 Our bags
               </Typography>
@@ -42,7 +44,7 @@ function Layout() {
             </Box>
           </Route>
           <Route path="/new-collection">
-            <Box style={catalogueStyles}>
+            <Box className={classes.catalogueStyles}>
               <Collection />
               <Typography variant={"h3"} align={"center"}>
                 Our bags
@@ -56,7 +58,7 @@ function Layout() {
             <Explore />
             <PromotionSecond />
             <ErrorBoundary>
-              <Box style={cataloguePreviewContainer}>
+              <Box className={classes.cataloguePreviewContainer}>
                 <Catalogue isLarge={false} getProduct={productDetails} />
               </Box>
             </ErrorBoundary>
@@ -69,7 +71,9 @@ function Layout() {
         <Route path="/checkout">
           <Checkout />
         </Route>
-        <Newsletter />
+        <Hidden smDown>
+          <Newsletter />
+        </Hidden>
         <Route path="/admin">
           <AdminPage />
         </Route>
@@ -79,25 +83,26 @@ function Layout() {
   );
 }
 
-const catalogueStyles: CSSProperties = {
-  marginTop: "8.5rem",
-};
-
-const landingContainer: CSSProperties = {
-  width: "50vw",
-  margin: "auto",
-};
-
-const customCursorBlack: CSSProperties = {
-  cursor: `url(${alternativeCursorBlack}) 9 7, auto`,
-};
-
-const customCursor: CSSProperties = {
-  cursor: `url(${alternativeCursor}) 9 7, auto`,
-};
-
-const cataloguePreviewContainer: CSSProperties = {
-  marginTop: "1rem",
-};
+const useStyles: any = makeStyles((theme) => ({
+  catalogueStyles: {
+    marginTop: "8.5rem",
+  },
+  landingContainer: {
+    width: "50vw",
+    margin: "auto",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
+  },
+  customCursorBlack: {
+    cursor: `url(${alternativeCursorBlack}) 9 7, auto`,
+  },
+  customCursor: {
+    cursor: `url(${alternativeCursor}) 9 7, auto`,
+  },
+  cataloguePreviewContainer: {
+    marginTop: "1rem",
+  },
+}));
 
 export default Layout;
