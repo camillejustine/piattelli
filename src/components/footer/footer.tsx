@@ -7,12 +7,14 @@ function Footer() {
   const classes = useStyles();
   return (
     <Container className={classes.containerStyle} maxWidth={false}>
-      <Hidden smDown>
+      <Hidden only={"xs"}>
         <Box className={classes.rootStyle}>
           <FooterSection />
           <FooterSection />
-          <FooterSection />
-          <FooterSection />
+          <Hidden smDown>
+            <FooterSection />
+            <FooterSection />
+          </Hidden>
         </Box>
       </Hidden>
       <Link href="/admin">
@@ -25,16 +27,28 @@ function Footer() {
       </Typography>
       <Hidden smUp>
         <Box className={classes.mobileFooterContainer}>
-          <Typography variant="subtitle2" className={classes.textColor}>
-            <Box pb={8} className={classes.mobileFooterContent}>
-              <Link>Collections</Link>
-              <Link>Help</Link>
-            </Box>
-            <Box className={classes.mobileFooterContent}>
-              <Link>Company</Link>
-              <Link>Follow Us</Link>
-            </Box>
-          </Typography>
+          <Box className={classes.mobileFooterContent}>
+            <Typography variant="subtitle2" className={classes.textColor}>
+              <Box>
+                <Link>Collections</Link>
+              </Box>
+              <br />
+              <Box>
+                <Link>Help</Link>
+              </Box>
+            </Typography>
+          </Box>
+          <Box className={classes.mobileFooterContent}>
+            <Typography variant="subtitle2" className={classes.textColor}>
+              <Box>
+                <Link>Company</Link>
+              </Box>
+              <br />
+              <Box>
+                <Link>Follow Us</Link>
+              </Box>
+            </Typography>
+          </Box>
         </Box>
       </Hidden>
     </Container>
@@ -61,14 +75,16 @@ const useStyles: any = makeStyles((theme) => ({
   mobileFooterContainer: {
     width: "100%",
     height: "10rem",
-    flexDirection: "column",
-    alignItems: "center",
+    display: "flex",
     justifyContent: "center",
   },
   mobileFooterContent: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
+    flexDirection: "row",
+    width: "100%",
+    height: "100%",
   },
 }));
 

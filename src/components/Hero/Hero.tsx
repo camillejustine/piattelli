@@ -1,4 +1,4 @@
-import { Typography, Box, Button } from "@material-ui/core";
+import { Typography, Box, Button, Hidden, Link } from "@material-ui/core";
 import { CSSProperties } from "react";
 import { useState } from "react";
 import heroPic1 from "../../assets/hero1.png";
@@ -44,23 +44,51 @@ function Hero() {
           onMouseEnter={() => setLeftIsShown(true)}
           onMouseLeave={() => setLeftIsShown(false)}
         >
-          {leftIsShown && <h2 style={heroTitleLeft}>NEW COLLECTION</h2>}
+          <Hidden mdDown>
+            {leftIsShown && <h2 style={heroTitleLeft}>NEW COLLECTION</h2>}
+          </Hidden>
         </Box>
+        <Hidden smUp>
+          <Box className={classes.mobileHeroTitle}>
+            <Link variant={"body2"} href={"/catalogue"} color={"inherit"}>
+              New Collection
+            </Link>
+          </Box>
+        </Hidden>
         <Box
           className={classes.heroPicRight}
           onMouseEnter={() => setRightIsShown(true)}
           onMouseLeave={() => setRightIsShown(false)}
         >
-          {rightIsShown && <h2 style={heroTitleRight}>THE SOFTY</h2>}
+          <Hidden smDown>
+            {rightIsShown && <h2 style={heroTitleRight}>THE SOFTY</h2>}
+          </Hidden>
         </Box>
+        <Hidden smUp>
+          <Box className={classes.mobileHeroTitle}>
+            <Link variant={"body2"} href={"/catalogue"} color={"inherit"}>
+              The Softy
+            </Link>
+          </Box>
+        </Hidden>
       </Box>
       <Box>
-        <Typography
-          variant="h6"
-          className={classes.flexCenter && classes.carouselText}
-        >
-          More than 135 years of timeless Italian craftmanship.
-        </Typography>
+        <Hidden smDown>
+          <Typography
+            variant="h6"
+            className={classes.flexCenter && classes.carouselText}
+          >
+            More than 135 years of timeless Italian craftmanship.
+          </Typography>
+        </Hidden>
+        <Hidden mdUp>
+          <Typography
+            variant="body2"
+            className={classes.flexCenter && classes.carouselText}
+          >
+            More than 135 years of timeless Italian craftmanship.
+          </Typography>
+        </Hidden>
       </Box>
       <Box>
         <Carousel />
@@ -81,8 +109,11 @@ const useStyles: any = makeStyles((theme) => ({
     cursor: `url(${alternativeCursor}) 9 7, auto`,
     [theme.breakpoints.down("xs")]: {
       width: "20rem",
-      height: "40rem",
+      height: "20rem",
       marginLeft: "0",
+      marginBottom: "3rem",
+      backgroundSize: "cover",
+      backgroundPosition: "top",
     },
   },
   heroPicRight: {
@@ -96,8 +127,12 @@ const useStyles: any = makeStyles((theme) => ({
     cursor: `url(${alternativeCursor}) 9 7, auto`,
     [theme.breakpoints.down("xs")]: {
       width: "20rem",
-      height: "40rem",
+      height: "20rem",
       marginLeft: "0",
+      marginTop: "2rem",
+      marginBottom: "3rem",
+      backgroundSize: "cover",
+      backgroundPosition: "bottom",
     },
   },
   heroContainer: {
@@ -106,6 +141,7 @@ const useStyles: any = makeStyles((theme) => ({
     justifyContent: "center",
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
+      alignItems: "center",
     },
   },
   flexCenter: {
@@ -116,6 +152,15 @@ const useStyles: any = makeStyles((theme) => ({
     marginBottom: "2rem",
     marginTop: "2rem",
     textAlign: "center",
+  },
+  mobileHeroTitle: {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    flexDirection: "column",
+
+    height: "100%",
+    borderBottom: "2px solid black",
   },
 }));
 
