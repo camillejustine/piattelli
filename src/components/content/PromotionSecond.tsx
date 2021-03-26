@@ -2,21 +2,33 @@
 import { CSSProperties } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 import dress from "../../assets/dress-cu.png";
-import { Typography, Box, Button } from "@material-ui/core";
+import { Typography, Box, Button, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 function PromotionSecond() {
   const classes = useStyles();
   return (
     <Box className={classes.promotionContainer}>
-      <Box className={classes.promotionText}>
-        <Typography variant="h6">who is</Typography>
-        <Typography variant="h3">MONA-LISA</Typography>
-        <Box className={classes.lineBreak}>
-          <Typography variant="body2">by</Typography>
-          <Typography variant="h3">PIATTELLI</Typography>
+      <Hidden only={["xs", "sm"]}>
+        <Box className={classes.promotionText}>
+          <Typography variant="h6">who is</Typography>
+          <Typography variant="h3">MONA-LISA</Typography>
+          <Box className={classes.lineBreak}>
+            <Typography variant="body2">by</Typography>
+            <Typography variant="h3">PIATTELLI</Typography>
+          </Box>
         </Box>
-      </Box>
+      </Hidden>
+      <Hidden only={["md", "lg", "xl"]}>
+        <Box className={classes.promotionText}>
+          <Typography variant="h6">who is</Typography>
+          <Typography variant="h4">MONA-LISA</Typography>
+          <Box className={classes.lineBreak}>
+            <Typography variant="body2">by</Typography>
+            <Typography variant="h4">PIATTELLI</Typography>
+          </Box>
+        </Box>
+      </Hidden>
       <Box>
         <img
           src={dress}

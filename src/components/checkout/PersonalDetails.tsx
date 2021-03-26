@@ -36,90 +36,90 @@ function PersonalDetails(props: IProps) {
         Fill in your personal detail below:
       </Typography>
       <Box>
-        <form className={classes.contentWrapper} autoComplete="off">
-          <Box className={classes.flexColumn}>
-            <TextField
-              className={classes.textField}
-              required
-              name="fname"
-              value={props.fullName}
-              error={props.fullName === ""}
-              id="standard-required"
-              variant={"outlined"}
-
-              label="Full Name"
-              onChange={(event) => props.setFullName(event.target.value)}
-              defaultValue={props.fullName}
-            />
-            <TextField
-              className={classes.textField}
-              required
-              variant={"outlined"}
-
-              name="email"
-              type="email"
-              error={props.email === ""}
-              id="standard-required"
-              label="Email"
-              onChange={(event) => props.setEmail(event.target.value)}
-              defaultValue={props.email}
-            />
-            <TextField
-              variant={"outlined"}
-              className={classes.textField}
-              required
-              id="standard-required"
-              label="Adress"
-              name="street"
-              error={props.adress === ""}
-              onChange={(event) => props.setAdress(event.target.value)}
-              defaultValue={props.adress}
-            />
-            <TextField
-              className={classes.textField}
-              required
-              variant={"outlined"}
-              id="standard-required"
-              label="Phone number"
-              type="number"
-              error={props.phoneNumber === ""}
-              onChange={(event) => props.setPhoneNumber(event.target.value)}
-              defaultValue={props.phoneNumber}
-            />
-          </Box>
-          <Box className={classes.flexColumn}>
-            <TextField
-              className={classes.textField}
-              required
-              variant={"outlined"}
-              id="standard-required"
-              label="Zip code"
-              error={props.zipCode === ""}
-              onChange={(event) => props.setZipCode(event.target.value)}
-              defaultValue={props.zipCode}
-            />
-            <TextField
-              className={classes.textField}
-              required
-              variant={"outlined"}
-              id="standard-required"
-              label="Country"
-              error={props.country === ""}
-              onChange={(event) => props.setCountry(event.target.value)}
-              defaultValue={props.country}
-            />
-            <TextField
-              className={classes.textField}
-              required
-              variant={"outlined"}
-              id="standard-required"
-              label="City"
-              error={props.city === ""}
-              onChange={(event) => props.setCity(event.target.value)}
-              defaultValue={props.city}
-            />
-          </Box>
-        </form>
+        <Box className={classes.formContainer}>
+          <form className={classes.contentWrapper} autoComplete="off">
+            <Box className={classes.flexColumn}>
+              <TextField
+                className={classes.textField}
+                required
+                name="fname"
+                value={props.fullName}
+                error={props.fullName === ""}
+                id="standard-required"
+                variant={"outlined"}
+                label="Full Name"
+                onChange={(event) => props.setFullName(event.target.value)}
+                defaultValue={props.fullName}
+              />
+              <TextField
+                className={classes.textField}
+                required
+                variant={"outlined"}
+                name="email"
+                type="email"
+                error={props.email === ""}
+                id="standard-required"
+                label="Email"
+                onChange={(event) => props.setEmail(event.target.value)}
+                defaultValue={props.email}
+              />
+              <TextField
+                variant={"outlined"}
+                className={classes.textField}
+                required
+                id="standard-required"
+                label="Adress"
+                name="street"
+                error={props.adress === ""}
+                onChange={(event) => props.setAdress(event.target.value)}
+                defaultValue={props.adress}
+              />
+              <TextField
+                className={classes.textField}
+                required
+                variant={"outlined"}
+                id="standard-required"
+                label="Phone number"
+                type="number"
+                error={props.phoneNumber === ""}
+                onChange={(event) => props.setPhoneNumber(event.target.value)}
+                defaultValue={props.phoneNumber}
+              />
+            </Box>
+            <Box className={classes.flexColumn}>
+              <TextField
+                className={classes.textField}
+                required
+                variant={"outlined"}
+                id="standard-required"
+                label="Zip code"
+                error={props.zipCode === ""}
+                onChange={(event) => props.setZipCode(event.target.value)}
+                defaultValue={props.zipCode}
+              />
+              <TextField
+                className={classes.textField}
+                required
+                variant={"outlined"}
+                id="standard-required"
+                label="Country"
+                error={props.country === ""}
+                onChange={(event) => props.setCountry(event.target.value)}
+                defaultValue={props.country}
+              />
+              <TextField
+                className={classes.textField}
+                required
+                variant={"outlined"}
+                id="standard-required"
+                label="City"
+                error={props.city === ""}
+                onChange={(event) => props.setCity(event.target.value)}
+                defaultValue={props.city}
+              />
+            </Box>
+          </form>
+        </Box>
       </Box>
     </>
   );
@@ -166,8 +166,21 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     margin: "0.5rem 2rem",
     width: "20rem",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       width: "12.5rem",
+    },
+  },
+  formContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    overflow: "auto",
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+      // marginTop: "5rem",
+      overflow: "auto",
+      height: "100%",
     },
   },
 }));
