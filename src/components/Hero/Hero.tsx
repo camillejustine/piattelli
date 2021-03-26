@@ -48,7 +48,7 @@ function Hero() {
             {leftIsShown && <h2 style={heroTitleLeft}>OUR BAGS</h2>}
           </Hidden>
         </Box>
-        <Hidden smUp>
+        <Hidden lgUp>
           <Box className={classes.mobileHeroTitle}>
             <Link variant={"body2"} href={"/catalogue"} color={"inherit"}>
               Our Bags
@@ -64,7 +64,7 @@ function Hero() {
             {rightIsShown && <h2 style={heroTitleRight}>THE SOFTY</h2>}
           </Hidden>
         </Box>
-        <Hidden smUp>
+        <Hidden lgUp>
           <Box className={classes.mobileHeroTitle}>
             <Link variant={"body2"} href={"/catalogue"} color={"inherit"}>
               The Softy
@@ -91,7 +91,7 @@ function Hero() {
         </Hidden>
       </Box>
       <Box>
-        <Hidden only={"xs"}>
+        <Hidden lgDown>
           <Carousel />
         </Hidden>
       </Box>
@@ -109,7 +109,7 @@ const useStyles: any = makeStyles((theme) => ({
     objectFit: "fill",
     marginRight: ".5rem",
     cursor: `url(${alternativeCursor}) 9 7, auto`,
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       width: "20rem",
       height: "20rem",
       marginLeft: "0",
@@ -127,7 +127,7 @@ const useStyles: any = makeStyles((theme) => ({
     objectFit: "cover",
     marginLeft: ".5rem",
     cursor: `url(${alternativeCursor}) 9 7, auto`,
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       width: "20rem",
       height: "20rem",
       marginLeft: "0",
@@ -141,7 +141,7 @@ const useStyles: any = makeStyles((theme) => ({
     marginTop: "8.5rem",
     display: "flex",
     justifyContent: "center",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       flexDirection: "column",
       alignItems: "center",
     },

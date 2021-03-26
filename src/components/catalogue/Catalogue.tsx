@@ -39,7 +39,7 @@ function Catalogue(props: IProps, id: string) {
                 onMouseLeave={() => setIsHover("null")}
               >
                 <Typography variant="h6">
-                  <Hidden only={"xs"}>
+                  <Hidden only={["xs", "sm", "md"]}>
                     <Img
                       onMouseEnter={() => setIsHover(product.name)}
                       src={[product.preview, fallback]}
@@ -50,7 +50,7 @@ function Catalogue(props: IProps, id: string) {
                       height="400"
                     />
                   </Hidden>
-                  <Hidden smUp>
+                  <Hidden only={["lg", "xl"]}>
                     <Box className={classes.flexColumn}>
                       <Link
                         className={classes.linkStyling}
@@ -97,7 +97,7 @@ function Catalogue(props: IProps, id: string) {
                     </Box>
                   </Hidden>
                 </Typography>
-                <Hidden only={"xs"}>
+                <Hidden only={["xs", "sm", "md"]}>
                   {isHover === product.name ? (
                     <>
                       <Box
@@ -175,7 +175,7 @@ function Catalogue(props: IProps, id: string) {
                 key={product.name}
               >
                 <Typography variant="h6">
-                  <Hidden only={"xs"}>
+                  <Hidden mdDown>
                     <Img
                       onMouseEnter={() => setIsHover(product.name)}
                       src={[product.preview, fallback]}
@@ -203,6 +203,29 @@ function Catalogue(props: IProps, id: string) {
                         height="150"
                       />
                     </Link>
+
+                  </Hidden>
+                  <Hidden only={["xs", "sm", "lg", "xl"]}>
+                    <Img
+                      onMouseEnter={() => setIsHover(product.name)}
+                      src={[product.preview, fallback]}
+                      className={classes.customCursor}
+                      draggable={false}
+                      alt="Bags from Pialetti"
+                      width="300"
+                      height="300"
+                    />
+                  </Hidden>
+                  <Hidden only={["xs", "md", "lg", "xl"]}>
+                    <Img
+                      onMouseEnter={() => setIsHover(product.name)}
+                      src={[product.preview, fallback]}
+                      className={classes.customCursor}
+                      draggable={false}
+                      alt="Bags from Pialetti"
+                      width="200"
+                      height="200"
+                    />
                   </Hidden>
                 </Typography>
                 {isHover === product.name ? (

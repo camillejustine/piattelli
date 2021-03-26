@@ -131,7 +131,7 @@ const useStyles: any = makeStyles((theme) => ({
     alignItems: "center",
     // outline: "0",
     overflowY: "auto",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       height: "100%",
       marginTop: "4rem",
     },
@@ -142,7 +142,7 @@ const useStyles: any = makeStyles((theme) => ({
     justifyContent: "center",
     flexWrap: "wrap",
     maxWidth: "100%",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       justifyContent: "center",
     },
   },
@@ -155,7 +155,7 @@ const useStyles: any = makeStyles((theme) => ({
     flexDirection: "column",
     marginTop: "5rem",
     marginRight: "2rem",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       marginTop: "3rem",
       marginRight: "0rem",
     },
@@ -178,7 +178,7 @@ const useStyles: any = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
