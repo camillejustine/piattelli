@@ -1,11 +1,12 @@
 //node components
-import { Typography, Box, Button} from "@material-ui/core";
+import { Typography, Box, Button, Hidden} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 //context
 import { CartContext } from "../context/CartContext";
 import { ProductsContext } from "../context/ProductsContext";
+import cry from "../../assets/cry.jpg";
 interface IProps {
   productView: any;
 }
@@ -14,6 +15,7 @@ const textInfoStrings = ["Description", "Detail", "Care"];
 
 function ProductDetails(props: IProps) {
   const [textView, setTextView] = useState<string>("Description");
+  const [focused, isFocused] = useState(false)
   const { products } = useContext(ProductsContext);
   const { addToCart } = useContext(CartContext);
   const classes = useStyles();
@@ -25,7 +27,11 @@ function ProductDetails(props: IProps) {
   }, []);
  
   if (!detailViewProduct) {
-    return <p>This product does not exist</p>
+    return (
+      <div className={classes.exists}>
+        <img src={cry} alt="cry" width={200} height={200}/>
+        <p>This product does not exist :'(</p>
+      </div>)
   }
 
   return (
@@ -37,23 +43,28 @@ function ProductDetails(props: IProps) {
         <Box className={classes.detailPadding}>
           <Box className={classes.column}>
             <Typography>
-              <h2>{detailViewProduct.name}</h2>
+              <h2 className={classes.headerText}>{detailViewProduct.name}</h2>
             </Typography>
+            <Hidden only={"xs"}>
+              <Hidden only={"sm"}>
+              <Typography>
+                <h3 className={classes.headerText}>{detailViewProduct.collection}</h3>
+              </Typography>
+              </Hidden>
+            </Hidden>
             <Typography>
-              <h3>{detailViewProduct.collection}</h3>
-            </Typography>
-            <Typography>
-              <h4>{detailViewProduct.price}&nbsp;kr</h4>
+              <h4 className={classes.headerText}>{detailViewProduct.price}&nbsp;kr</h4>
             </Typography>
           </Box>
           <div className={classes.row}>
             {textInfoStrings.map((tab) => (
               <Typography
                 variant={"body2"}
-                className={classes.padding}
+                className={`${classes.padding} ${classes.underline}`}
                 onClick={() => {
                   setTextView(tab);
                 }}
+                style={(textView === tab) ? {textDecoration: 'underline'} : {textDecoration: 'none'}}
               >
                 {tab}
               </Typography>
@@ -95,7 +106,11 @@ const useStyles: any = makeStyles((theme) => ({
       display: "flex",
       flexDirection: "column",
       alignContent: 'center',
-      
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      flexDirection: "column",
+      alignContent: 'center',
     },
   },
   preview: {
@@ -104,6 +119,11 @@ const useStyles: any = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       height: '100%',
       width: '100%',
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: 'auto',
+      height: '80%',
+      width: '80%',
     },
   },
   productWrapper: {
@@ -119,6 +139,9 @@ const useStyles: any = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       width: "100%",
     },
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   button: {
     color: "white",
@@ -132,20 +155,49 @@ const useStyles: any = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     padding: "0.5rem",
+    [theme.breakpoints.down("xs")]: {
+      justifyContent: 'center'
+    },
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: 'center'
+    },
   },
   column: {
     display: "flex",
     flexDirection: "column",
     [theme.breakpoints.down("xs")]: {
       flexDirection: "row",
+      justifyContent: 'center'
+    },
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "row",
+      justifyContent: 'center'
     },
   },
   padding: {
-    paddingRight: "1rem",
+    paddingRight: "2rem",
   },
   detailPadding: {
     padding: "3rem",
+    [theme.breakpoints.down("xs")]: {
+      padding: "0rem 0rem 0.5rem 1rem",
+    },
   },
+  headerText: {
+    [theme.breakpoints.down("xs")]: {
+      padding: "0.5rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      padding: "0.5rem",
+    }
+  },
+  exists: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    paddingTop: '10rem',
+  }
 }));
 
 export default ProductDetails;
