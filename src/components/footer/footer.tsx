@@ -28,7 +28,7 @@ function Footer() {
       <Hidden smUp>
         <Box className={classes.mobileFooterContainer}>
           <Box className={classes.mobileFooterContent}>
-            <Typography variant="subtitle2" className={classes.textColor}>
+            <Typography variant="subtitle2">
               <Box>
                 <Link>Collections</Link>
               </Box>
@@ -39,7 +39,7 @@ function Footer() {
             </Typography>
           </Box>
           <Box className={classes.mobileFooterContent}>
-            <Typography variant="subtitle2" className={classes.textColor}>
+            <Typography variant="subtitle2">
               <Box>
                 <Link>Company</Link>
               </Box>
@@ -77,6 +77,9 @@ const useStyles: any = makeStyles((theme) => ({
     height: "10rem",
     display: "flex",
     justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      textAlign: "center",
+    },
   },
   mobileFooterContent: {
     display: "flex",

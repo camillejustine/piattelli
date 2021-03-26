@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 import { Typography, Box, Button } from "@material-ui/core";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 import leScandinave from "../../assets/le-scandinave.png";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 function Promotion() {
   const classes = useStyles();
@@ -25,12 +25,17 @@ function Promotion() {
   );
 }
 
-const useStyles: any = makeStyles({
+const useStyles: any = makeStyles((theme) => ({
   promotionContainer: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "column",
+    [theme.breakpoints.down("xs")]: {
+      // height: "40rem",
+      justifyContent: "center",
+      alignItems: "center",
+    },
   },
   promotionText: {
     display: "flex",
@@ -40,13 +45,19 @@ const useStyles: any = makeStyles({
     position: "absolute",
     color: "white",
     cursor: `url(${alternativeCursor}), auto`,
+    [theme.breakpoints.down("xs")]: {
+      justifyContent: "flex-end",
+    },
   },
   imgStyling: {
     width: "50vw",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   customCursor: {
     cursor: `url(${alternativeCursor}) 9 7, auto`,
   },
-});
+}));
 
 export default Promotion;
