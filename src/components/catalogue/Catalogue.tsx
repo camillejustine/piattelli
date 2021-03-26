@@ -159,15 +159,28 @@ function Catalogue(props: IProps, id: string) {
                 key={product.name}
               >
                 <Typography variant="h6">
-                  <img
-                    onMouseEnter={() => setIsHover(product.name)}
-                    src={product.preview}
-                    className={classes.customCursor}
-                    draggable={false}
-                    alt="Bags from Pialetti"
-                    width="400"
-                    height="400"
-                  />
+                  <Hidden only={"xs"}>
+                    <img
+                      onMouseEnter={() => setIsHover(product.name)}
+                      src={product.preview}
+                      className={classes.customCursor}
+                      draggable={false}
+                      alt="Bags from Pialetti"
+                      width="400"
+                      height="400"
+                    />
+                  </Hidden>
+                  <Hidden smUp>
+                    <img
+                      onMouseEnter={() => setIsHover(product.name)}
+                      src={product.preview}
+                      className={classes.customCursor}
+                      draggable={false}
+                      alt="Bags from Pialetti"
+                      width="150"
+                      height="150"
+                    />
+                  </Hidden>
                 </Typography>
                 {isHover === product.name ? (
                   <>
@@ -180,7 +193,9 @@ function Catalogue(props: IProps, id: string) {
                         <Box
                           className={`${classes.hoverText} ${classes.customCursor}`}
                         >
-                          <Box className={classes.customCursor}>
+                          <Box
+                            className={`${classes.hoverText} ${classes.customCursor}`}
+                          >
                             <Link
                               className={`${classes.linkStyle} ${classes.customCursor}`}
                               to={`/products/${product.name}`}
@@ -195,12 +210,16 @@ function Catalogue(props: IProps, id: string) {
                                 More info
                               </Typography>
                             </Link>
-                            <Typography variant="h5">{product.name}</Typography>
+                            <Typography
+                              variant="h5"
+                              className={classes.productTitle}
+                            >
+                              {product.name}
+                            </Typography>
                           </Box>
                           <Typography variant="body1">
                             {product.price}&nbsp;kr
                           </Typography>
-                        </Box>
                         <Box
                           className={`${classes.buttonContainer} ${classes.customCursor}`}
                         >
@@ -217,6 +236,7 @@ function Catalogue(props: IProps, id: string) {
                               Add to cart
                             </Typography>
                           </Button>
+                        </Box>
                         </Box>
                       </Box>
                     </Box>
@@ -238,6 +258,9 @@ const useStyles: any = makeStyles((theme) => ({
     position: "relative",
     top: "14.5rem",
     textAlign: "center",
+    [theme.breakpoints.down("xs")]: {
+      top: "6.9rem",
+    },
   },
   buttonContainer: {
     display: "flex",
@@ -246,6 +269,17 @@ const useStyles: any = makeStyles((theme) => ({
     width: "120px",
     height: "60px",
     marginTop: "1rem",
+    [theme.breakpoints.down("xs")]: {
+      width: "60px",
+      height: "30px",
+    },
+  },
+  productTitle: {
+    [theme.breakpoints.down("xs")]: {
+      position: "relative",
+      marginBottom: "2rem",
+      marginTop: 0,
+    },
   },
   hoverText: {
     display: "flex",
@@ -258,6 +292,11 @@ const useStyles: any = makeStyles((theme) => ({
   hoverContainer: {
     position: "relative",
     bottom: "25.5rem",
+    [theme.breakpoints.down("xs")]: {
+      bottom: "9.5rem",
+      width: "100%",
+      height: "100%",
+    },
   },
   hoverEffect: {
     top: "0",
