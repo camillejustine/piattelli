@@ -1,5 +1,12 @@
-import { Typography, Box, Button, Modal, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import {
+  Typography,
+  Box,
+  Button,
+  Modal,
+  Grid,
+  Hidden,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { useContext, useState, useEffect } from "react";
 import { Product, ProductsContext } from "../context/ProductsContext";
@@ -39,14 +46,26 @@ function OpenAdminPage() {
               return (
                 <>
                   <Box className={classes.productCard}>
-                    <img
-                      src={product.preview}
-                      className={classes.imageStyling}
-                      draggable={false}
-                      alt="Bags from Pialetti"
-                      width="150"
-                      height="150"
-                    />
+                    <Hidden only={"xs"}>
+                      <img
+                        src={product.preview}
+                        className={classes.imageStyling}
+                        draggable={false}
+                        alt="Bags from Pialetti"
+                        width="150"
+                        height="150"
+                      />
+                    </Hidden>
+                    <Hidden smUp>
+                      <img
+                        src={product.preview}
+                        className={classes.imageStyling}
+                        draggable={false}
+                        alt="Bags from Pialetti"
+                        width="50"
+                        height="50"
+                      />
+                    </Hidden>
                     <Box className={classes.flexRow}>
                       <Typography
                         variant={"body1"}
@@ -100,7 +119,7 @@ function OpenAdminPage() {
   );
 }
 
-const useStyles: any = makeStyles({
+const useStyles: any = makeStyles((theme) => ({
   modalContainer: {
     height: "80vh",
     width: "100%",
@@ -110,6 +129,9 @@ const useStyles: any = makeStyles({
     alignItems: "center",
     // outline: "0",
     overflowY: "auto",
+    [theme.breakpoints.down("xs")]: {
+      height: "100%",
+    },
   },
 
   productsContainer: {
@@ -127,6 +149,9 @@ const useStyles: any = makeStyles({
     flexDirection: "column",
     marginTop: "5rem",
     marginRight: "2rem",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "0",
+    },
   },
   imageStyling: {
     marginRight: ".5rem",
@@ -135,7 +160,6 @@ const useStyles: any = makeStyles({
   flexRow: {
     display: "flex",
     flexDirection: "row",
-    // justifyContent: "space-between",
   },
   innerGridStyle: {
     display: "flex",
@@ -145,6 +169,6 @@ const useStyles: any = makeStyles({
   addItemButton: {
     marginTop: "5rem",
   },
-});
+}));
 
 export default OpenAdminPage;

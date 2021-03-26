@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { FormatColorResetOutlined } from "@material-ui/icons";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useEffect, useState } from "react";
 import { Product } from "../context/ProductsContext";
 import { ProductsContext } from "../context/ProductsContext";
@@ -23,7 +23,9 @@ interface IProps {
 
 function EditModal(props: IProps) {
   const classes = useStyles();
-  const { products, addNewProduct, updateProduct, removeProduct } = useContext(ProductsContext);
+  const { products, addNewProduct, updateProduct, removeProduct } = useContext(
+    ProductsContext
+  );
 
   const [product, setProduct] = useState<Product>();
 
@@ -35,8 +37,8 @@ function EditModal(props: IProps) {
     });
   }
 
-  if(!props.product) return null;
-  
+  if (!props.product) return null;
+
   return (
     <Modal open={props.editOpen}>
       <Box className={classes.editContainer}>
@@ -82,7 +84,7 @@ function EditModal(props: IProps) {
               error={props.product.price === null}
               id="product-price"
               label="price"
-              onChange={(event) => handleChange(event.target.value , "price")}
+              onChange={(event) => handleChange(event.target.value, "price")}
               defaultValue={props.product.price}
             ></TextField>
 
@@ -102,7 +104,9 @@ function EditModal(props: IProps) {
               error={props.product.collection === ""}
               id="product-collection"
               label="collection"
-              onChange={(event) => handleChange(event.target.value, "collection")}
+              onChange={(event) =>
+                handleChange(event.target.value, "collection")
+              }
               defaultValue={props.product.collection}
             ></TextField>
           </Box>
@@ -115,7 +119,9 @@ function EditModal(props: IProps) {
             error={props.product.description === ""}
             id="product-description"
             label="description"
-            onChange={(event) => handleChange(event.target.value, "description")}
+            onChange={(event) =>
+              handleChange(event.target.value, "description")
+            }
             defaultValue={props.product.description}
           ></TextField>
 
@@ -162,7 +168,7 @@ function EditModal(props: IProps) {
   );
 }
 
-const useStyles: any = makeStyles({
+const useStyles: any = makeStyles((theme) => ({
   editContainer: {
     marginTop: "10rem",
     height: "60%",
@@ -195,6 +201,6 @@ const useStyles: any = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
-});
+}));
 
 export default EditModal;
