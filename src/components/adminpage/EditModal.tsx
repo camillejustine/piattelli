@@ -5,6 +5,7 @@ import {
   Modal,
   Grid,
   TextField,
+  createMuiTheme,
 } from "@material-ui/core";
 import { FormatColorResetOutlined } from "@material-ui/icons";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
@@ -64,91 +65,123 @@ function EditModal(props: IProps) {
             </Typography>
           </Box>
         </Box>
+        <Box className={classes.formContainer}>
+          <form>
+            <Box className={classes.smallerForms}>
+              <Box mb={5} mt={5}>
+                <TextField
+                  className={classes.formWidth}
+                  required
+                  name="name"
+                  error={props.product.name === ""}
+                  id="product-name"
+                  label="Name"
+                  onChange={(event) => handleChange(event.target.value, "name")}
+                  defaultValue={props.product.name}
+                ></TextField>
+              </Box>
 
-        <form className={classes.formContainer}>
-          <Box className={classes.smallerForms}>
-            <TextField
-              required
-              name="name"
-              error={props.product.name === ""}
-              id="product-name"
-              label="Name"
-              onChange={(event) => handleChange(event.target.value, "name")}
-              defaultValue={props.product.name}
-            ></TextField>
-
-            <TextField
-              required
-              name="price"
-              type="number"
-              error={props.product.price === null}
-              id="product-price"
-              label="price"
-              onChange={(event) => handleChange(event.target.value, "price")}
-              defaultValue={props.product.price}
-            ></TextField>
-
-            <TextField
-              required
-              name="Picture"
-              error={props.product.preview === ""}
-              id="product-Picture"
-              label="Picture"
-              onChange={(event) => handleChange(event.target.value, "preview")}
-              defaultValue={props.product.preview}
-            ></TextField>
-
-            <TextField
-              required
-              name="collection"
-              error={props.product.collection === ""}
-              id="product-collection"
-              label="collection"
-              onChange={(event) =>
-                handleChange(event.target.value, "collection")
-              }
-              defaultValue={props.product.collection}
-            ></TextField>
-          </Box>
-
-          <TextField
-            required
-            rows={15}
-            multiline={true}
-            name="description"
-            error={props.product.description === ""}
-            id="product-description"
-            label="description"
-            onChange={(event) =>
-              handleChange(event.target.value, "description")
-            }
-            defaultValue={props.product.description}
-          ></TextField>
-
-          <TextField
-            required
-            rows={15}
-            multiline={true}
-            name="details"
-            error={props.product.details === ""}
-            id="product-details"
-            label="details"
-            onChange={(event) => handleChange(event.target.value, "details")}
-            defaultValue={props.product.details}
-          ></TextField>
-
-          <TextField
-            required
-            rows={15}
-            multiline={true}
-            name="care"
-            error={props.product.care === ""}
-            id="product-care"
-            label="care"
-            onChange={(event) => handleChange(event.target.value, "care")}
-            defaultValue={props.product.care}
-          ></TextField>
-
+              <Box mb={5}>
+                <TextField
+                  className={classes.formWidth}
+                  variant={"outlined"}
+                  required
+                  name="price"
+                  type="number"
+                  error={props.product.price === null}
+                  id="product-price"
+                  label="price"
+                  onChange={(event) =>
+                    handleChange(event.target.value, "price")
+                  }
+                  defaultValue={props.product.price}
+                ></TextField>
+              </Box>
+              <Box mb={5}>
+                <TextField
+                  className={classes.formWidth}
+                  variant={"outlined"}
+                  required
+                  name="Picture"
+                  error={props.product.preview === ""}
+                  id="product-Picture"
+                  label="Picture"
+                  onChange={(event) =>
+                    handleChange(event.target.value, "preview")
+                  }
+                  defaultValue={props.product.preview}
+                ></TextField>
+              </Box>
+              <Box mb={5}>
+                <TextField
+                  className={classes.formWidth}
+                  variant={"outlined"}
+                  required
+                  name="collection"
+                  error={props.product.collection === ""}
+                  id="product-collection"
+                  label="collection"
+                  onChange={(event) =>
+                    handleChange(event.target.value, "collection")
+                  }
+                  defaultValue={props.product.collection}
+                ></TextField>
+              </Box>
+            </Box>
+            <Box className={classes.largerForms}>
+              <Box mb={5}>
+                <TextField
+                  required
+                  className={classes.formWidth}
+                  variant={"outlined"}
+                  rows={15}
+                  multiline={true}
+                  name="description"
+                  error={props.product.description === ""}
+                  id="product-description"
+                  label="description"
+                  onChange={(event) =>
+                    handleChange(event.target.value, "description")
+                  }
+                  defaultValue={props.product.description}
+                ></TextField>
+              </Box>
+              <Box mb={5}>
+                <TextField
+                  required
+                  className={classes.formWidth}
+                  variant={"outlined"}
+                  rows={15}
+                  multiline={true}
+                  name="details"
+                  error={props.product.details === ""}
+                  id="product-details"
+                  label="details"
+                  onChange={(event) =>
+                    handleChange(event.target.value, "details")
+                  }
+                  defaultValue={props.product.details}
+                ></TextField>
+              </Box>
+              <Box mb={5}>
+                <TextField
+                  className={classes.formWidth}
+                  required
+                  variant={"outlined"}
+                  rows={"10"}
+                  multiline={true}
+                  name="care"
+                  error={props.product.care === ""}
+                  id="product-care"
+                  label="care"
+                  onChange={(event) => handleChange(event.target.value, "care")}
+                  defaultValue={props.product.care}
+                ></TextField>
+              </Box>
+            </Box>
+          </form>
+        </Box>
+        <Box mb={5}>
           <Button
             href={"/admin"}
             onClick={() => {
@@ -162,7 +195,7 @@ function EditModal(props: IProps) {
           >
             Save
           </Button>
-        </form>
+        </Box>
       </Box>
     </Modal>
   );
@@ -170,8 +203,8 @@ function EditModal(props: IProps) {
 
 const useStyles: any = makeStyles((theme) => ({
   editContainer: {
-    marginTop: "10rem",
-    height: "60%",
+    marginTop: "5rem",
+    height: "80%",
     width: "60%",
     margin: "auto",
     backgroundColor: "#eaeaea",
@@ -179,6 +212,17 @@ const useStyles: any = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     outline: "0",
+    [theme.breakpoints.down("xs")]: {
+      height: "100vh",
+      marginTop: "2rem",
+      width: "100%",
+    },
+  },
+  formWidth: {
+    minWidth: "50rem",
+    [theme.breakpoints.down("xs")]: {
+      minWidth: "15rem",
+    },
   },
   editCard: {
     display: "flex",
@@ -194,12 +238,29 @@ const useStyles: any = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     overflow: "auto",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      // marginTop: "5rem",
+      overflow: "auto",
+      height: "100%",
+    },
   },
   smallerForms: {
     display: "flex",
     flexDirection: "column",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+      minWidth: "10rem",
+    },
+  },
+  largerForms: {
+    display: "flex",
+    flexDirection: "column",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+    },
   },
 }));
 

@@ -94,18 +94,18 @@ function OpenAdminPage() {
                 </>
               );
             })}
-            <Box className={classes.addItemButton}>
-              <Button
-                onClick={() => {
-                  setEditingProduct(emptyProduct);
-                  setNewProduct(true);
-                  console.log(emptyProduct);
-                }}
-              >
-                <PostAddIcon fontSize={"large"} />
-              </Button>
-            </Box>
           </Grid>
+          <Box className={classes.addItemButton}>
+            <Button
+              onClick={() => {
+                setEditingProduct(emptyProduct);
+                setNewProduct(true);
+                console.log(emptyProduct);
+              }}
+            >
+              <PostAddIcon fontSize={"large"} />
+            </Button>
+          </Box>
         </Box>
         <EditModal
           newProduct={newProduct}
@@ -131,14 +131,18 @@ const useStyles: any = makeStyles((theme) => ({
     overflowY: "auto",
     [theme.breakpoints.down("xs")]: {
       height: "100%",
+      marginTop: "4rem",
     },
   },
 
   productsContainer: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     flexWrap: "wrap",
     maxWidth: "100%",
+    [theme.breakpoints.down("xs")]: {
+      justifyContent: "center",
+    },
   },
   productName: {
     fontSize: "0.6rem",
@@ -150,7 +154,8 @@ const useStyles: any = makeStyles((theme) => ({
     marginTop: "5rem",
     marginRight: "2rem",
     [theme.breakpoints.down("xs")]: {
-      marginTop: "0",
+      marginTop: "3rem",
+      marginRight: "0rem",
     },
   },
   imageStyling: {
@@ -168,6 +173,16 @@ const useStyles: any = makeStyles((theme) => ({
   },
   addItemButton: {
     marginTop: "5rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: "3rem",
+      marginBottom: "3rem",
+    },
   },
 }));
 
