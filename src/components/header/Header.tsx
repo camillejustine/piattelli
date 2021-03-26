@@ -17,6 +17,7 @@ import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 
+
 function Header() {
   const [searchClicked, setSearchClicked] = useState(false);
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -74,7 +75,20 @@ function Header() {
               <Autocomplete
                 freeSolo
                 disableClearable
-                options={products.map((option) => option.name)}
+                options={products}
+                getOptionLabel={(option) => option.name}
+                renderOption={(option) => (
+                  <React.Fragment>
+                    <span
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        window.location.href = `/products/${option.name}`
+                      }}
+                    >
+                    {option.name} 
+                    </span>
+                  </React.Fragment>
+                )}
                 renderInput={(params) => (
                   <TextField
                     {...params}
