@@ -6,6 +6,7 @@ import {
   Grid,
   TextField,
   createMuiTheme,
+  Hidden,
 } from "@material-ui/core";
 import { FormatColorResetOutlined } from "@material-ui/icons";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
@@ -47,24 +48,26 @@ function EditModal(props: IProps) {
         <Button onClick={props.closeModal}>
           <CancelOutlinedIcon />
         </Button>
-        <Box className={classes.editCard}>
-          <img
-            src={props.product.preview}
-            className={classes.imageStyling}
-            draggable={false}
-            alt="Bags from Pialetti"
-            width="100"
-            height="100"
-          />
-          <Box className={classes.cardText}>
-            <Typography variant={"body1"} className={classes.productName}>
-              {props.product.price}&nbsp;kr
-            </Typography>
-            <Typography variant={"body1"} className={classes.productName}>
-              {props.product.name}
-            </Typography>
+        <Hidden only={"xs"}>
+          <Box className={classes.editCard}>
+            <img
+              src={props.product.preview}
+              className={classes.imageStyling}
+              draggable={false}
+              alt="Bags from Pialetti"
+              width="100"
+              height="100"
+            />
+            <Box className={classes.cardText}>
+              <Typography variant={"body1"} className={classes.productName}>
+                {props.product.price}&nbsp;kr
+              </Typography>
+              <Typography variant={"body1"} className={classes.productName}>
+                {props.product.name}
+              </Typography>
+            </Box>
           </Box>
-        </Box>
+        </Hidden>
         <Box className={classes.formContainer}>
           <form>
             <Box className={classes.smallerForms}>
@@ -181,20 +184,25 @@ function EditModal(props: IProps) {
             </Box>
           </form>
         </Box>
-        <Box mb={5}>
-          <Button
-            href={"/admin"}
-            onClick={() => {
-              if (props.newProduct) {
-                addNewProduct(props.product);
-                props.isProductNew();
-              } else {
-                updateProduct(props.product);
-              }
-            }}
-          >
-            Save
-          </Button>
+        <Box mb={5} className={classes.buttonContainer}>
+          <Box mr={4}>
+            <Button
+              href={"/admin"}
+              onClick={() => {
+                if (props.newProduct) {
+                  addNewProduct(props.product);
+                  props.isProductNew();
+                } else {
+                  updateProduct(props.product);
+                }
+              }}
+            >
+              Save
+            </Button>
+          </Box>
+          <Box>
+            <Button onClick={props.closeModal}>Cancel</Button>
+          </Box>
         </Box>
       </Box>
     </Modal>
@@ -261,6 +269,11 @@ const useStyles: any = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
     },
+  },
+  buttonContainer: {
+    width: "10rem",
+    display: "flex",
+    flexDirection: "row",
   },
 }));
 
