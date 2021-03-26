@@ -44,9 +44,21 @@ function Header() {
         </Link>
       </Hidden>
 
-      <Link href="/" color="inherit" underline="none">
-        <Typography variant="h1">PIATTELLI</Typography>
-      </Link>
+      <Hidden smUp>
+        {!searchClicked ? (
+          <Box className="animate__animated animate__fadeIn">
+            <Link href="/" color="inherit" underline="none">
+              <Typography variant="h1">PIATTELLI</Typography>
+            </Link>
+          </Box>
+        ) : null}
+      </Hidden>
+
+      <Hidden only={"xs"}>
+        <Link href="/" color="inherit" underline="none">
+          <Typography variant="h1">PIATTELLI</Typography>
+        </Link>
+      </Hidden>
 
       <Hidden smDown>
         <Link href="/catalogue" color="inherit" underline="none">
