@@ -73,27 +73,7 @@ function DeliveryOptions(props: IProps) {
 
 export default DeliveryOptions;
 
-const useStyles = makeStyles({
-  root: {
-    marginTop: "8.5rem",
-    height: "50rem",
-    border: "solid 2px black",
-    position: "relative",
-  },
-  buttonWrapper: {
-    position: "absolute",
-    display: "flex",
-    bottom: "1rem",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  contentWrapper: {
-    display: "flex",
-    justifyContent: "center",
-    margin: "3rem",
-    flexDirection: "row",
-  },
+const useStyles = makeStyles((theme) => ({
   flexColumn: {
     flexDirection: "column",
     display: "flex",
@@ -103,33 +83,15 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-  paymentMethodWrapper: {
-    width: "15rem",
-    height: "8rem",
-    border: "solid 1px black",
-    margin: "1rem",
-    padding: "2rem",
-    borderRadius: 5,
-  },
-  paymentLogoSize: {
-    width: "15rem",
-    height: "8rem",
-  },
   deliveryBox: {
     margin: "1rem",
     padding: "0.5rem",
     border: "1px solid black",
     borderRadius: 5,
     cursor: "pointer",
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "5rem",
+    },
   },
-  cartContentWrapper: {
-    overflow: "auto",
-  },
-  cartContent: {
-    margin: "1rem 2rem",
-    display: "flex",
-  },
-  productInfo: {
-    marginLeft: "1rem",
-  },
-});
+  
+}));

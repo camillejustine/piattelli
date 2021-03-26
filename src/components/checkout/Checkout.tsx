@@ -1,8 +1,10 @@
 import {
   Box,
   Button,
+  Hidden,
   Link,
   makeStyles,
+  MobileStepper,
   Step,
   StepLabel,
   Stepper,
@@ -221,13 +223,30 @@ function Checkout() {
 
   return (
     <Box className={classes.root}>
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+      <Hidden smUp>
+        <Stepper
+          className={classes.mobileStepper}
+          activeStep={activeStep}
+          alternativeLabel
+        >
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Hidden>
+
+      <Hidden only={"xs"}>
+        <Stepper activeStep={activeStep} alternativeLabel>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Hidden>
+
       <Box>
         {activeStep === steps.length ? (
           <Box>
@@ -290,13 +309,22 @@ function Checkout() {
   );
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     padding: "0 10rem",
     marginTop: "8.5rem",
     height: "50rem",
-    // border: "solid 2px black",
+    border: "solid 2px black",
     position: "relative",
+    [theme.breakpoints.down("xs")]: {
+      padding: 0,
+      height: "auto",
+    },
+  },
+  mobileStepper: {
+    overflowX: "auto",
+    width: "auto",
+    margin: 0,
   },
   buttonWrapper: {
     position: "absolute",
@@ -333,30 +361,23 @@ const useStyles = makeStyles({
     width: "15rem",
     height: "8rem",
   },
-  deliveryBox: {
-    margin: "1rem",
-    padding: "0.5rem",
-    border: "1px solid black",
-    borderRadius: 5,
-    cursor: "pointer",
-  },
   cartContentWrapper: {
     overflow: "auto",
-    height: '30rem',
-    '&::-webkit-scrollbar': {
-      width: '0.4em'
+    height: "30rem",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
     },
-    '&::-webkit-scrollbar-track': {
-      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
-      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    "&::-webkit-scrollbar-track": {
+      boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+      webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
     },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: 'rgba(0,0,0,.1)',
-      outline: '1px solid slategrey',
-      border:' 4px solid transparent',
-      borderRadius:'8px',
-      backgroundClip: 'padding-box',
-    }
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+      border: " 4px solid transparent",
+      borderRadius: "8px",
+      backgroundClip: "padding-box",
+    },
   },
   cartContent: {
     margin: "1rem 2rem",
@@ -365,5 +386,5 @@ const useStyles = makeStyles({
   productInfo: {
     marginLeft: "1rem",
   },
-});
+}));
 export default Checkout;

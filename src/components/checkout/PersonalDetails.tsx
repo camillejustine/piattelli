@@ -114,12 +114,15 @@ function PersonalDetails(props: IProps) {
 }
 export default PersonalDetails;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "8.5rem",
     height: "50rem",
     border: "solid 2px black",
     position: "relative",
+    [theme.breakpoints.down("xs")]: {
+      height: '100rem',
+    },
   },
 
   contentWrapper: {
@@ -127,6 +130,9 @@ const useStyles = makeStyles({
     justifyContent: "center",
     margin: "3rem",
     flexDirection: "row",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: 'column',
+    },
   },
   flexColumn: {
     flexDirection: "column",
@@ -142,15 +148,12 @@ const useStyles = makeStyles({
     width: "15rem",
     height: "8rem",
   },
-  deliveryBox: {
-    margin: "1rem",
-    padding: "0.5rem",
-    border: "1px solid black",
-    borderRadius: 5,
-    cursor: "pointer",
-  },
+ 
   textField: {
     margin: "0.5rem 2rem",
     width: "20rem",
+    [theme.breakpoints.down("xs")]: {
+      width: '10rem',
+    },
   },
-});
+}));
