@@ -45,13 +45,13 @@ function Hero() {
           onMouseLeave={() => setLeftIsShown(false)}
         >
           <Hidden mdDown>
-            {leftIsShown && <h2 style={heroTitleLeft}>NEW COLLECTION</h2>}
+            {leftIsShown && <h2 style={heroTitleLeft}>OUR BAGS</h2>}
           </Hidden>
         </Box>
         <Hidden smUp>
           <Box className={classes.mobileHeroTitle}>
             <Link variant={"body2"} href={"/catalogue"} color={"inherit"}>
-              New Collection
+              Our Bags
             </Link>
           </Box>
         </Hidden>
