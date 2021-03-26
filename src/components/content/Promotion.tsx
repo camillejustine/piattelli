@@ -31,7 +31,7 @@ const useStyles: any = makeStyles((theme) => ({
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "column",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       // height: "40rem",
       justifyContent: "center",
       alignItems: "center",
@@ -45,13 +45,13 @@ const useStyles: any = makeStyles((theme) => ({
     position: "absolute",
     color: "white",
     cursor: `url(${alternativeCursor}), auto`,
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       justifyContent: "flex-end",
     },
   },
   imgStyling: {
     width: "50vw",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       width: "100%",
     },
   },

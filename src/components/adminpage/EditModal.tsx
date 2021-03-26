@@ -222,7 +222,7 @@ const useStyles: any = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     outline: "0",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       height: "100vh",
       marginTop: "2rem",
       width: "100%",
@@ -230,8 +230,14 @@ const useStyles: any = makeStyles((theme) => ({
   },
   formWidth: {
     minWidth: "50rem",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       minWidth: "15rem",
+    },
+    [theme.breakpoints.only("md")]: {
+      minWidth: "30rem",
+    },
+    [theme.breakpoints.only("sm")]: {
+      minWidth: "30rem",
     },
   },
   editCard: {
@@ -250,7 +256,7 @@ const useStyles: any = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     overflow: "auto",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       width: "100%",
       // marginTop: "5rem",
       overflow: "auto",
@@ -260,7 +266,11 @@ const useStyles: any = makeStyles((theme) => ({
   smallerForms: {
     display: "flex",
     flexDirection: "column",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+      minWidth: "10rem",
+    },
+    [theme.breakpoints.only("md")]: {
       flexDirection: "column",
       minWidth: "10rem",
     },
@@ -268,7 +278,7 @@ const useStyles: any = makeStyles((theme) => ({
   largerForms: {
     display: "flex",
     flexDirection: "column",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       flexDirection: "column",
     },
   },
