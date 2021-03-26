@@ -80,7 +80,6 @@ function Header() {
                 renderOption={(option) => (
                   <React.Fragment>
                     <span
-                      style={{ cursor: "pointer" }}
                       onClick={() => {
                         window.location.href = `/products/${option.name}`
                       }}
