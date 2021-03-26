@@ -93,7 +93,7 @@ function PaymentMethod(props: IProps) {
         <Box>
           {props.paymentOption === "swish" ? (
             <Box
-              className={`${classes.centerFlex} animate__animated animate__fadeIn`}
+              className={`${classes.centerFlex} ${classes.paymentInformation} animate__animated animate__fadeIn`}
             >
               <TextField
                 className={classes.textFields}
@@ -113,7 +113,7 @@ function PaymentMethod(props: IProps) {
           ) : null}
           {props.paymentOption === "card" ? (
             <Box
-              className={`${classes.centerFlex} animate__animated animate__fadeIn`}
+              className={`${classes.centerFlex} ${classes.paymentInformation} animate__animated animate__fadeIn`}
             >
               <TextField
                 className={classes.textFields}
@@ -154,7 +154,7 @@ function PaymentMethod(props: IProps) {
           ) : null}
           {props.paymentOption === "giftcard" ? (
             <Box
-              className={`${classes.centerFlex} animate__animated animate__fadeIn`}
+              className={`${classes.centerFlex} ${classes.paymentInformation} animate__animated animate__fadeIn`}
             >
               <TextField
                 className={classes.textFields}
@@ -180,12 +180,21 @@ function PaymentMethod(props: IProps) {
 
 export default PaymentMethod;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   contentWrapper: {
     display: "flex",
     justifyContent: "center",
     margin: "3rem",
     flexDirection: "row",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+    },
+  },
+  paymentInformation: {
+    [theme.breakpoints.down("xs")]: {
+      display: "flex",
+      flexDirection: "column",
+    },
   },
   flexColumn: {
     flexDirection: "column",
@@ -203,16 +212,27 @@ const useStyles = makeStyles({
     margin: "1rem",
     padding: "2rem",
     borderRadius: 5,
+    [theme.breakpoints.down("xs")]: {
+      width: "10rem",
+      height: "3rem",
+    },
   },
   paymentLogoSize: {
     width: "10rem",
     height: "auto",
+    [theme.breakpoints.down("xs")]: {
+      width: "6rem",
+      height: "auto",
+    },
   },
   loadingAnimation: {
     margin: "5rem",
+    [theme.breakpoints.down("xs")]: {
+      margin: "2rem",
+    },
   },
   textFields: {
     margin: "1rem 1rem",
     width: "15rem",
   },
-});
+}));

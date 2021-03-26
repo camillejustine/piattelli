@@ -32,16 +32,18 @@ function OrderComfirmation(props: IProps) {
 
   return (
     <Box>
-      <Typography variant="h6" className={classes.centerFlex}>
-        Thank you for your purchase.
-      </Typography>
-      <Typography variant="body2" className={classes.centerFlex}>
-        An email with more information has been send to {props.email}.
-      </Typography>
-      <Typography variant="body1" className={classes.centerFlex}>
-        Invoice ID: {invoiceID}{" "}
-      </Typography>
-      <Box className={classes.centerFlex}>
+      <Box className={classes.textAlignCenterResponsive}>
+        <Typography variant="h6" className={classes.centerFlex}>
+          Thank you for your purchase.
+        </Typography>
+        <Typography variant="body2" className={classes.centerFlex}>
+          An email with more information has been send to {props.email}.
+        </Typography>
+        <Typography variant="body1" className={classes.centerFlex}>
+          Invoice ID: {invoiceID}{" "}
+        </Typography>
+      </Box>
+      <Box className={`${classes.centerFlex} ${classes.columnResponsive}`}>
         <Box>
           <Box className={`${classes.cartContentWrapper} ${classes.margin2}`}>
             {props.payedProducts.map((product: any) => (
@@ -98,40 +100,63 @@ function OrderComfirmation(props: IProps) {
   );
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   centerFlex: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
+  textAlignCenterResponsive: {
+    [theme.breakpoints.down("xs")]: {
+      textAlign: "center",
+      padding: '0.3rem'
+    },
+  },
+  columnResponsive: {
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: 'column',
+      padding: '1rem'
+    },
+  },
   cartContentWrapper: {
     overflow: "auto",
     height: "25rem",
-    '&::-webkit-scrollbar': {
-      width: '0.4em'
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
     },
-    '&::-webkit-scrollbar-track': {
-      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
-      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    "&::-webkit-scrollbar-track": {
+      boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+      webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
     },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: 'rgba(0,0,0,.1)',
-      outline: '1px solid slategrey',
-      border:' 4px solid transparent',
-      borderRadius:'8px',
-      backgroundClip: 'padding-box',
-    }
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+      border: " 4px solid transparent",
+      borderRadius: "8px",
+      backgroundClip: "padding-box",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "auto",
+
+    },
+    
   },
   cartContent: {
     margin: "1rem 0rem",
     display: "flex",
+    [theme.breakpoints.down("xs")]: {
+      margin: "0rem 0rem",
+    },
   },
   productInfo: {
     marginLeft: "1rem",
   },
   margin2: {
     margin: "2rem",
+    [theme.breakpoints.down("xs")]: {
+      margin: "2rem 0rem",
+    },
   },
-});
+}));
 
 export default OrderComfirmation;
