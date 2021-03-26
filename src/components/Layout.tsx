@@ -90,11 +90,20 @@ const useStyles: any = makeStyles((theme) => ({
   landingContainer: {
     width: "50vw",
     margin: "auto",
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
+    [theme.breakpoints.only("xs")]: {
+      width: "90vw",
     },
-    [theme.breakpoints.down("lg")]: {
-      width: "90%",
+    [theme.breakpoints.only("lg")]: {
+      width: "65vw",
+    },
+    [theme.breakpoints.only("xl")]: {
+      width: "50vw",
+    },
+    [theme.breakpoints.only("md")]: {
+      width: "70vw",
+    },
+    [theme.breakpoints.only("sm")]: {
+      width: "70vw",
     },
   },
   customCursorBlack: {

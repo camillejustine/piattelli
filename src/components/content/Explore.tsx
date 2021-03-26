@@ -51,7 +51,7 @@ const useStyles: any = makeStyles((theme) => ({
     },
   },
   imageStyling: {
-    width: "15vw",
+    width: "25rem",
     [theme.breakpoints.only("xs")]: {
       width: "60%",
     },

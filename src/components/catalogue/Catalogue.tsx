@@ -78,7 +78,7 @@ function Catalogue(props: IProps, id: string) {
                         </Box>
                       </Link>
 
-                      <Hidden only="xs">
+                      <Hidden only={["xs", "sm", "md"]}>
                         <Link
                           color="inherit"
                           to={`/products/${product.name}`}
@@ -203,33 +203,47 @@ function Catalogue(props: IProps, id: string) {
                         height="150"
                       />
                     </Link>
-
                   </Hidden>
                   <Hidden only={["xs", "sm", "lg", "xl"]}>
-                    <Img
-                      onMouseEnter={() => setIsHover(product.name)}
-                      src={[product.preview, fallback]}
-                      className={classes.customCursor}
-                      draggable={false}
-                      alt="Bags from Pialetti"
-                      width="300"
-                      height="300"
-                    />
+                    <Link
+                      to={`/products/${product.name}`}
+                      onClick={() => {
+                        props.getProduct(product);
+                      }}
+                    >
+                      <Img
+                        onMouseEnter={() => setIsHover(product.name)}
+                        src={[product.preview, fallback]}
+                        className={classes.customCursor}
+                        draggable={false}
+                        alt="Bags from Pialetti"
+                        width="300"
+                        height="300"
+                      />
+                    </Link>
                   </Hidden>
                   <Hidden only={["xs", "md", "lg", "xl"]}>
-                    <Img
-                      onMouseEnter={() => setIsHover(product.name)}
-                      src={[product.preview, fallback]}
-                      className={classes.customCursor}
-                      draggable={false}
-                      alt="Bags from Pialetti"
-                      width="200"
-                      height="200"
-                    />
+                    <Link
+                      to={`/products/${product.name}`}
+                      onClick={() => {
+                        props.getProduct(product);
+                      }}
+                    >
+                      <Img
+                        onMouseEnter={() => setIsHover(product.name)}
+                        src={[product.preview, fallback]}
+                        className={classes.customCursor}
+                        draggable={false}
+                        alt="Bags from Pialetti"
+                        width="200"
+                        height="200"
+                      />
+                    </Link>
                   </Hidden>
                 </Typography>
+
                 {isHover === product.name ? (
-                  <Hidden only={"xs"}>
+                  <Hidden only={["xs", "sm", "md"]}>
                     <>
                       <Box
                         className={`${classes.hoverContainer} ${classes.customCursor}`}

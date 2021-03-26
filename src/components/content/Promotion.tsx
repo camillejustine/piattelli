@@ -33,14 +33,9 @@ function Promotion() {
 const useStyles: any = makeStyles((theme) => ({
   promotionContainer: {
     display: "flex",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    [theme.breakpoints.down("md")]: {
-      // height: "40rem",
-      justifyContent: "center",
-      alignItems: "center",
-    },
   },
   promotionText: {
     display: "flex",
@@ -51,12 +46,12 @@ const useStyles: any = makeStyles((theme) => ({
     color: "white",
     cursor: `url(${alternativeCursor}), auto`,
     [theme.breakpoints.down("sm")]: {
-      justifyContent: "flex-end",
+      justifyContent: "center",
     },
   },
   imgStyling: {
     width: "50vw",
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       width: "100%",
     },
   },
