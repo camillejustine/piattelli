@@ -1,4 +1,4 @@
-import { Grid, Box, Typography, Button } from "@material-ui/core";
+import { Grid, Box, Typography, Button, Hidden } from "@material-ui/core";
 import { PinDropSharp } from "@material-ui/icons";
 import { CSSProperties, useState, useContext } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
@@ -37,69 +37,107 @@ function Catalogue(props: IProps, id: string) {
                 onMouseLeave={() => setIsHover("null")}
               >
                 <Typography variant="h6">
-                  <img
-                    onMouseEnter={() => setIsHover(product.name)}
-                    src={product.preview}
-                    className={classes.customCursor}
-                    draggable={false}
-                    alt="Bags from Pialetti"
-                    width="400"
-                    height="400"
-                  />
+                  <Hidden only={"xs"}>
+                    <img
+                      onMouseEnter={() => setIsHover(product.name)}
+                      src={product.preview}
+                      className={classes.customCursor}
+                      draggable={false}
+                      alt="Bags from Pialetti"
+                      width="400"
+                      height="400"
+                    />
+                  </Hidden>
+                  <Hidden smUp>
+                    <Box className={classes.flexColumn}>
+                      <img
+                        onMouseEnter={() => setIsHover(product.name)}
+                        src={product.preview}
+                        className={classes.customCursor}
+                        draggable={false}
+                        alt="Bags from Pialetti"
+                        width="150"
+                        height="150"
+                      />
+                      <Box>
+                        <Typography variant="body2">{product.name}</Typography>
+                        <Typography>{product.price}kr</Typography>
+                      </Box>
+
+                      <Link
+                        color="inherit"
+                        to={`/products/${product.name}`}
+                        onClick={() => {
+                          props.getProduct(product);
+                        }}
+                      >
+                        <Typography
+                          variant="body1"
+                          className={`${classes.moreInfoStyle} ${classes.customCursor}`}
+                        >
+                          More info
+                        </Typography>
+                      </Link>
+                    </Box>
+                  </Hidden>
                 </Typography>
-                {isHover === product.name ? (
-                  <>
-                    <Box
-                      className={`${classes.hoverContainer} ${classes.customCursor}`}
-                    >
+                <Hidden only={"xs"}>
+                  {isHover === product.name ? (
+                    <>
                       <Box
-                        className={`${classes.hoverEffect} ${classes.customCursor}`}
+                        className={`${classes.hoverContainer} ${classes.customCursor}`}
                       >
                         <Box
-                          className={`${classes.hoverText} ${classes.customCursor}`}
+                          className={`${classes.hoverEffect} ${classes.customCursor}`}
                         >
-                          <Box className={classes.customCursor}>
-                            <Link
-                              className={`${classes.linkStyle} ${classes.customCursor}`}
-                              to={`/products/${product.name}`}
+                          <Box
+                            className={`${classes.hoverText} ${classes.customCursor}`}
+                          >
+                            <Box className={classes.customCursor}>
+                              <Link
+                                className={`${classes.linkStyle} ${classes.customCursor}`}
+                                to={`/products/${product.name}`}
+                                onClick={() => {
+                                  props.getProduct(product);
+                                }}
+                              >
+                                <Typography
+                                  variant="body1"
+                                  className={`${classes.moreInfoStyle} ${classes.customCursor}`}
+                                >
+                                  More info
+                                </Typography>
+                              </Link>
+                              <Typography variant="h5">
+                                {product.name}
+                              </Typography>
+                            </Box>
+                            <Typography variant="body1">
+                              {product.price}&nbsp;kr
+                            </Typography>
+                          </Box>
+                          <Box
+                            className={`${classes.buttonContainer} ${classes.customCursor}`}
+                          >
+                            <Button
+                              className={classes.button}
                               onClick={() => {
-                                props.getProduct(product);
+                                addToCart(product);
                               }}
                             >
                               <Typography
-                                variant="body1"
-                                className={`${classes.moreInfoStyle} ${classes.customCursor}`}
+                                variant="button"
+                                className={classes.customCursor}
                               >
-                                More info
+                                Add to cart
                               </Typography>
-                            </Link>
-                            <Typography variant="h5">{product.name}</Typography>
+                            </Button>
                           </Box>
-                          <Typography variant="body1">
-                            {product.price}&nbsp;kr
-                          </Typography>
-                        </Box>
-                        <Box
-                          className={`${classes.buttonContainer} ${classes.customCursor}`}
-                        >
-                          <Button
-                            className={classes.button}
-                            onClick={() => {
-                              addToCart(product);
-                            }}
-                          >
-                            <Typography
-                              variant="button"
-                              className={classes.customCursor}
-                            >
-                              Add to cart
-                            </Typography>
-                          </Button>
                         </Box>
                       </Box>
-                    </Box>
-                  </>
-                ) : null}
+                    </>
+                  ) : null}
+                </Hidden>
               </Box>
             ))}
           </Grid>
@@ -193,7 +231,7 @@ function Catalogue(props: IProps, id: string) {
   );
 }
 
-const useStyles: any = makeStyles({
+const useStyles: any = makeStyles((theme) => ({
   linkStyle: {
     textDecoration: "none",
     color: "black",
@@ -233,6 +271,10 @@ const useStyles: any = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     transition: "backgdrop-filter 1000ms linear",
+    [theme.breakpoints.down("xs")]: {
+      width: "150px",
+      height: "150px",
+    },
   },
   gridWidth: {
     maxWidth: "1400px",
@@ -264,6 +306,11 @@ const useStyles: any = makeStyles({
   moreInfoStyle: {
     marginTop: "0rem",
   },
-});
+  flexColumn: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+}));
 
 export default Catalogue;

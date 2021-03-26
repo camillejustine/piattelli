@@ -77,8 +77,8 @@ export const productsMocked: Product[] = [
   
     },
   {
-    name: "You think you know me?",
-    price: 6000,
+    name: "YTYKM?",
+    price: 60000,
     preview: bag6,
     collection: "Bug bag",
     description:
