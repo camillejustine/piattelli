@@ -1,6 +1,6 @@
 // import { Box } from "@material-ui/core";
 import { CSSProperties } from "react";
-import { Typography, Box, Button } from "@material-ui/core";
+import { Typography, Box, Button, Hidden } from "@material-ui/core";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 import leScandinave from "../../assets/le-scandinave.png";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,7 +11,12 @@ function Promotion() {
     <Box className={classes.promotionContainer}>
       <Box className={classes.promotionText}>
         <Typography variant="h6">Explore</Typography>
-        <Typography variant="h3">LE SCANDINAVE</Typography>
+        <Hidden only={["xs", "sm"]}>
+          <Typography variant="h3">LE SCANDINAVE</Typography>
+        </Hidden>
+        <Hidden only={["md", "lg", "xl"]}>
+          <Typography variant="h4">LE SCANDINAVE</Typography>
+        </Hidden>
       </Box>
       <Box>
         <img

@@ -229,7 +229,6 @@ function Checkout() {
 
   return (
     <Box className={classes.root}>
-
       <Hidden only={"xs"}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
@@ -326,11 +325,11 @@ const useStyles = makeStyles((theme) => ({
     width: "80%",
     alignItems: "center",
     justifyContent: "center",
-    [theme.breakpoints.down("xs")]: {
-      position: 'relative',
-      width: 'auto',
+    [theme.breakpoints.down("md")]: {
+      position: "relative",
+      width: "auto",
+      marginTop: "1rem",
     },
-    
   },
   contentWrapper: {
     display: "flex",
@@ -384,6 +383,5 @@ const useStyles = makeStyles((theme) => ({
   productInfo: {
     marginLeft: "1rem",
   },
-  
 }));
 export default Checkout;
