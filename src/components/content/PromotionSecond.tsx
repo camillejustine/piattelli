@@ -35,13 +35,13 @@ const useStyles: any = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       marginTop: "1rem",
     },
   },
   imgStyling: {
     width: "50vw",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       width: "100%",
     },
   },

@@ -42,14 +42,24 @@ const useStyles: any = makeStyles((theme) => ({
     alignItems: "center",
     height: "53rem",
     margin: "auto",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       flexDirection: "column",
+      height: "100%",
+    },
+    [theme.breakpoints.only("md")]: {
+      height: "100%",
     },
   },
   imageStyling: {
     width: "15vw",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.only("xs")]: {
       width: "60%",
+    },
+    [theme.breakpoints.only("sm")]: {
+      width: "20rem",
+    },
+    [theme.breakpoints.only("md")]: {
+      width: "30rem",
     },
   },
   imageContainer: {
@@ -59,6 +69,9 @@ const useStyles: any = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      height: "30rem",
+    },
   },
   textContainer: {
     height: "50rem",
@@ -68,8 +81,12 @@ const useStyles: any = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       width: "100%",
+      height: "30rem",
+    },
+    [theme.breakpoints.only("md")]: {
+      marginBottom: "2rem",
     },
   },
   textStyling: {
@@ -77,13 +94,13 @@ const useStyles: any = makeStyles((theme) => ({
     textAlign: "center",
     marginBottom: "1rem",
     lineHeight: "2rem",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       maxWidth: "100%",
     },
   },
   buttonStyling: {
     marginTop: "1rem",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       marginBottom: "1rem",
     },
   },

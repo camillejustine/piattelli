@@ -93,6 +93,9 @@ const useStyles: any = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       width: "100%",
     },
+    [theme.breakpoints.down("lg")]: {
+      width: "90%",
+    },
   },
   customCursorBlack: {
     cursor: `url(${alternativeCursorBlack}) 9 7, auto`,

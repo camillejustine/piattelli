@@ -156,6 +156,7 @@ const useStyles: any = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       width: "100%",
+      height: "30rem",
     },
   },
   button: {
