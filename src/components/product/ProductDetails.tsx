@@ -153,9 +153,12 @@ const useStyles: any = makeStyles((theme) => ({
     height: "50rem",
     [theme.breakpoints.down("xs")]: {
       width: "100%",
+      height: 'auto',
     },
     [theme.breakpoints.down("sm")]: {
       width: "100%",
+      height: 'auto',
+
     },
   },
   button: {
@@ -165,6 +168,9 @@ const useStyles: any = makeStyles((theme) => ({
     border: "solid 1.5px black",
     borderRadius: "0%",
     background: "black",
+    [theme.breakpoints.down("xs")]: {
+      margin: '1rem 0 2rem 0'
+    },
   },
   row: {
     display: "flex",
