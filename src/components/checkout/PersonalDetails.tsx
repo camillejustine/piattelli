@@ -29,7 +29,10 @@ function PersonalDetails(props: IProps) {
 
   return (
     <>
-      <Typography className={classes.centerFlex} variant="h6">
+      <Typography
+        className={`${classes.centerFlex} ${classes.textAlign}`}
+        variant="h6"
+      >
         Fill in your personal detail below:
       </Typography>
       <Box>
@@ -42,6 +45,8 @@ function PersonalDetails(props: IProps) {
               value={props.fullName}
               error={props.fullName === ""}
               id="standard-required"
+              variant={"outlined"}
+
               label="Full Name"
               onChange={(event) => props.setFullName(event.target.value)}
               defaultValue={props.fullName}
@@ -49,6 +54,8 @@ function PersonalDetails(props: IProps) {
             <TextField
               className={classes.textField}
               required
+              variant={"outlined"}
+
               name="email"
               type="email"
               error={props.email === ""}
@@ -58,6 +65,7 @@ function PersonalDetails(props: IProps) {
               defaultValue={props.email}
             />
             <TextField
+              variant={"outlined"}
               className={classes.textField}
               required
               id="standard-required"
@@ -70,6 +78,7 @@ function PersonalDetails(props: IProps) {
             <TextField
               className={classes.textField}
               required
+              variant={"outlined"}
               id="standard-required"
               label="Phone number"
               type="number"
@@ -82,6 +91,7 @@ function PersonalDetails(props: IProps) {
             <TextField
               className={classes.textField}
               required
+              variant={"outlined"}
               id="standard-required"
               label="Zip code"
               error={props.zipCode === ""}
@@ -91,6 +101,7 @@ function PersonalDetails(props: IProps) {
             <TextField
               className={classes.textField}
               required
+              variant={"outlined"}
               id="standard-required"
               label="Country"
               error={props.country === ""}
@@ -100,6 +111,7 @@ function PersonalDetails(props: IProps) {
             <TextField
               className={classes.textField}
               required
+              variant={"outlined"}
               id="standard-required"
               label="City"
               error={props.city === ""}
@@ -121,17 +133,19 @@ const useStyles = makeStyles((theme) => ({
     border: "solid 2px black",
     position: "relative",
     [theme.breakpoints.down("xs")]: {
-      height: '100rem',
+      height: "100rem",
     },
   },
-
+  textAlign: {
+    textAlign: "center",
+  },
   contentWrapper: {
     display: "flex",
     justifyContent: "center",
     margin: "3rem",
     flexDirection: "row",
     [theme.breakpoints.down("xs")]: {
-      flexDirection: 'column',
+      flexDirection: "column",
     },
   },
   flexColumn: {
@@ -148,12 +162,12 @@ const useStyles = makeStyles((theme) => ({
     width: "15rem",
     height: "8rem",
   },
- 
+
   textField: {
     margin: "0.5rem 2rem",
     width: "20rem",
     [theme.breakpoints.down("xs")]: {
-      width: '10rem',
+      width: "12.5rem",
     },
   },
 }));

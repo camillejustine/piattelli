@@ -25,47 +25,51 @@ function DeliveryOptions(props: IProps) {
   return (
     <>
       <h5 className={classes.centerFlex}>Delivery Options</h5>
-      <Box className={classes.centerFlex}>
-        <Box
-          onClick={() => props.setDeliveryOption("pn")}
-          className={classes.deliveryBox}
-        >
-          Post Nord: 2-5 days
-        </Box>
-        <Box
-          onClick={() => props.setDeliveryOption("budbee")}
-          className={classes.deliveryBox}
-        >
-          Budbee home delivery: 1-3 days
-        </Box>
-        <Box
-          onClick={() => props.setDeliveryOption("instabox")}
-          className={classes.deliveryBox}
-        >
-          Instabox: 1-3 days
-        </Box>
-      </Box>
-      <Box className={classes.centerFlex}>
-        {props.deliveryOption === "pn" ? (
-          <Box>
-            <Typography>Delivery cost: free</Typography>
-            <Typography>Estimated delivery time: {String(pnDel)}</Typography>
+      <Box className={classes.marginBottom}>
+        <Box className={`${classes.centerFlex}`}>
+          <Box
+            onClick={() => props.setDeliveryOption("pn")}
+            className={classes.deliveryBox}
+          >
+            Post Nord: 2-5 days
           </Box>
-        ) : null}
-        {props.deliveryOption === "budbee" ? (
-          <Box>
-            <Typography>Delivery cost: 69kr</Typography>
-            <Typography>
-              Estimated delivery time: {String(budbeeDel)}
-            </Typography>
+          <Box
+            onClick={() => props.setDeliveryOption("budbee")}
+            className={classes.deliveryBox}
+          >
+            Budbee home delivery: 1-3 days
           </Box>
-        ) : null}
-        {props.deliveryOption === "instabox" ? (
-          <Box>
-            <Typography>Delivery cost: 39kr</Typography>
-            <Typography>Estimated delivery time: {String(instaDel)}</Typography>
+          <Box
+            onClick={() => props.setDeliveryOption("instabox")}
+            className={classes.deliveryBox}
+          >
+            Instabox: 1-3 days
           </Box>
-        ) : null}
+        </Box>
+        <Box className={`${classes.centerFlex} ${classes.deliveryInformation}`}>
+          {props.deliveryOption === "pn" ? (
+            <Box>
+              <Typography>Delivery cost: free</Typography>
+              <Typography>Estimated delivery time: {String(pnDel)}</Typography>
+            </Box>
+          ) : null}
+          {props.deliveryOption === "budbee" ? (
+            <Box>
+              <Typography>Delivery cost: 69kr</Typography>
+              <Typography>
+                Estimated delivery time: {String(budbeeDel)}
+              </Typography>
+            </Box>
+          ) : null}
+          {props.deliveryOption === "instabox" ? (
+            <Box>
+              <Typography>Delivery cost: 39kr</Typography>
+              <Typography>
+                Estimated delivery time: {String(instaDel)}
+              </Typography>
+            </Box>
+          ) : null}
+        </Box>
       </Box>
     </>
   );
@@ -89,9 +93,15 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid black",
     borderRadius: 5,
     cursor: "pointer",
+  },
+  deliveryInformation: {
     [theme.breakpoints.down("xs")]: {
-      marginBottom: "5rem",
+      textAlign: "center",
     },
   },
-  
+  marginBottom: {
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "2rem",
+    },
+  },
 }));

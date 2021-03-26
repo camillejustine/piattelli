@@ -223,19 +223,6 @@ function Checkout() {
 
   return (
     <Box className={classes.root}>
-      <Hidden smUp>
-        <Stepper
-          className={classes.mobileStepper}
-          activeStep={activeStep}
-          alternativeLabel
-        >
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-      </Hidden>
 
       <Hidden only={"xs"}>
         <Stepper activeStep={activeStep} alternativeLabel>
@@ -314,7 +301,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "0 10rem",
     marginTop: "8.5rem",
     height: "50rem",
-    border: "solid 2px black",
+    // border: "solid 2px black",
     position: "relative",
     [theme.breakpoints.down("xs")]: {
       padding: 0,
@@ -333,6 +320,11 @@ const useStyles = makeStyles((theme) => ({
     width: "80%",
     alignItems: "center",
     justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      position: 'relative',
+      width: 'auto',
+    },
+    
   },
   contentWrapper: {
     display: "flex",
@@ -386,5 +378,6 @@ const useStyles = makeStyles((theme) => ({
   productInfo: {
     marginLeft: "1rem",
   },
+  
 }));
 export default Checkout;
