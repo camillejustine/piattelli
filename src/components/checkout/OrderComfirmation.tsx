@@ -1,5 +1,7 @@
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import React from "react";
+import fallback from "../../assets/bags/fallback.png";
+import { Img } from "react-image";
 
 interface IProps {
   email: string | undefined;
@@ -48,7 +50,11 @@ function OrderComfirmation(props: IProps) {
           <Box className={`${classes.cartContentWrapper} ${classes.margin2}`}>
             {props.payedProducts.map((product: any) => (
               <Box className={`${classes.cartContent}`}>
-                <img src={product.preview} width="100rem" height="100rem" />
+                <Img
+                  src={[product.preview, fallback]}
+                  width="100rem"
+                  height="100rem"
+                />
                 <div className={classes.productInfo}>
                   <Typography variant="body1">{product.name}</Typography>
                   <Typography variant="body1">x{product.quantity}</Typography>
@@ -140,6 +146,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     
+
   },
   cartContent: {
     margin: "1rem 0rem",

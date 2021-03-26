@@ -1,5 +1,5 @@
 //node components
-import { Typography, Box, Button, Hidden} from "@material-ui/core";
+import { Typography, Box, Button, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { ProductsContext } from "../context/ProductsContext";
 import cry from "../../assets/cry.jpg";
+import fallback from "../../assets/bags/fallback.png";
+import { Img } from "react-image";
 interface IProps {
   productView: any;
 }
@@ -15,29 +17,34 @@ const textInfoStrings = ["Description", "Detail", "Care"];
 
 function ProductDetails(props: IProps) {
   const [textView, setTextView] = useState<string>("Description");
-  const [focused, isFocused] = useState(false)
+  const [focused, isFocused] = useState(false);
   const { products } = useContext(ProductsContext);
   const { addToCart } = useContext(CartContext);
   const classes = useStyles();
   const params = useParams<{ name: string }>();
-  const detailViewProduct = products.find(p => p.name === params.name);
+  const detailViewProduct = products.find((p) => p.name === params.name);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
- 
+
   if (!detailViewProduct) {
     return (
       <div className={classes.exists}>
-        <img src={cry} alt="cry" width={200} height={200}/>
+        <img src={cry} alt="cry" width={200} height={200} />
         <p>This product does not exist :'(</p>
-      </div>)
+      </div>
+    );
   }
 
   return (
     <Box className={classes.wrapper}>
       <Box className={classes.productWrapper}>
-        <img src={detailViewProduct.preview} alt="" className={classes.preview} />
+        <Img
+          src={[detailViewProduct.preview, fallback]}
+          alt=""
+          className={classes.preview}
+        />
       </Box>
       <Box className={classes.infoWrapper}>
         <Box className={classes.detailPadding}>
@@ -47,13 +54,17 @@ function ProductDetails(props: IProps) {
             </Typography>
             <Hidden only={"xs"}>
               <Hidden only={"sm"}>
-              <Typography>
-                <h3 className={classes.headerText}>{detailViewProduct.collection}</h3>
-              </Typography>
+                <Typography>
+                  <h3 className={classes.headerText}>
+                    {detailViewProduct.collection}
+                  </h3>
+                </Typography>
               </Hidden>
             </Hidden>
             <Typography>
-              <h4 className={classes.headerText}>{detailViewProduct.price}&nbsp;kr</h4>
+              <h4 className={classes.headerText}>
+                {detailViewProduct.price}&nbsp;kr
+              </h4>
             </Typography>
           </Box>
           <div className={classes.row}>
@@ -64,7 +75,11 @@ function ProductDetails(props: IProps) {
                 onClick={() => {
                   setTextView(tab);
                 }}
-                style={(textView === tab) ? {textDecoration: 'underline'} : {textDecoration: 'none'}}
+                style={
+                  textView === tab
+                    ? { textDecoration: "underline" }
+                    : { textDecoration: "none" }
+                }
               >
                 {tab}
               </Typography>
@@ -105,25 +120,25 @@ const useStyles: any = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       display: "flex",
       flexDirection: "column",
-      alignContent: 'center',
+      alignContent: "center",
     },
     [theme.breakpoints.down("sm")]: {
       display: "flex",
       flexDirection: "column",
-      alignContent: 'center',
+      alignContent: "center",
     },
   },
   preview: {
     height: 600,
     width: 600,
     [theme.breakpoints.down("xs")]: {
-      height: '100%',
-      width: '100%',
+      height: "100%",
+      width: "100%",
     },
     [theme.breakpoints.down("sm")]: {
-      margin: 'auto',
-      height: '80%',
-      width: '80%',
+      margin: "auto",
+      height: "80%",
+      width: "80%",
     },
   },
   productWrapper: {
@@ -156,10 +171,10 @@ const useStyles: any = makeStyles((theme) => ({
     flexDirection: "row",
     padding: "0.5rem",
     [theme.breakpoints.down("xs")]: {
-      justifyContent: 'center'
+      justifyContent: "center",
     },
     [theme.breakpoints.down("sm")]: {
-      justifyContent: 'center'
+      justifyContent: "center",
     },
   },
   column: {
@@ -167,11 +182,11 @@ const useStyles: any = makeStyles((theme) => ({
     flexDirection: "column",
     [theme.breakpoints.down("xs")]: {
       flexDirection: "row",
-      justifyContent: 'center'
+      justifyContent: "center",
     },
     [theme.breakpoints.down("sm")]: {
       flexDirection: "row",
-      justifyContent: 'center'
+      justifyContent: "center",
     },
   },
   padding: {
@@ -189,15 +204,15 @@ const useStyles: any = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       padding: "0.5rem",
-    }
+    },
   },
   exists: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    paddingTop: '10rem',
-  }
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    paddingTop: "10rem",
+  },
 }));
 
 export default ProductDetails;

@@ -23,6 +23,8 @@ import { CartContext } from "../context/CartContext";
 import { resolve } from "node:path";
 import OrderComfirmation from "./OrderComfirmation";
 import GroupedButtons from "../header/CartIncrementer";
+import fallback from "../../assets/bags/fallback.png";
+import { Img } from "react-image";
 
 function getSteps() {
   return [
@@ -140,7 +142,11 @@ function Checkout() {
               {cart.map((product: any) => (
                 <Box className={classes.cartContent}>
                   <Link href={`/products/${product.name}`}>
-                    <img src={product.preview} width="100rem" height="100rem" />
+                    <Img
+                      src={[product.preview, fallback]}
+                      width="100rem"
+                      height="100rem"
+                    />
                   </Link>
                   <div className={classes.productInfo}>
                     <Typography variant="body1">{product.name}</Typography>
