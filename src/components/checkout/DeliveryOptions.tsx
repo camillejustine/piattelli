@@ -25,47 +25,51 @@ function DeliveryOptions(props: IProps) {
   return (
     <>
       <h5 className={classes.centerFlex}>Delivery Options</h5>
-      <Box className={classes.centerFlex}>
-        <Box
-          onClick={() => props.setDeliveryOption("pn")}
-          className={classes.deliveryBox}
-        >
-          Post Nord: 2-5 days
-        </Box>
-        <Box
-          onClick={() => props.setDeliveryOption("budbee")}
-          className={classes.deliveryBox}
-        >
-          Budbee home delivery: 1-3 days
-        </Box>
-        <Box
-          onClick={() => props.setDeliveryOption("instabox")}
-          className={classes.deliveryBox}
-        >
-          Instabox: 1-3 days
-        </Box>
-      </Box>
-      <Box className={classes.centerFlex}>
-        {props.deliveryOption === "pn" ? (
-          <Box>
-            <Typography>Delivery cost: free</Typography>
-            <Typography>Estimated delivery time: {String(pnDel)}</Typography>
+      <Box className={classes.marginBottom}>
+        <Box className={`${classes.centerFlex}`}>
+          <Box
+            onClick={() => props.setDeliveryOption("pn")}
+            className={classes.deliveryBox}
+          >
+            Post Nord: 2-5 days
           </Box>
-        ) : null}
-        {props.deliveryOption === "budbee" ? (
-          <Box>
-            <Typography>Delivery cost: 69kr</Typography>
-            <Typography>
-              Estimated delivery time: {String(budbeeDel)}
-            </Typography>
+          <Box
+            onClick={() => props.setDeliveryOption("budbee")}
+            className={classes.deliveryBox}
+          >
+            Budbee home delivery: 1-3 days
           </Box>
-        ) : null}
-        {props.deliveryOption === "instabox" ? (
-          <Box>
-            <Typography>Delivery cost: 39kr</Typography>
-            <Typography>Estimated delivery time: {String(instaDel)}</Typography>
+          <Box
+            onClick={() => props.setDeliveryOption("instabox")}
+            className={classes.deliveryBox}
+          >
+            Instabox: 1-3 days
           </Box>
-        ) : null}
+        </Box>
+        <Box className={`${classes.centerFlex} ${classes.deliveryInformation}`}>
+          {props.deliveryOption === "pn" ? (
+            <Box>
+              <Typography>Delivery cost: free</Typography>
+              <Typography>Estimated delivery time: {String(pnDel)}</Typography>
+            </Box>
+          ) : null}
+          {props.deliveryOption === "budbee" ? (
+            <Box>
+              <Typography>Delivery cost: 69kr</Typography>
+              <Typography>
+                Estimated delivery time: {String(budbeeDel)}
+              </Typography>
+            </Box>
+          ) : null}
+          {props.deliveryOption === "instabox" ? (
+            <Box>
+              <Typography>Delivery cost: 39kr</Typography>
+              <Typography>
+                Estimated delivery time: {String(instaDel)}
+              </Typography>
+            </Box>
+          ) : null}
+        </Box>
       </Box>
     </>
   );
@@ -73,27 +77,7 @@ function DeliveryOptions(props: IProps) {
 
 export default DeliveryOptions;
 
-const useStyles = makeStyles({
-  root: {
-    marginTop: "8.5rem",
-    height: "50rem",
-    border: "solid 2px black",
-    position: "relative",
-  },
-  buttonWrapper: {
-    position: "absolute",
-    display: "flex",
-    bottom: "1rem",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  contentWrapper: {
-    display: "flex",
-    justifyContent: "center",
-    margin: "3rem",
-    flexDirection: "row",
-  },
+const useStyles = makeStyles((theme) => ({
   flexColumn: {
     flexDirection: "column",
     display: "flex",
@@ -103,18 +87,6 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-  paymentMethodWrapper: {
-    width: "15rem",
-    height: "8rem",
-    border: "solid 1px black",
-    margin: "1rem",
-    padding: "2rem",
-    borderRadius: 5,
-  },
-  paymentLogoSize: {
-    width: "15rem",
-    height: "8rem",
-  },
   deliveryBox: {
     margin: "1rem",
     padding: "0.5rem",
@@ -122,14 +94,14 @@ const useStyles = makeStyles({
     borderRadius: 5,
     cursor: "pointer",
   },
-  cartContentWrapper: {
-    overflow: "auto",
+  deliveryInformation: {
+    [theme.breakpoints.down("xs")]: {
+      textAlign: "center",
+    },
   },
-  cartContent: {
-    margin: "1rem 2rem",
-    display: "flex",
+  marginBottom: {
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "2rem",
+    },
   },
-  productInfo: {
-    marginLeft: "1rem",
-  },
-});
+}));

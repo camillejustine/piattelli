@@ -1,8 +1,10 @@
 import {
   Box,
   Button,
+  Hidden,
   Link,
   makeStyles,
+  MobileStepper,
   Step,
   StepLabel,
   Stepper,
@@ -227,13 +229,17 @@ function Checkout() {
 
   return (
     <Box className={classes.root}>
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+
+      <Hidden only={"xs"}>
+        <Stepper activeStep={activeStep} alternativeLabel>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Hidden>
+
       <Box>
         {activeStep === steps.length ? (
           <Box>
@@ -296,13 +302,22 @@ function Checkout() {
   );
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     padding: "0 10rem",
     marginTop: "8.5rem",
     height: "50rem",
     // border: "solid 2px black",
     position: "relative",
+    [theme.breakpoints.down("xs")]: {
+      padding: 0,
+      height: "auto",
+    },
+  },
+  mobileStepper: {
+    overflowX: "auto",
+    width: "auto",
+    margin: 0,
   },
   buttonWrapper: {
     position: "absolute",
@@ -311,6 +326,11 @@ const useStyles = makeStyles({
     width: "80%",
     alignItems: "center",
     justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      position: 'relative',
+      width: 'auto',
+    },
+    
   },
   contentWrapper: {
     display: "flex",
@@ -339,13 +359,6 @@ const useStyles = makeStyles({
     width: "15rem",
     height: "8rem",
   },
-  deliveryBox: {
-    margin: "1rem",
-    padding: "0.5rem",
-    border: "1px solid black",
-    borderRadius: 5,
-    cursor: "pointer",
-  },
   cartContentWrapper: {
     overflow: "auto",
     height: "30rem",
@@ -371,5 +384,6 @@ const useStyles = makeStyles({
   productInfo: {
     marginLeft: "1rem",
   },
-});
+  
+}));
 export default Checkout;
