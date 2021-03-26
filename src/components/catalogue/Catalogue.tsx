@@ -52,34 +52,48 @@ function Catalogue(props: IProps, id: string) {
                   </Hidden>
                   <Hidden smUp>
                     <Box className={classes.flexColumn}>
-                      <Img
-                        onMouseEnter={() => setIsHover(product.name)}
-                        src={[product.preview, fallback]}
-                        className={classes.customCursor}
-                        draggable={false}
-                        alt="Bags from Pialetti"
-                        width="150"
-                        height="150"
-                      />
-                      <Box>
-                        <Typography variant="body2">{product.name}</Typography>
-                        <Typography>{product.price}kr</Typography>
-                      </Box>
-
                       <Link
-                        color="inherit"
+                        className={classes.linkStyling}
                         to={`/products/${product.name}`}
                         onClick={() => {
                           props.getProduct(product);
                         }}
                       >
-                        <Typography
-                          variant="body1"
-                          className={`${classes.moreInfoStyle} ${classes.customCursor}`}
-                        >
-                          More info
-                        </Typography>
+                        <Box>
+                          <Img
+                            onMouseEnter={() => setIsHover(product.name)}
+                            src={[product.preview, fallback]}
+                            className={classes.customCursor}
+                            draggable={false}
+                            alt="Bags from Pialetti"
+                            width="150"
+                            height="150"
+                          />
+                          <Box>
+                            <Typography variant="body2">
+                              {product.name}
+                            </Typography>
+                            <Typography>{product.price}kr</Typography>
+                          </Box>
+                        </Box>
                       </Link>
+
+                      <Hidden only="xs">
+                        <Link
+                          color="inherit"
+                          to={`/products/${product.name}`}
+                          onClick={() => {
+                            props.getProduct(product);
+                          }}
+                        >
+                          <Typography
+                            variant="body1"
+                            className={`${classes.moreInfoStyle} ${classes.customCursor}`}
+                          >
+                            More info
+                          </Typography>
+                        </Link>
+                      </Hidden>
                     </Box>
                   </Hidden>
                 </Typography>
@@ -173,76 +187,87 @@ function Catalogue(props: IProps, id: string) {
                     />
                   </Hidden>
                   <Hidden smUp>
-                    <Img
-                      onMouseEnter={() => setIsHover(product.name)}
-                      src={[product.preview, fallback]}
-                      className={classes.customCursor}
-                      draggable={false}
-                      alt="Bags from Pialetti"
-                      width="150"
-                      height="150"
-                    />
+                    <Link
+                      to={`/products/${product.name}`}
+                      onClick={() => {
+                        props.getProduct(product);
+                      }}
+                    >
+                      <Img
+                        onMouseEnter={() => setIsHover(product.name)}
+                        src={[product.preview, fallback]}
+                        className={classes.customCursor}
+                        draggable={false}
+                        alt="Bags from Pialetti"
+                        width="150"
+                        height="150"
+                      />
+                    </Link>
                   </Hidden>
                 </Typography>
                 {isHover === product.name ? (
-                  <>
-                    <Box
-                      className={`${classes.hoverContainer} ${classes.customCursor}`}
-                    >
+                  <Hidden only={"xs"}>
+                    <>
                       <Box
-                        className={`${classes.hoverEffect} ${classes.customCursor}`}
+                        className={`${classes.hoverContainer} ${classes.customCursor}`}
                       >
                         <Box
-                          className={`${classes.hoverText} ${classes.customCursor}`}
+                          className={`${classes.hoverEffect} ${classes.customCursor}`}
                         >
                           <Box
                             className={`${classes.hoverText} ${classes.customCursor}`}
                           >
-                            <Link
-                              className={`${classes.linkStyle} ${classes.customCursor}`}
-                              to={`/products/${product.name}`}
-                              onClick={() => {
-                                props.getProduct(product);
-                              }}
+                            <Box
+                              className={`${classes.hoverText} ${classes.customCursor}`}
                             >
-                              <Typography
-                                variant="body1"
-                                className={`${classes.moreInfoStyle} ${classes.customCursor}`}
+                              <Link
+                                className={`${classes.linkStyle} ${classes.customCursor}`}
+                                to={`/products/${product.name}`}
+                                onClick={() => {
+                                  props.getProduct(product);
+                                }}
                               >
-                                More info
+                                <Typography
+                                  variant="body1"
+                                  className={`${classes.moreInfoStyle} ${classes.customCursor}`}
+                                >
+                                  More info
+                                </Typography>
+                              </Link>
+                              <Typography
+                                variant="h5"
+                                className={classes.productTitle}
+                              >
+                                {product.name}
                               </Typography>
-                            </Link>
-                            <Typography
-                              variant="h5"
-                              className={classes.productTitle}
-                            >
-                              {product.name}
+                            </Box>
+                            <Typography variant="body1">
+                              {product.price}&nbsp;kr
                             </Typography>
-                          </Box>
-                          <Typography variant="body1">
-                            {product.price}&nbsp;kr
-                          </Typography>
-                          <Box
-                            className={`${classes.buttonContainer} ${classes.customCursor}`}
-                          >
-                            <Button
-                              className={classes.button}
-                              onClick={() => {
-                                addToCart(product);
-                              }}
-                            >
-                              <Typography
-                                variant="button"
-                                className={classes.customCursor}
+                            <Hidden only="xs">
+                              <Box
+                                className={`${classes.buttonContainer} ${classes.customCursor}`}
                               >
-                                Add to cart
-                              </Typography>
-                            </Button>
+                                <Button
+                                  className={classes.button}
+                                  onClick={() => {
+                                    addToCart(product);
+                                  }}
+                                >
+                                  <Typography
+                                    variant="button"
+                                    className={classes.customCursor}
+                                  >
+                                    Add to cart
+                                  </Typography>
+                                </Button>
+                              </Box>
+                            </Hidden>
                           </Box>
                         </Box>
                       </Box>
-                    </Box>
-                  </>
+                    </>
+                  </Hidden>
                 ) : null}
               </Box>
             ))}
@@ -276,6 +301,10 @@ const useStyles: any = makeStyles((theme) => ({
       height: "30px",
     },
   },
+  linkStyling: {
+    textDecoration: "none",
+    color: "black",
+  },
   productTitle: {
     [theme.breakpoints.down("xs")]: {
       position: "relative",
@@ -294,11 +323,6 @@ const useStyles: any = makeStyles((theme) => ({
   hoverContainer: {
     position: "relative",
     bottom: "25.5rem",
-    [theme.breakpoints.down("xs")]: {
-      bottom: "9.5rem",
-      width: "100%",
-      height: "100%",
-    },
   },
   hoverEffect: {
     top: "0",
@@ -312,10 +336,6 @@ const useStyles: any = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     transition: "backgdrop-filter 1000ms linear",
-    [theme.breakpoints.down("xs")]: {
-      width: "150px",
-      height: "150px",
-    },
   },
   gridWidth: {
     maxWidth: "1400px",
