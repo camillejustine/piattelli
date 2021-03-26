@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 import dress from "../../assets/dress-cu.png";
 import { Typography, Box, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 function PromotionSecond() {
   const classes = useStyles();
@@ -29,15 +29,21 @@ function PromotionSecond() {
   );
 }
 
-const useStyles: any = makeStyles({
+const useStyles: any = makeStyles((theme) => ({
   promotionContainer: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "1rem",
+    },
   },
   imgStyling: {
     width: "50vw",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   promotionText: {
     display: "flex",
@@ -57,6 +63,6 @@ const useStyles: any = makeStyles({
     flexDirection: "row",
     alignItems: "center",
   },
-});
+}));
 
 export default PromotionSecond;

@@ -1,6 +1,6 @@
 import exploreScandinave from "../../assets/explore-scandinave.png";
 import { Typography, Box, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 
 function Explore() {
@@ -35,16 +35,22 @@ function Explore() {
   );
 }
 
-const useStyles: any = makeStyles({
+const useStyles: any = makeStyles((theme) => ({
   exploreContainer: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     height: "53rem",
     margin: "auto",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+    },
   },
   imageStyling: {
     width: "15vw",
+    [theme.breakpoints.down("xs")]: {
+      width: "60%",
+    },
   },
   imageContainer: {
     height: "50rem",
@@ -62,16 +68,25 @@ const useStyles: any = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+    },
   },
   textStyling: {
     maxWidth: "50%",
     textAlign: "center",
     marginBottom: "1rem",
     lineHeight: "2rem",
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "100%",
+    },
   },
   buttonStyling: {
     marginTop: "1rem",
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "1rem",
+    },
   },
-});
+}));
 
 export default Explore;

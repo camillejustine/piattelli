@@ -91,7 +91,9 @@ function Hero() {
         </Hidden>
       </Box>
       <Box>
-        <Carousel />
+        <Hidden only={"xs"}>
+          <Carousel />
+        </Hidden>
       </Box>
     </>
   );
