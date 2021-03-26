@@ -308,7 +308,7 @@ const useStyles = makeStyles((theme) => ({
     height: "50rem",
     // border: "solid 2px black",
     position: "relative",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("md")]: {
       padding: 0,
       height: "auto",
     },
@@ -374,6 +374,9 @@ const useStyles = makeStyles((theme) => ({
       border: " 4px solid transparent",
       borderRadius: "8px",
       backgroundClip: "padding-box",
+    },
+    [theme.breakpoints.down("md")]: {
+      height: "100%",
     },
   },
   cartContent: {
