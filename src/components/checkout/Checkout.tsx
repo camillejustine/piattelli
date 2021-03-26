@@ -21,6 +21,8 @@ import { CartContext } from "../context/CartContext";
 import { resolve } from "node:path";
 import OrderComfirmation from "./OrderComfirmation";
 import GroupedButtons from "../header/CartIncrementer";
+import fallback from "../../assets/bags/fallback.png";
+import { Img } from "react-image";
 
 function getSteps() {
   return [
@@ -138,7 +140,11 @@ function Checkout() {
               {cart.map((product: any) => (
                 <Box className={classes.cartContent}>
                   <Link href={`/products/${product.name}`}>
-                    <img src={product.preview} width="100rem" height="100rem" />
+                    <Img
+                      src={[product.preview, fallback]}
+                      width="100rem"
+                      height="100rem"
+                    />
                   </Link>
                   <div className={classes.productInfo}>
                     <Typography variant="body1">{product.name}</Typography>
@@ -342,21 +348,21 @@ const useStyles = makeStyles({
   },
   cartContentWrapper: {
     overflow: "auto",
-    height: '30rem',
-    '&::-webkit-scrollbar': {
-      width: '0.4em'
+    height: "30rem",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
     },
-    '&::-webkit-scrollbar-track': {
-      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
-      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    "&::-webkit-scrollbar-track": {
+      boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+      webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
     },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: 'rgba(0,0,0,.1)',
-      outline: '1px solid slategrey',
-      border:' 4px solid transparent',
-      borderRadius:'8px',
-      backgroundClip: 'padding-box',
-    }
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+      border: " 4px solid transparent",
+      borderRadius: "8px",
+      backgroundClip: "padding-box",
+    },
   },
   cartContent: {
     margin: "1rem 2rem",

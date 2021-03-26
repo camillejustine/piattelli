@@ -5,6 +5,8 @@ import { ShoppingCart as CartIcon } from "@material-ui/icons";
 import { CartContext, CartItem } from "../context/CartContext";
 import { useContext } from "react";
 import GroupedButtons from "./CartIncrementer";
+import fallback from "../../assets/bags/fallback.png";
+import { Img } from "react-image";
 
 //import { flexbox } from "@material-ui/system";
 
@@ -17,8 +19,11 @@ function Cart(props: IProps) {
   const { cart } = useContext(CartContext);
   const classes = useStyles();
 
-  const total = cart.reduce((ack: number, item) => ack + item.quantity * item.price, 0);
- 
+  const total = cart.reduce(
+    (ack: number, item) => ack + item.quantity * item.price,
+    0
+  );
+
   return (
     <>
       {props.isVisible ? (
@@ -34,15 +39,17 @@ function Cart(props: IProps) {
             {cart.map((product: CartItem) => (
               <Box className={classes.cartItems}>
                 <Link href={`/products/${product.name}`}>
-                  <img src={product.preview} width="100rem" height="100rem" />
+                  <Img
+                    src={[product.preview, fallback]}
+                    width="100rem"
+                    height="100rem"
+                  />
                 </Link>
-                  <div className={classes.cartItemDetail}>
-                    <span>{product.name}</span>
-                    <span>Price: {product.price}&nbsp;kr</span>
-                    <GroupedButtons 
-                      product={product}
-                    />
-                  </div>
+                <div className={classes.cartItemDetail}>
+                  <span>{product.name}</span>
+                  <span>Price: {product.price}&nbsp;kr</span>
+                  <GroupedButtons product={product} />
+                </div>
               </Box>
             ))}
           </Box>
@@ -121,25 +128,24 @@ const useStyles = makeStyles((theme) => ({
     padding: "1rem",
   },
   cartWrapper: {
-    height: '30rem',
-    overflow: 'auto',
-    marginRight: '0.5rem',
-    '&::-webkit-scrollbar': {
-      width: '0.4em'
+    height: "30rem",
+    overflow: "auto",
+    marginRight: "0.5rem",
+    "&::-webkit-scrollbar": {
+      width: "0.4em",
     },
-    '&::-webkit-scrollbar-track': {
-      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
-      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+    "&::-webkit-scrollbar-track": {
+      boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+      webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
     },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: 'rgba(0,0,0,.1)',
-      outline: '1px solid slategrey',
-      border:' 4px solid transparent',
-      borderRadius:'8px',
-      backgroundClip: 'padding-box',
-    }
-
-  }
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "rgba(0,0,0,.1)",
+      outline: "1px solid slategrey",
+      border: " 4px solid transparent",
+      borderRadius: "8px",
+      backgroundClip: "padding-box",
+    },
+  },
 }));
 
 export default Cart;

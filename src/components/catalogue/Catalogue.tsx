@@ -6,6 +6,8 @@ import { Product, ProductsContext } from "../context/ProductsContext";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import fallback from "../../assets/bags/fallback.png";
+import { Img } from "react-image";
 interface IProps {
   isLarge: boolean;
   getProduct: (value: {}) => void;
@@ -38,9 +40,9 @@ function Catalogue(props: IProps, id: string) {
               >
                 <Typography variant="h6">
                   <Hidden only={"xs"}>
-                    <img
+                    <Img
                       onMouseEnter={() => setIsHover(product.name)}
-                      src={product.preview}
+                      src={[product.preview, fallback]}
                       className={classes.customCursor}
                       draggable={false}
                       alt="Bags from Pialetti"
@@ -50,9 +52,9 @@ function Catalogue(props: IProps, id: string) {
                   </Hidden>
                   <Hidden smUp>
                     <Box className={classes.flexColumn}>
-                      <img
+                      <Img
                         onMouseEnter={() => setIsHover(product.name)}
-                        src={product.preview}
+                        src={[product.preview, fallback]}
                         className={classes.customCursor}
                         draggable={false}
                         alt="Bags from Pialetti"
@@ -160,9 +162,9 @@ function Catalogue(props: IProps, id: string) {
               >
                 <Typography variant="h6">
                   <Hidden only={"xs"}>
-                    <img
+                    <Img
                       onMouseEnter={() => setIsHover(product.name)}
-                      src={product.preview}
+                      src={[product.preview, fallback]}
                       className={classes.customCursor}
                       draggable={false}
                       alt="Bags from Pialetti"
@@ -171,9 +173,9 @@ function Catalogue(props: IProps, id: string) {
                     />
                   </Hidden>
                   <Hidden smUp>
-                    <img
+                    <Img
                       onMouseEnter={() => setIsHover(product.name)}
-                      src={product.preview}
+                      src={[product.preview, fallback]}
                       className={classes.customCursor}
                       draggable={false}
                       alt="Bags from Pialetti"
@@ -220,23 +222,23 @@ function Catalogue(props: IProps, id: string) {
                           <Typography variant="body1">
                             {product.price}&nbsp;kr
                           </Typography>
-                        <Box
-                          className={`${classes.buttonContainer} ${classes.customCursor}`}
-                        >
-                          <Button
-                            className={classes.button}
-                            onClick={() => {
-                              addToCart(product);
-                            }}
+                          <Box
+                            className={`${classes.buttonContainer} ${classes.customCursor}`}
                           >
-                            <Typography
-                              variant="button"
-                              className={classes.customCursor}
+                            <Button
+                              className={classes.button}
+                              onClick={() => {
+                                addToCart(product);
+                              }}
                             >
-                              Add to cart
-                            </Typography>
-                          </Button>
-                        </Box>
+                              <Typography
+                                variant="button"
+                                className={classes.customCursor}
+                              >
+                                Add to cart
+                              </Typography>
+                            </Button>
+                          </Box>
                         </Box>
                       </Box>
                     </Box>

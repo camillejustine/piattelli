@@ -9,11 +9,12 @@ import {
   Hidden,
 } from "@material-ui/core";
 import { FormatColorResetOutlined } from "@material-ui/icons";
-import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useEffect, useState } from "react";
 import { Product } from "../context/ProductsContext";
 import { ProductsContext } from "../context/ProductsContext";
+import fallback from "../../assets/bags/fallback.png";
+import { Img } from "react-image";
 
 interface IProps {
   closeModal: () => void;
@@ -49,13 +50,10 @@ function EditModal(props: IProps) {
     <Modal open={props.editOpen}>
       <Box className={classes.editContainer}>
         <Typography variant={"h3"}>Product settings</Typography>
-        <Button onClick={props.closeModal}>
-          <CancelOutlinedIcon />
-        </Button>
         <Hidden only={"xs"}>
           <Box className={classes.editCard}>
-            <img
-              src={props.product.preview}
+            <Img
+              src={[props.product.preview, fallback]}
               className={classes.imageStyling}
               draggable={false}
               alt="Bags from Pialetti"

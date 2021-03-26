@@ -15,6 +15,8 @@ import PostAddIcon from "@material-ui/icons/PostAdd";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
 import ClearIcon from "@material-ui/icons/Clear";
 import EditModal from "./EditModal";
+import fallback from "../../assets/bags/fallback.png";
+import { Img } from "react-image";
 
 // interface IProps {
 //   getProduct: (value: {}) => void;
@@ -47,8 +49,8 @@ function OpenAdminPage() {
                 <>
                   <Box className={classes.productCard}>
                     <Hidden only={"xs"}>
-                      <img
-                        src={product.preview}
+                      <Img
+                        src={[product.preview, fallback]}
                         className={classes.imageStyling}
                         draggable={false}
                         alt="Bags from Pialetti"
