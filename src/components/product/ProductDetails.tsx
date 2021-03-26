@@ -167,7 +167,7 @@ const useStyles: any = makeStyles((theme) => ({
     border: "solid 1.5px black",
     borderRadius: "0%",
     background: "black",
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       margin: '1rem 0 2rem 0'
     },
   },
