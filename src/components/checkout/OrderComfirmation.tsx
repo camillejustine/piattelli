@@ -34,11 +34,17 @@ function OrderComfirmation(props: IProps) {
 
   return (
     <Box>
-      <Box className={classes.textAlignCenterResponsive}>
-        <Typography variant="h6" className={classes.centerFlex}>
-          Thank you for your purchase.
-        </Typography>
-        <Typography variant="body2" className={classes.centerFlex}>
+      <Box mb={10} className={classes.textAlignCenterResponsive}>
+        <Box mb={5}>
+          <Typography variant="h6" className={classes.centerFlex}>
+            Thank you for your purchase.
+          </Typography>
+        </Box>
+        <Typography
+          align={"center"}
+          variant="body2"
+          className={classes.centerFlex}
+        >
           An email with more information has been send to {props.email}.
         </Typography>
         <Typography variant="body1" className={classes.centerFlex}>
@@ -59,28 +65,30 @@ function OrderComfirmation(props: IProps) {
                   <Typography variant="body1">{product.name}</Typography>
                   <Typography variant="body1">x{product.quantity}</Typography>
                   <Typography variant="body2">
-                    Price: {product.price}
+                    Price: {product.price}&nbsp;kr
                   </Typography>
                 </div>
               </Box>
             ))}
           </Box>
-          <Typography className={classes.margin2}>
-            Total price: {props.total}kr + shipping cost: (
-            {props.deliveryOption === "pn" ? "0kr" : null}
-            {props.deliveryOption === "budbee" ? "69kr" : null}
-            {props.deliveryOption === "instabox" ? "39kr" : null})
-          </Typography>
+          <Box mb={5}>
+            <Typography>
+              Total price: {props.total}kr + shipping cost: (
+              {props.deliveryOption === "pn" ? "0kr" : null}
+              {props.deliveryOption === "budbee" ? "69kr" : null}
+              {props.deliveryOption === "instabox" ? "39kr" : null})
+            </Typography>
+          </Box>
         </Box>
         <Box>
           <Box className={classes.margin2}>
             <Typography variant="h6">Customer:</Typography>
             <Typography>Name: {props.name}</Typography>
             <Typography>
-              Adress: {props.adress}, {props.zipCode} {props.city},{" "}
+              Address: {props.adress}, {props.zipCode} {props.city},{" "}
               {props.country}
             </Typography>
-            <Typography>Telefon: {props.phoneNumber}</Typography>
+            <Typography>Phone number: {props.phoneNumber}</Typography>
           </Box>
           <Box className={classes.margin2}>
             {props.deliveryOption === "pn" ? (
@@ -110,18 +118,17 @@ const useStyles = makeStyles((theme) => ({
   centerFlex: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
   },
   textAlignCenterResponsive: {
     [theme.breakpoints.down("xs")]: {
       textAlign: "center",
-      padding: '0.3rem'
+      padding: "0.3rem",
     },
   },
   columnResponsive: {
     [theme.breakpoints.down("xs")]: {
-      flexDirection: 'column',
-      padding: '1rem'
+      flexDirection: "column",
+      padding: "1rem",
     },
   },
   cartContentWrapper: {
@@ -143,10 +150,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       height: "auto",
-
     },
-    
-
   },
   cartContent: {
     margin: "1rem 0rem",
@@ -159,7 +163,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "1rem",
   },
   margin2: {
-    margin: "2rem",
+    margin: "0rem",
     [theme.breakpoints.down("xs")]: {
       margin: "2rem 0rem",
     },
