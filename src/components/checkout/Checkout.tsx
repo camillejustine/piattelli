@@ -321,7 +321,7 @@ const useStyles = makeStyles((theme) => ({
   buttonWrapper: {
     position: "absolute",
     display: "flex",
-    bottom: "1rem",
+    bottom: "-2rem",
     width: "80%",
     alignItems: "center",
     justifyContent: "center",

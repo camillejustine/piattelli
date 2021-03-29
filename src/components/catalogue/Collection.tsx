@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import alternativeCursor from "../../assets/alternativeCursor.png";
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, Hidden } from "@material-ui/core";
 import { render } from "@testing-library/react";
 import heroPic1 from "../../assets/hero1.png";
 import video1 from "../../assets/film1.png";
@@ -12,9 +12,11 @@ function Collection() {
   return (
     <Box className={classes.collectionContainer}>
       <Box className={classes.flexCenter}>
-        <Box>
-          <img src={heroPic1} alt="" />
-        </Box>
+        <Hidden smDown>
+          <Box className={classes.imageContainer}>
+            <img width={400} src={heroPic1} alt="" />
+          </Box>
+        </Hidden>
         <Box className={classes.textContainer}>
           <Box className={classes.titleTextContainer}>
             <Typography variant={"h3"}>New Collection</Typography>
@@ -35,15 +37,23 @@ function Collection() {
           </Box>
         </Box>
       </Box>
-      <Box className={classes.videoContainer}>
-        <img src={video1} alt="" />
-        <img src={video2} alt="" />
-      </Box>
+      <Hidden only={["lg", "xl"]}>
+        <Box className={classes.videoContainer}>
+          <img width={300} height={300} src={video1} alt="" />
+          <img width={300} height={300} src={video2} alt="" />
+        </Box>
+      </Hidden>
+      <Hidden mdDown>
+        <Box className={classes.videoContainer}>
+          <img src={video1} alt="" />
+          <img src={video2} alt="" />
+        </Box>
+      </Hidden>
     </Box>
   );
 }
 
-const useStyles: any = makeStyles({
+const useStyles: any = makeStyles((theme) => ({
   collectionContainer: {},
   textContainer: {
     display: "flex",
@@ -52,12 +62,25 @@ const useStyles: any = makeStyles({
     alignItems: "flex-start",
     marginLeft: "4rem",
     fontSize: "3rem",
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "1rem",
+    },
   },
   videoContainer: {
     display: "flex",
     justifyContent: "center",
     marginBottom: "5rem",
     marginTop: "1rem",
+    [theme.breakpoints.down("md")]: {
+      // width: "20vw",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-around",
+    },
+    [theme.breakpoints.only("md")]: {
+      // width: "20vw",
+      flexDirection: "row",
+    },
   },
   flexCenter: {
     display: "flex",
@@ -75,6 +98,6 @@ const useStyles: any = makeStyles({
   marginBot: {
     marginBottom: "2rem",
   },
-});
+}));
 
 export default Collection;

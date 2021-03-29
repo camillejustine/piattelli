@@ -40,7 +40,9 @@ function Layout() {
               <Typography variant={"h3"} align={"center"}>
                 Our bags
               </Typography>
-              <Catalogue isLarge={true} getProduct={productDetails} />
+              <Box mb={8} mt={5}>
+                <Catalogue isLarge={true} getProduct={productDetails} />
+              </Box>
             </Box>
           </Route>
           <Route path="/new-collection">
@@ -49,7 +51,9 @@ function Layout() {
               <Typography variant={"h3"} align={"center"}>
                 Our bags
               </Typography>
-              <Catalogue isLarge={true} getProduct={productDetails} />
+              <Box mb={8} mt={5}>
+                <Catalogue isLarge={true} getProduct={productDetails} />
+              </Box>
             </Box>
           </Route>
           <Route exact path="/">
@@ -68,12 +72,14 @@ function Layout() {
         <Route path="/products/:name">
           <ProductDetails productView={productDetail} />
         </Route>
-        <Route path="/checkout">
-          <Checkout />
-        </Route>
         <Hidden smDown>
           <Newsletter />
         </Hidden>
+        <Route path="/checkout">
+          <Box mb={10}>
+            <Checkout />
+          </Box>
+        </Route>
         <Route path="/admin">
           <AdminPage />
         </Route>

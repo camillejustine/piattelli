@@ -25,6 +25,7 @@ function Explore() {
           <br></br> But empty was the west<br></br> And Venice under sea.
         </Typography>
         <Button
+          href={"/new-collection"}
           variant="outlined"
           className={`${classes.buttonStyling} ${classes.customCursor}`}
         >
