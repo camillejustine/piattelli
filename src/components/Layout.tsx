@@ -23,6 +23,8 @@ import AdminPage from "./adminpage/AdminPage";
 import Checkout from "./checkout/Checkout";
 import ProductDetails from "./product/ProductDetails";
 import { Product } from "./context/ProductsContext";
+import NotFound from "./notFound/NotFound";
+
 
 function Layout() {
   const [productDetail, setProductDetail] = useState<Product>();
@@ -67,6 +69,7 @@ function Layout() {
               <Catalogue isLarge={false} getProduct={productDetails} />
             </Box>
           </Route>
+          <Route component={NotFound}/>
         </Box>
         <ErrorBoundary>
           <Header />
