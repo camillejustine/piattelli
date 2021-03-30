@@ -24,11 +24,9 @@ interface IProps {
 function EditModal(props: IProps) {
   const classes = useStyles();
 
-  const { addNewProduct, updateProduct } = useContext(
-    ProductsContext
-  );
+  const { addNewProduct, updateProduct } = useContext(ProductsContext);
 
-  const [_product, setProduct] = useState<Product>();
+  const [, setProduct] = useState<Product>();
 
   function handleChange(value: string | number, key: keyof Product) {
     /* const editedProduct = {...props.product}

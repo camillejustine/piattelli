@@ -1,4 +1,4 @@
-import { Component, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { productsMocked } from "./mockedProducts";
 
 export interface Product {
@@ -39,7 +39,7 @@ function ProductContext(props: IProps) {
     localStorage.setItem("products", JSON.stringify(products));
   });
 
-  function randomID(){
+  function randomID() {
     return Math.random() * (99999 - 1) + 1;
   }
 
@@ -49,7 +49,6 @@ function ProductContext(props: IProps) {
     setProducts(updateProductView);
     console.log(updateProductView);
     console.log(products);
-    
   }
 
   function updateProduct(product: Product) {
