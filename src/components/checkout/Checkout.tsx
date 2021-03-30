@@ -9,7 +9,7 @@ import {
   Stepper,
   Typography,
 } from "@material-ui/core";
-import  { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import PersonalDetails from "./PersonalDetails";
 import DeliveryOptions from "./DeliveryOptions";
 import PaymentMethod from "./PaymentMethod";
@@ -132,7 +132,7 @@ function Checkout() {
                   Cart is empty
                 </Typography>
               ) : null}
-              {cart.map((product: any) => (
+              {cart.map((product: CartItem) => (
                 <Box className={classes.cartContent}>
                   <Link href={`/products/${product.name}`}>
                     <Img

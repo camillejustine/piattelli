@@ -16,7 +16,7 @@ import { Img } from "react-image";
 interface IProps {
   closeModal: () => void;
   editOpen: boolean;
-  product: Product;
+  product: Product | undefined;
   newProduct: boolean;
   isProductNew: () => void;
 }
@@ -33,7 +33,6 @@ function EditModal(props: IProps) {
     editedProduct[key] = value; 
     setProduct(editedProduct) */
     setProduct(props.product);
-    //any ?
     setProduct((prev: any) => {
       prev[key] = value;
       return prev;
@@ -50,19 +49,16 @@ function EditModal(props: IProps) {
           <Box className={classes.editCard}>
             <Img
               src={[props.product.preview, fallback]}
-              className={classes.imageStyling}
               draggable={false}
               alt="Bags from Pialetti"
               width="100"
               height="100"
             />
             <Box className={classes.cardText}>
-              <Typography variant={"body1"} className={classes.productName}>
+              <Typography variant={"body1"}>
                 {props.product.price}&nbsp;kr
               </Typography>
-              <Typography variant={"body1"} className={classes.productName}>
-                {props.product.name}
-              </Typography>
+              <Typography variant={"body1"}>{props.product.name}</Typography>
             </Box>
           </Box>
         </Hidden>
@@ -188,10 +184,10 @@ function EditModal(props: IProps) {
               href={"/admin"}
               onClick={() => {
                 if (props.newProduct) {
-                  addNewProduct(props.product);
+                  addNewProduct(props.product!);
                   props.isProductNew();
                 } else {
-                  updateProduct(props.product);
+                  updateProduct(props.product!);
                 }
               }}
             >
@@ -207,8 +203,7 @@ function EditModal(props: IProps) {
   );
 }
 
-//any ?
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   editContainer: {
     marginTop: "5rem",
     height: "80%",

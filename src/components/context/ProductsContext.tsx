@@ -33,6 +33,7 @@ function ProductContext(props: IProps) {
     }
     let productsLS = JSON.parse(localStorage.getItem("products") || "[]");
     setProducts(productsLS);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -47,13 +48,9 @@ function ProductContext(props: IProps) {
     product.id = randomID();
     const updateProductView = [...products, product];
     setProducts(updateProductView);
-    console.log(updateProductView);
-    console.log(products);
   }
 
   function updateProduct(product: Product) {
-    console.log(product);
-
     let updatedProducts = products.map((item) => {
       if (item.id === product.id) {
         return { ...item, product };

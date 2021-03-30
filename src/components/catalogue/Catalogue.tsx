@@ -1,7 +1,7 @@
 import { Grid, Box, Typography, Button, Hidden } from "@material-ui/core";
-import {  useState, useContext } from "react";
+import { useState, useContext } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
-import { ProductsContext } from "../context/ProductsContext";
+import { Product, ProductsContext } from "../context/ProductsContext";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,7 +9,7 @@ import fallback from "../../assets/bags/fallback.png";
 import { Img } from "react-image";
 interface IProps {
   isLarge: boolean;
-  getProduct: (value: {}) => void;
+  getProduct: (value: Product) => void;
 }
 
 function Catalogue(props: IProps, id: string) {

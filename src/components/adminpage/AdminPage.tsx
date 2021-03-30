@@ -1,10 +1,4 @@
-import {
-  Typography,
-  Box,
-  Button,
-  Grid,
-  Hidden,
-} from "@material-ui/core";
+import { Typography, Box, Button, Grid, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useState } from "react";
 import { Product, ProductsContext } from "../context/ProductsContext";
@@ -13,12 +7,12 @@ import PostAddIcon from "@material-ui/icons/PostAdd";
 import ClearIcon from "@material-ui/icons/Clear";
 import EditModal from "./EditModal";
 import fallback from "../../assets/bags/fallback.png";
-import { Img } from "react-image"
+import { Img } from "react-image";
 
 function OpenAdminPage() {
   const classes = useStyles();
   const { products } = useContext(ProductsContext);
-  const [editingProduct, setEditingProduct] = useState<any>();
+  const [editingProduct, setEditingProduct] = useState<Product | undefined>();
   const [emptyProduct] = useState<Product>({} as Product);
   const [newProduct, setNewProduct] = useState(false);
 
@@ -94,7 +88,6 @@ function OpenAdminPage() {
               onClick={() => {
                 setEditingProduct(emptyProduct);
                 setNewProduct(true);
-                console.log(emptyProduct);
               }}
             >
               <PostAddIcon fontSize={"large"} />
