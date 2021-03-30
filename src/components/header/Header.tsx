@@ -17,7 +17,6 @@ import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 
-
 function Header() {
   const [searchClicked, setSearchClicked] = useState(false);
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -81,10 +80,10 @@ function Header() {
                   <React.Fragment>
                     <span
                       onClick={() => {
-                        window.location.href = `/products/${option.name}`
+                        window.location.href = `/products/${option.name}`;
                       }}
                     >
-                    {option.name} 
+                      {option.name}
                     </span>
                   </React.Fragment>
                 )}

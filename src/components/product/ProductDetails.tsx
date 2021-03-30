@@ -5,13 +5,12 @@ import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 //context
 import { CartContext } from "../context/CartContext";
-import { ProductsContext } from "../context/ProductsContext";
+import { Product, ProductsContext } from "../context/ProductsContext";
 import cry from "../../assets/cry.jpg";
 import fallback from "../../assets/bags/fallback.png";
 import { Img } from "react-image";
 interface IProps {
-  //any?
-  productView: any;
+  productView: Product | undefined;
 }
 
 const textInfoStrings = ["Description", "Detail", "Care"];

@@ -1,16 +1,23 @@
 import { Box, Typography } from "@material-ui/core";
-import React from "react";
+import React, { ReactNode } from "react";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import { CSSProperties } from "react";
-class ErrorBoundary extends React.Component<{}, any> {
-  //any? 
-  constructor(props: any) {
+
+interface IState {
+  hasError: boolean;
+}
+
+interface IProps {
+  children: ReactNode;
+}
+class ErrorBoundary extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(_error: any) {
+  static getDerivedStateFromError(_: Error) {
     return { hasError: true };
   }
 

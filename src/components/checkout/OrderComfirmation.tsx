@@ -11,7 +11,7 @@ interface IProps {
   zipCode: string | undefined;
   country: string | undefined;
   city: string | undefined;
-  payedProducts: any;
+  payedProducts: CartItem[] | undefined;
   deliveryOption: string | undefined;
   total: number | undefined;
 }
@@ -54,7 +54,7 @@ function OrderComfirmation(props: IProps) {
       <Box className={`${classes.centerFlex} ${classes.columnResponsive}`}>
         <Box>
           <Box className={`${classes.cartContentWrapper} ${classes.margin2}`}>
-            {props.payedProducts.map((product: CartItem) => (
+            {props.payedProducts!.map((product: CartItem) => (
               <Box className={`${classes.cartContent}`}>
                 <Img
                   src={[product.preview, fallback]}
@@ -81,7 +81,7 @@ function OrderComfirmation(props: IProps) {
           </Box>
         </Box>
         <Box>
-          <Box className={classes.margin2}>
+          <Box ml={3} className={classes.margin2}>
             <Typography variant="h6">Customer:</Typography>
             <Typography>Name: {props.name}</Typography>
             <Typography>
@@ -156,14 +156,14 @@ const useStyles = makeStyles((theme) => ({
     margin: "1rem 0rem",
     display: "flex",
     [theme.breakpoints.down("xs")]: {
-      margin: "0rem 0rem",
+      margin: "1rem 0rem",
     },
   },
   productInfo: {
     marginLeft: "1rem",
   },
   margin2: {
-    margin: "0rem",
+    marginLeft: "1rem",
     [theme.breakpoints.down("xs")]: {
       margin: "2rem 0rem",
     },

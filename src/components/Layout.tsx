@@ -22,12 +22,13 @@ import ErrorBoundary from "./ErrorBoundary";
 import AdminPage from "./adminpage/AdminPage";
 import Checkout from "./checkout/Checkout";
 import ProductDetails from "./product/ProductDetails";
+import { Product } from "./context/ProductsContext";
 
 function Layout() {
-  const [productDetail, setProductDetail] = useState<object>();
+  const [productDetail, setProductDetail] = useState<Product>();
   const classes = useStyles();
 
-  function productDetails(value: object) {
+  function productDetails(value: Product) {
     setProductDetail(value);
   }
 
@@ -61,14 +62,15 @@ function Layout() {
             <Promotion />
             <Explore />
             <PromotionSecond />
-            <ErrorBoundary>
-              <Box className={classes.cataloguePreviewContainer}>
-                <Catalogue isLarge={false} getProduct={productDetails} />
-              </Box>
-            </ErrorBoundary>
+
+            <Box className={classes.cataloguePreviewContainer}>
+              <Catalogue isLarge={false} getProduct={productDetails} />
+            </Box>
           </Route>
         </Box>
-        <Header />
+        <ErrorBoundary>
+          <Header />
+        </ErrorBoundary>
         <Route path="/products/:name">
           <ProductDetails productView={productDetail} />
         </Route>

@@ -10,7 +10,7 @@ function Collection() {
     <Box className={classes.collectionContainer}>
       <Box className={classes.flexCenter}>
         <Hidden smDown>
-          <Box className={classes.imageContainer}>
+          <Box>
             <img width={400} src={heroPic1} alt="" />
           </Box>
         </Hidden>
@@ -50,9 +50,7 @@ function Collection() {
   );
 }
 
-//any imageContainer? 
-
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   collectionContainer: {},
   textContainer: {
     display: "flex",
