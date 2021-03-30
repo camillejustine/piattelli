@@ -7,7 +7,7 @@ import {
   Hidden,
 } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import React, { Component, useEffect, useState } from "react";
+import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { ShoppingCart as CartIcon } from "@material-ui/icons";
 import "animate.css/animate.css";
@@ -105,7 +105,6 @@ function Header() {
           )}
         </Box>
         <Box m="1rem">
-          {/* Icon */}
           <CartIcon
             onClick={() => {
               setIsCartVisible(!isCartVisible);
@@ -119,8 +118,6 @@ function Header() {
               setIsCartVisible(!isCartVisible);
             }}
           ></Badge>
-
-          {/* Cart view */}
           <Cart onHide={hideCart} isVisible={isCartVisible} />
         </Box>
       </Box>

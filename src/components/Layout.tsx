@@ -89,7 +89,7 @@ function Layout() {
   );
 }
 
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   catalogueStyles: {
     marginTop: "8.5rem",
   },

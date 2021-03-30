@@ -1,4 +1,4 @@
-import { Typography, Box, Button, Hidden, Link } from "@material-ui/core";
+import { Typography, Box, Hidden, Link } from "@material-ui/core";
 import { CSSProperties } from "react";
 import { useState } from "react";
 import heroPic1 from "../../assets/hero1.png";
@@ -99,7 +99,7 @@ function Hero() {
   );
 }
 
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   heroPicLeft: {
     backgroundImage: `url(${heroPic1})`,
     width: "40rem",

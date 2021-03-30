@@ -8,7 +8,6 @@ import bag2 from "../../assets/bags/bag-2.png";
 import bag3 from "../../assets/bags/bag-3.png";
 import bag4 from "../../assets/bags/bag-4.png";
 import bag5 from "../../assets/bags/bag-5.png";
-import bag6 from "../../assets/bags/bag-6.png";
 
 const handleDragStart = (e: any) => e.preventDefault();
 
@@ -17,7 +16,6 @@ const responsive = {
   568: { items: 2 },
   1024: { items: 3 },
 };
-
 
 function Carousel() {
   const items = [

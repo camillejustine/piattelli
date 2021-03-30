@@ -4,12 +4,13 @@ import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import { CSSProperties } from "react";
 class ErrorBoundary extends React.Component<{}, any> {
+  //any? 
   constructor(props: any) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: any) {
+  static getDerivedStateFromError(_error: any) {
     return { hasError: true };
   }
 

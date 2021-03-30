@@ -8,7 +8,7 @@ export function useMouse() {
   });
 
   useEffect(() => {
-    function handle(e: any) {
+    function handle(e: { pageX: number; pageY: number; }) {
       setMousePosition({
         x: e.pageX,
         y: e.pageY,
