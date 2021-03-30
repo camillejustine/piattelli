@@ -1,7 +1,7 @@
 import { Box, Typography, makeStyles } from "@material-ui/core";
-import React from "react";
 import fallback from "../../assets/bags/fallback.png";
 import { Img } from "react-image";
+import { CartItem } from "../context/CartContext";
 
 interface IProps {
   email: string | undefined;
@@ -54,7 +54,7 @@ function OrderComfirmation(props: IProps) {
       <Box className={`${classes.centerFlex} ${classes.columnResponsive}`}>
         <Box>
           <Box className={`${classes.cartContentWrapper} ${classes.margin2}`}>
-            {props.payedProducts.map((product: any) => (
+            {props.payedProducts.map((product: CartItem) => (
               <Box className={`${classes.cartContent}`}>
                 <Img
                   src={[product.preview, fallback]}

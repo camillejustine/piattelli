@@ -1,7 +1,6 @@
 import { Box, Container, Typography, Link, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import FooterSection from "./FooterSection";
-import { spacing } from "@material-ui/system";
 
 function Footer() {
   const classes = useStyles();
@@ -54,7 +53,7 @@ function Footer() {
     </Container>
   );
 }
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   containerStyle: {
     display: "flex",
     flexDirection: "column",

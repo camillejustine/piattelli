@@ -1,4 +1,4 @@
-import { Box, Button, Link, Typography, Badge } from "@material-ui/core";
+import { Box, Button, Link, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import { ShoppingCart as CartIcon } from "@material-ui/icons";
@@ -7,9 +7,6 @@ import { useContext } from "react";
 import GroupedButtons from "./CartIncrementer";
 import fallback from "../../assets/bags/fallback.png";
 import { Img } from "react-image";
-
-//import { flexbox } from "@material-ui/system";
-
 interface IProps {
   isVisible: boolean;
   onHide: () => void;

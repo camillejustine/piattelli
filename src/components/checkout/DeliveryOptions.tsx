@@ -1,16 +1,9 @@
-import { Box, makeStyles, TextField, Typography } from "@material-ui/core";
+import { Box, makeStyles, Typography } from "@material-ui/core";
 import moment from "moment";
-
 interface IProps {
   deliveryOption: string | undefined;
   setDeliveryOption: (value: string) => void;
 }
-
-const deliveryOptionsArray = [
-  "Post Nord: 2-5 days",
-  "Budbee home delivery: 1-3 days",
-  "Instabox: 1-3 days",
-];
 
 function DeliveryOptions(props: IProps) {
   const classes = useStyles();

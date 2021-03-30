@@ -4,23 +4,16 @@ import {
   Hidden,
   Link,
   makeStyles,
-  MobileStepper,
   Step,
   StepLabel,
   Stepper,
-  TextField,
   Typography,
 } from "@material-ui/core";
-import React, { useContext, useState } from "react";
-import swishLogo from "../../assets/swish.png";
-import cardLogo from "../../assets/card.png";
-import moment from "moment";
-import CloseIcon from "@material-ui/icons/Close";
+import  { useContext, useState } from "react";
 import PersonalDetails from "./PersonalDetails";
 import DeliveryOptions from "./DeliveryOptions";
 import PaymentMethod from "./PaymentMethod";
-import { CartContext } from "../context/CartContext";
-import { resolve } from "node:path";
+import { CartContext, CartItem } from "../context/CartContext";
 import OrderComfirmation from "./OrderComfirmation";
 import GroupedButtons from "../header/CartIncrementer";
 import fallback from "../../assets/bags/fallback.png";
@@ -89,7 +82,7 @@ function Checkout() {
     (ack: number, item) => ack + item.quantity * item.price,
     0
   );
-  const [payedProducts, setPayedProducts] = useState<any[]>();
+  const [payedProducts, setPayedProducts] = useState<CartItem[]>();
   const [totalPayed, setTotalPayed] = useState<number>();
   // let payedProducts = [''];
 

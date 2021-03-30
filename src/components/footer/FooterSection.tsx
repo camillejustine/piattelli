@@ -20,7 +20,7 @@ function FooterSection() {
   );
 }
 
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   textColor: {
     display: "flex",
     flexDirection: "column",

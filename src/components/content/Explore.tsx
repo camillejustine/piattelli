@@ -36,7 +36,7 @@ function Explore() {
   );
 }
 
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   exploreContainer: {
     display: "flex",
     justifyContent: "center",
@@ -104,6 +104,10 @@ const useStyles: any = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       marginBottom: "1rem",
     },
+  },
+  customCursor: {
+    cursor: `url(${alternativeCursor}) 9 7, auto`,
+    userSelect: "none",
   },
 }));
 

@@ -3,10 +3,7 @@ import {
   makeStyles,
   TextField,
   Typography,
-  withWidth,
 } from "@material-ui/core";
-import React from "react";
-
 interface IProps {
   fullName: string | undefined;
   setFullName: (event: string) => void;
@@ -178,7 +175,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
     [theme.breakpoints.down("md")]: {
       width: "100%",
-      // marginTop: "5rem",
       overflow: "auto",
       height: "100%",
     },

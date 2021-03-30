@@ -2,32 +2,24 @@ import {
   Typography,
   Box,
   Button,
-  Modal,
   Grid,
   Hidden,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Product, ProductsContext } from "../context/ProductsContext";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import PostAddIcon from "@material-ui/icons/PostAdd";
-import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
 import ClearIcon from "@material-ui/icons/Clear";
 import EditModal from "./EditModal";
 import fallback from "../../assets/bags/fallback.png";
-import { Img } from "react-image";
-
-// interface IProps {
-//   getProduct: (value: {}) => void;
-// }
+import { Img } from "react-image"
 
 function OpenAdminPage() {
   const classes = useStyles();
   const { products } = useContext(ProductsContext);
-  const [open, setOpen] = React.useState(false);
   const [editingProduct, setEditingProduct] = useState<any>();
-  const [emptyProduct, setEmptyProduct] = useState<Product>({} as Product);
+  const [emptyProduct] = useState<Product>({} as Product);
   const [newProduct, setNewProduct] = useState(false);
 
   const { removeProduct } = useContext(ProductsContext);
@@ -121,7 +113,7 @@ function OpenAdminPage() {
   );
 }
 
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   modalContainer: {
     height: "80vh",
     width: "100%",
@@ -129,7 +121,6 @@ const useStyles: any = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    // outline: "0",
     overflowY: "auto",
     [theme.breakpoints.down("md")]: {
       height: "100%",

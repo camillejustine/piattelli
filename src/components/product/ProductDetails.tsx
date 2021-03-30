@@ -4,20 +4,20 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 //context
-import { CartContext } from "../context/CartContext";
-import { ProductsContext } from "../context/ProductsContext";
+import { CartContext, CartItem } from "../context/CartContext";
+import { Product, ProductsContext } from "../context/ProductsContext";
 import cry from "../../assets/cry.jpg";
 import fallback from "../../assets/bags/fallback.png";
 import { Img } from "react-image";
 interface IProps {
+  //any? 
   productView: any;
 }
 
 const textInfoStrings = ["Description", "Detail", "Care"];
 
-function ProductDetails(props: IProps) {
+function ProductDetails(_props: IProps) {
   const [textView, setTextView] = useState<string>("Description");
-  const [focused, isFocused] = useState(false);
   const { products } = useContext(ProductsContext);
   const { addToCart } = useContext(CartContext);
   const classes = useStyles();
@@ -71,7 +71,7 @@ function ProductDetails(props: IProps) {
             {textInfoStrings.map((tab) => (
               <Typography
                 variant={"body2"}
-                className={`${classes.padding} ${classes.underline}`}
+                className={classes.padding}
                 onClick={() => {
                   setTextView(tab);
                 }}
@@ -110,7 +110,7 @@ function ProductDetails(props: IProps) {
   );
 }
 
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "row",
