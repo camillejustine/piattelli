@@ -3,14 +3,11 @@ import {
   Box,
   Button,
   Modal,
-  Grid,
   TextField,
-  createMuiTheme,
   Hidden,
 } from "@material-ui/core";
-import { FormatColorResetOutlined } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Product } from "../context/ProductsContext";
 import { ProductsContext } from "../context/ProductsContext";
 import fallback from "../../assets/bags/fallback.png";
@@ -27,7 +24,7 @@ interface IProps {
 function EditModal(props: IProps) {
   const classes = useStyles();
 
-  const { products, addNewProduct, updateProduct, removeProduct } = useContext(
+  const { addNewProduct, updateProduct } = useContext(
     ProductsContext
   );
 
@@ -38,6 +35,7 @@ function EditModal(props: IProps) {
     editedProduct[key] = value; 
     setProduct(editedProduct) */
     setProduct(props.product);
+    //any ?
     setProduct((prev: any) => {
       prev[key] = value;
       return prev;
@@ -211,6 +209,7 @@ function EditModal(props: IProps) {
   );
 }
 
+//any ?
 const useStyles: any = makeStyles((theme) => ({
   editContainer: {
     marginTop: "5rem",

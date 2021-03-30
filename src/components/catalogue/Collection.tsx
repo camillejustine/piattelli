@@ -1,11 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
-import alternativeCursor from "../../assets/alternativeCursor.png";
 import { Box, Typography, Hidden } from "@material-ui/core";
-import { render } from "@testing-library/react";
 import heroPic1 from "../../assets/hero1.png";
 import video1 from "../../assets/film1.png";
 import video2 from "../../assets/film2.png";
-import classes from "*.module.css";
 
 function Collection() {
   const classes = useStyles();
@@ -52,6 +49,8 @@ function Collection() {
     </Box>
   );
 }
+
+//any imageContainer? 
 
 const useStyles: any = makeStyles((theme) => ({
   collectionContainer: {},

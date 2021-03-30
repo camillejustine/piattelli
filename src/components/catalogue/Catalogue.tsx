@@ -1,8 +1,7 @@
 import { Grid, Box, Typography, Button, Hidden } from "@material-ui/core";
-import { PinDropSharp } from "@material-ui/icons";
-import { CSSProperties, useState, useContext } from "react";
+import {  useState, useContext } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
-import { Product, ProductsContext } from "../context/ProductsContext";
+import { ProductsContext } from "../context/ProductsContext";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,9 +15,8 @@ interface IProps {
 function Catalogue(props: IProps, id: string) {
   const { products } = useContext(ProductsContext);
   const { addToCart } = useContext(CartContext);
-  const [isLarge, setIsLarge] = useState(props.isLarge);
+  const [isLarge] = useState(props.isLarge);
   const [isHover, setIsHover] = useState(id);
-  // const [isOut, setIsOut] = useState(null);
   const previewCatalogue = products.slice(1, 7);
   const classes = useStyles();
 
@@ -315,7 +313,7 @@ function Catalogue(props: IProps, id: string) {
   );
 }
 
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   linkStyle: {
     textDecoration: "none",
     color: "black",
