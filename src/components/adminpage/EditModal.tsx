@@ -28,7 +28,7 @@ function EditModal(props: IProps) {
     ProductsContext
   );
 
-  const [product, setProduct] = useState<Product>();
+  const [_product, setProduct] = useState<Product>();
 
   function handleChange(value: string | number, key: keyof Product) {
     /* const editedProduct = {...props.product}

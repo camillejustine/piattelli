@@ -1,5 +1,4 @@
-import { Typography, Box, Button, TextField } from "@material-ui/core";
-import { Height } from "@material-ui/icons";
+import { Typography, Box, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
@@ -31,7 +30,7 @@ function Newsletter() {
   );
 }
 
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   textContainer: {
     display: "flex",
     justifyContent: "center",
@@ -47,7 +46,6 @@ const useStyles: any = makeStyles((theme) => ({
     width: "30rem",
     borderColor: "black",
     color: "black",
-    // height: '7rem'
     "& .MuiInput-underline:after": {
       borderColor: "black",
     },

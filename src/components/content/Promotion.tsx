@@ -1,6 +1,5 @@
 // import { Box } from "@material-ui/core";
-import { CSSProperties } from "react";
-import { Typography, Box, Button, Hidden } from "@material-ui/core";
+import { Typography, Box, Hidden } from "@material-ui/core";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 import leScandinave from "../../assets/le-scandinave.png";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,7 +29,7 @@ function Promotion() {
   );
 }
 
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   promotionContainer: {
     display: "flex",
     justifyContent: "center",

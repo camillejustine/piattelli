@@ -1,8 +1,7 @@
 // import { Box } from "@material-ui/core";
-import { CSSProperties } from "react";
 import alternativeCursor from "../../assets/alternativeCursor.png";
 import dress from "../../assets/dress-cu.png";
-import { Typography, Box, Button, Hidden } from "@material-ui/core";
+import { Typography, Box, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 function PromotionSecond() {
@@ -41,7 +40,7 @@ function PromotionSecond() {
   );
 }
 
-const useStyles: any = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   promotionContainer: {
     display: "flex",
     justifyContent: "center",
