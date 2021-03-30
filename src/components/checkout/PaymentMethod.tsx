@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   CircularProgress,
@@ -8,7 +7,6 @@ import {
 } from "@material-ui/core";
 import swishLogo from "../../assets/swish.png";
 import cardLogo from "../../assets/card.png";
-
 interface IProps {
   deliveryOption: string | undefined;
   setPaymentOption: (value: string) => void;
@@ -147,8 +145,6 @@ function PaymentMethod(props: IProps) {
                 onChange={(event) => {
                   props.setCvcNumber(event.target.value);
                 }}
-
-                // defaultValue="Email"
               />
             </Box>
           ) : null}
@@ -164,8 +160,6 @@ function PaymentMethod(props: IProps) {
                 onChange={(event) => {
                   props.setGiftCard(event.target.value);
                 }}
-
-                // defaultValue="Email"
               />
             </Box>
           ) : null}
