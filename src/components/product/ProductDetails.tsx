@@ -4,13 +4,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 //context
-import { CartContext, CartItem } from "../context/CartContext";
-import { Product, ProductsContext } from "../context/ProductsContext";
+import { CartContext } from "../context/CartContext";
+import { ProductsContext } from "../context/ProductsContext";
 import cry from "../../assets/cry.jpg";
 import fallback from "../../assets/bags/fallback.png";
 import { Img } from "react-image";
 interface IProps {
-  //any? 
+  //any?
   productView: any;
 }
 
@@ -153,11 +153,11 @@ const useStyles = makeStyles((theme) => ({
     height: "50rem",
     [theme.breakpoints.down("xs")]: {
       width: "100%",
-      height: 'auto',
+      height: "auto",
     },
     [theme.breakpoints.down("sm")]: {
       width: "100%",
-      height: 'auto',
+      height: "auto",
     },
   },
   button: {
@@ -168,7 +168,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0%",
     background: "black",
     [theme.breakpoints.down("sm")]: {
-      margin: '1rem 0 2rem 0'
+      margin: "1rem 0 2rem 0",
     },
   },
   row: {
