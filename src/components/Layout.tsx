@@ -22,6 +22,7 @@ import ErrorBoundary from "./ErrorBoundary";
 import AdminPage from "./adminpage/AdminPage";
 import Checkout from "./checkout/Checkout";
 import ProductDetails from "./product/ProductDetails";
+import NotFound from "./notFound/NotFound";
 
 function Layout() {
   const [productDetail, setProductDetail] = useState<object>();
@@ -67,6 +68,7 @@ function Layout() {
               </Box>
             </ErrorBoundary>
           </Route>
+          <Route component={NotFound}/>
         </Box>
         <Header />
         <Route path="/products/:name">
