@@ -5,6 +5,7 @@ import {
   Modal,
   TextField,
   Hidden,
+  InputAdornment,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useState } from "react";
@@ -12,6 +13,11 @@ import { Product } from "../context/ProductsContext";
 import { ProductsContext } from "../context/ProductsContext";
 import fallback from "../../assets/bags/fallback.png";
 import { Img } from "react-image";
+import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
+import LocalOfferOutlinedIcon from "@material-ui/icons/LocalOfferOutlined";
+import FolderOutlinedIcon from "@material-ui/icons/FolderOutlined";
+import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 
 interface IProps {
   closeModal: () => void;
@@ -25,6 +31,7 @@ function EditModal(props: IProps) {
   const classes = useStyles();
 
   const { addNewProduct, updateProduct } = useContext(ProductsContext);
+
   const [ validInput, isInputValid ] = useState(true)
   const [ validUrlInput, isUrlInputValid ] = useState(true)
   const [, setProduct] = useState<Product>();
@@ -34,21 +41,24 @@ function EditModal(props: IProps) {
     if(format.test(value)){
       isInputValid(false)
     } else {
-      isInputValid(true)
+      isInputValid(true);
     }
   }
 
   function checkUrl(value: string) {
-    const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-    if(pattern.test(value)){
-      isUrlInputValid(false)
+    const pattern = new RegExp(
+      "^(https?:\\/\\/)?" + // protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|" + // domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // fragment locator
+    if (pattern.test(value)) {
+      isUrlInputValid(false);
     } else {
-      isUrlInputValid(true)
+      isUrlInputValid(true);
     }
   }
 
@@ -88,20 +98,27 @@ function EditModal(props: IProps) {
         </Hidden>
         <Box className={classes.formContainer}>
           <form>
-            
             <Box className={classes.smallerForms}>
               <Box mb={5} mt={5}>
                 <TextField
                   className={classes.formWidth}
                   required
                   name="name"
+                  variant={"outlined"}
                   error={!validInput}
                   helperText={"No special characters*"}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LabelOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   id="product-name"
                   label="Name"
                   onChange={(event) => {
-                    handleChange(event.target.value, "name")
-                    checkInput(event.target.value)
+                    handleChange(event.target.value, "name");
+                    checkInput(event.target.value);
                   }}
                   defaultValue={props.product.name}
                 ></TextField>
@@ -112,6 +129,13 @@ function EditModal(props: IProps) {
                   className={classes.formWidth}
                   variant={"outlined"}
                   required
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LocalOfferOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   name="price"
                   type="number"
                   error={props.product.price === null}
@@ -129,15 +153,21 @@ function EditModal(props: IProps) {
                   variant={"outlined"}
                   required
                   name="Picture"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <ImageOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   error={!validUrlInput}
                   helperText={"Please enter a valid url"}
                   id="product-Picture"
                   label="Picture"
-                  onChange={(event) =>{
+                  onChange={(event) => {
                     handleChange(event.target.value, "preview");
                     checkUrl(event.target.value);
-                    }
-                  }
+                  }}
                   defaultValue={props.product.preview}
                 ></TextField>
               </Box>
@@ -147,6 +177,13 @@ function EditModal(props: IProps) {
                   variant={"outlined"}
                   required
                   name="collection"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <FolderOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   error={props.product.collection === ""}
                   id="product-collection"
                   label="collection"
@@ -214,8 +251,8 @@ function EditModal(props: IProps) {
           <Box mr={4}>
             <Button
               onClick={() => {
-                if(validInput && validUrlInput) {
-                  window.location.href = "/admin"
+                if (validInput && validUrlInput) {
+                  window.location.href = "/admin";
                   if (props.newProduct) {
                     addNewProduct(props.product!);
                     props.isProductNew();
