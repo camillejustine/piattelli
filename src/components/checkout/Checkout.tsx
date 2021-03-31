@@ -9,7 +9,7 @@ import {
   Stepper,
   Typography,
 } from "@material-ui/core";
-import  { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import PersonalDetails from "./PersonalDetails";
 import DeliveryOptions from "./DeliveryOptions";
 import PaymentMethod from "./PaymentMethod";
@@ -43,15 +43,28 @@ function Checkout() {
   const [city, setCity] = useState<string>();
   const [deliveryOption, setDeliveryOption] = useState<string>();
 
+  function validation(value: number | string, pattern: RegExp) {
+    const charPattern = pattern;
+    return charPattern.test(String(value));
+  }
+
+  const emailRegEx = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const noSpecialCharsRegEx = /^[A-Öa-ö0-9'.-\s,]{1,50}$/;
+  const phoneRegEx = /^[0-9]{2,4}[0-9]{2,3}[0-9]{2,3}[0-9]{2,3}$/;
+  const zipCodeRegEx = /^[0-9]{5,5}$/
+
+  console.log(validation(email!, emailRegEx))
+  console.log(validation(fullName!, noSpecialCharsRegEx))
+
   const isFormValid =
-    fullName &&
-    phoneNumber &&
+    validation(fullName!, noSpecialCharsRegEx) &&
+    validation(parseInt(phoneNumber!), phoneRegEx) &&
     deliveryOption &&
-    email &&
-    adress &&
-    zipCode &&
-    country &&
-    city;
+    validation(email!, emailRegEx) &&
+    validation(adress!, noSpecialCharsRegEx) &&
+    validation(zipCode!, zipCodeRegEx) &&
+    validation(country!, noSpecialCharsRegEx) &&
+    validation(city!, noSpecialCharsRegEx);
 
   // Payment state
   const [paymentOption, setPaymentOption] = useState<string>();
