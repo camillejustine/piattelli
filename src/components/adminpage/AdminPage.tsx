@@ -37,10 +37,10 @@ function OpenAdminPage() {
             spacing={1}
             className={classes.innerGridStyle}
           >
-            {products.map((product) => {
+            {products.map((product, i) => {
               return (
-                <>
-                  <Box className={classes.productCard}>
+                <div key={i}>
+                  <Box key={i} className={classes.productCard}>
                     <Hidden only={"xs"}>
                       <Img
                         src={[product.preview, fallback]}
@@ -90,7 +90,7 @@ function OpenAdminPage() {
                       </Tooltip>
                     </div>
                   </Box>
-                </>
+                </div>
               );
             })}
           </Grid>
