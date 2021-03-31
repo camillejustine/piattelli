@@ -25,8 +25,32 @@ function EditModal(props: IProps) {
   const classes = useStyles();
 
   const { addNewProduct, updateProduct } = useContext(ProductsContext);
-
+  const [ validInput, isInputValid ] = useState(false)
+  const [ validUrlInput, isUrlInputValid ] = useState(false)
   const [, setProduct] = useState<Product>();
+
+  function checkInput(value: string){
+    const format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    if(format.test(value)){
+      isInputValid(false)
+    } else {
+      isInputValid(true)
+    }
+  }
+
+  function checkUrl(value: string) {
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+  '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+  '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    if(pattern.test(value)){
+      isUrlInputValid(false)
+    } else {
+      isUrlInputValid(true)
+    }
+  }
 
   function handleChange(value: string | number, key: keyof Product) {
     /* const editedProduct = {...props.product}
@@ -64,16 +88,21 @@ function EditModal(props: IProps) {
         </Hidden>
         <Box className={classes.formContainer}>
           <form>
+            
             <Box className={classes.smallerForms}>
               <Box mb={5} mt={5}>
                 <TextField
                   className={classes.formWidth}
                   required
                   name="name"
-                  error={props.product.name === ""}
+                  error={!validInput}
+                  helperText={"No special characters*"}
                   id="product-name"
                   label="Name"
-                  onChange={(event) => handleChange(event.target.value, "name")}
+                  onChange={(event) => {
+                    handleChange(event.target.value, "name")
+                    checkInput(event.target.value)
+                  }}
                   defaultValue={props.product.name}
                 ></TextField>
               </Box>
@@ -100,11 +129,14 @@ function EditModal(props: IProps) {
                   variant={"outlined"}
                   required
                   name="Picture"
-                  error={props.product.preview === ""}
+                  error={!validUrlInput}
+                  helperText={"Please enter a valid url"}
                   id="product-Picture"
                   label="Picture"
-                  onChange={(event) =>
-                    handleChange(event.target.value, "preview")
+                  onChange={(event) =>{
+                    handleChange(event.target.value, "preview");
+                    checkUrl(event.target.value);
+                    }
                   }
                   defaultValue={props.product.preview}
                 ></TextField>
@@ -181,13 +213,15 @@ function EditModal(props: IProps) {
         <Box mb={5} className={classes.buttonContainer}>
           <Box mr={4}>
             <Button
-              href={"/admin"}
               onClick={() => {
-                if (props.newProduct) {
-                  addNewProduct(props.product!);
-                  props.isProductNew();
-                } else {
-                  updateProduct(props.product!);
+                if(validInput && validUrlInput) {
+                  window.location.href = "/admin"
+                  if (props.newProduct) {
+                    addNewProduct(props.product!);
+                    props.isProductNew();
+                  } else {
+                    updateProduct(props.product!);
+                  }
                 }
               }}
             >

@@ -23,8 +23,6 @@ import AdminPage from "./adminpage/AdminPage";
 import Checkout from "./checkout/Checkout";
 import ProductDetails from "./product/ProductDetails";
 import { Product } from "./context/ProductsContext";
-import NotFound from "./notFound/NotFound";
-
 
 function Layout() {
   const [productDetail, setProductDetail] = useState<Product>();
@@ -37,57 +35,55 @@ function Layout() {
   return (
     <Box className={classes.customCursorBlack}>
       <CartProvider>
-        <Box className={classes.landingContainer}>
-          <Route path="/catalogue">
-            <Box className={classes.catalogueStyles}>
-              <Typography variant={"h3"} align={"center"}>
-                Our bags
-              </Typography>
-              <Box mb={8} mt={5}>
-                <Catalogue isLarge={true} getProduct={productDetails} />
-              </Box>
+          <ErrorBoundary>
+            <Header />
+          </ErrorBoundary>
+          <Box className={classes.landingContainer}>
+            <Route exact path="/">
+                <Hero />
+                <Promotion />
+                <Explore />
+                <PromotionSecond />
+                <Box className={classes.cataloguePreviewContainer}>
+                  <Catalogue isLarge={false} getProduct={productDetails} />
+                </Box>
+              </Route>
+              <Route path="/catalogue">
+                <Box className={classes.catalogueStyles}>
+                  <Typography variant={"h3"} align={"center"}>
+                    Our bags
+                  </Typography>
+                  <Box mb={8} mt={5}>
+                    <Catalogue isLarge={true} getProduct={productDetails} />
+                  </Box>
+                </Box>
+              </Route>
+              <Route path="/new-collection">
+                <Box className={classes.catalogueStyles}>
+                  <Collection />
+                  <Typography variant={"h3"} align={"center"}>
+                    Our bags
+                  </Typography>
+                  <Box mb={8} mt={5}>
+                    <Catalogue isLarge={true} getProduct={productDetails} />
+                  </Box>
+                </Box>
+              </Route>             
+            </Box>    
+          <Route path="/products/:name">
+            <ProductDetails productView={productDetail} />
+          </Route>   
+          <Hidden smDown>
+            <Newsletter />
+          </Hidden>
+          <Route path="/checkout">
+            <Box mb={10}>
+              <Checkout />
             </Box>
           </Route>
-          <Route path="/new-collection">
-            <Box className={classes.catalogueStyles}>
-              <Collection />
-              <Typography variant={"h3"} align={"center"}>
-                Our bags
-              </Typography>
-              <Box mb={8} mt={5}>
-                <Catalogue isLarge={true} getProduct={productDetails} />
-              </Box>
-            </Box>
+          <Route path="/admin">
+            <AdminPage />
           </Route>
-          <Route exact path="/">
-            <Hero />
-            <Promotion />
-            <Explore />
-            <PromotionSecond />
-
-            <Box className={classes.cataloguePreviewContainer}>
-              <Catalogue isLarge={false} getProduct={productDetails} />
-            </Box>
-          </Route>
-          <Route component={NotFound}/>
-        </Box>
-        <ErrorBoundary>
-          <Header />
-        </ErrorBoundary>
-        <Route path="/products/:name">
-          <ProductDetails productView={productDetail} />
-        </Route>
-        <Hidden smDown>
-          <Newsletter />
-        </Hidden>
-        <Route path="/checkout">
-          <Box mb={10}>
-            <Checkout />
-          </Box>
-        </Route>
-        <Route path="/admin">
-          <AdminPage />
-        </Route>
         <Footer />
       </CartProvider>
     </Box>
