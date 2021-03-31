@@ -43,15 +43,28 @@ function Checkout() {
   const [city, setCity] = useState<string>();
   const [deliveryOption, setDeliveryOption] = useState<string>();
 
+  function validation(value: number | string, pattern: RegExp) {
+    const charPattern = pattern;
+    return charPattern.test(String(value));
+  }
+
+  const emailRegEx = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const noSpecialCharsRegEx = /^[A-Öa-ö0-9'.-\s,]{1,50}$/;
+  const phoneRegEx = /^[0-9]{2,4}[0-9]{2,3}[0-9]{2,3}[0-9]{2,3}$/;
+  const zipCodeRegEx = /^[0-9]{5,5}$/;
+
+  console.log(validation(email!, emailRegEx));
+  console.log(validation(fullName!, noSpecialCharsRegEx));
+
   const isFormValid =
-    fullName &&
-    phoneNumber &&
+    validation(fullName!, noSpecialCharsRegEx) &&
+    validation(parseInt(phoneNumber!), phoneRegEx) &&
     deliveryOption &&
-    email &&
-    adress &&
-    zipCode &&
-    country &&
-    city;
+    validation(email!, emailRegEx) &&
+    validation(adress!, noSpecialCharsRegEx) &&
+    validation(zipCode!, zipCodeRegEx) &&
+    validation(country!, noSpecialCharsRegEx) &&
+    validation(city!, noSpecialCharsRegEx);
 
   // Payment state
   const [paymentOption, setPaymentOption] = useState<string>();
@@ -62,7 +75,13 @@ function Checkout() {
   const [swishNumber, setSwishNumber] = useState(phoneNumber);
   const [isLoading, setIsLoading] = useState(false);
 
-  const isCardValid = nameOnCard && cardNumber && cvcNumber;
+  const creditCardRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
+  const cvcRegEx = /^[0-9]{3,3}$/;
+
+  const isCardValid =
+    validation(nameOnCard!, noSpecialCharsRegEx) &&
+    validation(cardNumber!, creditCardRegEx) &&
+    validation(cvcNumber!, cvcRegEx);
   const isPaymentValid =
     paymentOption && (isCardValid || giftCard || swishNumber);
 
