@@ -31,14 +31,15 @@ function EditModal(props: IProps) {
   const classes = useStyles();
 
   const { addNewProduct, updateProduct } = useContext(ProductsContext);
-  const [validInput, isInputValid] = useState(false);
-  const [validUrlInput, isUrlInputValid] = useState(false);
+
+  const [ validInput, isInputValid ] = useState(true)
+  const [ validUrlInput, isUrlInputValid ] = useState(true)
   const [, setProduct] = useState<Product>();
 
-  function checkInput(value: string) {
-    const format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    if (format.test(value)) {
-      isInputValid(false);
+  function checkInput(value: string){
+    const format = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+    if(format.test(value)){
+      isInputValid(false)
     } else {
       isInputValid(true);
     }
