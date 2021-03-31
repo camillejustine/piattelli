@@ -19,34 +19,38 @@ function Footer() {
       <Link href="/admin">
         <Typography>Secret</Typography>
       </Link>
-      <Typography>
+      <Box>
         <Box className={classes.footerLogo}>
           <Typography variant="h4">PIATTELLI</Typography>
         </Box>
-      </Typography>
+      </Box>
       <Hidden smUp>
         <Box className={classes.mobileFooterContainer}>
           <Box className={classes.mobileFooterContent}>
-            <Typography variant="subtitle2">
-              <Box>
+            <Box>
+              <Typography variant="subtitle2">
                 <Link>Collections</Link>
-              </Box>
-              <br />
-              <Box>
+              </Typography>
+            </Box>
+            <br />
+            <Box>
+              <Typography variant="subtitle2">
                 <Link>Help</Link>
-              </Box>
-            </Typography>
+              </Typography>
+            </Box>
           </Box>
           <Box className={classes.mobileFooterContent}>
-            <Typography variant="subtitle2">
-              <Box>
+            <Box>
+              <Typography variant="subtitle2">
                 <Link>Company</Link>
-              </Box>
-              <br />
-              <Box>
+              </Typography>
+            </Box>
+            <br />
+            <Box>
+              <Typography variant="subtitle2">
                 <Link>Follow Us</Link>
-              </Box>
-            </Typography>
+              </Typography>
+            </Box>
           </Box>
         </Box>
       </Hidden>
