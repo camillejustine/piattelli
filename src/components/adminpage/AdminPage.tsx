@@ -40,7 +40,7 @@ function OpenAdminPage() {
             {products.map((product, i) => {
               return (
                 <div key={i}>
-                  <Box className={classes.productCard}>
+                  <Box key={i} className={classes.productCard}>
                     <Hidden only={"xs"}>
                       <Img
                         src={[product.preview, fallback]}
@@ -115,7 +115,7 @@ function OpenAdminPage() {
           product={editingProduct}
         />
       </Box>
-    </div>
+    </>
   );
 }
 
