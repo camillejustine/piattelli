@@ -33,7 +33,7 @@ function OpenAdminPage() {
             {products.map((product) => {
               return (
                 <>
-                  <Box  key={i} className={classes.productCard}>
+                  <Box className={classes.productCard}>
                     <Hidden only={"xs"}>
                       <Img
                         src={[product.preview, fallback]}
