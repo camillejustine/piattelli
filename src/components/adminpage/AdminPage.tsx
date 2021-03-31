@@ -1,4 +1,11 @@
-import { Typography, Box, Button, Grid, Hidden } from "@material-ui/core";
+import {
+  Typography,
+  Box,
+  Button,
+  Grid,
+  Hidden,
+  Tooltip,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useContext, useState } from "react";
 import { Product, ProductsContext } from "../context/ProductsContext";
@@ -71,12 +78,16 @@ function OpenAdminPage() {
                       </Typography>
                     </Box>
                     <div>
-                      <Button onClick={() => setEditingProduct(product)}>
-                        <EditOutlinedIcon fontSize={"small"} />
-                      </Button>
-                      <Button onClick={() => removeProduct(product)}>
-                        <ClearIcon fontSize={"small"} />
-                      </Button>
+                      <Tooltip title="Edit" arrow>
+                        <Button onClick={() => setEditingProduct(product)}>
+                          <EditOutlinedIcon fontSize={"small"} />
+                        </Button>
+                      </Tooltip>
+                      <Tooltip title="Delete" arrow>
+                        <Button onClick={() => removeProduct(product)}>
+                          <ClearIcon fontSize={"small"} />
+                        </Button>
+                      </Tooltip>
                     </div>
                   </Box>
                 </>
@@ -84,14 +95,16 @@ function OpenAdminPage() {
             })}
           </Grid>
           <Box className={classes.addItemButton}>
-            <Button
-              onClick={() => {
-                setEditingProduct(emptyProduct);
-                setNewProduct(true);
-              }}
-            >
-              <PostAddIcon fontSize={"large"} />
-            </Button>
+            <Tooltip title="Add product" arrow>
+              <Button
+                onClick={() => {
+                  setEditingProduct(emptyProduct);
+                  setNewProduct(true);
+                }}
+              >
+                <PostAddIcon fontSize={"large"} />
+              </Button>
+            </Tooltip>
           </Box>
         </Box>
         <EditModal
