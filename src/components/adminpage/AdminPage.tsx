@@ -39,8 +39,8 @@ function OpenAdminPage() {
           >
             {products.map((product, i) => {
               return (
-                <>
-                  <Box key={i} className={classes.productCard}>
+                <div key={i}>
+                  <Box className={classes.productCard}>
                     <Hidden only={"xs"}>
                       <Img
                         src={[product.preview, fallback]}
@@ -90,7 +90,7 @@ function OpenAdminPage() {
                       </Tooltip>
                     </div>
                   </Box>
-                </>
+                </div>
               );
             })}
           </Grid>
@@ -115,7 +115,7 @@ function OpenAdminPage() {
           product={editingProduct}
         />
       </Box>
-    </>
+    </div>
   );
 }
 
