@@ -31,8 +31,9 @@ function Catalogue(props: IProps, id: string) {
             spacing={1}
             className={classes.innerGridStyle}
           >
-            {products.map((product) => (
+            {products.map((product, i) => (
               <Box
+                key={i}
                 className={classes.boxStyle}
                 onMouseLeave={() => setIsHover("null")}
               >
@@ -166,7 +167,7 @@ function Catalogue(props: IProps, id: string) {
             spacing={1}
             className={classes.innerGridStyle}
           >
-            {previewCatalogue.map((product) => (
+            {previewCatalogue.map((product, i) => (
               <Box
                 className={classes.boxStyle}
                 onMouseLeave={() => setIsHover("null")}

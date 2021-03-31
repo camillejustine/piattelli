@@ -17,7 +17,7 @@ import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
 import LocalOfferOutlinedIcon from "@material-ui/icons/LocalOfferOutlined";
 import FolderOutlinedIcon from "@material-ui/icons/FolderOutlined";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+
 
 interface IProps {
   closeModal: () => void;
