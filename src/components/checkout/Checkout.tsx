@@ -53,9 +53,6 @@ function Checkout() {
   const phoneRegEx = /^[0-9]{2,4}[0-9]{2,3}[0-9]{2,3}[0-9]{2,3}$/;
   const zipCodeRegEx = /^[0-9]{5,5}$/;
 
-  console.log(validation(email!, emailRegEx));
-  console.log(validation(fullName!, noSpecialCharsRegEx));
-
   const isFormValid =
     validation(fullName!, noSpecialCharsRegEx) &&
     validation(parseInt(phoneNumber!), phoneRegEx) &&
@@ -151,8 +148,8 @@ function Checkout() {
                   Cart is empty
                 </Typography>
               ) : null}
-              {cart.map((product: CartItem) => (
-                <Box className={classes.cartContent}>
+              {cart.map((product: CartItem, i) => (
+                <Box key={i} className={classes.cartContent}>
                   <Link href={`/products/${product.name}`}>
                     <Img
                       src={[product.preview, fallback]}

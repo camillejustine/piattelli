@@ -54,8 +54,8 @@ function OrderComfirmation(props: IProps) {
       <Box className={`${classes.centerFlex} ${classes.columnResponsive}`}>
         <Box>
           <Box className={`${classes.cartContentWrapper} ${classes.margin2}`}>
-            {props.payedProducts!.map((product: CartItem) => (
-              <Box className={`${classes.cartContent}`}>
+            {props.payedProducts!.map((product: CartItem, i) => (
+              <Box key={i} className={`${classes.cartContent}`}>
                 <Img
                   src={[product.preview, fallback]}
                   width="100rem"
