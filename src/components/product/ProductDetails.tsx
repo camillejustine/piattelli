@@ -9,6 +9,7 @@ import { Product, ProductsContext } from "../context/ProductsContext";
 import cry from "../../assets/cry.jpg";
 import fallback from "../../assets/bags/fallback.png";
 import { Img } from "react-image";
+
 interface IProps {
   productView: Product | undefined;
 }
@@ -67,8 +68,9 @@ function ProductDetails(_props: IProps) {
             </Typography>
           </Box>
           <div className={classes.row}>
-            {textInfoStrings.map((tab) => (
+            {textInfoStrings.map((tab, i) => (
               <Typography
+                key={i}
                 variant={"body2"}
                 className={classes.padding}
                 onClick={() => {
